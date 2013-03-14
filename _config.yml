@@ -8,7 +8,7 @@ url: http://localhost:4000
 source:      .
 destination: ./_site
 plugins:     ./_plugins
-exclude: ['deploy.sh','README.md']
+exclude: ['deploy.sh','README.md','docs']
 
 future:      true
 lsi:         false
