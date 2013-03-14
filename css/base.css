@@ -990,6 +990,11 @@ div.open-close {
 .social {
     text-align: right;
 }
+
+.subnav.social {
+    text-align: left;
+}
+
 .social-list li {
     display: inline-block;
     margin-right: 10px;
@@ -1004,9 +1009,25 @@ div.open-close {
     color: rgb(245, 245, 245);
     line-height: 24px;
 }
+
+.subnav .social-list li a {
+    color: rgb(200, 200, 200);
+}
+
+.subnav .social-list li:first-child {
+    border-right: 0; 
+    padding-right: 0;
+}
+
+.subnav .social-list li:last-child {
+    border-right: 0; 
+    padding-right: 0;
+    margin-right: 0;
+}
+
 .social-list li a:hover {
     text-decoration: none;
-    color: rgb(200, 200, 200);
+    color: rgb(150, 150, 150);
 }
 .back {
     text-align: right;
