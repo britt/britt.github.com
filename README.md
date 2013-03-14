@@ -7,7 +7,6 @@ My personal site.
 * Asset packaging
 * Customize
 * Write some posts
-* Condense into layout
-* CC license
 * GA
 * Favicon
+* RSS Feed
