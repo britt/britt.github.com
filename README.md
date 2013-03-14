@@ -8,3 +8,4 @@ My personal site.
 * Asset packaging
 * Customize
 * Write some posts
+* Condense into layout
