@@ -8,3 +8,6 @@ My personal site.
 * Customize
 * Write some posts
 * Condense into layout
+* CC license
+* GA
+* Favicon
