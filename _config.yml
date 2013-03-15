@@ -5,6 +5,9 @@ server_port: 4000
 baseurl:    /
 url: http://localhost:4000
 
+description: "The personal blog of Britt Crawford."
+root_desc: "BrittCrawford.com"
+
 source:      .
 destination: ./_site
 plugins:     ./_plugins
