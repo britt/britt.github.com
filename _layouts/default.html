@@ -5,17 +5,16 @@
         <title>Britt Crawford{% unless page.title == 'Home' %}: {{page.title}}{% endunless %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
-        <meta name="author" content="">
+        <meta name="author" content="Britt Crawford">
 
         <!-- Le styles -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">    
-        <link href="css/bootstrap-responsive.min.css" rel="stylesheet">                 
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/ui.totop.css" rel="stylesheet">
-        <link href="css/prettyPhoto.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">  
-
-        <link href="css/scheme-red.css" title="scheme-red" rel="stylesheet">
+        <link href="/css/bootstrap.min.css" rel="stylesheet">    
+        <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">                 
+        <link href="/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/css/ui.totop.css" rel="stylesheet">
+        <link href="/css/prettyPhoto.css" rel="stylesheet">
+        <link href="/css/base.css" rel="stylesheet">  
+        <link href="/css/scheme-red.css" title="scheme-red" rel="stylesheet">
 
         <!--[if IE 7]>
             <link href="css/font-awesome-ie7.min.css" rel="stylesheet">
@@ -29,11 +28,11 @@
         <![endif]-->   
 
         <!-- Fav and touch icons -->
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
-        <link rel="shortcut icon" href="ico/favicon.png">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="/ico/apple-touch-icon-57-precomposed.png">
+        <link rel="shortcut icon" href="/ico/favicon.png">
     </head>
     <body>
         <div class="wrapper">
@@ -49,14 +48,14 @@
                             </a>
      
                             <!-- Be sure to leave the brand out there if you want it shown -->
-                            <a class="brand" href="#">Britt Crawford</a>
+                            <a class="brand" href="/" rel="home">Britt Crawford</a>
                             
                             <!-- Everything you want hidden at 940px or less, place within here -->
                             <div class="nav-collapse collapse">
                                 <!-- .nav, .navbar-search, .navbar-form, etc -->
                                 <ul class="nav pull-right">
                                     <li class="active">
-                                      <a href="index.html"><i class="icon-home"></i> Home</a>
+                                      <a href="/" rel="home"><i class="icon-home"></i> Home</a>
                                     </li>
                                     <li>
                                       <a href="http://illtemper.org/"><i class="icon-link"></i> Link Blog</a>
@@ -95,7 +94,18 @@
                 </li>                                                         
               </ul>
             </section>
+            <section class="welcome container">
+                <div class="content">
+                    {% unless page.welcome_message == '' %}
+                      <h3>{{ page.welcome_message }}</h3> 
+                    {% endunless %}
+                    {% unless page.welcome_text == '' %}
+                      <p>{{ page.welcome_text }}</p> 
+                    {% endunless %}
+                </div>
+            </section><!--/.welcome -->
             {{content}}
+
             <footer class="footer">
                 <div class="container">
                     <div class="row">
@@ -123,7 +133,7 @@
                               <li>    
                                     <a href="">
                                         <div class="post-thumb">
-                                            <img src="images/blog/img_1.jpg">
+                                            <img src="/images/blog/img_1.jpg">
                                             <span class="overlay"></span>
                                         </div>
                                         <span class="post-title">Lorem ipsum dolor sit amet, consectetur adipiscing.</span> 
@@ -133,7 +143,7 @@
                         <li>    
                                     <a href="">
                                         <div class="post-thumb">
-                                            <img src="images/blog/img_2.jpg">
+                                            <img src="/images/blog/img_2.jpg">
                                             <span class="overlay"></span>
                                         </div>
                                         <span class="post-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed.</span> 
@@ -143,7 +153,7 @@
                                 <li>    
                                     <a href="">
                                         <div class="post-thumb">
-                                            <img src="images/blog/img_3.jpg">
+                                            <img src="/images/blog/img_3.jpg">
                                             <span class="overlay"></span>
                                         </div>
                                         <span class="post-title">Lorem ipsum dolor sit amet.</span> 
@@ -209,20 +219,20 @@
         <!-- Le javascript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="js/jquery/jquery-1.9.0.min.js"></script>
-        <script src="js/jquery/jquery-migrate-1.1.0.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/carousel/jquery.carouFredSel-6.2.0-packed.js"></script>
-        <script src="js/jquery-tweet/jquery.tweet.js"></script>
-        <script src="js/jquery-flickr/jflickrfeed.min.js"></script>
-        <script src="js/uitotop/easing.js"></script>
-        <script src="js/uitotop/jquery.ui.totop.js"></script>        
-        <script src="js/prettyphoto/jquery.prettyPhoto.js"></script>
-        <script src="js/fitvids/jquery.fitvids.min.js"></script>        
-        <script src="js/countdown/jquery.countdown.min.js"></script>
-        <script src="js/holder/holder.js"></script>
-        <script src="js/bootstrap-carousel.js"></script>
-        <script src="js/jquery.isotope.min.js"></script>
-        <script src="js/base.js"></script>
+        <script src="/js/jquery/jquery-1.9.0.min.js"></script>
+        <script src="/js/jquery/jquery-migrate-1.1.0.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/carousel/jquery.carouFredSel-6.2.0-packed.js"></script>
+        <script src="/js/jquery-tweet/jquery.tweet.js"></script>
+        <script src="/js/jquery-flickr/jflickrfeed.js"></script>
+        <script src="/js/uitotop/easing.js"></script>
+        <script src="/js/uitotop/jquery.ui.totop.js"></script>        
+        <script src="/js/prettyphoto/jquery.prettyPhoto.js"></script>
+        <script src="/js/fitvids/jquery.fitvids.min.js"></script>        
+        <script src="/js/countdown/jquery.countdown.min.js"></script>
+        <script src="/js/holder/holder.js"></script>
+        <script src="/js/bootstrap-carousel.js"></script>
+        <script src="/js/jquery.isotope.min.js"></script>
+        <script src="/js/base.js"></script>
     </body>
 </html>

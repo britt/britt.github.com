@@ -89,7 +89,7 @@ $(window).resize(function () {
 });
 $(".tweet").tweet({
     join_text: "auto",
-    username: "wrapbootstrap",
+    username: "britt",
     avatar_size: 48,
     count: 2,
     auto_join_text_default: " we said, ",
@@ -101,9 +101,9 @@ $(".tweet").tweet({
     template: '<div class="avatar-wrapper">{avatar}<a href="{user_url}"><span class="overlay"></span></a></div>{text}{time}'
 });
 $('.flickr').jflickrfeed({
-    limit: 7,
+    limit: 10,
     qstrings: {
-        id: '44802888@N04'
+        id: '89854093@N00'
     },
     itemTemplate:
 	'<li>' +

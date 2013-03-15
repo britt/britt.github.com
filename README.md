@@ -10,3 +10,4 @@ My personal site.
 * GA
 * Favicon
 * RSS Feed
+* Site META information
