@@ -13,3 +13,4 @@ My personal site.
 * Site META information
 * Fix Base JS so that carousels etc. only load when needed
 * Set up recent posts
+* 
