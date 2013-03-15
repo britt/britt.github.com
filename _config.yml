@@ -11,7 +11,7 @@ root_desc: "BrittCrawford.com"
 source:      .
 destination: ./_site
 plugins:     ./_plugins
-exclude: ['deploy.sh','README.md','docs']
+exclude: ['deploy.sh','README.md','docs','Rakefile']
 
 future:      true
 lsi:         false
