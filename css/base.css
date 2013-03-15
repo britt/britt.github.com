@@ -956,12 +956,16 @@ div.open-close {
     float: left;
     margin-top: 5px;
 }
-.post-title, .post-date {
-    margin-left: 58px;
+.post-title, .post-date, .post-excerpt {
     display: block;
     line-height: 15px;
     margin-top: 3px;
 }
+
+.post-with-thumbnail .post-title, .post-with-thumbnail .post-date, .post-with-thumbnail .post-excerpt {
+    margin-left: 58px;
+}
+
 .vcard-icon {
     width: 20px;
     float: left;
@@ -971,7 +975,7 @@ div.open-close {
     margin-left: 30px;
     display: block;
 }
-.post-date, .tweet_time a {
+.post-date, .post-excerpt, .tweet_time a {
     font-weight: normal;
     font-size: 10px;
     color: rgb(145, 145, 145);

@@ -101,7 +101,7 @@ $(".tweet").tweet({
     template: '<div class="avatar-wrapper">{avatar}<a href="{user_url}"><span class="overlay"></span></a></div>{text}{time}'
 });
 $('.flickr').jflickrfeed({
-    limit: 10,
+    limit: 12,
     qstrings: {
         id: '89854093@N00'
     },
