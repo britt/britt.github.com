@@ -5,7 +5,6 @@ My personal site.
 ## TODO
 
 * Asset packaging
-* Customize
 * Write some posts
 * GA
 * Favicon
@@ -14,3 +13,5 @@ My personal site.
 * Set up recent posts
 * Side bar and footer replicate contents
 * Blogpost
+* Write a better description
+* Consider increasing font-size on main page
