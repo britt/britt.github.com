@@ -813,6 +813,9 @@ div.open-close {
 .blog .pagination ul {
   display: inline;
 }
+.blog.container {
+    margin-bottom: 120px;
+}
 .posts .carousel {
     margin-bottom: 0;
 }

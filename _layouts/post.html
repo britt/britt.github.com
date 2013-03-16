@@ -22,15 +22,13 @@
 
             <section class="post-item container">
                 <div class="row">
-                    <div class="span12">
-                        <article class="post">
-                            {%if page.featured_picture %}
-                            {% include featured_picture.html %}
-                            {% endif %}
-                            {% include post_meta.html %}
-                            {{ content }}
-                        </article>
-                    </div>   
+                    <article class=" span8 post">
+                        {%if page.featured_picture %}
+                        {% include featured_picture.html %}
+                        {% endif %}
+                        {% include post_meta.html %}
+                        {{ content }}
+                    </article>
                 </div>
             </section>       
 

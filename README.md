@@ -21,3 +21,4 @@ My personal site.
 * Make printable version link work
 * Main page
 * pagination
+* Comments
