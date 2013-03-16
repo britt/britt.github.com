@@ -22,37 +22,18 @@
             <div class="span3 widget">
                 <h5>Recent Posts</h5>
                 <ul class="recent-posts">
-                  <li>    
-                        <a href="">
-                            <div class="post-thumb">
-                                <img src="/images/blog/img_1.jpg">
-                                <span class="overlay"></span>
-                            </div>
-                            <span class="post-title">Lorem ipsum dolor sit amet, consectetur adipiscing.</span> 
-                            <span class="post-date">17 February, 2013</span> 
-                        </a>                                   
-                    </li>
-            <li>    
-                        <a href="">
-                            <div class="post-thumb">
-                                <img src="/images/blog/img_2.jpg">
-                                <span class="overlay"></span>
-                            </div>
-                            <span class="post-title">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque sed.</span> 
-                            <span class="post-date">16 February, 2013</span> 
-                        </a>                                   
-                    </li>
+                {% for post in site.posts limit:5 %}
                     <li>    
-                        <a href="">
-                            <div class="post-thumb">
-                                <img src="/images/blog/img_3.jpg">
-                                <span class="overlay"></span>
-                            </div>
-                            <span class="post-title">Lorem ipsum dolor sit amet.</span> 
-                            <span class="post-date">15 February, 2013</span>  
-                        </a>                                   
+                      <a href="{{post.url}}">
+                          <span class="post-title">{{post.title}}</span> 
+                          <span class="post-excerpt">
+                            {{post.content | strip_html | truncatewords: 25}}
+                          </span>
+                          <span class="post-date">{{post.date | date:"%B %d, %Y"}}</span>
+                      </a>                                   
                     </li>
-          </ul>
+                {% endfor %}
+                </ul>
             </div><!--/ recent posts --> 
             <div class="span3 widget">
                 <h5>Recent Tweets</h5>

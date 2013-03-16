@@ -19,3 +19,5 @@ My personal site.
 * Remove extraneous JS and CSS
 * Error pages
 * Make printable version link work
+* Main page
+* pagination

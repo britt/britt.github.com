@@ -588,6 +588,7 @@ div.open-close {
     font-size: 15px;
     display: block;
 }
+
 .not-found .content {
     *text-align: center;
     *padding: 0 200px;
@@ -1051,6 +1052,15 @@ div.open-close {
     background-repeat: repeat;
     margin-bottom: 50px;
 }
+.super-page-header.not-found { 
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.not-found .content {
+    text-align: center;
+}
+
 .super-page-header h1 {
     font-size: 40px;
     font-weight: 800;
@@ -1269,8 +1279,13 @@ h4.section-header {
   color: white;
 }
 
-.post-item .post {
+.post-item .post, .not-found .content {
     font-size: 17.5px;
+    color: rgb(75,75,75);
+}
+
+.not-found .test-card {
+    margin-bottom: 160px;
 }
 
 /* Large desktop */
