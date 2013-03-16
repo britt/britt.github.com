@@ -6,6 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="{{site.description}}">
         <meta name="author" content="Britt Crawford">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <link rel="canonical" href="{{page.url}}">
 
         <!-- Le styles -->
         <link href="/css/bootstrap.min.css" rel="stylesheet">    
@@ -39,6 +42,7 @@
     <body>
         <div class="wrapper">
             {% include masthead.html %}
+
             <section class="super-page-header">
                 <div class="container">
                     <h1><span>{{page.title}}</span></h1> 
@@ -49,6 +53,10 @@
                 <div class="row">
                     <div class="span12">
                         <article class="post">
+                            {%if page.featured_picture %}
+                            {% include featured_picture.html %}
+                            {% endif %}
+                            {% include post_meta.html %}
                             {{ content }}
                         </article>
                     </div>   

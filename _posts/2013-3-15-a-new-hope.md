@@ -1,6 +1,7 @@
 ---
 layout: post
-title: A new hope
+title: A New Hope
+featured_picture: /images/star-wars-a-new-hope.jpg
 ---
 
 # Long long ago

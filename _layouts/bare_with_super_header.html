@@ -2,18 +2,19 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>Britt Crawford{% unless page.title == 'Home' %}: {{page.title}}{% endunless %}</title>
+        <title>Britt Crawford: {{page.title}}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="{{site.description}}">
         <meta name="author" content="Britt Crawford">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
-        <link rel="canonical" href="{{site.url}}">
+        <link rel="canonical" href="{{page.url}}">
 
         <!-- Le styles -->
         <link href="/css/bootstrap.min.css" rel="stylesheet">    
         <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">                 
         <link href="/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/css/ui.totop.css" rel="stylesheet">
         <link href="/css/prettyPhoto.css" rel="stylesheet">
         <link href="/css/base.css" rel="stylesheet">  
         <link href="/css/scheme-red.css" title="scheme-red" rel="stylesheet">
@@ -41,31 +42,19 @@
     <body>
         <div class="wrapper">
             {% include masthead.html %}
-            {% include social_subnav.html %}
+            <section class="super-page-header">
+                <div class="container">
+                    <h1><span>{{page.title}}</span></h1> 
+                </div>
+            </section>
+
             
-            <section class="welcome container">
-                <div class="content">
-                    {% unless page.welcome_message == '' %}
-                      <h3>{{ page.welcome_message }}</h3> 
-                    {% endunless %}
-                    {% unless page.welcome_text == '' %}
-                      <p>{{ page.welcome_text }}</p> 
-                    {% endunless %}
-                </div>
-            </section><!--/.welcome -->
-
-            <section class="blog container">
-                <div class="row">
-                    <div class="span8">
-                        {{ content }}
-                    </div>
-                    {% include sidebar.html %}       
-                </div>
-            </section><!--/.blog -->         
-
-            {% include footer.html %}       
+            {{ content }}
+            
+            {% include footer.html %}
             {% include bottom_stripe.html %}
         </div><!--/.wrapper --> 
+        
         <!-- Le javascript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
