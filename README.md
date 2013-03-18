@@ -17,7 +17,6 @@ My personal site.
 * Disqus?
 * Write bio/description
 * Remove extraneous JS and CSS
-* Error pages
 * Make printable version link work
 * Main page
 * pagination
