@@ -2,7 +2,7 @@
 
 My personal site.
 
-## TODO: Critical for deployment
+## TODO
 
 * Asset packaging
 * Write some posts
@@ -10,6 +10,5 @@ My personal site.
 
 ## TODO: Nice to have
 
-* Open Graph tags
 * Make printable version link work
 * Style comments correctly

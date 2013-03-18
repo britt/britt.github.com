@@ -4,16 +4,16 @@ server:      true
 server_port: 4000
 baseurl:    /
 url: http://brittcrawford.com
+paginate: 5
 
 description: "The personal blog of Britt Crawford."
 root_desc: "BrittCrawford.com"
-paginate: 5
 enable_comments: false
 
 source:      .
 destination: ./_site
 plugins:     ./_plugins
-exclude: ['deploy.sh','README.md','docs','Rakefile']
+exclude: ['deploy.sh','README.md','docs','Rakefile','Gemfile','Gemfile.lock','.gitignore']
 
 future:      true
 lsi:         false
