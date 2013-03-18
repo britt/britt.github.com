@@ -2,19 +2,21 @@
 
 My personal site.
 
-## TODO
+## TODO: Critical for deployment
 
 * Asset packaging
 * Write some posts
 * GA
 * Favicon
-* Fix Base JS so that carousels etc. only load when needed
-* Blogpost
 * Write a better description
-* Consider increasing font-size on main page
-* Wire up main page
-* Disqus?
 * Write bio/description
-* Remove extraneous JS and CSS
+
+## TODO: Nice to have
+
+* Open Graph tags
+* Sitemap
+* Robots.txt
+* Humans.txt
+* Disqus?
 * Make printable version link work
 * Comments
