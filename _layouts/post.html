@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        {% include site_meta.html %}
+        {% include index/meta.html %}
         
         <title>Britt Crawford: {{page.title}}</title>
         
@@ -24,9 +24,9 @@
                 <div class="row">
                     <article class=" span8 post">
                         {%if page.featured_picture %}
-                        {% include featured_picture.html %}
+                        {% include post/featured_picture.html %}
                         {% endif %}
-                        {% include post_meta.html %}
+                        {% include post/meta.html %}
                         {{ content }}
                     </article>
                 </div>

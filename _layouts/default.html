@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        {% include site_meta.html %}
+        {% include index/meta.html %}
 
         <title>Britt Crawford{% unless page.title == 'Home' %}: {{page.title}}{% endunless %}</title>
         
@@ -13,7 +13,7 @@
     <body>
         <div class="wrapper">
             {% include masthead.html %}
-            {% include social_subnav.html %}
+            {% include index/social_subnav.html %}
             
             <section class="welcome container">
                 <div class="content">
@@ -31,7 +31,7 @@
                     <div class="span8">
                         {{ content }}
                     </div>
-                    {% include sidebar.html %}       
+                    {% include index/sidebar.html %}       
                 </div>
             </section><!--/.blog -->         
 

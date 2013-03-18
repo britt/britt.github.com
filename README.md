@@ -9,7 +9,6 @@ My personal site.
 * GA
 * Favicon
 * Fix Base JS so that carousels etc. only load when needed
-* Side bar and footer replicate contents
 * Blogpost
 * Write a better description
 * Consider increasing font-size on main page
@@ -18,6 +17,5 @@ My personal site.
 * Write bio/description
 * Remove extraneous JS and CSS
 * Make printable version link work
-* Main page
-* pagination
 * Comments
+* Change reading font

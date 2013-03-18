@@ -2,7 +2,7 @@ body {
     font-family: 'Titillium Web', sans-serif;
     *font-family: 'Open Sans', sans-serif;
     color: rgb(145, 145, 145);
-    font-size: 12px;
+    font-size: 17.5px;
     background-image: url(../images/bg/body_bg.jpg);
 }
 #toTop {
@@ -890,6 +890,10 @@ div.open-close {
     -moz-border-radius: 3px;
     border-radius: 3px;
 }
+.sidebar, .socket, footer.footer {
+    font-size: 12px;
+}
+
 .sidebar .widget {
     float: left;
     margin-bottom: 50px;

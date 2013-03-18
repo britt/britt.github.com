@@ -7,6 +7,7 @@ url: http://localhost:4000
 
 description: "The personal blog of Britt Crawford."
 root_desc: "BrittCrawford.com"
+paginate: 5
 
 source:      .
 destination: ./_site
