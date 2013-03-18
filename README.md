@@ -7,7 +7,6 @@ My personal site.
 * Asset packaging
 * Write some posts
 * GA
-* Favicon
 * Write a better description
 * Write bio/description
 
@@ -15,8 +14,6 @@ My personal site.
 
 * Open Graph tags
 * Sitemap
-* Robots.txt
-* Humans.txt
 * Disqus?
 * Make printable version link work
 * Comments
