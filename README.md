@@ -6,13 +6,11 @@ My personal site.
 
 * Asset packaging
 * Write some posts
-* GA
-* Write a better description
 * Write bio/description
+* Style comments correctly
 
 ## TODO: Nice to have
 
 * Open Graph tags
-* Disqus?
 * Make printable version link work
 * Comments
