@@ -3,7 +3,7 @@ auto:        true
 server:      true
 server_port: 4000
 baseurl:    /
-url: http://localhost:4000
+url: http://brittcrawford.com
 
 description: "The personal blog of Britt Crawford."
 root_desc: "BrittCrawford.com"
