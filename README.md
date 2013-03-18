@@ -18,4 +18,3 @@ My personal site.
 * Remove extraneous JS and CSS
 * Make printable version link work
 * Comments
-* Change reading font
