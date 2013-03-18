@@ -359,6 +359,15 @@ div.open-close {
     top: 100%;
     display: none;
 }
+
+.post-list .post-body {
+    margin-top: 20px;
+}
+
+.post-item .post-body {
+    margin-top: 10px;
+}
+
 .post-item .custom-divider {
     margin: 30px 0;
 }
@@ -1040,7 +1049,7 @@ div.open-close {
 
 .social-list li a:hover {
     text-decoration: none;
-    color: rgb(150, 150, 150);
+    /*color: rgb(150, 150, 150);*/
 }
 .back {
     text-align: right;

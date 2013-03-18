@@ -2,7 +2,9 @@
 layout: post
 title: A New Hope
 featured_picture: /images/star-wars-a-new-hope.jpg
+featured_picture_caption: Luke grapsing his father's lightsaber for the first time.
 ---
+
 
 # Long long ago
 

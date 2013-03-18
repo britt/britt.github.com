@@ -27,6 +27,11 @@ $('.socket').tooltip({
     selector: "a[data-toggle=tooltip]"
 });
 
+$('section.social.subnav').tooltip({
+    selector: "a[data-toggle=tooltip]",
+    placement: 'bottom'
+});
+
 $().UItoTop({ easingType: 'easeOutQuart' });
 
 $("a[rel^='prettyPhoto']").prettyPhoto();

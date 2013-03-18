@@ -1,6 +1,11 @@
-<section class="item-pic">
+<section class="row">
+  <div class="item-pic span8">
     <a href="{{ page.featured_picture }}" rel="prettyPhoto">
-        <img src="{{ page.featured_picture }}" />
+        <img src="{{ page.featured_picture }}" {%if page.featured_picture_caption %} alt="{{page.featured_picture_caption}}"{% endif%}>
         <span class="overlay">&nbsp;</span>
     </a>
+  </div>
+  <aside class="span4">
+    {{page.featured_picture_caption}}
+  </aside>
 </section>

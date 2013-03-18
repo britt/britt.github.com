@@ -20,18 +20,16 @@
                 </div>
             </section>
 
-            <section class="post-item container">
-                <div class="row">
-                    <article class=" span8 post">
-                        {%if page.featured_picture %}
-                        {% include post/featured_picture.html %}
-                        {% endif %}
-                        {% include post/meta.html %}
-                        <section class="post-body">
-                            {{ content }}
-                        <section>
-                    </article>
-                </div>
+            <section class="post-item">
+                <article class="post container">
+                    {%if page.featured_picture %}
+                    {% include post/featured_picture.html %}
+                    {% endif %}
+                    {% include post/meta.html %}
+                    <div class="post-body">
+                        {{ content }}
+                    <div>
+                </article>
             </section>       
 
             {% include footer.html %}
