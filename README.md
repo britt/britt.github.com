@@ -13,7 +13,6 @@ My personal site.
 ## TODO: Nice to have
 
 * Open Graph tags
-* Sitemap
 * Disqus?
 * Make printable version link work
 * Comments
