@@ -23,11 +23,17 @@ title: Home
                     <li>/</li>
                     <li><a href="{{ post.url }}#comments">5 comments</a></li>
                 </ul>
-                <span class="pull-right post-type"><i class="icon-file-alt"></i></span>
+                <span class="pull-right post-type print-btn"><i class="icon-file-alt"></i></span>
                 <div class="clearfix"></div>
-                <h4><a href="{{ post.url }}">{{post.title}}</a></h4>
-                {{ post.content }}
-                <a href="{{ post.url }}" class="btn btn-small btn-success">Read more</a>                                       
+                <h4>
+                    <a href="{{ post.url }}">
+                        {{post.title}}
+                    </a>
+                </h4>
+                <section class="post-body">
+                    {{ post.content }}
+                </section>
+                <a href="{{ post.url }}" class="btn btn-small btn-success">Read more</a>
             </article><!--/.post -->
         </li> 
         {% unless forloop.last %}
