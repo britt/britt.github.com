@@ -4,7 +4,6 @@ My personal site.
 
 ## TODO
 
-* Asset packaging
 * Write some posts
 * Write bio/description
 
@@ -12,3 +11,5 @@ My personal site.
 
 * Make printable version link work
 * Style comments correctly
+* Optimize CSS
+* Deploy script

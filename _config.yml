@@ -1,6 +1,6 @@
 safe:        false
-auto:        true
-server:      true
+auto:        false
+server:      false
 server_port: 4000
 baseurl:    /
 url: http://brittcrawford.com

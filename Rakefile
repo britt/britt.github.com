@@ -19,7 +19,12 @@ end
 
 desc 'Build and deploy'
 task :deploy => :build do
-  sh 'rsync -rtzh --progress --delete _site/ tatey@tatey.com:~/var/www/tatey.com/'
+  sh 'rm -rf /tmp/_site'
+  jekyll '/tmp/_site'
+  sh 'git clone git@github.com:britt/britt.github.com.git /tmp/brittcrawford.com.deploy'
+  sh 'cd /tmp/brittcrawford.com.deploy/ && git rm -rf assets/* && git commit -a -m "DEPLOY: Cleaning generated assets"'
+  sh 'cp -r /tmp/_site/* /tmp/brittcrawford.com.deploy/'
+  sh "cd /tmp/brittcrawford.com.deploy/ && git add . && git commit -a -m \"DEPLOY #{Time.now.strftime('%m-%e-%y %H:%M')}\" && git push origin master"
 end
 
 desc 'Create a new post'
