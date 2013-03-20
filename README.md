@@ -12,4 +12,3 @@ My personal site.
 * Make printable version link work
 * Style comments correctly
 * Optimize CSS
-* Deploy script
