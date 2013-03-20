@@ -18,13 +18,15 @@ task :server do
 end
 
 desc 'Build and deploy'
-task :deploy => :build do
+task :deploy do
   sh 'rm -rf /tmp/_site'
-  jekyll '/tmp/_site'
+  jekyll '/tmp/_site', false
+  sh 'rm -rf /tmp/brittcrawford.com.deploy'
   sh 'git clone git@github.com:britt/britt.github.com.git /tmp/brittcrawford.com.deploy'
   sh 'cd /tmp/brittcrawford.com.deploy/ && git rm -rf assets/* && git commit -a -m "DEPLOY: Cleaning generated assets"'
   sh 'cp -r /tmp/_site/* /tmp/brittcrawford.com.deploy/'
   sh "cd /tmp/brittcrawford.com.deploy/ && git add . && git commit -a -m \"DEPLOY #{Time.now.strftime('%m-%e-%y %H:%M')}\" && git push origin master"
+  puts "Deployment successful"
 end
 
 desc 'Create a new post'
@@ -35,8 +37,8 @@ task :post, [:title] do |t, args|
   puts "Created #{file_name}"
 end
 
-def jekyll(opts = '')
-  sh 'rm -rf _site'
+def jekyll(opts = '', clean = true)
+  sh 'rm -rf _site' if clean
   sh 'jekyll ' + opts
 end
 

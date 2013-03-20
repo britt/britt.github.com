@@ -8,7 +8,7 @@ paginate: 5
 
 description: "The personal blog of Britt Crawford."
 root_desc: "BrittCrawford.com"
-enable_comments: false
+enable_comments: true
 
 source:      .
 destination: ./_site
