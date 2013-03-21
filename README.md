@@ -12,3 +12,5 @@ My personal site.
 * Make printable version link work
 * Style comments correctly
 * Optimize CSS
+* HAML/SASS
+* Strip unused CSS

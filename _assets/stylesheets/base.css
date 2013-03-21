@@ -1,6 +1,6 @@
 body {
-    font-family: 'Titillium Web', sans-serif;
-    *font-family: 'Open Sans', sans-serif;
+/*    font-family: 'Titillium Web', sans-serif;
+*/    font-family: 'Open Sans', sans-serif;
     color: rgb(145, 145, 145);
     font-size: 17.5px;
     background-image: url(../images/bg/body_bg.jpg);
@@ -358,6 +358,11 @@ div.open-close {
     margin-top: -22px;
     top: 100%;
     display: none;
+}
+
+.post-body {
+    font-family: 'Open Sans', sans-serif;
+    color: #333;
 }
 
 .post-list .post-body {
