@@ -5,7 +5,6 @@ My personal site.
 ## TODO
 
 * Write some posts
-* Write bio/description
 
 ## TODO: Nice to have
 
