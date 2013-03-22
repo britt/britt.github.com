@@ -1393,6 +1393,14 @@ h4.section-header {
      
 /* Landscape phones and down */
 @media (max-width: 480px) {
+    .post-meta { border: none;}
+    ul.inline>li { padding-left: 0;}
+    .post-meta .slash-divider { display: none;}
+    .post-meta .post-date a { 
+        font-size: 12px;
+        color: #333;
+    }
+    .post-meta>li:first-child { margin-left: 0;}
 }
 
 /* Landscape and desktop to large desktop */
@@ -1454,6 +1462,9 @@ h4.section-header {
 
     .not-found .content {
         margin-top: 40px;
+    }
+    .post-meta .post-date a { 
+        font-size: 18px;
     }
 }
 
