@@ -13,7 +13,7 @@ enable_comments: true
 source:      .
 destination: ./_site
 plugins:     ./_plugins
-exclude: ['deploy.sh','README.md','docs','Rakefile','Gemfile','Gemfile.lock','.gitignore']
+exclude: ['deploy.sh','README.md','docs','Rakefile','Gemfile','Gemfile.lock','.gitignore', 'TODO.md']
 
 future:      true
 lsi:         false
