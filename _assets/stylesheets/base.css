@@ -984,7 +984,9 @@ div.open-close {
     line-height: 15px;
     margin-top: 3px;
 }
-
+.post-title {
+    font-weight: bold;
+}
 .post-with-thumbnail .post-title, .post-with-thumbnail .post-date, .post-with-thumbnail .post-excerpt {
     margin-left: 58px;
 }
