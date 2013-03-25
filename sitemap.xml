@@ -3,11 +3,18 @@
 
   <url>
     <loc>http://http://brittcrawford.com/</loc>
-    <lastmod>2013-03-22</lastmod>
+    <lastmod>2013-03-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>http://http://brittcrawford.com/2013/03/25/oh-god-why%3F/</loc>
+    
+    <lastmod>2013-03-25</lastmod>
+    
+  </url>
   
   <url>
     <loc>http://http://brittcrawford.com/2013/03/18/just-testing-out-the-design/</loc>
@@ -16,33 +23,12 @@
     
   </url>
   
-  <url>
-    <loc>http://http://brittcrawford.com/2013/03/15/the-return-of-the-jedi/</loc>
-    
-    <lastmod>2013-03-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://http://brittcrawford.com/2013/03/15/the-empire-strikes-back/</loc>
-    
-    <lastmod>2013-03-15</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://http://brittcrawford.com/2013/03/15/a-new-hope/</loc>
-    
-    <lastmod>2013-03-15</lastmod>
-    
-  </url>
-  
 
   
   <url>
     <loc>http://http://brittcrawford.com/feed.xml</loc>
     
-    <lastmod>2013-03-22</lastmod>
+    <lastmod>2013-03-25</lastmod>
     
     
     
@@ -51,7 +37,7 @@
   <url>
     <loc>http://http://brittcrawford.com/index.html</loc>
     
-    <lastmod>2013-03-22</lastmod>
+    <lastmod>2013-03-25</lastmod>
     
     
     
@@ -60,7 +46,7 @@
   <url>
     <loc>http://http://brittcrawford.com/sitemap.xml</loc>
     
-    <lastmod>2013-03-22</lastmod>
+    <lastmod>2013-03-25</lastmod>
     
     
     

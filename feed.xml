@@ -4,13 +4,36 @@
   <title>www.brittcrawford.com</title>
   <link href="http://www.brittcrawford.com/"/>
   <link type="application/atom+xml" rel="self" href="http://www.brittcrawford.com/feed.xml"/>
-  <updated>2013-03-22T13:46:17-07:00</updated>
+  <updated>2013-03-25T13:38:43-07:00</updated>
   <id>http://www.brittcrawford.com/</id>
   <author>
     <name>Britt Crawford</name>
     <email>me@brittcrawford.com</email>
   </author>
 
+  
+  <entry>
+    <id>http://www.brittcrawford.com/2013/03/25/oh-god-why?</id>
+    <link type="text/html" rel="alternate" href="http://www.brittcrawford.com/2013/03/25/oh-god-why%3F/"/>
+    <title>Oh God Why?</title>
+    <updated>2013-03-25T00:00:00-07:00</updated>
+    <author>
+      <name>Britt Crawford</name>
+      <uri>http://www.brittcrawford.com/</uri>
+    </author>
+    <content type="html">One afternoon I noticed that &lt;a href=&quot;http://brittcrawford.com&quot; title=&quot;My name as a domain&quot;&gt;brittcrawford.com&lt;/a&gt; was available for purchase for the first time in a number of years. This all happened not too long after I'd been to &lt;a href=&quot;http://refactorcamp.org/&quot; title=&quot;Refactor Camp&quot;&gt;a gathering of really smart people&lt;/a&gt; most of whom had &lt;div class=&quot;dropdown inline&quot;&gt;
+  &lt;a class=&quot;dropdown-toggle&quot; data-toggle=&quot;dropdown&quot; id=&quot;dLabel&quot; href=&quot;#&quot;&gt;blogs&lt;/a&gt;
+  &lt;ul class=&quot;dropdown-menu&quot; role=&quot;menu&quot; aria-labelledby=&quot;dLabel&quot;&gt;
+    &lt;li&gt;&lt;a tabindex=&quot;-1&quot; href=&quot;http://ribbonfarm.com/&quot;&gt;Ribbonfarm&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a tabindex=&quot;-1&quot; href=&quot;http://qaboom.com/&quot;&gt;Qaboom&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a tabindex=&quot;-1&quot; href=&quot;http://onthespiral.com/&quot;&gt;On the Spiral&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a tabindex=&quot;-1&quot; href=&quot;http://akkartik.name/&quot;&gt;Kartik Agaram&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;. I thought to myself &lt;em&gt;&quot;This is a good opportunity to start writing.&quot;&lt;/em&gt; And now here you are in 2015 looking at another abandoned vanity site with four posts on it.
+&lt;br/&gt;
+&lt;br/&gt;
+&lt;strong&gt;Welcome future people who clicked the wrong link on Google.&lt;/strong&gt;</content>
+  </entry>
   
   <entry>
     <id>http://www.brittcrawford.com/2013/03/18/just-testing-out-the-design</id>
@@ -25,56 +48,6 @@
 &lt;br /&gt;&lt;br /&gt;&lt;iframe allowfullscreen='true' frameborder='0' height='390' src='http://www.youtube.com/embed/ZBJy1v6ZkZc' width='640'&gt;
   
 &lt;/iframe&gt;</content>
-  </entry>
-  
-  <entry>
-    <id>http://www.brittcrawford.com/2013/03/15/the-return-of-the-jedi</id>
-    <link type="text/html" rel="alternate" href="http://www.brittcrawford.com/2013/03/15/the-return-of-the-jedi/"/>
-    <title>The Return of the Jedi</title>
-    <updated>2013-03-15T00:00:00-07:00</updated>
-    <author>
-      <name>Britt Crawford</name>
-      <uri>http://www.brittcrawford.com/</uri>
-    </author>
-    <content type="html">&lt;p&gt;Luke Skywalker has returned to his home planet of Tatooine in an attempt to rescue his friend Han Solo from the clutches of the vile gangster Jabba the Hutt.&lt;/p&gt;
-
-&lt;p&gt;Little does Luke know that the GALACTIC EMPIRE has secretly begun construction on a new armored space station even more powerful than the first dreaded Death Star.&lt;/p&gt;
-
-&lt;p&gt;When completed, this ultimate weapon will spell certain doom for the small band of rebels struggling to restore freedom to the galaxy&amp;#8230;&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <id>http://www.brittcrawford.com/2013/03/15/the-empire-strikes-back</id>
-    <link type="text/html" rel="alternate" href="http://www.brittcrawford.com/2013/03/15/the-empire-strikes-back/"/>
-    <title>The Empire Strikes Back</title>
-    <updated>2013-03-15T00:00:00-07:00</updated>
-    <author>
-      <name>Britt Crawford</name>
-      <uri>http://www.brittcrawford.com/</uri>
-    </author>
-    <content type="html">&lt;p&gt;It is a dark time for the Rebellion. Although the Death Star has been destroyed, Imperial troops have driven the Rebel forces from their hidden base and pursued them across the galaxy. Evading the dreaded Imperial Starfleet, a group of freedom fighters led by Luke Skywalker has established a new secret base on the remote ice world of Hoth.&lt;/p&gt;
-
-&lt;p&gt;The evil lord Darth Vader, obsessed with finding young Skywalker, has dispatched thousands of remote probes into the far reaches of space….&lt;/p&gt;</content>
-  </entry>
-  
-  <entry>
-    <id>http://www.brittcrawford.com/2013/03/15/a-new-hope</id>
-    <link type="text/html" rel="alternate" href="http://www.brittcrawford.com/2013/03/15/a-new-hope/"/>
-    <title>A New Hope</title>
-    <updated>2013-03-15T00:00:00-07:00</updated>
-    <author>
-      <name>Britt Crawford</name>
-      <uri>http://www.brittcrawford.com/</uri>
-    </author>
-    <content type="html">&lt;h1 id='long_long_ago'&gt;Long long ago&lt;/h1&gt;
-
-&lt;h2 id='in_a_galaxy_far_far_away'&gt;In a galaxy far far away&amp;#8230;&lt;/h2&gt;
-
-&lt;p&gt;It is a period of civil war. Rebel spaceships, striking from a hidden base, have won their first victory against the evil Galactic Empire.&lt;/p&gt;
-
-&lt;p&gt;During the battle, Rebel spies managed to steal secret plans to the Empire&amp;#8217;s ultimate weapon, the DEATH STAR, an armored space station with enough power to destroy an entire planet.&lt;/p&gt;
-
-&lt;p&gt;Pursued by the Empire&amp;#8217;s sinister agents, Princess Leia races home aboard her starship, custodian of the stolen plans that can save her people and restore freedom to the galaxy&amp;#8230;&lt;/p&gt;</content>
   </entry>
   
 
