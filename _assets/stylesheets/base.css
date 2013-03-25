@@ -361,6 +361,7 @@ div.open-close {
 }
 
 .post-body {
+    line-height: 24px;
     font-family: 'Open Sans', sans-serif;
     color: #333;
 }
@@ -1310,6 +1311,10 @@ h4.section-header {
 
 #disqus_thread {
     margin-top: 40px;
+}
+
+.dropdown.inline {
+    display: inline;
 }
 
 /* Large desktop */

@@ -21,6 +21,13 @@ pygments:    true
 markdown:    maruku
 permalink:   pretty
 
+asset_pipeline:
+  bundle: false            # Default = true
+  compress: false          # Default = true
+  # output_path: assets     # Default = assets
+  # display_path: nil       # Default = nil
+  # gzip: false  
+
 maruku:
   use_tex:    false
   use_divs:   false
