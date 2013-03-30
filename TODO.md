@@ -1,6 +1,7 @@
 ## TODO
 
 * Write some posts
+* Fix 404 Page
 
 ## TODO: Nice to have
 
@@ -10,3 +11,4 @@
 * HAML/SASS
 * Strip unused CSS
 * A better photo of myself
+* Google links and sitemap stuff
