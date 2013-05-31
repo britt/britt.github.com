@@ -1,6 +1,6 @@
 body {
-/*    font-family: 'Titillium Web', sans-serif;
-*/    font-family: 'Open Sans', sans-serif;
+    font-family: 'Titillium Web', sans-serif;
+    /*font-family: 'Open Sans', sans-serif;*/
     color: rgb(145, 145, 145);
     font-size: 17.5px;
     background-image: url(../images/bg/body_bg.jpg);
@@ -986,9 +986,27 @@ div.open-close {
 }
 .post-title {
     font-weight: bold;
+    font-size: 25.5px;
 }
 .post-with-thumbnail .post-title, .post-with-thumbnail .post-date, .post-with-thumbnail .post-excerpt {
     margin-left: 58px;
+}
+
+.footnotes ol > li {
+    *zoom: 1;
+    clear: both;
+}
+
+.footnotes ol > li > * {
+    margin-left: 20px;
+}
+
+.footnotes ol > li > p {
+    display: inline;
+}
+
+
+.footnotes ol > li > a {
 }
 
 .vcard-icon {
