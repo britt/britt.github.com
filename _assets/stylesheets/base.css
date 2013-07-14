@@ -984,7 +984,7 @@ div.open-close {
     line-height: 15px;
     margin-top: 3px;
 }
-.post-title {
+.post .post-title {
     font-weight: bold;
     font-size: 25.5px;
 }
