@@ -1,10 +1,8 @@
 ## TODO
 
-* Write some posts
 * Fix the 404 page
-* Make printable version link work
-* Optimize CSS
-* HAML/SASS
-* Strip unused CSS
+* Fix Twitter widget
+* Fix asset packaging
+* Explore different styles
 * A better photo of myself
 * Google links and sitemap stuff

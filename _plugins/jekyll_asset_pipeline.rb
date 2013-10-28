@@ -1,29 +1,29 @@
-require 'jekyll_asset_pipeline'
+# require 'jekyll_asset_pipeline'
 
-module JekyllAssetPipeline
-  class CssCompressor < JekyllAssetPipeline::Compressor
-    require 'yui/compressor'
+# module JekyllAssetPipeline
+#   class CssCompressor < JekyllAssetPipeline::Compressor
+#     require 'yui/compressor'
 
-    def self.filetype
-      '.css'
-    end
+#     def self.filetype
+#       '.css'
+#     end
 
-    def compress
-      return YUI::CssCompressor.new.compress(@content)
-    end
-  end
+#     def compress
+#       return YUI::CssCompressor.new.compress(@content)
+#     end
+#   end
 
-  class JavaScriptCompressor < JekyllAssetPipeline::Compressor
-    require 'closure-compiler'
+#   class JavaScriptCompressor < JekyllAssetPipeline::Compressor
+#     require 'closure-compiler'
 
-    def self.filetype
-      '.js'
-    end
+#     def self.filetype
+#       '.js'
+#     end
 
-    def compress
-      return Closure::Compiler.new.compile(@content)
-    end
-  end
+#     def compress
+#       return Closure::Compiler.new.compile(@content)
+#     end
+#   end
 
   # class JavaScriptCompressor < JekyllAssetPipeline::Compressor
   #   require 'yui/compressor'
@@ -36,4 +36,4 @@ module JekyllAssetPipeline
   #     return YUI::JavaScriptCompressor.new(munge: true).compress(@content)
   #   end
   # end
-end
+# end
