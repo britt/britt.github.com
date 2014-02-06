@@ -73,7 +73,7 @@ footer .container {
   margin: 0 0.5em;
 }
 
-/*@media (max-width: 420px) {
+@media (max-width: 420px) {
   .introduction {
     font-size: 24px;
   }
@@ -81,5 +81,5 @@ footer .container {
   .social-list {
     font-size: 12px;
   }
-}*/
+}
 
