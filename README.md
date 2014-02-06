@@ -6,3 +6,5 @@
 
 * Change icon color
 * Add opengraph tags
+* Generate PGP key
+* BTC address
