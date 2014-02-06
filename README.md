@@ -5,6 +5,6 @@
 ### Todo
 
 * Change icon color
-* Add opengraph tags
+* Make it more responsive
 * Generate PGP key
 * BTC address

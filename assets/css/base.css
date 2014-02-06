@@ -35,11 +35,11 @@ footer {
 
 .container {
   width: auto;
-  padding: 60px 0 0 60px;
+  padding: 4em 4em 0 4em;
 }
 footer .container {
   width: auto;
-  padding: 0 0 0 60px;
+  padding: 0 4em 0 4em;
 }
 .container .text-muted {
   color: #999;
@@ -66,10 +66,20 @@ footer .container {
 .social-list {
   list-style-type: none;
   padding-left: 0;
-  margin-top: 60px;
+  margin-top: 2em;
 }
 
 .social-list li a span { 
-  margin: 0 8px;
+  margin: 0 0.5em;
 }
+
+/*@media (max-width: 420px) {
+  .introduction {
+    font-size: 24px;
+  }
+
+  .social-list {
+    font-size: 12px;
+  }
+}*/
 
