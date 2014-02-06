@@ -73,13 +73,23 @@ footer .container {
   margin: 0 0.5em;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 432px) {
   .introduction {
     font-size: 24px;
   }
 
-  .social-list {
+  .social-list, body {
     font-size: 12px;
+  }
+}
+
+@media (max-width: 364px) {
+  .introduction {
+    font-size: 22px;
+  }
+
+  .social-list, body {
+    font-size: 11px;
   }
 }
 
