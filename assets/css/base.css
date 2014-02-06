@@ -66,6 +66,7 @@ footer .container {
 .social-list {
   list-style-type: none;
   padding-left: 0;
+  margin-top: 60px;
 }
 
 .social-list li a span { 
