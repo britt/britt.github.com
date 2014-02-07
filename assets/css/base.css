@@ -1,6 +1,3 @@
-/* Sticky footer styles
--------------------------------------------------- */
-
 html,
 body {
   height: 100%;
@@ -18,25 +15,33 @@ a, a:hover {
   min-height: 100%;
   height: auto;
   /* Negative indent footer by its height */
-  margin: 0 auto -60px;
+  margin: 0 auto -4em;
   /* Pad bottom by footer height */
-  padding: 0 0 60px;
+  padding: 0 0 4em;
 }
 
 /* Set the fixed height of the footer here */
 footer {
-  height: 60px;
+  height: 4em;
 }
 
+::selection {
+  background: #99DAFF; /* Safari */
+  }
+::-moz-selection {
+  background: #99DAFF; /* Firefox */
+}
 
-/* Custom page CSS
--------------------------------------------------- */
-/* Not required for template or sticky footer method. */
+.top-stripe {
+  min-height: 2em;
+  background-color: #FFDC00;
+}
 
 .container {
   width: auto;
-  padding: 4em 4em 0 4em;
+  padding: 2em 4em 0 4em;
 }
+
 footer .container {
   width: auto;
   padding: 0 4em 0 4em;
