@@ -33,13 +33,13 @@ footer {
 }
 
 .top-stripe {
-  min-height: 2em;
+  min-height: 1em;
   background-color: #FFDC00;
 }
 
 .container {
   width: auto;
-  padding: 2em 4em 0 4em;
+  padding: 3em 4em 0 4em;
 }
 
 footer .container {
