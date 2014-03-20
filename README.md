@@ -4,5 +4,4 @@
 
 ### Todo
 
-* Turn jekyll back on
 * Change icon color
