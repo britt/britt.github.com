@@ -1,0 +1,104 @@
+html,
+body {
+  font-family: Futura, "Gill Sans","Helvetica Neue", Helvetica, Arial, sans-serif;
+  height: 100%;
+  background-color: #C3CED0;
+  color: black;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+a {
+  color: #1B346C;
+}
+
+a:hover {
+  color: #F54B1A;
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -4em;
+  /* Pad bottom by footer height */
+  padding: 0 0 4em;
+}
+
+/* Set the fixed height of the footer here */
+footer {
+  height: 4em;
+}
+
+::selection {
+  background: #F54B1A; /* Safari */
+  }
+::-moz-selection {
+  background: #F54B1A; /* Firefox */
+}
+
+.top-stripe {
+  min-height: 1em;
+  background-color: #01ABE9;
+}
+
+.container {
+  width: auto;
+  padding: 3em 4em 0 4em;
+}
+
+footer .container {
+  width: auto;
+  padding: 0 4em 0 4em;
+}
+.container .text-muted {
+  color: #737E80;
+  margin: 20px 0;
+}
+.container .text-muted a {
+  color: #737E80;
+}
+
+.introduction {
+  max-width: 680px;
+  margin-bottom: 20px;
+  font-size: 27px;
+  line-height: 1.1;
+  font-weight: 200;
+}
+
+@media (min-width: 768px) {
+  .introduction {
+    font-size: 36px;
+  }
+}
+
+.social-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-top: 2em;
+}
+
+.social-list li a span { 
+  margin: 0 0.5em;
+}
+
+@media (max-width: 432px) {
+  .introduction {
+    font-size: 24px;
+  }
+
+  .social-list, body {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 364px) {
+  .introduction {
+    font-size: 22px;
+  }
+
+  .social-list, body {
+    font-size: 11px;
+  }
+}
