@@ -68,13 +68,13 @@ footer .container {
   }
 }
 
-.social-list {
+.list-of-links {
   list-style-type: none;
   padding-left: 0;
   margin-top: 2em;
 }
 
-.social-list li a span { 
+.list-of-links li a span { 
   margin: 0 0.5em;
 }
 
@@ -83,7 +83,7 @@ footer .container {
     font-size: 24px;
   }
 
-  .social-list, body {
+  .list-of-links, body {
     font-size: 12px;
   }
 }
@@ -93,7 +93,7 @@ footer .container {
     font-size: 22px;
   }
 
-  .social-list, body {
+  .list-of-links, body {
     font-size: 11px;
   }
 }
