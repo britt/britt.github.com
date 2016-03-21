@@ -4,7 +4,6 @@ import DocumentTitle from 'react-document-title'
 import { link } from 'gatsby-helpers'
 import { TypographyStyle } from 'utils/typography'
 
-
 module.exports = React.createClass({
   propTypes () {
     return {
