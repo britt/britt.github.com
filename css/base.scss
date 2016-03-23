@@ -44,13 +44,13 @@ body {
 }
 
 .container.vcard {
+  min-height: 90vh;
+  flex: 1;
+  margin: 0;
+  padding: 0;
   font-size: 1em;
   background-color: $background-color;
   color: $text-color;
-
-  margin: 0;
-  padding: 0;
-  height: 35em;
 
   a {
     color: $dark-primary-color;
@@ -63,7 +63,7 @@ body {
 
   .headline {
     display: block;
-    width: 100%;
+    width: 100vw;
     font: $accent-font;
     font-size: 5em;
     padding: 1.5em 0 0 0.4em;
@@ -78,14 +78,18 @@ body {
 
   .introduction {
     margin: 0 0 1em 0;
-    width: 60%;
+    width: 60vw;
     font-size: 1.5em;
     padding: 2em 0 0 1.5em;
+
+    @media all and (max-width: 400px) {
+      width: 100vw;
+    }
   }
 
   .list-of-links {
     margin: 0;
-    width: 60%;
+    width: 60vw;
     padding: 0.5em 0 0 2em;
 
     ul {
@@ -95,15 +99,33 @@ body {
         list-style-type: none;
       }
     }
+
+    @media all and (max-width: 400px) {
+      width: 100vw;
+
+      ul {
+        -js-display: flex;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+
+        span {
+          display: none
+        }
+
+        .fa {
+          font-size: 1.5em;
+        }
+
+      }
+    }
   }
 
 }
 
 footer.container {
-  position: absolute;
-  bottom: 1em;
   padding: 0 0 0 2em;
-
+  height: 10vh;
   color: $secondary-text-color;
 
   a { 
