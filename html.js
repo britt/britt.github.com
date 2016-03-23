@@ -1,8 +1,6 @@
 import React from 'react'
 import { link } from 'gatsby-helpers'
-import { TypographyStyle } from 'utils/typography'
 import GoolgleAnalytics from 'react-g-analytics'
-
 module.exports = ({config, page, body}) => {
   const title = page ? page.title : config.siteTitle
   const favicon = config.favicon
@@ -35,6 +33,7 @@ module.exports = ({config, page, body}) => {
       <body>
         <div id="react-mount" dangerouslySetInnerHTML={{ __html: body }} />
         <script src={link('/bundle.js')} />
+        <script src="/js/flexibility.js" type="text/javascript" />
         <GoolgleAnalytics id="UA-39393464-1" />
       </body>
     </html>
