@@ -55,10 +55,6 @@ body {
   a {
     color: $dark-primary-color;
     text-decoration: none;
-
-    :hover {
-      background-color: #FFEB3B;
-    }
   }
 
   .headline {
@@ -130,10 +126,6 @@ footer.container {
 
   a { 
     color: $primary-color; 
-
-    :hover {
-      background-color: #FFEB3B;
-    }
   }
 }
 
