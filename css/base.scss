@@ -1,0 +1,95 @@
+@import url(https://fonts.googleapis.com/css?family=Cardo:400,400italic,700);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
+
+html,
+body {
+  font-family: 'Cardo', serif;
+  height: 100%;
+  background-color: #fff;
+  color: #212121;
+  font-size: 1em;
+  padding: 0;
+  margin: 0;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+#react-mount {
+  -js-display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+}
+
+
+
+.container {
+  -js-display: flex;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+.container.vcard {
+  font-size: 1em;
+  background-color: #fff;
+  color: #212121;
+
+  margin: 0;
+  padding: 0;
+  height: 35em;
+
+  a {
+    color: #1976D2;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .greeting {
+    display: block;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4em;
+    padding: 2em 0 0 0.5em;
+    background-color: #1976D2;
+    color: #BBDEFB;
+
+    a { color: #fff}
+  }
+
+  .introduction {
+    margin: 0 0 1em 0;
+    width: 60%;
+    font-size: 1.5em;
+    padding: 2em 0 0 1.5em;
+  }
+
+  .list-of-links {
+    margin: 0;
+    width: 60%;
+    padding: 0.5em 0 0 2em;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      li {
+        list-style-type: none;
+      }
+    }
+  }
+
+}
+
+footer.container {
+  position: absolute;
+  bottom: 1em;
+  padding: 0 0 0 2em;
+
+  color: #727272;
+
+  a { color: #2196F3; }
+}
+
+.hidden { display: none }

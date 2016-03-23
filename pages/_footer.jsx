@@ -1,7 +1,7 @@
 import React from 'react' 
 
 export default () => {
-  const license = `<div class="container">
+  const license = `<div>
       <div class="text-muted">
         <p>
           <span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">
@@ -17,5 +17,5 @@ export default () => {
       </div>
     </div>`
 
-  return <footer dangerouslySetInnerHTML={{ __html: license }} />
+  return <footer className="container" dangerouslySetInnerHTML={{ __html: license }} />
 }

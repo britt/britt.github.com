@@ -1,7 +1,8 @@
 import React from 'react'
 import { link } from 'gatsby-helpers'
 import GoolgleAnalytics from 'react-g-analytics'
-module.exports = ({config, page, body}) => {
+
+export default ({config, page, body}) => {
   const title = page ? page.title : config.siteTitle
   const favicon = config.favicon
 
