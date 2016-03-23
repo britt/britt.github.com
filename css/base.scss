@@ -1,13 +1,24 @@
 @import url(https://fonts.googleapis.com/css?family=Cardo:400,400italic,700);
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic,900,900italic);
 @import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css);
+
+$primary-font: 300 1em 'Lato', sans-serif;
+$accent-font: 900 1em/0.75em 'Lato', sans-serif;
+
+$primary-color: #03A9F4;
+$text-color: #212121;
+$secondary-text-color: #727272;
+$dark-primary-color: #0288D1;
+$light-primary-color: #B3E5FC;
+$background-color: #ffffff;
 
 html,
 body {
-  font-family: 'Cardo', serif;
+  font: $primary-font;
   height: 100%;
-  background-color: #fff;
-  color: #212121;
+  background-color: $background-color;
+  color: $text-color;
   font-size: 1em;
   padding: 0;
   margin: 0;
@@ -34,29 +45,35 @@ body {
 
 .container.vcard {
   font-size: 1em;
-  background-color: #fff;
-  color: #212121;
+  background-color: $background-color;
+  color: $text-color;
 
   margin: 0;
   padding: 0;
   height: 35em;
 
   a {
-    color: #1976D2;
-    font-weight: bold;
+    color: $dark-primary-color;
     text-decoration: none;
+
+    :hover {
+      background-color: #FFEB3B;
+    }
   }
 
   .greeting {
     display: block;
     width: 100%;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 4em;
-    padding: 2em 0 0 0.5em;
-    background-color: #1976D2;
-    color: #BBDEFB;
+    font: $accent-font;
+    font-size: 5em;
+    padding: 1.5em 0 0 0.4em;
+    background-color: $dark-primary-color;
+    color: $light-primary-color;
 
-    a { color: #fff}
+    a { 
+      color: $background-color;
+      font: $accent-font;
+    }
   }
 
   .introduction {
@@ -87,9 +104,15 @@ footer.container {
   bottom: 1em;
   padding: 0 0 0 2em;
 
-  color: #727272;
+  color: $secondary-text-color;
 
-  a { color: #2196F3; }
+  a { 
+    color: $primary-color; 
+
+    :hover {
+      background-color: #FFEB3B;
+    }
+  }
 }
 
 .hidden { display: none }

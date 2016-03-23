@@ -1,11 +1,12 @@
 import React from 'react'
+import VCard from 'components/vcard'
 import 'css/base.scss'
 
 export default ({route}) => {
   console.log(route.page.data)
 
   return (
-    <div className="container vcard">
+    <VCard className="container">
       <div className="greeting">
         Hi, I'm <a className="url fn" href="http://brittcrawford.com" 
             rel="home author" title="my site">
@@ -33,7 +34,7 @@ export default ({route}) => {
               <a href="https://github.com/britt" title="GitHub" rel="me"><i className="fa fa-github-alt fa-fw"></i><span>https://github.com/britt</span></a>
             </li> 
             <li>
-              <a href="http://illtemper.org" data-toggle="tooltip" data-placement="right" title="A stream of consciousness link blog"><i className="fa fa-link fa-fw"></i><span>http://illtemper.org</span></a>
+              <a href="http://illtemper.org" title="A stream of consciousness link blog"><i className="fa fa-link fa-fw"></i><span>http://illtemper.org</span></a>
             </li> 
             <li>
               <a href="bitcoin:17nHbStzmWgcBEBSgVFT94Eo5hoq9h7Hh1" title="Bitcoin"><i className="fa fa-bitcoin fa-fw"></i><span>Bitcoin</span></a>
@@ -46,6 +47,6 @@ export default ({route}) => {
           </ul>
         </div>
       </div>
-    </div>
+    </VCard>
   )
 }
