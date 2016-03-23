@@ -5,3 +5,8 @@ This is my personal website. Right now it just has a business card-like list of 
 ### Todo
 
 * Change icon color
+* Better color scheme
+* Better responsiveness at phone size
+* Tooltip
+* Highlighting
+
