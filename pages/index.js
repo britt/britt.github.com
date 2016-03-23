@@ -1,5 +1,7 @@
 import React from 'react'
 import VCard from 'components/vcard'
+import Headline from 'components/headline'
+import Article from 'components/article'
 import 'css/base.scss'
 
 export default ({route}) => {
@@ -7,13 +9,13 @@ export default ({route}) => {
 
   return (
     <VCard className="container">
-      <div className="greeting">
+      <Headline>
         Hi, I'm <a className="url fn" href="http://brittcrawford.com" 
             rel="home author" title="my site">
             Britt Crawford
           </a>
-      </div>
-      <div className="container">
+      </Headline>
+      <Article>
         <div className="introduction">
           I live in San Francisco with my family. I've been a researcher, 
           programmer, and low limit poker grinder. Currently I run analytics at <a href="https://rafter.com" title="Rafter, the place where I work" className="work">Rafter</a>. 
@@ -46,7 +48,7 @@ export default ({route}) => {
             </li>                                                       
           </ul>
         </div>
-      </div>
+      </Article>
     </VCard>
   )
 }
