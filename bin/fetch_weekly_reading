@@ -1,0 +1,61 @@
+const FS = require('fs')
+const TOML = require('toml-js')
+const request = require('superagent')
+const moment = require('moment')
+
+function quit() {
+  process.exit(0)
+}
+
+function logAndQuit(error) {
+  process.stderr.write(error.toString())
+  process.exit(1)
+}
+
+function thereIsNoTry(callback) {
+  return (err, data) => {
+    if(err) {
+      logAndQuit(err)
+    } else {
+      callback(data)
+    }
+  }
+}
+
+
+function fetchAndSaveWeeklyReads(data) {
+  const config = TOML.parse(data)
+  const url = config.reading.api_url
+
+  request.get(url).end(thereIsNoTry((res) => {
+    const data = JSON.parse(res.text)
+    const startOfWeek = moment().weekday(-moment().weekday())
+    
+    const thisWeeksReads = data.result.filter((item) => {
+      const date_liked = moment(item['date_liked'], "MMMM DD, YYYY at hh:mmA")
+      return date_liked.isAfter(startOfWeek)
+    })
+
+    const readingData = {
+      title: " Reading Notes for " + startOfWeek.format("MMMM DD, YYYY"),
+      articles: thisWeeksReads
+    }
+
+    const outputPath = "./pages/reading/" + startOfWeek.format("YYYY-MM-DD")
+    const outputFileName = outputPath + "/index.json"
+    
+    const saveReads = () => {
+      FS.writeFile(outputFileName, JSON.stringify(readingData), thereIsNoTry(quit))
+    }
+
+    FS.access(outputPath, FS.F_OK, (err) => {
+      if(err) {
+        FS.mkdir(outputPath, thereIsNoTry(saveReads))
+      } else {
+        saveReads()
+      }
+    })
+  }))
+}
+
+FS.readFile('config.toml', thereIsNoTry(fetchAndSaveWeeklyReads))

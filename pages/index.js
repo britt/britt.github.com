@@ -1,7 +1,6 @@
 import React from 'react'
 import VCard from 'components/vcard'
 import Headline from 'components/headline'
-import Article from 'components/article'
 import 'css/base.scss'
 
 export default ({route}) => {
@@ -15,13 +14,13 @@ export default ({route}) => {
             Britt Crawford
           </a>
       </Headline>
-      <Article>
-        <div className="introduction">
+      <main className="container">
+        <section className="introduction">
           I live in San Francisco with my family. I've been a researcher, 
           programmer, and low limit poker grinder. Currently I run analytics at <a href="https://rafter.com" title="Rafter, the place where I work" className="work">Rafter</a>. 
           You can find me on the internet at:
-        </div>
-        <div className="list-of-links">
+        </section>
+        <section className="list-of-links">
           <ul>
             <li>
               <a href="https://twitter.com/britt" title="My Twitter Feed" rel="me"><i className="fa fa-twitter fa-fw"></i><span>@britt</span></a>
@@ -47,8 +46,8 @@ export default ({route}) => {
               <a href="http://pgp.mit.edu/pks/lookup?op=vindex&search=0x7C887E4EE58C84B3" title="MIT PGP Public Key Server"><span>MIT</span></a>
             </li>                                                       
           </ul>
-        </div>
-      </Article>
+        </section>
+      </main>
     </VCard>
   )
 }

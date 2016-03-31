@@ -6,7 +6,13 @@ This is my personal website. Right now it just has a business card-like list of 
 
 * Change icon color
 * Better color scheme
-* Better responsiveness at phone size
-* Tooltip
-* Highlighting
+* Weekly newsletter
+
+What else do I want to do with this site.
+
+- Weekly reading notes
+  + binary to fetch weekly reading notes as JSON
+  + editor interface to update notes
+- Blog
+
 

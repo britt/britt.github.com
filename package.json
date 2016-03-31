@@ -21,6 +21,7 @@
     "markdown-it-deflist": "^2.0.1",
     "markdown-it-footnote": "^2.0.0",
     "markdown-it-sub": "^1.0.0",
+    "moment": "2.12.0",
     "object-assign": "^4.0.1",
     "react": "^0.14.7",
     "react-document-title": "^2.0.1",
@@ -28,6 +29,7 @@
     "react-g-analytics": "0.2.5",
     "react-router": "^2.0.0",
     "safe-access": "^0.1.0",
+    "superagent": "1.8.3",
     "toml-js": "0.0.8"
   },
   "devDependencies": {

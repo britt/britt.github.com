@@ -43,7 +43,7 @@ body {
   flex-direction: column;
 }
 
-.container.vcard {
+.container {
   min-height: 90vh;
   flex: 1;
   margin: 0;
@@ -72,20 +72,22 @@ body {
     }
   }
 
+  section {
+    width: 60vw;
+    
+    @media all and (max-width: 400px) {
+      width: 90vw;
+    }
+  }
+
   .introduction {
     margin: 0 0 1em 0;
-    width: 60vw;
     font-size: 1.5em;
     padding: 2em 0 0 1.5em;
-
-    @media all and (max-width: 400px) {
-      width: 100vw;
-    }
   }
 
   .list-of-links {
     margin: 0;
-    width: 60vw;
     padding: 0.5em 0 0 2em;
 
     ul {
@@ -97,8 +99,6 @@ body {
     }
 
     @media all and (max-width: 400px) {
-      width: 100vw;
-
       ul {
         -js-display: flex;
         display: flex;
@@ -117,6 +117,16 @@ body {
     }
   }
 
+  .subhead {
+    color: $secondary-text-color;
+    font-size: 2em;
+    margin: 0;
+    padding: 0.5em 0 0 1.1em;
+  }
+}
+
+.reading-notes-list {
+  list-style-type: none;
 }
 
 footer.container {
