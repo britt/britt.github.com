@@ -17,7 +17,7 @@ const Article = ({article}) => {
         <a href={article.url} className="title">
           {article.title}
         </a>
-        <summary>
+        <summary className="description">
           {article.description}
         </summary>
       </article>
