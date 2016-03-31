@@ -4,8 +4,9 @@ import 'css/base.scss'
 import moment from 'moment'
 
 // TODO
-// Group by day
-// Fix start of Week fetching
+// [x] Fix start of Week fetching
+// [] Notes Editor
+// [] Command line args for fetch
 
 const Article = ({article}) => {
   const dateLiked = moment(article['date_liked'], "MMMM DD, YYYY at hh:mmA")
@@ -52,7 +53,7 @@ const ArticleList = ({articles}) => {
         </ol>
       </li>
     )
-    
+
     return acc
   }, [])
 
