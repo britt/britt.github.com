@@ -1,6 +1,7 @@
 import React from 'react'
 import VCard from 'components/vcard'
 import Headline from 'components/headline'
+
 import 'css/gutenberg/src/style/gutenberg.scss'
 
 export default ({route}) => {
