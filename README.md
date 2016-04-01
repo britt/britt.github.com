@@ -4,11 +4,12 @@ This is my personal website. Right now it just has a business card-like list of 
 
 ### Todo
 
-- [] Change icon color
+- [x] Change icon color
+- [x] Fix layout on phone
 - [x] Weekly reading notes
   + [x] binary to fetch weekly reading notes as JSON
   + [] editor interface to update notes
-- Blog
-- Deployment script
+- [] Blog
+- [] Deployment script
 
 
