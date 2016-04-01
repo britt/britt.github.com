@@ -4,15 +4,13 @@ This is my personal website. Right now it just has a business card-like list of 
 
 ### Todo
 
-* Change icon color
-* Better color scheme
-* Weekly newsletter
+* [] Change icon color
 
-What else do I want to do with this site.
+#### What else do I want to do with this site.
 
-- Weekly reading notes
-  + binary to fetch weekly reading notes as JSON
-  + editor interface to update notes
+- [x] Weekly reading notes
+  + [x] binary to fetch weekly reading notes as JSON
+  + [] editor interface to update notes
 - Blog
 
 

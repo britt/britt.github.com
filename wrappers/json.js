@@ -3,11 +3,6 @@ import Headline from 'components/headline'
 import moment from 'moment'
 import 'css/gutenberg/src/style/gutenberg.scss'
 
-// TODO
-// [x] Fix start of Week fetching
-// [] Notes Editor
-// [x] Command line args for fetch
-
 const Article = ({article}) => {
   const dateLiked = moment(article['date_liked'], "MMMM DD, YYYY at hh:mmA")
 
