@@ -1,9 +1,9 @@
 import React from 'react'
 import { link } from 'gatsby-helpers'
 import GoolgleAnalytics from 'react-g-analytics'
+import DocumentTitle from 'react-document-title'
 
-export default (props, body) => {
-  const config = props.config
+export default ({pages, config, body}) => {
   const favicon = config.favicon
 
   let cssLink
@@ -12,32 +12,34 @@ export default (props, body) => {
   }
 
   return (
-    <html lang="en">
-      <head>
-        <meta charSet="utf-8" />
-        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport"
-          content="width=device-width, initial-scale=1.0 maximum-scale=1.0" />
-        <title>{ config.siteTitle }</title>
+    <DocumentTitle title={config.siteTitle}>
+      <html lang="en">
+        <head>
+          <meta charSet="utf-8" />
+          <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+          <meta name="viewport"
+            content="width=device-width, initial-scale=1.0 maximum-scale=1.0" />
+          <title>{ config.siteTitle }</title>
 
-        <meta name="description" content="Britt Crawford is just a guy who lives in San Francisco with his family." />
-        <meta name="keywords" content="programming, data, analysis, food, cocktails, dilettante, adventurer, gentleman" />
-        <meta name="author" content="Britt Crawford" />
+          <meta name="description" content="Britt Crawford is just a guy who lives in San Francisco with his family." />
+          <meta name="keywords" content="programming, data, analysis, food, cocktails, dilettante, adventurer, gentleman" />
+          <meta name="author" content="Britt Crawford" />
 
-        <link rel="shortcut icon" href={favicon} />
-        <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon-57-precomposed.png" />
-        <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/apple-touch-icon-72-precomposed.png" />
-        <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/apple-touch-icon-114-precomposed.png" />
-        <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/apple-touch-icon-144-precomposed.png" />
-        {cssLink}
-      </head>
-      <body>
-        <button id="btnToggleGrid" style={{display: 'none'}}>show grid</button>
-        <div id="react-mount" dangerouslySetInnerHTML={{ __html: body }} />
-        <script src={link('/bundle.js')} />
-        <GoolgleAnalytics id="UA-39393464-1" />
-      </body>
-    </html>
+          <link rel="shortcut icon" href={favicon} />
+          <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon-57-precomposed.png" />
+          <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/apple-touch-icon-72-precomposed.png" />
+          <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/apple-touch-icon-114-precomposed.png" />
+          <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/apple-touch-icon-144-precomposed.png" />
+          {cssLink}
+        </head>
+        <body>
+          <button id="btnToggleGrid" style={{display: 'none'}}>show grid</button>
+          <div id="react-mount" dangerouslySetInnerHTML={{ __html: body }} />
+          <script src={link('/bundle.js')} />
+          <GoolgleAnalytics id="UA-39393464-1" />
+        </body>
+      </html>
+    </DocumentTitle>
   )
 }
 
