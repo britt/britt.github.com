@@ -32,6 +32,7 @@ export default ({config, page, body}) => {
         {cssLink}
       </head>
       <body>
+        <button id="btnToggleGrid" style={{display: 'none'}}>show grid</button>
         <div id="react-mount" dangerouslySetInnerHTML={{ __html: body }} />
         <script src={link('/bundle.js')} />
         <script src="/js/flexibility.js" type="text/javascript" />

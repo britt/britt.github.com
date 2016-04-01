@@ -46,7 +46,7 @@ function saveWeeklyReads(startOfWeek, data) {
   })
 
   const readingData = {
-    title: " Reading Notes for the week of " + startOfWeek.format("MMMM DD, YYYY"),
+    week: startOfWeek.format("MMMM Do, YYYY"),
     articles: thisWeeksReads
   }
 

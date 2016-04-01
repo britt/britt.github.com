@@ -1,12 +1,12 @@
 import React from 'react'
 import Headline from 'components/headline'
-import 'css/base.scss'
 import moment from 'moment'
+import 'css/gutenberg/src/style/gutenberg.scss'
 
 // TODO
 // [x] Fix start of Week fetching
 // [] Notes Editor
-// [] Command line args for fetch
+// [x] Command line args for fetch
 
 const Article = ({article}) => {
   const dateLiked = moment(article['date_liked'], "MMMM DD, YYYY at hh:mmA")
@@ -15,8 +15,8 @@ const Article = ({article}) => {
     <li>
       <article className="reading-note">
         <a href={article.url} className="title">
-          {article.title}
-        </a>
+          {article.title} 
+        </a> 
         <summary className="description">
           {article.description}
         </summary>
@@ -42,25 +42,25 @@ const ArticleList = ({articles}) => {
     const dateLiked = moment(day, "YYYY-MM-DD")
 
     acc.push(
-      <li>
+      <section>
         <h3>
           <time dateTime={ dateLiked.format('YYYY-MM-DD') } className="date-read">
-            { dateLiked.format('dddd MMMM Do') }
+            { dateLiked.format('dddd') }
           </time>
         </h3>        
         <ol className="reading-notes-list">
-          {notesByDay[day]}
+          { notesByDay[day] }
         </ol>
-      </li>
+      </section>
     )
 
     return acc
   }, [])
 
   return (
-    <ol className="notes-by-day">
+    <div className="notes-by-day">
       {notes}
-    </ol>
+    </div>
   )
 }
 
@@ -75,7 +75,9 @@ export default ({route}) => {
         </a>
       </Headline>
       <main className="reading-notes">
-        <h2 className="subhead">{data.title}</h2>
+        <header className="subheader">
+          Articles I liked from the week of <strong>{data.week}</strong>.
+        </header>
         <ArticleList articles={data.articles} />
       </main>
     </div>

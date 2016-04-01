@@ -17,5 +17,5 @@ export default () => {
       </div>
     </div>`
 
-  return <footer className="container" dangerouslySetInnerHTML={{ __html: license }} />
+  return <footer className="container page-footer" dangerouslySetInnerHTML={{ __html: license }} />
 }
