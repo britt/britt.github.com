@@ -2,11 +2,15 @@
 
 This is my personal website. Right now it just has a business card-like list of links and a non-committal description. I might add more to it in the future.
 
-## How Weekly Reading Works
+## How weekly reading works
 
 1. IFTTT -> Google Sheets
 2. Edit with AppSheet.com app
 3. Load into site via script
+
+## How to deploy
+
+      gh-pages --dist public --branch master --dotfiles
 
 ### Todo
 
