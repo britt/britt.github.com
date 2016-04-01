@@ -1,16 +1,20 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "brittcrawford.com",
   "version": "1.0.0",
-  "description": "Gatsby default starter",
+  "description": "The personal site of Britt Crawford",
   "main": "n/a",
   "scripts": {
     "lint": "./node_modules/.bin/eslint --ext .js,.jsx --ignore-pattern public .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "personal",
+    "site",
+    "static",
+    "react"
   ],
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Britt Crawford <britt@illtemper.org>",
   "license": "MIT",
   "dependencies": {
     "commander": "2.9.0",

@@ -2,6 +2,9 @@ import Shell from 'child_process'
 
 export default (pages, callback) => {
   Shell.execSync("cp -r assets/* public/")
+  Shell.execSync("cp -r assets/.nojekyll public/")
+  Shell.execSync("cp -r assets/.gitignore public/")
+  Shell.execSync("cp -r assets/.well-known public/")
 }
 
 // Feed = require('feed')
