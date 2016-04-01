@@ -1,0 +1,69 @@
+==================================================================
+https://keybase.io/britt
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://brittcrawford.com
+  * I am britt (https://keybase.io/britt) on keybase.
+  * I have a public key with fingerprint 018B B7FF 7962 3A4F 1A47  E183 7C88 7E4E E58C 84B3
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "018bb7ff79623a4f1a47e1837c887e4ee58c84b3",
+            "host": "keybase.io",
+            "key_id": "7C887E4EE58C84B3",
+            "uid": "a236792277515239fbfa48418553d000",
+            "username": "britt"
+        },
+        "service": {
+            "hostname": "brittcrawford.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1398979458,
+    "expire_in": 157680000,
+    "prev": "14c09f9b6cf539365e81b65e1487396cd53b2c4f0ff7c14311b3192925e52801",
+    "seqno": 5,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1
+
+owGbwMvMwMRY01Hn97SnZTPj6QOfkxiCk3Y3VSsl5adUKllVK2Wngqm0zLz01KKC
+osy8EiUrJQNDi6Qk87Q0c0szI+NEkzTDRBPzVEMLY/NkCwvzVJPUVFOLZAuTJGMl
+HaWM/GKQDqAxSYnFqXqZ+UAxICc+MwUoau4MVO9q4upqauFsYeIEUl8Klkg0MjYz
+tzQyMjc3NTQ1MrZMS0pLNLEwMbQwNTVOMTAwACksTi3KS8xNBapOKsosKVGq1VEC
+CpVlJqeCHAyyF1k6uSixPC2/KEUvOT8XqLugKL8kPzk/ByidUVJSYAXSXVJZAFJe
+npoUDzUoPikzLwXoc6CGstSi4sz8PCUrQ6DK5JJMkMmGxpYWluaWJqYWOkqpFQWZ
+RanxmSAVpuZmFkBHGoCsSS0DGmlokmxgmWaZZJacZmpsaWxmmmphmAQkDU0szI0t
+zZJTTI2TjJJN0gyAQZpsaGJsaJhkbGhpZGlkmmpqZGFgqATyWmFevpKVKdCZielA
+I4sz0/MSS0qLUpVqO5lkWBgYmRjYWJlAccfAxSkAi1HhiwIMKxbrHOiTSdx+ieHT
+q9NtRxvk+roXs6hr6aa8VWMs3P3RdutqbvUJYjVT5p/arlIcr6nsNaN5jegq5WAH
+Peafl+rkJea+2HdU1tpc489fl5OffimcW7j0oIHqxFjPAL1fj1bGhv3K8tmY/3tF
+w/O+6969fPpdv65YeIvcvG5h82/tV8/4Ow/WB5zMUfhoq8dUcjv/iv6HWStevta7
+P4Vj8bOlkQaWtcscUl7t2Plv3Z+t/20NErIsFHlmWUyssvbWNRAv/CAowd/hLfn0
+hdpn2dpZZk0sf4Tt1FzmBbQFSDKfZeEP8085or5C7jdn3l9JVa5fIq4h756+XOOR
+s+/S9YzpfeF+eYzsbSs+THXadvja/JNhmx86VrqvYN6fwqzt/Ty96QK3i9UShodm
+Ud6yjsqPF834kn7v9EvpCUt2e6pGTtAsP3lhstObRX3f55xT8H21Ii2DsbOUma3i
+XYGTqsx8v4j3Bx7mPl+mzOg0bT47Z/CiLR/+t63yMC5o6Kr1rW0UE5TiN6lf153A
+OltG2Hr591UKPtybD/Zv2JTQwh6xmOO1zJT5vNmS+0ukXpZYz85YNnmfzlrTDv+d
+QZ/nz5lUtvjmIs4n0oX32VitM1mbZ+u82ab0lkNgnZCccmCw9VYx+0xl1d2SSTb7
+V7BfWlKdNUv3WbZfWNiRS80iEzRWa1z+si7io5GeUpjB1bcT3n/8MeuF+Z7f/5MA
+=zkpM
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/britt
+
+==================================================================
