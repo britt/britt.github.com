@@ -140,3 +140,11 @@ body > footer {
     max-width: 90vw;
   }
 }
+
+.n {
+  .family-name {
+    @media screen and (max-width: 40em) {
+      display: none;
+    }
+  }
+}
