@@ -5,7 +5,8 @@ import DocumentTitle from 'react-document-title'
 
 export default ({pages, config, body}) => {
   const favicon = config.favicon
-
+  const title = DocumentTitle.rewind()
+  
   let cssLink
   if (process.env.NODE_ENV === 'production') {
     cssLink = <link rel="stylesheet" href={link('/styles.css')} />

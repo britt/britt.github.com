@@ -18,7 +18,10 @@ This is my personal website. Right now it just has a business card-like list of 
   + [x] re-order columns
 - [] Blog
 - [] Deployment script
+  + [x] Build script
+  + [] GitHub pages deployment
 - [x] Fix site title for weekly reading pages
 - [x] Hide last name in header on mobile
+- [] RSS feed
 
 
