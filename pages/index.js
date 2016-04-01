@@ -7,8 +7,8 @@ export default ({route}) => {
   return (
     <VCard className="container">
       <Headline>
-        Hi, I'm <a className="url fn" href="/" rel="home author" title="my site">
-            Britt Crawford
+        Hi, I'm <a className="url n" href="/" rel="home author" title="my site">
+            <span className="given-name">Britt</span> <span className="family-name">Crawford</span>
           </a>
       </Headline>
       <main className="container">
