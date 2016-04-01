@@ -1,0 +1,5 @@
+.DS_Store
+_site/*
+node_modules/*
+.ruby-gemset
+.ruby-version
