@@ -7,11 +7,11 @@ import 'css/gutenberg/src/style/gutenberg.scss'
 
 export default ({route}) => {
   const data = route.page.data
+
   return (
     <div className="container">
       <Headline>
-        Hi, I'm <a className="url fn" href="http://brittcrawford.com" 
-          rel="home author" title="my site">
+        Hi, I'm <a className="url fn" href="/" rel="home author" title="my site">
           Britt Crawford
         </a>
       </Headline>

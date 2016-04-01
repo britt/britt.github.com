@@ -1,15 +1,13 @@
 import React from 'react'
 import VCard from 'components/vcard'
 import Headline from 'components/headline'
-
 import 'css/gutenberg/src/style/gutenberg.scss'
 
 export default ({route}) => {
   return (
     <VCard className="container">
       <Headline>
-        Hi, I'm <a className="url fn" href="http://brittcrawford.com" 
-            rel="home author" title="my site">
+        Hi, I'm <a className="url fn" href="/" rel="home author" title="my site">
             Britt Crawford
           </a>
       </Headline>

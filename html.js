@@ -2,8 +2,8 @@ import React from 'react'
 import { link } from 'gatsby-helpers'
 import GoolgleAnalytics from 'react-g-analytics'
 
-export default ({config, page, body}) => {
-  const title = page ? page.title : config.siteTitle
+export default (props, body) => {
+  const config = props.config
   const favicon = config.favicon
 
   let cssLink
@@ -18,7 +18,7 @@ export default ({config, page, body}) => {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport"
           content="width=device-width, initial-scale=1.0 maximum-scale=1.0" />
-        <title>{title}</title>
+        <title>{ config.siteTitle }</title>
 
         <meta name="description" content="Britt Crawford is just a guy who lives in San Francisco with his family." />
         <meta name="keywords" content="programming, data, analysis, food, cocktails, dilettante, adventurer, gentleman" />
@@ -35,7 +35,6 @@ export default ({config, page, body}) => {
         <button id="btnToggleGrid" style={{display: 'none'}}>show grid</button>
         <div id="react-mount" dangerouslySetInnerHTML={{ __html: body }} />
         <script src={link('/bundle.js')} />
-        <script src="/js/flexibility.js" type="text/javascript" />
         <GoolgleAnalytics id="UA-39393464-1" />
       </body>
     </html>
