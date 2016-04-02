@@ -10,19 +10,12 @@ export default ({route}) => {
 
   return (
     <DocumentTitle title={data.title}>
-      <div className="container">
-        <Headline>
-          Hi, I'm <a className="url fn" href="/" rel="home author" title="my site">
-            Britt Crawford
-          </a>
-        </Headline>
-        <main className="reading-notes">
-          <header className="subheader">
-            Articles I liked from the week of <strong>{data.week}</strong>.
-          </header>
-          <ArticleList articles={data.articles} />
-        </main>
-      </div>
+      <main className="reading-notes">
+        <header className="subheader">
+          Articles I liked from the week of <strong>{data.week}</strong>.
+        </header>
+        <ArticleList articles={data.articles} />
+      </main>
     </DocumentTitle>
   )
 }

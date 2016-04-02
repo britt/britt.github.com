@@ -41,22 +41,18 @@ export default ({route}) => {
 
   return (
     <DocumentTitle title="Reading Notes">
-      <div className="container">
-        <Headline />
-        <main className="reading-notes">
-          <header className="subheader">
-            Reading Notes
-          </header>
-          <p>
-            A short description and notes for each article that I read and liked
-            during a particular week.
-          </p>
+      <main className="reading-notes">
+        <header className="subheader">
+          A short description and notes for articles I read and liked.
+        </header>
+        <h2>
+          Reading Notes
+        </h2>
 
-          <ul>
-            {links}
-          </ul>
-        </main>
-      </div>
+        <ul>
+          {links}
+        </ul>
+      </main>
     </DocumentTitle>
   )
 }

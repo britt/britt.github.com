@@ -144,6 +144,10 @@ body > footer {
   }
 }
 
+img {
+  @include card(5)
+}
+
 .n {
   .family-name {
     @media screen and (max-width: 40em) {
