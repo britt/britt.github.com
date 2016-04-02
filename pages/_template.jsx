@@ -1,11 +1,14 @@
 import React from 'react' 
-import Footer from './_footer'
+import VCard from 'components/vcard'
+import Headline from 'components/headline'
+import Footer from 'components/footer'
 
 module.exports = ({children}) => {
   return (
-    <div className="home-page">
+    <VCard className="container home-page">
+      <Headline />
       {children}
       <Footer />
-    </div>
+    </VCard>
   )
 }

@@ -21,11 +21,15 @@ This is my personal website. Right now it just has a business card-like list of 
   + [x] editor interface to update notes
   + [x] re-order columns
 - [] Blog
-- [] Deployment script
+- [x] Deployment script
   + [x] Build script
-  + [] GitHub pages deployment
+  + [x] GitHub pages deployment
 - [x] Fix site title for weekly reading pages
 - [x] Hide last name in header on mobile
 - [] RSS feed
+- [] Add Gutenberg shout out https://matejlatin.github.io/Gutenberg/
+- [] Show assets in dev view
+- [] Better page titles
+- [] Extract Headline component
 
 
