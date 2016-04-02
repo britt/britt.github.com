@@ -37,8 +37,6 @@ export default ({route}) => {
   const pages = route.pages.filter((page) => page.path.match(pathFormat))
   const links = pages.sort(dateSort).map((page) => <WeekLink page={page} />)
 
-  console.log(pages.sort(dateSort))
-
   return (
     <DocumentTitle title="Reading Notes">
       <main className="reading-notes">
