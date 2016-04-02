@@ -8,8 +8,9 @@ export default ({route}) => {
     <main className="container">
       <section className="introduction">
         I live in San Francisco with my family. I've been a researcher, 
-        programmer, and low limit poker grinder. Currently I run analytics at <a href="https://rafter.com" title="Rafter, the place where I work" className="work">Rafter</a>. 
-        You can find me on the internet at:
+        programmer, and low limit poker grinder. Currently I run analytics 
+        at <a href="https://rafter.com" title="Rafter, the place where I work" className="work">Rafter</a>, 
+        and I need a better bio. You can find me on the internet at:
       </section>
       <section className="list-of-links">
         <ul>
@@ -55,6 +56,20 @@ export default ({route}) => {
             </a>
             <summary>
               A small collection of cocktails that I've created.
+            </summary>
+          </li>
+          <li>
+            <a href="https://github.com/britt/britt.github.com">
+              This site
+            </a>
+            <summary>
+              The source code for <a href="/">brittcrawford.com</a>. Look in 
+              the <a href="https://github.com/britt/britt.github.com">master branch</a> for 
+              the deployed code, or in 
+              the <a href="https://github.com/britt/britt.github.com/tree/gatsby">gatsby branch</a> to 
+              see the JavaScript and React that actually builds the static site. 
+              This site was built 
+              with <a href="https://github.com/gatsbyjs/gatsby">Gatsby</a> and <a href="https://matejlatin.github.io/Gutenberg/">Gutenberg</a>.
             </summary>
           </li>
         </ul>
