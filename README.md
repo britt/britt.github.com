@@ -31,5 +31,6 @@ This is my personal website. Right now it just has a business card-like list of 
 - [x] Show assets in dev view
 - [] Better page titles
 - [x] Extract Headline component
+- [] publishing on a schedule
 
 

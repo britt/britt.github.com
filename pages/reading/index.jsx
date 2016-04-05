@@ -44,7 +44,9 @@ export default ({route}) => {
           Reading Notes
         </h2>
         <p>
-          A short description and notes for articles I read and liked.
+          A short description and notes for articles I read and liked. Some of 
+          the articles I found insightful, those tend to have notes, others just
+          had interesting information or a cool fact.
         </p>
         <ul>
           {links}
