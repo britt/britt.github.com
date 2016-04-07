@@ -32,6 +32,7 @@ This is my personal website. Right now it just has a business card-like list of 
 - [] Better page titles
 - [x] Extract Headline component
 - [] publishing on a schedule
+- [] Update to use new Sheetsu API
 
 
 
