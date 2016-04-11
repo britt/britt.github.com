@@ -1,6 +1,7 @@
 siteTitle="Britt Crawford"
 linkPrefix = "/"
 favicon = "/img/favicon.ico"
+description = "The personal site of Britt Crawford"
 
 [reading]
 api_url = "https://sheetsu.com/apis/492051fa"

@@ -1,71 +1,87 @@
 import Shell from 'child_process'
+import Feed from 'feed'
+import moment from 'moment'
+import MarkdownIt from 'markdown-it'
+import FrontMatter from 'front-matter'
+import FS from 'fs'
+import TOML from 'toml-js'
+import {Dates, Pages} from 'lib/sort_utils'
 
-export default (pages, callback) => {
+function thereIsNoTry(callback) {
+  return (err, data) => {
+    if(err) {
+      process.stderr.write(err.toString())
+      process.exit(1)
+    } else {
+      callback(data)
+    }
+  }
+}
+
+function copyAssets() {
   Shell.execSync("cp -r assets/* public/")
   Shell.execSync("cp -r assets/.nojekyll public/")
   Shell.execSync("cp -r assets/.gitignore public/")
   Shell.execSync("cp -r assets/.well-known public/")
 }
 
-// Feed = require('feed')
-// filter = require 'lodash/filter'
-// sortBy = require 'lodash/sortBy'
-// moment = require 'moment'
-// MarkdownIt = require 'markdown-it'
-// fs = require 'fs'
-// frontmatter = require 'front-matter'
+function addItem(feed, page) {
+  feed.addItem({
+    title: page.data.title
+    link: "http://brittcrawford.com#{page.path}"
+    date: moment(page.data.date).toDate()
+    content: md.render(
+      frontmatter(
+        fs.readFileSync(
+          "#{__dirname}/pages/#{page.requirePath}",
+          'utf-8'
+        )
+      ).body
+    )
+    author: [{
+      name: "Britt Crawford"
+      email: "britt@illtemper.org"
+      link: "http://brittcrawford.com"
+    }]
+  })
+}
 
-// md = MarkdownIt({
-//   html: true
-//   linkify: true
-//   typographer: true
-// })
+function generateAtomFeed(pages, configData) {
+  const config = TOML.parse(configData)
 
-// module.exports = (pages, callback) ->
-//   generateAtomFeed(pages)
-//   callback()
+  md = MarkdownIt({
+    html: true
+    linkify: true
+    typographer: true
+  })
 
-// generateAtomFeed = (pages) ->
-//   feed = new Feed({
-//     title:       'Bricolage',
-//     description: 'A blog by Kyle Mathews',
-//     link:        'http://bricolage.io/',
-//     copyright:   'All rights reserved 2015, Kyle Mathews',
-//     author: {
-//       name:    'Kyle Mathews',
-//       email:   'mathews.kyle@gmail.com',
-//     }
-//   })
+  feed = new Feed({
+    title:       config.siteTitle,
+    description: config.description,
+    link:        'http://brittcrawford.com/',
+    copyright:   'All rights reserved 2016, Britt Crawford',
+    author: {
+      name:    'Britt Crawford',
+      email:   'britt@illtemper.org',
+    }
+  })
 
-//   # Sort by date.
-//   pages = sortBy(pages, (page) -> page.data?.date).reverse()
+  feed.addContributor({
+    name: 'Britt Crawford'
+    email: 'britt@illtemper.org'
+    link: 'http://brittcrawford.com'
+  })
 
-//   for page in filter(pages, (f) ->
-//     f.data?.title? and not f.data?.draft
-//   ).slice(0,10)
-//     feed.addItem({
-//       title: page.data.title
-//       link: "http://bricolage.io#{page.path}"
-//       date: moment(page.data.date).toDate()
-//       content: md.render(
-//         frontmatter(
-//           fs.readFileSync(
-//             "#{__dirname}/pages/#{page.requirePath}",
-//             'utf-8'
-//           )
-//         ).body
-//       )
-//       author: [{
-//         name: "Kyle Mathews"
-//         email: "mathews.kyle@gmail.com"
-//         link: "http://bricolage.io"
-//       }]
-//     })
+  const feedPages = pages.filter((page) => {
+    const datePart = Page.extractDateFromPath(page.path)
+    return datePart != undefined && datePart != null
+  })
 
-//   feed.addContributor({
-//     name: 'Kyle Mathews'
-//     email: 'mathews.kyle@gmail.com'
-//     link: 'http://bricolage.io'
-//   })
+  feedPages.sort(Pages.byDate).reverse().slice(0,10).map(addItem)
+  fs.writeFileSync "#{__dirname}/public/atom.xml", feed.render('atom-1.0')
+}
 
-//   fs.writeFileSync "#{__dirname}/public/atom.xml", feed.render('atom-1.0')
+export default (pages, callback) => {
+  FS.readFile('config.toml', thereIsNoTry(generateAtomFeed.bind(this, pages)))
+  copyAssets()
+}
