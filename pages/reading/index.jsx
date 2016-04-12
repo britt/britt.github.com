@@ -5,26 +5,8 @@ import DocumentTitle from 'react-document-title'
 import moment from 'moment'
 import 'css/gutenberg/src/style/gutenberg.scss'
 import { Pages } from 'lib/sort_utils'
-
-
-const pathFormat = /\/reading\/(\d{4}-\d{2}-\d{2})\//
-
-function extractDatePart(path) {
-  return path.match(pathFormat)[1]
-}
-
-function dateSort(firstPage, secondPage) {
-  const firstDate = moment(extractDatePart(firstPage.path), "YYYY-MM-DD")
-  const secondDate = moment(extractDatePart(secondPage.path), "YYYY-MM-DD")
-
-  if(firstDate.isAfter(secondDate)) {
-    return -1
-  } else if(firstDate.isBefore(secondDate)) {
-    return 1
-  } else {
-    return 0
-  }
-}
+import { config } from 'config'
+import PageUtils from 'lib/page_utils'
 
 const WeekLink = ({page}) => {
   return (
@@ -36,11 +18,11 @@ const WeekLink = ({page}) => {
 }
 
 export default ({route}) => {
-  const pages = route.pages.filter((page) => page.path.match(pathFormat))
+  const pages = route.pages.filter((page) => PageUtils.isReadingPage(page.path))
   const links = pages.sort(Pages.dateInPath).reverse().map((page) => <WeekLink page={page} />)
 
   return (
-    <DocumentTitle title="Reading Notes">
+    <DocumentTitle title={"Reading Notes - " + config.siteTitle }>
       <main className="reading-notes">
         <h2>
           Reading Notes
