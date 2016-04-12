@@ -1,5 +1,5 @@
 import React from 'react'
-import Article from 'components/article'
+import Article from './article'
 import moment from 'moment'
 import _ from 'lodash'
 

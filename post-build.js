@@ -1,11 +1,44 @@
+process.env.NODE_PATH = __dirname 
+
 import FS from 'fs'
 import Shell from 'child_process'
 import Feed from 'feed'
 import TOML from 'toml-js'
-import PageUtils from './lib/page_utils'
-import { Pages } from './lib/sort_utils'
 import moment from 'moment'
 import frontmatter from 'front-matter'
+import MarkdownIt from 'markdown-it'
+import PageUtils from './lib/page_utils'
+import { Pages } from './lib/sort_utils'
+import React from 'react'
+import ReactDOMServer from 'react-dom/server'
+import ArticleList from './components/article_list'
+
+class Page {
+  constructor(pageData) {
+    this.type = pageData.file.ext
+    this.date = PageUtils.extractDatePart(pageData.path)
+    this.path = pageData.path
+
+    const page = FS.readFileSync(`${__dirname}/pages/${pageData.requirePath}`,'utf-8')
+
+    if(this.type == 'md') {
+      const md = MarkdownIt({
+        html: true,
+        linkify: true,
+        typographer: true
+      })
+      const fm = frontmatter(page)
+
+      this.title = fm.attributes.title
+      this.content = md.render(fm.body)
+    } else {
+      const json = JSON.parse(page)
+
+      this.title = json['title']
+      this.content = ReactDOMServer.renderToStaticMarkup(<ArticleList articles={json['articles']} />)
+    }
+  }
+}
 
 function thereIsNoTry(callback) {
   return (err, data) => {
@@ -29,9 +62,9 @@ function generateFeed(pages) {
       id: `tag:${config.siteTitle},${now.format('YYYY-mm-DD')}:/${now.format('YYYYmmDDX')}`,
       copyright:   `All rights reserved 2016, ${config.author.fullName}`,    
       author: {
-          name:    config.author.fullName,
-          email:   config.author.email,
-          link:    config.link
+        name:    config.author.fullName,
+        email:   config.author.email,
+        link:    config.link
       }
     })
 
@@ -41,32 +74,20 @@ function generateFeed(pages) {
       link: config.link
     })
 
-    let feedPages = pages.filter((page) => PageUtils.isDatedPost(page.path))
+    const feedPages = pages.filter((page) => PageUtils.isDatedPost(page.path))
                       .sort(Pages.dateInPath)
                       .reverse()
                       .slice(0,10)
 
     for(let feedPage of feedPages) {
-      const metaData = {
-        date: PageUtils.extractDatePart(feedPage.path)
-      }
-
-      const pageData = FS.readFileSync(
-        `${__dirname}/pages/${feedPage.requirePath}`,
-        'utf-8')
-
-      if(feedPage['file']['ext'] == 'md') {
-        metaData.title = frontmatter(pageData).attributes.title
-      } else if(feedPage['file']['ext'] == 'json'){
-        metaData.title = JSON.parse(pageData)['title']
-      }
+      const page = new Page(feedPage)
 
       feed.addItem({
-        title: metaData.title,
-        link: `${config.link}${feedPage.path}`,
-        content: "<div>CONTENT</div>",
-        id: `tag:${config.siteTitle},${metaData.date}:${feedPage.path}`,
-        date: moment(metaData.date).toDate()
+        title: page.title,
+        link: `${config.link}${page.path}`,
+        content: page.content,
+        id: `tag:${config.siteTitle},${page.date}:${page.path}`,
+        date: moment(page.date).toDate()
       })
     }
 
