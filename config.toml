@@ -2,6 +2,11 @@ siteTitle="Britt Crawford"
 linkPrefix = "/"
 favicon = "/img/favicon.ico"
 description = "The personal site of Britt Crawford"
+link = "http://brittcrawford.com"
+
+[author]
+full_name = "Britt Crawford"
+email = "britt@illtemper.org"
 
 [reading]
 api_url = "https://sheetsu.com/apis/492051fa"

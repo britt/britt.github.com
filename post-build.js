@@ -5,7 +5,6 @@ import MarkdownIt from 'markdown-it'
 import FrontMatter from 'front-matter'
 import FS from 'fs'
 import TOML from 'toml-js'
-import {Dates, Pages} from 'lib/sort_utils'
 
 function thereIsNoTry(callback) {
   return (err, data) => {
@@ -82,6 +81,6 @@ function generateAtomFeed(pages, configData) {
 }
 
 export default (pages, callback) => {
-  FS.readFile('config.toml', thereIsNoTry(generateAtomFeed.bind(this, pages)))
+  // FS.readFile('config.toml', thereIsNoTry(generateAtomFeed.bind(this, pages)))
   copyAssets()
 }

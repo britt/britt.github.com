@@ -4,6 +4,8 @@ import Icon from 'components/icon'
 import DocumentTitle from 'react-document-title'
 import moment from 'moment'
 import 'css/gutenberg/src/style/gutenberg.scss'
+import { Pages } from 'lib/sort_utils'
+
 
 const pathFormat = /\/reading\/(\d{4}-\d{2}-\d{2})\//
 
@@ -35,7 +37,7 @@ const WeekLink = ({page}) => {
 
 export default ({route}) => {
   const pages = route.pages.filter((page) => page.path.match(pathFormat))
-  const links = pages.sort(dateSort).map((page) => <WeekLink page={page} />)
+  const links = pages.sort(Pages.dateInPath).reverse().map((page) => <WeekLink page={page} />)
 
   return (
     <DocumentTitle title="Reading Notes">
