@@ -2,10 +2,10 @@ siteTitle="brittcrawford.com"
 linkPrefix = "/"
 favicon = "/img/favicon.ico"
 description = "The personal site of Britt Crawford"
-link = "http://brittcrawford.com"
+link = "http://brittcrawford.com/"
 
 [author]
-full_name = "Britt Crawford"
+fullName = "Britt Crawford"
 email = "britt@illtemper.org"
 
 [reading]
