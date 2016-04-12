@@ -29,7 +29,7 @@ This is my personal website. Right now it just has a business card-like list of 
 - [] RSS feed
 - [x] Add Gutenberg shout out https://matejlatin.github.io/Gutenberg/
 - [x] Show assets in dev view
-- [] Better page titles
+- [x] Better page titles
 - [x] Extract Headline component
 - [] publishing on a schedule
 - [] Update to use new Sheetsu API
