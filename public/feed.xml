@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>tag:brittcrawford.com,2016-51-12:/201651121460497881</id>
+    <id>tag:brittcrawford.com,2016-53-12:/201653121460498038</id>
     <title>brittcrawford.com</title>
-    <updated>2016-04-12T21:51:21Z</updated>
+    <updated>2016-04-12T21:53:58Z</updated>
     <author>
         <name>BrittCrawford</name>
         <email>britt@illtemper.org</email>
@@ -17,6 +17,14 @@
         <name>BrittCrawford</name>
         <email>britt@illtemper.org</email>
     </contributor>
+    <entry>
+        <title type="html"><![CDATA[Reading April 10th, 2016]]></title>
+        <id>tag:brittcrawford.com,2016-04-10:/reading/2016-04-10/</id>
+        <link href="http://brittcrawford.com//reading/2016-04-10/">
+        </link>
+        <updated>2016-04-10T07:00:00Z</updated>
+        <content type="html"><![CDATA[<div class="notes-by-day"><section><h3><time datetime="2016-04-11" class="date-read">Monday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="https://kneelingbus.wordpress.com/2016/04/08/unbundling-the-world/" class="title" target="_blank">Unbundling the World</a><summary class="description">Posted: April 8, 2016 | Author: | Filed under: Uncategorized | New technologies almost always seem to have less soul than whatever they replace. Music streamed…</summary></article></li></ol></section><section><h3><time datetime="2016-04-12" class="date-read">Tuesday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="http://www.newyorker.com/magazine/2016/04/11/gay-talese-the-voyeurs-motel" class="title" target="_blank">The Voyeur’s Motel</a><summary class="description">I know a married man and father of two who bought a twenty-one-room motel near Denver many years ago in order to become its resident voyeur. With the assistance…</summary></article></li></ol></section></div>]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Reading April 3rd, 2016]]></title>
         <id>tag:brittcrawford.com,2016-04-03:/reading/2016-04-03/</id>
