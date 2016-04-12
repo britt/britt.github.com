@@ -26,7 +26,9 @@ This is my personal website. Right now it just has a business card-like list of 
   + [x] GitHub pages deployment
 - [x] Fix site title for weekly reading pages
 - [x] Hide last name in header on mobile
-- [] RSS feed
+- [x] RSS feed
+  + [] Add all posts to feed (remove dep on path)
+  + [] Date all posts
 - [x] Add Gutenberg shout out https://matejlatin.github.io/Gutenberg/
 - [x] Show assets in dev view
 - [x] Better page titles
