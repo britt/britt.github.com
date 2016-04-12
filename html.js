@@ -31,6 +31,7 @@ export default ({pages, config, body}) => {
           <link rel="apple-touch-icon" sizes="72x72" href="/assets/img/apple-touch-icon-72-precomposed.png" />
           <link rel="apple-touch-icon" sizes="114x114" href="/assets/img/apple-touch-icon-114-precomposed.png" />
           <link rel="apple-touch-icon" sizes="144x144" href="/assets/img/apple-touch-icon-144-precomposed.png" />
+          <link rel="alternate" type="application/atom+xml" href={config.link + 'feed.xml'} />
           {cssLink}
         </head>
         <body>
