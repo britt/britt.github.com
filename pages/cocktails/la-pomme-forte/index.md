@@ -1,5 +1,6 @@
 ---
 title: La Pomme Forte Recipe
+date: 2014-04-01
 ---
 
 ## La Pomme Forte

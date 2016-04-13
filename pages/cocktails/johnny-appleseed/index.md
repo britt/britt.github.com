@@ -1,5 +1,6 @@
 ---
 title: Johnny Appleseed Recipe
+date: 2014-04-01
 ---
 
 ## Johnny Appleseed

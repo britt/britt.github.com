@@ -27,14 +27,15 @@ This is my personal website. Right now it just has a business card-like list of 
 - [x] Fix site title for weekly reading pages
 - [x] Hide last name in header on mobile
 - [x] RSS feed
-  + [] Add all posts to feed (remove dep on path)
-  + [] Date all posts
+  + [x] Add all posts to feed (remove dep on path)
+  + [x] Date all posts
 - [x] Add Gutenberg shout out https://matejlatin.github.io/Gutenberg/
 - [x] Show assets in dev view
 - [x] Better page titles
 - [x] Extract Headline component
 - [] publishing on a schedule
 - [] Update to use new Sheetsu API
+- [] Configure LINTer for ES6
 
 
 

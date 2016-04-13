@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>tag:brittcrawford.com,2016-59-12:/201659121460498350</id>
+    <id>tag:brittcrawford.com,2016-29-13:/201629131460582966</id>
     <title>brittcrawford.com</title>
-    <updated>2016-04-12T21:59:10Z</updated>
+    <updated>2016-04-13T21:29:26Z</updated>
     <author>
         <name>BrittCrawford</name>
         <email>britt@illtemper.org</email>
@@ -19,7 +19,7 @@
     </contributor>
     <entry>
         <title type="html"><![CDATA[Reading April 10th, 2016]]></title>
-        <id>tag:brittcrawford.com,2016-04-10:/reading/2016-04-10/</id>
+        <id>tag:brittcrawford.com,1460271600000:/reading/2016-04-10/</id>
         <link href="http://brittcrawford.com//reading/2016-04-10/">
         </link>
         <updated>2016-04-10T07:00:00Z</updated>
@@ -27,7 +27,7 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[Reading April 3rd, 2016]]></title>
-        <id>tag:brittcrawford.com,2016-04-03:/reading/2016-04-03/</id>
+        <id>tag:brittcrawford.com,1459666800000:/reading/2016-04-03/</id>
         <link href="http://brittcrawford.com//reading/2016-04-03/">
         </link>
         <updated>2016-04-03T07:00:00Z</updated>
@@ -35,7 +35,7 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[Reading March 27th, 2016]]></title>
-        <id>tag:brittcrawford.com,2016-03-27:/reading/2016-03-27/</id>
+        <id>tag:brittcrawford.com,1459062000000:/reading/2016-03-27/</id>
         <link href="http://brittcrawford.com//reading/2016-03-27/">
         </link>
         <updated>2016-03-27T07:00:00Z</updated>
@@ -43,10 +43,107 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[Reading March 20th, 2016]]></title>
-        <id>tag:brittcrawford.com,2016-03-20:/reading/2016-03-20/</id>
+        <id>tag:brittcrawford.com,1458457200000:/reading/2016-03-20/</id>
         <link href="http://brittcrawford.com//reading/2016-03-20/">
         </link>
         <updated>2016-03-20T07:00:00Z</updated>
         <content type="html"><![CDATA[<div class="notes-by-day"><section><h3><time datetime="2016-03-24" class="date-read">Thursday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="https://www.technologyreview.com/s/601107/data-mining-reveals-the-four-urban-conditions-that-create-vibrant-city-life/" class="title" target="_blank">Data Mining Reveals the Four Urban Conditions That Create Vibrant City Life</a><summary class="description">Back in 1961, the gradual decline of many city centers in the U.S. began to puzzle urban planners and activists alike. One of them, the urban sociologist Jane…</summary><section class="my-notes">Jane Jacobs was right! The key factors in creating a vibrant city are about maximizing serendipitous interactions and physical connectivity: dense intersections, mixed use areas, meeting places (aka third places)...</section></article></li></ol></section><section><h3><time datetime="2016-03-25" class="date-read">Friday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="https://medium.com/@robbyrussell/d-oh-my-zsh-af99ca54212c" class="title" target="_blank">d’Oh My Zsh</a><summary class="description">How I unexpectedly built a monster of an open source project This wouldn’t my first foray into open source software; nor my last. It was the summer of 2009. I…</summary></article></li><li><article class="reading-note"><a href="http://splitsider.com/2011/03/your-favorite-comedy-exists-because-of-the-larry-sanders-show/" class="title" target="_blank">Your Favorite Comedy Exists Because of ‘The Larry Sanders Show’</a><summary class="description">This year the IFC channel started showing reruns of The Larry Sanders Show , which will hopefully introduce one of the best, most influential sitcoms of all…</summary></article></li><li><article class="reading-note"><a href="http://www.ribbonfarm.com/2016/03/24/the-holy-grail-of-self-improvement/" class="title" target="_blank">The Holy Grail of Self-Improvement</a><summary class="description">The holy grail of self-improvement in modern times is a framework for individual experimentation and learning that can be used by the average person. The key…</summary></article></li><li><article class="reading-note"><a href="https://medium.com/@nm_johnson/npm-package-hijacking-from-the-hijackers-perspective-af0c48ab9922" class="title" target="_blank">NPM Package Hijacking: From the Hijackers Perspective</a><summary class="description">In light of recent events in the javascript community, I would like to share the story of how I came into control of more than 200 heavily depended on modules,…</summary></article></li></ol></section></div>]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[La Pomme Forte Recipe]]></title>
+        <id>tag:brittcrawford.com,1396310400000:/cocktails/la-pomme-forte/</id>
+        <link href="http://brittcrawford.com//cocktails/la-pomme-forte/">
+        </link>
+        <updated>2014-04-01T00:00:00Z</updated>
+        <content type="html"><![CDATA[<h2>La Pomme Forte</h2>
+<p>A refreshing and delicious Apple Jack cocktail named in bad French. Right click and <a href="#highball-import">save the image</a> to import into <a href="http://www.studioneat.com/products/highball">Highball</a>.</p>
+<h3>Ingredients</h3>
+<ul>
+<li>2oz Laird’s Bonded Apple Jack</li>
+<li>The juice of 1 fresh lemon</li>
+<li>1/2 oz St. Germain</li>
+<li>1/4oz Allspice dram</li>
+<li>1oz Brown sugar syrup</li>
+<li>A splash of soda</li>
+</ul>
+<p>Combine ingredients in a shaker with ice to chill. Shake gently. Serve on the rocks in a collins glass. Top with soda. Garnish with a lemon wheel or a sprig of mint.</p>
+<a name="highball-import">
+  <img src="/img/cocktails/la-pomme-forte.png" 
+    class="raised"
+    alt="Recipe for La Pomme Forte" />
+</a>]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Johnny Appleseed Recipe]]></title>
+        <id>tag:brittcrawford.com,1396310400000:/cocktails/johnny-appleseed/</id>
+        <link href="http://brittcrawford.com//cocktails/johnny-appleseed/">
+        </link>
+        <updated>2014-04-01T00:00:00Z</updated>
+        <content type="html"><![CDATA[<h2>Johnny Appleseed</h2>
+<p>An variant of the <a href="">Rattlesnake</a> using Apple Jack instead of Rye. Right click and <a href="#highball-import">save the image</a> to import into <a href="http://www.studioneat.com/products/highball">Highball</a>.</p>
+<h3>Ingredients</h3>
+<ul>
+<li>2oz Laird’s Bonded Apple Jack</li>
+<li>1/3oz Maple syrup</li>
+<li>1oz Lemon juice</li>
+<li>1 Egg white</li>
+<li>1 dash Angostura bitters</li>
+<li>1 dash Allspice bitters</li>
+<li>1 Cherry</li>
+</ul>
+<p>Combine ingredients in a shaker with ice. Shake vigorously. Strain into the serving glass. Garnish with a cherry.</p>
+<a name="highball-import">
+  <img src="/img/cocktails/johnny-appleseed.png" 
+    class="raised"
+    alt="Recipe for Johnny Appleseed" />
+</a>]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[El Niño Recipe]]></title>
+        <id>tag:brittcrawford.com,1396310400000:/cocktails/el-nino/</id>
+        <link href="http://brittcrawford.com//cocktails/el-nino/">
+        </link>
+        <updated>2014-04-01T00:00:00Z</updated>
+        <content type="html"><![CDATA[<h2>El Niño</h2>
+<p>This is the one cocktail in the collection that I didn’t create. My friend <a href="https://twitter.com/jcoltkelly">Josh Kelly</a> devised this recipe, and on a trip to the beach after many iterations we pronounced it good. Right click and <a href="#highball-import">save the image</a> to import into <a href="http://www.studioneat.com/products/highball">Highball</a>.</p>
+<h3>Ingredients</h3>
+<ul>
+<li>1oz Tequila</li>
+<li>1oz Pear liqueur</li>
+<li>1/2 oz Lime juice</li>
+<li>1/4oz Allspice dram</li>
+<li>1/4oz Simple syrup</li>
+<li>1 dash grapefruit bitters</li>
+<li>1 twist of lime</li>
+</ul>
+<p>Combine ingredients in a shaker with ice. Shake vigorously. Strain into a coupe glass. Garnish with a twist of lime.</p>
+<a name="highball-import">
+  <img src="/img/cocktails/el-nino.png" 
+    class="raised"
+    alt="Recipe for El Niño" />
+</a>]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Yippee Kay Yay Motherfucker! Recipe]]></title>
+        <id>tag:brittcrawford.com,1395187200000:/cocktails/yippee-kay-yay-motherfucker/</id>
+        <link href="http://brittcrawford.com//cocktails/yippee-kay-yay-motherfucker/">
+        </link>
+        <updated>2014-03-19T00:00:00Z</updated>
+        <content type="html"><![CDATA[<h2>Yippee Kay Yay Motherfucker!</h2>
+<p>A spicy variant on the Old Fashioned, a tribute to <a href="https://en.wikipedia.org/wiki/John_McClane">John McClane</a> and a terrible pun. Right click and <a href="#highball-import">save the image</a> to import into <a href="http://www.studioneat.com/products/highball">Highball</a>.</p>
+<h3>Ingredients</h3>
+<ul>
+<li>2oz Bourbon <em>(I use <a href="http://www.buffalotrace.com/">Buffalo Trace</a>)</em></li>
+<li>1/4oz Maple Syrup</li>
+<li>1 dash of Cayenne Pepper</li>
+<li>1 dash of Angostura bitters</li>
+<li>1 twist of lemon</li>
+</ul>
+<p>Gently stir the bourbon, maple syrup, bitters and cayenne with ice to chill. Be careful not chip the ice and water down the drink. Serve on the rocks with a twist of lemon.</p>
+<a name="highball-import">
+  <img src="/img/cocktails/yippee-kay-yay-motherfucker.png" 
+    class="raised"
+    alt="Recipe for the Yippee Kay Yay Motherfucker!" />
+</a>]]></content>
     </entry>
 </feed>

@@ -1,5 +1,6 @@
 ---
 title: El Niño Recipe
+date: 2014-04-01
 ---
 
 ## El Niño

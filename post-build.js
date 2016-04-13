@@ -1,5 +1,3 @@
-process.env.NODE_PATH = __dirname 
-
 import FS from 'fs'
 import Shell from 'child_process'
 import Feed from 'feed'
@@ -8,16 +6,17 @@ import moment from 'moment'
 import frontmatter from 'front-matter'
 import MarkdownIt from 'markdown-it'
 import PageUtils from './lib/page_utils'
-import { Pages } from './lib/sort_utils'
+import { Pages, Dates } from './lib/sort_utils'
+import isSomething from './lib/is_something'
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import ArticleList from './components/article_list'
 
-class Page {
+class FeedPage {
   constructor(pageData) {
     this.type = pageData.file.ext
-    this.date = PageUtils.extractDatePart(pageData.path)
     this.path = pageData.path
+    this.date = PageUtils.isDatedPost(pageData.path) ? moment(PageUtils.extractDatePart(pageData.path)) : null
 
     const page = FS.readFileSync(`${__dirname}/pages/${pageData.requirePath}`,'utf-8')
 
@@ -31,7 +30,9 @@ class Page {
 
       this.title = fm.attributes.title
       this.content = md.render(fm.body)
-    } else {
+      if(isSomething(fm.attributes.date))
+        this.date = moment(fm.attributes.date)
+    } else if(this.type == 'json'){
       const json = JSON.parse(page)
 
       this.title = json['title']
@@ -74,20 +75,20 @@ function generateFeed(pages) {
       link: config.link
     })
 
-    const feedPages = pages.filter((page) => PageUtils.isDatedPost(page.path))
-                      .sort(Pages.dateInPath)
-                      .reverse()
-                      .slice(0,10)
+    const feedPages = pages
+      .map((page) => new FeedPage(page))
+      .filter((page) => isSomething(page.date))
+      .sort((a,b) => Dates.momentSort(a.date, b.date)) 
+      .reverse()
+      .slice(0,10)
 
-    for(let feedPage of feedPages) {
-      const page = new Page(feedPage)
-
+    for(let page of feedPages) {
       feed.addItem({
         title: page.title,
         link: `${config.link}${page.path}`,
         content: page.content,
         id: `tag:${config.siteTitle},${page.date}:${page.path}`,
-        date: moment(page.date).toDate()
+        date: page.date.toDate()
       })
     }
 

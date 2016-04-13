@@ -1,5 +1,6 @@
 ---
 title: Yippee Kay Yay Motherfucker! Recipe
+date: 2014-03-19
 ---
 
 ## Yippee Kay Yay Motherfucker!
