@@ -30,7 +30,9 @@ export default ({route}) => {
         <p>
           A short description and notes for articles I read and liked. Some of 
           the articles I found insightful, those tend to have notes, others just
-          had interesting information or a cool fact.
+          had interesting information or a cool fact. I keep these notes because 
+          making myself write down a brief summary fixes the information in my 
+          mind.
         </p>
         <ul>
           {links}
