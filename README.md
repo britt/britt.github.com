@@ -36,6 +36,7 @@ This is my personal website. Right now it just has a business card-like list of 
 - [] publishing on a schedule
 - [] Update to use new Sheetsu API
 - [] Configure LINTer for ES6
+- [] Drafts
 
 
 

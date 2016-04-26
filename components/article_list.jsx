@@ -1,13 +1,13 @@
 import React from 'react'
 import Article from './article'
 import moment from 'moment'
-import _ from 'lodash'
+import {includes, keys} from 'lodash'
 
 export default ({articles}) => {
   const notesByDay = articles.reduce((acc, article) => {
     const dateLiked = moment(article['date_liked'], "MMMM DD, YYYY at hh:mmA").format('YYYY-MM-DD')
 
-    if(_.includes(_.keys(acc), dateLiked)) {
+    if(includes(keys(acc), dateLiked)) {
       acc[dateLiked].push(<Article article={article} />)
     } else {
       acc[dateLiked] = [<Article article={article} />]
@@ -16,7 +16,7 @@ export default ({articles}) => {
     return acc
   }, {})
 
-  const notes = _.keys(notesByDay).reduce((acc, day) => {
+  const notes = keys(notesByDay).reduce((acc, day) => {
     const dateLiked = moment(day, "YYYY-MM-DD")
 
     acc.push(
