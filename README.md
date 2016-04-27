@@ -37,6 +37,7 @@ This is my personal website. Right now it just has a business card-like list of 
 - [] Update to use new Sheetsu API
 - [] Configure LINTer for ES6
 - [] Drafts
+- [] Upgrade to gatsby 0.10.0
 
 
 
