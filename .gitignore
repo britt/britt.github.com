@@ -3,3 +3,4 @@ _site/*
 node_modules/*
 .ruby-gemset
 .ruby-version
+.gatsby-context.js

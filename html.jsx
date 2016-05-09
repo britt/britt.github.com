@@ -1,6 +1,6 @@
 import React from 'react'
 import { link } from 'gatsby-helpers'
-import GoolgleAnalytics from 'react-g-analytics'
+import GoogleAnalytics from 'components/google_analytics'
 import DocumentTitle from 'react-document-title'
 
 export default ({pages, config, body}) => {
@@ -38,7 +38,7 @@ export default ({pages, config, body}) => {
           <button id="btnToggleGrid" style={{display: 'none'}}>show grid</button>
           <div id="react-mount" dangerouslySetInnerHTML={{ __html: body }} />
           <script src={link('/bundle.js')} />
-          <GoolgleAnalytics id="UA-39393464-1" />
+          <GoogleAnalytics id="UA-39393464-1" />
         </body>
       </html>
     </DocumentTitle>
