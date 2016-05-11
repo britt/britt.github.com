@@ -20,6 +20,7 @@ This is my personal website. Right now it just has a business card-like list of 
 - [] Configure LINTer for ES6
 - [] Drafts
 - [] fetch_weekly_reading can handle empty folders
+- [] Publish static pages rather than single page app
 
 #### Done
 - [x] Change icon color
