@@ -4,7 +4,7 @@ import GoogleAnalytics from 'components/google_analytics'
 import DocumentTitle from 'react-document-title'
 import { config } from 'config'
 
-export default (body) => {
+export default (route) => {
   const favicon = config.favicon
   const title = DocumentTitle.rewind()
   
@@ -37,7 +37,7 @@ export default (body) => {
         </head>
         <body>
           <button id="btnToggleGrid" style={{display: 'none'}}>show grid</button>
-          <div id="react-mount" dangerouslySetInnerHTML={{ __html: body }} />
+          <div id="react-mount" dangerouslySetInnerHTML={{ __html: route.body }} />
           <script src={prefixLink('/bundle.js')} />
           <GoogleAnalytics id="UA-39393464-1" />
         </body>
