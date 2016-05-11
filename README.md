@@ -14,13 +14,20 @@ This is my personal website. Right now it just has a business card-like list of 
 
 ### Todo
 
+- [] Blog
+- [] publishing on a schedule
+- [] Update to use new Sheetsu API
+- [] Configure LINTer for ES6
+- [] Drafts
+- [] fetch_weekly_reading can handle empty folders
+
+#### Done
 - [x] Change icon color
 - [x] Fix layout on phone
 - [x] Weekly reading notes
   + [x] binary to fetch weekly reading notes as JSON
   + [x] editor interface to update notes
   + [x] re-order columns
-- [] Blog
 - [x] Deployment script
   + [x] Build script
   + [x] GitHub pages deployment
@@ -33,11 +40,7 @@ This is my personal website. Right now it just has a business card-like list of 
 - [x] Show assets in dev view
 - [x] Better page titles
 - [x] Extract Headline component
-- [] publishing on a schedule
-- [] Update to use new Sheetsu API
-- [] Configure LINTer for ES6
-- [] Drafts
-- [] Upgrade to gatsby 0.10.0
+- [x] Upgrade to gatsby 0.10.0
 
 
 

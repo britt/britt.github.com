@@ -1,15 +1,16 @@
 import React from 'react'
-import { link } from 'gatsby-helpers'
+import { prefixLink } from 'gatsby-helpers'
 import GoogleAnalytics from 'components/google_analytics'
 import DocumentTitle from 'react-document-title'
+import { config } from 'config'
 
-export default ({pages, config, body}) => {
+export default (body) => {
   const favicon = config.favicon
   const title = DocumentTitle.rewind()
   
   let cssLink
   if (process.env.NODE_ENV === 'production') {
-    cssLink = <link rel="stylesheet" href={link('/styles.css')} />
+    cssLink = <link rel="stylesheet" href={prefixLink('/styles.css')} />
   }
 
   return (
@@ -37,7 +38,7 @@ export default ({pages, config, body}) => {
         <body>
           <button id="btnToggleGrid" style={{display: 'none'}}>show grid</button>
           <div id="react-mount" dangerouslySetInnerHTML={{ __html: body }} />
-          <script src={link('/bundle.js')} />
+          <script src={prefixLink('/bundle.js')} />
           <GoogleAnalytics id="UA-39393464-1" />
         </body>
       </html>
