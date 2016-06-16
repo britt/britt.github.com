@@ -10,7 +10,7 @@ This is my personal website. Right now it just has a business card-like list of 
 
 ## How to deploy
 
-      gh-pages --dist public --branch master --dotfiles
+      bin/publish
 
 ### Todo
 

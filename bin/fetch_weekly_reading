@@ -60,7 +60,14 @@ function saveWeeklyReads(startOfWeek, data) {
 
   FS.access(outputPath, FS.F_OK, (err) => {
     if(err) {
-      FS.mkdir(outputPath, thereIsNoTry(saveReads))
+      FS.mkdir(outputPath, (err, data) => {
+        if(err && /EEXIST/.match(err.toString()) === null) {
+          process.stderr.write(err.toString())
+          process.exit(1)
+        } else {
+          saveReads()
+        }
+      })
     } else {
       saveReads()
     }
