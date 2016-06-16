@@ -18,9 +18,9 @@ This is my personal website. Right now it just has a business card-like list of 
 - [] publishing on a schedule
 - [] Update to use new Sheetsu API
 - [] fetch_weekly_reading can handle empty folders
+- [] Drafts
 
 #### Done
-- [x] Drafts
 - [-] Configure LINTer for ES6
 - [x] Change icon color
 - [x] Fix layout on phone
