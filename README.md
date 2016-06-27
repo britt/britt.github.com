@@ -19,6 +19,17 @@ This is my personal website. Right now it just has a business card-like list of 
 - [] Update to use new Sheetsu API
 - [] fetch_weekly_reading can handle empty folders
 - [] Drafts
+- [] Fix error
+
+```
+/Users/bcrawford/workspace/brittcrawford.com/bin/fetch_weekly_reading:64
+        if(err && /EEXIST/.match(err.toString()) === null) {
+                           ^
+
+TypeError: /EEXIST/.match is not a function
+    at FS.mkdir (/Users/bcrawford/workspace/brittcrawford.com/bin/fetch_weekly_reading:64:28)
+    at FSReqWrap.oncomplete (fs.js:117:15)
+```
 
 #### Done
 - [-] Configure LINTer for ES6
