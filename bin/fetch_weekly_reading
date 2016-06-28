@@ -1,4 +1,4 @@
-#!/app/.heroku/node/bin/node node --harmony 
+#!/app/.heroku/node/bin/node --harmony 
 
 const FS = require('fs')
 const TOML = require('toml-js')
