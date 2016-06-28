@@ -82,6 +82,10 @@ function generateFeed(pages) {
       .reverse()
       .slice(0,10)
 
+    console.log(pages.length)
+    console.log(pages[0].title)
+    console.log(pages[pages.length-1].title)
+
     for(let page of feedPages) {
       feed.addItem({
         title: page.title,
