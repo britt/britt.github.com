@@ -4,7 +4,7 @@ This is my personal website. Right now it just has a business card-like list of 
 
 ## How weekly reading works
 
-1. IFTTT -> Google Sheets
+1. Instapaper -> IFTTT -> Google Sheets
 2. Edit with AppSheet.com app
 3. Load into site via script
 
@@ -15,7 +15,6 @@ This is my personal website. Right now it just has a business card-like list of 
 ### Todo
 
 - [] Blog
-- [] publishing on a schedule
 - [] Update to use new Sheetsu API
 - [] fetch_weekly_reading can handle empty folders
 - [] Drafts
@@ -53,6 +52,7 @@ TypeError: /EEXIST/.match is not a function
 - [x] Extract Headline component
 - [x] Upgrade to gatsby 0.10.0
 - [x] Publish static pages rather than single page app
+- [x] publishing on a schedule
 
 
 
