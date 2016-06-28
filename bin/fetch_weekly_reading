@@ -1,4 +1,4 @@
-#!/usr/bin/env node --harmony 
+#!node --harmony 
 
 const FS = require('fs')
 const TOML = require('toml-js')
