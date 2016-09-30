@@ -22,17 +22,15 @@ export default ({route}) => {
   const links = pages.sort(Pages.dateInPath).reverse().map((page) => <WeekLink page={page} />)
 
   return (
-    <DocumentTitle title={"Reading Notes - " + config.siteTitle }>
+    <DocumentTitle title={"What am I reading? - " + config.siteTitle }>
       <main className="reading-notes">
         <h2>
-          Reading Notes
+          What am I reading?
         </h2>
         <p>
-          A short description and notes for articles I read and liked. Some of 
-          the articles I found insightful, those tend to have notes, others just
-          had interesting information or a cool fact. I keep these notes because 
-          making myself write down a brief summary fixes the information in my 
-          mind.
+          A short description of articles I have read and liked each week. Some of 
+          the articles I found insightful, those might have notes, others just
+          had interesting information, or a cool fact. 
         </p>
         <ul>
           {links}

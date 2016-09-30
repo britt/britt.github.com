@@ -44,7 +44,7 @@ export default ({route}) => {
         <ul>
           <li>
             <a href="/reading/">
-              Reading Notes
+              What am I reading?
             </a>
             <summary>
               A weekly summary of articles that I have read and liked.
