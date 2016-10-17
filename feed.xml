@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>tag:brittcrawford.com,2016-10-15:/201610151476522640</id>
+    <id>tag:brittcrawford.com,2016-10-17:/201610171476695438</id>
     <title>brittcrawford.com</title>
-    <updated>2016-10-15T09:10:40Z</updated>
+    <updated>2016-10-17T09:10:39Z</updated>
     <author>
         <name>BrittCrawford</name>
         <email>britt@illtemper.org</email>
@@ -17,6 +17,14 @@
         <name>BrittCrawford</name>
         <email>britt@illtemper.org</email>
     </contributor>
+    <entry>
+        <title type="html"><![CDATA[Reading October 16th, 2016]]></title>
+        <id>tag:brittcrawford.com,1476590400000:/reading/2016-10-16/</id>
+        <link href="http://brittcrawford.com//reading/2016-10-16/">
+        </link>
+        <updated>2016-10-16T04:00:00Z</updated>
+        <content type="html"><![CDATA[<div class="notes-by-day"><section><h3><time datetime="2016-10-16" class="date-read">Sunday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="http://qz.com/804022/health-benefits-japanese-forest-bathing/" class="title" target="_blank">The Japanese practice of ‘forest bathing’ is scientifically proven to improve your health</a><summary class="description">The tonic of the wilderness was Henry David Thoreau’s classic prescription for civilization and its discontents, offered in the 1854 essay Walden: Or, Life in…</summary></article></li><li><article class="reading-note"><a href="https://www.buzzfeed.com/sheerafrenkel/russian-hackers-faked-gmail-password-form-to-invade-dnc-emai" class="title" target="_blank">Russian Hackers Faked Gmail Password Form To Invade DNC Email System</a><summary class="description">Saeed Khan / AFP / Getty Images Hillary Clinton with Russian President Vladimir Putin in the background SAN FRANCISCO — Russian hackers used emails disguised to…</summary></article></li></ol></section></div>]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Reading October 9th, 2016]]></title>
         <id>tag:brittcrawford.com,1475985600000:/reading/2016-10-09/</id>
@@ -88,13 +96,5 @@
         </link>
         <updated>2016-08-14T04:00:00Z</updated>
         <content type="html"><![CDATA[<div class="notes-by-day"><section><h3><time datetime="2016-08-17" class="date-read">Wednesday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="http://www.fastcompany.com/3062792/second-shift/patagonias-ceo-explains-how-to-make-onsite-child-care-pay-for-itself" class="title" target="_blank">Patagonia&#x27;s CEO Explains How To Make On-Site Child Care Pay For Itself</a><summary class="description">[Photo: Philippe Petit/Paris Match via Getty Images] To support our families, Patagonia provides company-paid health care and sick time for all employees; paid…</summary></article></li><li><article class="reading-note"><a href="http://blog.ncase.me/evolution-not-revolution/" class="title" target="_blank">Evolution, Not Revolution</a><summary class="description">The next time you&#x27;re tempted to praise an idea, a movement, or yet another photo-sharing app as &quot;revolutionary&quot;... remember how actual revolutions usually turn…</summary></article></li></ol></section></div>]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Reading July 31st, 2016]]></title>
-        <id>tag:brittcrawford.com,1469937600000:/reading/2016-07-31/</id>
-        <link href="http://brittcrawford.com//reading/2016-07-31/">
-        </link>
-        <updated>2016-07-31T04:00:00Z</updated>
-        <content type="html"><![CDATA[<div class="notes-by-day"><section><h3><time datetime="2016-07-31" class="date-read">Sunday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="http://www.locusmag.com/Perspectives/2016/07/cory-doctorow-peak-indifference/" class="title" target="_blank">Locus Online Perspectives » Cory Doctorow: Peak Indifference</a><summary class="description">From the July 2016 issue of Locus Magazine Ever since the first days of public access to the Internet, activ­ists like me have been making dire warnings about…</summary></article></li></ol></section><section><h3><time datetime="2016-08-03" class="date-read">Wednesday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="https://en.wikipedia.org/wiki/Elizabeth_B%C3%A1thory" class="title" target="_blank">Elizabeth Báthory - Wikipedia, the free encyclopedia</a><summary class="description">From Wikipedia, the free encyclopedia Jump to:, Copy of the lost 1585 original portrait of Elizabeth Báthory (disappeared in the 1990s). Born Erzsébet Báthory (…</summary></article></li></ol></section><section><h3><time datetime="2016-08-05" class="date-read">Friday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="https://aeon.co/essays/dewey-knew-how-to-teach-democracy-and-we-must-not-forget-it" class="title" target="_blank">Dewey knew how to teach democracy and we must not forget it – Nicholas Tampio | Aeon Essays</a><summary class="description">Did you attend a public school in the United States and perform in a school play, take field trips, or compete on a sports team? Did you have a favourite…</summary></article></li></ol></section></div>]]></content>
     </entry>
 </feed>
