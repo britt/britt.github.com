@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>tag:brittcrawford.com,2016-44-23:/201644231477280679</id>
+    <id>tag:brittcrawford.com,2016-10-24:/201610241477300238</id>
     <title>brittcrawford.com</title>
-    <updated>2016-10-24T03:44:39Z</updated>
+    <updated>2016-10-24T09:10:39Z</updated>
     <author>
         <name>BrittCrawford</name>
         <email>britt@illtemper.org</email>
@@ -17,6 +17,14 @@
         <name>BrittCrawford</name>
         <email>britt@illtemper.org</email>
     </contributor>
+    <entry>
+        <title type="html"><![CDATA[Reading October 23rd, 2016]]></title>
+        <id>tag:brittcrawford.com,1477195200000:/reading/2016-10-23/</id>
+        <link href="http://brittcrawford.com//reading/2016-10-23/">
+        </link>
+        <updated>2016-10-23T04:00:00Z</updated>
+        <content type="html"><![CDATA[<div class="notes-by-day"><section><h3><time datetime="2016-10-23" class="date-read">Sunday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="https://mic.com/articles/157415/my-first-virtual-reality-groping-sexual-assault-in-vr-harassment-in-tech-jordan-belamire" class="title" target="_blank">I was sexually assaulted in virtual reality. This is a big f*cking problem.</a><summary class="description">Last week I was groped in virtual reality . Did you know that could happen ? I didn&#x27;t, but now I&#x27;m all the wiser. While visiting my brother-in-law last weekend,…</summary></article></li></ol></section></div>]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Reading October 16th, 2016]]></title>
         <id>tag:brittcrawford.com,1476590400000:/reading/2016-10-16/</id>
@@ -88,13 +96,5 @@
         </link>
         <updated>2016-08-21T04:00:00Z</updated>
         <content type="html"><![CDATA[<div class="notes-by-day"><section><h3><time datetime="2016-08-21" class="date-read">Sunday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="http://arstechnica.com/tech-policy/2016/08/stealing-bitcoins-with-badges-how-silk-roads-dirty-cops-got-caught/" class="title" target="_blank">Stealing bitcoins with badges: How Silk Road’s dirty cops got caught</a><summary class="description">Confrontation As they were considering the charges against Force, Gambaryan and Haun were working under the theory that he’d also been responsible for the…</summary></article></li></ol></section><section><h3><time datetime="2016-08-23" class="date-read">Tuesday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="https://freedom.press/blog/2016/08/some-questions-those-who-are-cheering-gawkers-demise" class="title" target="_blank">Some questions for those who are cheering Gawker&#x27;s demise</a><summary class="description">Gawker.com, the pioneering and controversial media blog, officially died yesterday . It was killed by billionaire Peter Thiel in his successful quest to…</summary></article></li></ol></section><section><h3><time datetime="2016-08-27" class="date-read">Saturday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="https://srconstantin.wordpress.com/2016/08/26/haidt-love-relationship/" class="title" target="_blank">Haidt-Love Relationship</a><summary class="description">Epistemic status: personal, exhortatory, expressive Jonathan Haidt has an ideology. In his academic life, he poses positive questions, but he definitely has a…</summary></article></li></ol></section></div>]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Reading August 14th, 2016]]></title>
-        <id>tag:brittcrawford.com,1471147200000:/reading/2016-08-14/</id>
-        <link href="http://brittcrawford.com//reading/2016-08-14/">
-        </link>
-        <updated>2016-08-14T04:00:00Z</updated>
-        <content type="html"><![CDATA[<div class="notes-by-day"><section><h3><time datetime="2016-08-17" class="date-read">Wednesday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="http://www.fastcompany.com/3062792/second-shift/patagonias-ceo-explains-how-to-make-onsite-child-care-pay-for-itself" class="title" target="_blank">Patagonia&#x27;s CEO Explains How To Make On-Site Child Care Pay For Itself</a><summary class="description">[Photo: Philippe Petit/Paris Match via Getty Images] To support our families, Patagonia provides company-paid health care and sick time for all employees; paid…</summary></article></li><li><article class="reading-note"><a href="http://blog.ncase.me/evolution-not-revolution/" class="title" target="_blank">Evolution, Not Revolution</a><summary class="description">The next time you&#x27;re tempted to praise an idea, a movement, or yet another photo-sharing app as &quot;revolutionary&quot;... remember how actual revolutions usually turn…</summary></article></li></ol></section></div>]]></content>
     </entry>
 </feed>
