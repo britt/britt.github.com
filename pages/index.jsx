@@ -7,10 +7,7 @@ export default ({route}) => {
   return (
     <main className="container">
       <section className="introduction">
-        I live in San Francisco with my family. I've been a researcher, 
-        programmer, and low limit poker grinder. Currently I run analytics 
-        at <a href="https://rafter.com" title="Rafter, the place where I work" className="work">Rafter</a>, 
-        and I need a better bio. You can find me on the internet at:
+        I live in San Francisco with my family. I build awesome stuff at <a href="http://www.strongdm.com">StrongDM</a>. You can find me on the internet at:
       </section>
       <section className="list-of-links">
         <ul>
