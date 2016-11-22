@@ -29683,6 +29683,25 @@ return /******/ (function(modules) { // webpackBootstrap
 			{
 				"file": {
 					"root": "",
+					"dir": "reading/2016-11-20",
+					"base": "index.json",
+					"ext": "json",
+					"name": "index",
+					"extname": ".json",
+					"basename": "index.json",
+					"dirname": "reading/2016-11-20",
+					"stem": "index",
+					"path": "reading/2016-11-20/index.json",
+					"absolute": "/apps/britt.github.com/reading/2016-11-20/index.json",
+					"isAbsolute": false
+				},
+				"requirePath": "reading/2016-11-20/index.json",
+				"path": "/reading/2016-11-20/",
+				"data": {}
+			},
+			{
+				"file": {
+					"root": "",
 					"dir": "reading",
 					"base": "index.jsx",
 					"ext": "jsx",
