@@ -18,7 +18,7 @@ A strawberry old fashioned with a sweet and sour taste. The walnut cordial is so
 Pour the bourbon, bitters, walnut cordial, and syrup into a mixing glass. Slice the strawberry into thin slices. Macerate half of the strawberry in the liquor. Save the rest for a garnish. Add ice and stir gently. Strain and serve in a tumbler with a large ice cube. Garnish with the remaining strawberry.
 
 <a name="highball-import">
-  <img src="/img/cocktails/slightly-sour-strawberry.png"
+  <img src="/img/cocktails/slighty-sour-strawberry.png"
     class="raised"
     alt="Recipe for the Slightly Sour Strawberry Smash" />
 </a>
