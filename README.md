@@ -14,8 +14,8 @@ This is my personal website. Right now it just has a business card-like list of 
 
 ### Todo
 
-- [] fetch_weekly_reading can handle empty folders
-- [] Fix error
+- [ ] fetch_weekly_reading can handle empty folders
+- [ ] Fix error
 
 ```
 /Users/bcrawford/workspace/brittcrawford.com/bin/fetch_weekly_reading:64
