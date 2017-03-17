@@ -10,4 +10,4 @@ A small but growing collection of cocktails that I have created. I use [Highball
 * [Johnny Appleseed](/cocktails/johnny-appleseed/)
 * [El Niño](/cocktails/el-nino/)
 * [La Pomme Forte](/cocktails/la-pomme-forte/)
-* [Slightly Sour Strawberry Smash]](/cocktails/slightly-sour-strawberry-smash/)
+* [Slightly Sour Strawberry Smash](/cocktails/slightly-sour-strawberry-smash/)
