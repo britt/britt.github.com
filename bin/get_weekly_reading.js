@@ -62,9 +62,10 @@ function Main () {
   let weeksArticles = []
   articles.forEach(article => {
     let week = moment(article['date_liked'], 'MMMM DD, YYYY at hh:mmA').startOf('week')
-    if (week !== currentWeek) {
+    if (!week.isSame(currentWeek)) {
       if (currentWeek !== null && weeksArticles.length > 0) {
         saveWeek(currentWeek, weeksArticles)
+        feedback('Saved week of ' + currentWeek.format('MMMM Do, YYYY') + ` ${weeksArticles.length} articles.\n`)
       }
       currentWeek = week
       weeksArticles = []
@@ -75,6 +76,7 @@ function Main () {
   // save the most recent week
   if (weeksArticles.length > 0) {
     saveWeek(currentWeek, weeksArticles)
+    feedback('Saved week of ' + currentWeek.format('MMMM Do, YYYY') + ` ${weeksArticles.length} articles.`)
   }
   feedback(`complete ${moment().diff(start, 'seconds', true)}s\n`)
 }
