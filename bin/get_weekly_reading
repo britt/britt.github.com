@@ -59,14 +59,13 @@ function saveWeek(week, articles) {
   });
 }
 
-var tempFileName = _path2.default.join(_os2.default.tmpdir(), 'reading.json');
-
 function Main() {
+  var tempFileName = _path2.default.join(_os2.default.tmpdir(), 'reading.json');
   // load config
   var cfgData = _fs2.default.readFileSync(_path2.default.join(__dirname, '..', 'config.toml'));
   var config = _tomlJs2.default.parse(cfgData);
 
-  // fetch reading data
+  // fetch reading dataz
   var ssId = config.reading.google_sheet_id;
   var start = (0, _moment2.default)();
   feedback('Fetching reading data...');

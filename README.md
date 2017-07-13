@@ -14,17 +14,7 @@ This is my personal website. Right now it just has a business card-like list of 
 
 ### Todo
 
-- convert fetch weekly reading to use https://www.npmjs.com/package/google-spreadsheet-to-json instead of sheetsu
-
-```
-/Users/bcrawford/workspace/brittcrawford.com/bin/fetch_weekly_reading:64
-        if(err && /EEXIST/.match(err.toString()) === null) {
-                           ^
-
-TypeError: /EEXIST/.match is not a function
-    at FS.mkdir (/Users/bcrawford/workspace/brittcrawford.com/bin/fetch_weekly_reading:64:28)
-    at FSReqWrap.oncomplete (fs.js:117:15)
-```
+- fix tmp file bug
 
 
 
