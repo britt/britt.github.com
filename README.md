@@ -14,8 +14,7 @@ This is my personal website. Right now it just has a business card-like list of 
 
 ### Todo
 
-- [ ] fetch_weekly_reading can handle empty folders
-- [ ] Fix error
+- convert fetch weekly reading to use https://www.npmjs.com/package/google-spreadsheet-to-json instead of sheetsu
 
 ```
 /Users/bcrawford/workspace/brittcrawford.com/bin/fetch_weekly_reading:64

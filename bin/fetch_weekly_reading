@@ -1,4 +1,4 @@
-#!/usr/bin/env node 
+#!/usr/bin/env node
 
 const FS = require('fs')
 const TOML = require('toml-js')
@@ -6,13 +6,13 @@ const request = require('superagent')
 const moment = require('moment')
 const program = require('commander')
 
-function quit() {
+function quit () {
   process.exit(0)
 }
 
-function thereIsNoTry(callback) {
+function thereIsNoTry (callback) {
   return (err, data) => {
-    if(err) {
+    if (err) {
       process.stderr.write(err.toString())
       process.exit(1)
     } else {
@@ -21,23 +21,23 @@ function thereIsNoTry(callback) {
   }
 }
 
-function parseWeek(dateString) {
+function parseWeek (dateString) {
   const m = moment(dateString, 'YYYY-MM-DD')
   return m.startOf('week')
 }
 
-function parseDateLiked(article) {
-  return moment(article['date_liked'], "MMMM DD, YYYY at hh:mmA")
+function parseDateLiked (article) {
+  return moment(article['date_liked'], 'MMMM DD, YYYY at hh:mmA')
 }
 
-function fetchReadingData(url, callback) {
+function fetchReadingData (url, callback) {
   request.get(url).end(thereIsNoTry((res) => {
     const data = JSON.parse(res.text)
     callback(data.result)
   }))
 }
 
-function saveWeeklyReads(startOfWeek, data) {
+function saveWeeklyReads (startOfWeek, data) {
   const nextWeek = moment(startOfWeek).add(1, 'week').subtract(1, 'minute')
 
   const thisWeeksReads = data.filter((item) => {
@@ -46,22 +46,22 @@ function saveWeeklyReads(startOfWeek, data) {
   })
 
   const readingData = {
-    title: "Reading " + startOfWeek.format("MMMM Do, YYYY"),
-    week: startOfWeek.format("MMMM Do, YYYY"),
+    title: 'Reading ' + startOfWeek.format('MMMM Do, YYYY'),
+    week: startOfWeek.format('MMMM Do, YYYY'),
     articles: thisWeeksReads
   }
 
-  const outputPath = "./pages/reading/" + startOfWeek.format("YYYY-MM-DD")
-  const outputFileName = outputPath + "/index.json"
-  
+  const outputPath = './pages/reading/' + startOfWeek.format('YYYY-MM-DD')
+  const outputFileName = outputPath + '/index.json'
+
   const saveReads = () => {
     FS.writeFile(outputFileName, JSON.stringify(readingData), thereIsNoTry(quit))
   }
 
   FS.access(outputPath, FS.F_OK, (err) => {
-    if(err) {
+    if (err) {
       FS.mkdir(outputPath, (err, data) => {
-        if(err && err.toString().match(/EEXIST/) === null) {
+        if (err && err.toString().match(/EEXIST/) === null) {
           process.stderr.write(err.toString())
           process.exit(1)
         } else {
@@ -74,10 +74,10 @@ function saveWeeklyReads(startOfWeek, data) {
   })
 }
 
-function saveAllReads(data) {
+function saveAllReads (data) {
   const weeks = data.reduce((acc, item) => {
     const week = parseDateLiked(item).startOf('week')
-    if(!acc.includes(week)) {
+    if (!acc.includes(week)) {
       acc.push(week)
     }
     return acc
@@ -86,13 +86,13 @@ function saveAllReads(data) {
   weeks.forEach((week) => saveWeeklyReads(week, data))
 }
 
-function fetchAndSaveWeeklyReads(startOfWeek, data) {
+function fetchAndSaveWeeklyReads (startOfWeek, data) {
   const config = TOML.parse(data)
   const url = config.reading.api_url
   fetchReadingData(url, saveWeeklyReads.bind(this, startOfWeek))
 }
 
-function fetchAndSaveAll(data) {
+function fetchAndSaveAll (data) {
   const config = TOML.parse(data)
   const url = config.reading.api_url
   fetchReadingData(url, saveAllReads)
@@ -105,12 +105,10 @@ program.version('0.0.1')
 
 var action = fetchAndSaveWeeklyReads.bind(this, moment().startOf('week'))
 
-if(program.all) {
+if (program.all) {
   action = fetchAndSaveAll
-} else if(program.week) {
+} else if (program.week) {
   action = fetchAndSaveWeeklyReads.bind(this, program.week)
 }
 
 FS.readFile('config.toml', thereIsNoTry(action))
-
-
