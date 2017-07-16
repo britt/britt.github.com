@@ -40,12 +40,12 @@ function saveWeek (week, articles) {
 }
 
 function Main () {
-  const tempFileName = Path.join(OS.tmpdir(), 'reading.json')
+  const tempFileName = Path.join('/tmp', 'reading.json')
   // load config
   let cfgData = FS.readFileSync(Path.join(__dirname, '..', 'config.toml'))
   let config = TOML.parse(cfgData)
 
-  // fetch reading dataz
+  // fetch reading data
   let ssId = config.reading.google_sheet_id
   let start = moment()
   feedback('Fetching reading data...')
