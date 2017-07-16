@@ -40,7 +40,7 @@ function saveWeek (week, articles) {
 }
 
 function Main () {
-  const tempFileName = Path.join('/tmp', 'reading.json')
+  const tempFileName = Path.join(OS.tmpdir(), 'reading.json')
   // load config
   let cfgData = FS.readFileSync(Path.join(__dirname, '..', 'config.toml'))
   let config = TOML.parse(cfgData)
@@ -49,7 +49,7 @@ function Main () {
   let ssId = config.reading.google_sheet_id
   let start = moment()
   feedback('Fetching reading data...')
-  ChildProcess.execSync(`gsjson ${ssId} ${tempFileName}`)
+  ChildProcess.execSync(`gsjson ${ssId} ${tempFileName} > ${tempFileName}`)
   feedback(`complete ${moment().diff(start, 'seconds', true)}s\n`)
 
   // parse reading data
