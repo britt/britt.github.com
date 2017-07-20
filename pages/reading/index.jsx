@@ -1,8 +1,5 @@
 import React from 'react'
-import Headline from 'components/headline'
-import Icon from 'components/icon'
 import DocumentTitle from 'react-document-title'
-import moment from 'moment'
 import 'css/gutenberg/src/style/gutenberg.scss'
 import { Pages } from 'lib/sort_utils'
 import { config } from 'config'
@@ -23,8 +20,8 @@ export default ({route}) => {
   const links = pages.sort(Pages.dateInPath).reverse().map((page) => <WeekLink page={page} />)
 
   return (
-    <DocumentTitle title={"What am I reading? - " + config.siteTitle }>
-      <main className="reading-notes">
+    <DocumentTitle title={'What am I reading? - ' + config.siteTitle}>
+      <main className='reading-notes'>
         <h2>
           What am I reading?
         </h2>

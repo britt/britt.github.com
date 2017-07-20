@@ -8,11 +8,6 @@ export default (route) => {
   const favicon = config.favicon
   const title = DocumentTitle.rewind()
 
-  let path = ''
-  if (route.page) {
-    path = route.page.path
-  }
-
   let cssLink
   if (process.env.NODE_ENV === 'production') {
     cssLink = <link rel='stylesheet' href={prefixLink('/styles.css')} />
@@ -38,7 +33,6 @@ export default (route) => {
           <link rel='apple-touch-icon' sizes='114x114' href='/assets/img/apple-touch-icon-114-precomposed.png' />
           <link rel='apple-touch-icon' sizes='144x144' href='/assets/img/apple-touch-icon-144-precomposed.png' />
           <link rel='alternate' type='application/atom+xml' href={config.link + 'feed.xml'} />
-          <link rel='canonical' href={config.link + path} />
           {cssLink}
         </head>
         <body>
