@@ -23,7 +23,7 @@ export default (route) => {
             content='width=device-width, initial-scale=1.0 maximum-scale=1.0' />
           <title>{ config.siteTitle }</title>
 
-          <meta name='description' content='Britt Crawford is just a guy who lives in San Francisco with his family.' />
+          <meta name='description' content='Britt Crawford is just a guy who lives in Salem with his family.' />
           <meta name='keywords' content='programming, data, analysis, food, cocktails, dilettante, adventurer, gentleman' />
           <meta name='author' content='Britt Crawford' />
 

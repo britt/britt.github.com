@@ -6,7 +6,7 @@ export default ({route}) => {
   return (
     <main className='container'>
       <section className='introduction'>
-        I live in San Francisco with my family. I build awesome stuff at <a href='http://www.strongdm.com'>StrongDM</a>. You can find me on the internet at:
+        I live in <del>San Francisco</del> Salem with my family. I build awesome stuff at <a href='http://www.strongdm.com'>StrongDM</a>. You can find me on the internet at:
       </section>
       <section className='list-of-links'>
         <ul>
