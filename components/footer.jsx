@@ -1,4 +1,4 @@
-import React from 'react' 
+import React from 'react'
 
 export default () => {
   const license = `<div>
@@ -9,7 +9,7 @@ export default () => {
           </span>
           <span class="hidden" xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">
             <a href="https://github.com/britt">britt</a>
-          </span> is licensed under a 
+          </span> is licensed under a
           <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en_US">
             Creative Commons Attribution-ShareAlike 3.0 Unported License
           </a>
@@ -17,5 +17,5 @@ export default () => {
       </div>
     </div>`
 
-  return <footer className="container page-footer" dangerouslySetInnerHTML={{ __html: license }} />
+  return <footer className='container page-footer' dangerouslySetInnerHTML={{ __html: license }} />
 }

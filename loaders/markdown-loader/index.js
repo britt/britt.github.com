@@ -23,7 +23,7 @@ const md = markdownIt({
   html: true,
   linkify: true,
   typographer: true,
-  highlight,
+  highlight
 })
   .use(require('markdown-it-sub'))
   .use(require('markdown-it-footnote'))
@@ -36,7 +36,7 @@ module.exports = function (content) {
   const meta = frontMatter(content)
   const body = md.render(meta.body)
   const result = objectAssign({}, meta.attributes, {
-    body,
+    body
   })
   this.value = result
   return `module.exports = ${JSON.stringify(result)}`
