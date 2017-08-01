@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>tag:brittcrawford.com,2017-52-31:/201752311501465946</id>
+    <id>tag:brittcrawford.com,2017-52-01:/201752011501552346</id>
     <title>brittcrawford.com</title>
-    <updated>2017-07-31T01:52:26Z</updated>
+    <updated>2017-08-01T01:52:26Z</updated>
     <author>
         <name>BrittCrawford</name>
         <email>britt@illtemper.org</email>
@@ -17,6 +17,14 @@
         <name>BrittCrawford</name>
         <email>britt@illtemper.org</email>
     </contributor>
+    <entry>
+        <title type="html"><![CDATA[Reading July 30th, 2017]]></title>
+        <id>tag:brittcrawford.com,1501372800000:/reading/2017-07-30/</id>
+        <link href="http://brittcrawford.com//reading/2017-07-30/">
+        </link>
+        <updated>2017-07-30T00:00:00Z</updated>
+        <content type="html"><![CDATA[<div class="notes-by-day"><section><h3><time datetime="2017-07-31" class="date-read">Monday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="https://boingboing.net/2017/07/31/former-sheriff-joe-arpaio-foun.html" class="title" target="_blank">Former Sheriff Joe Arpaio found guilty / Boing Boing</a><summary class="description">Joe Arpaio, the notoriously brutal and racist former Sheriff of Maricopa County, Arizona, was found guilty of criminal contempt , report correspondents from the…</summary></article></li></ol></section></div>]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Reading July 23rd, 2017]]></title>
         <id>tag:brittcrawford.com,1500768000000:/reading/2017-07-23/</id>
@@ -90,13 +98,5 @@ Reason 4: Argumentativeness. Arguing is an intellectual activity, and many…</s
         </link>
         <updated>2017-05-28T00:00:00Z</updated>
         <content type="html"><![CDATA[<div class="notes-by-day"><section><h3><time datetime="2017-06-01" class="date-read">Thursday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="https://boingboing.net/2017/05/31/why-dont-people-use-secure-i.html" class="title" target="_blank">Why don&#x27;t people use secure internet tools?</a><summary class="description">A group of scholars and practicioners from the US, Germany and the UK conducted a qualitative study on the &quot;obstacles to adoption of secure communications…</summary></article></li><li><article class="reading-note"><a href="http://www.syntheticgenomics.com/digital-to-biological-converter-for-on-demand-production-of-biologics-developed-by-synthetic-genomics-inc/" class="title" target="_blank">Digital-to-Biological Converter for On-Demand Production of Biologics Developed by Synthetic Genomics, Inc. – Synthetic Genomics, Inc.</a><summary class="description">The first fully automated machine to convert digital code into functional biologics without human intervention creates entirely new avenues for precision…</summary></article></li><li><article class="reading-note"><a href="http://www.bldgblog.com/2017/05/under-the-dome/" class="title" target="_blank">Under the Dome</a><summary class="description">[Image: Courtesy U.S. Department of the Interior Bureau of Ocean Energy Management ( BOEM )]. A gigapixel bathymetric map of the Gulf of Mexico’s seabed has…</summary></article></li></ol></section><section><h3><time datetime="2017-06-02" class="date-read">Friday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="https://www.wired.com/2017/06/researchers-use-rideshares-sniff-stingray-locations/" class="title" target="_blank">Researchers Use Ridesharing Cars to Sniff Out a Secret Spying Tool</a><summary class="description">Law enforcement’s use of the surveillance devices known as stingrays, fake cell towers that can intercept communications and track phones, remains as murky as…</summary></article></li></ol></section><section><h3><time datetime="2017-06-03" class="date-read">Saturday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="http://www.rootsimple.com/2017/05/how-to-make-clear-ice/" class="title" target="_blank">How to Make Clear Ice | Root Simple</a><summary class="description">Life is way too short to endure substandard cocktails. While reasonable people can bemoan the pretentiousness of the present hipster, bearded, chef-driven,…</summary></article></li></ol></section></div>]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Reading May 21st, 2017]]></title>
-        <id>tag:brittcrawford.com,1495324800000:/reading/2017-05-21/</id>
-        <link href="http://brittcrawford.com//reading/2017-05-21/">
-        </link>
-        <updated>2017-05-21T00:00:00Z</updated>
-        <content type="html"><![CDATA[<div class="notes-by-day"><section><h3><time datetime="2017-05-21" class="date-read">Sunday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="http://www.theguardian.com/technology/2017/may/19/from-aztec-to-toh-shin-den-in-praise-of-forgotten-video-games" class="title" target="_blank">From Aztec to Toshinden: in praise of forgotten video games</a><summary class="description">A family gathers around Space Invaders. But not all the games we loved are so well-rememberedPhotograph: Interfoto/Alamy Stock Photo W hen I was ten years old,…</summary></article></li><li><article class="reading-note"><a href="https://hbr.org/2017/05/we-recorded-vcs-conversations-and-analyzed-how-differently-they-talk-about-female-entrepreneurs" class="title" target="_blank">We Recorded VCs’ Conversations and Analyzed How Differently They Talk About Female Entrepreneurs</a><summary class="description">When venture capitalists (VCs) evaluate investment proposals, the language they use to describe the entrepreneurs who write them plays an important but often…</summary></article></li><li><article class="reading-note"><a href="https://arstechnica.com/science/2017/04/watch-militarized-microbes-use-some-sophisticated-weapons-to-snare-prey/" class="title" target="_blank">First high-res look at microbial ballistics: Harpoons, spears, Gatling guns</a><summary class="description">Enlarge / A close up of Polykrilos kofoidii Urban Tillmann. When you think of plankton, you might think of docile, intricately shaped microbes gently swaying in…</summary></article></li></ol></section></div>]]></content>
     </entry>
 </feed>
