@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>tag:brittcrawford.com,2017-52-12:/201752121507773146</id>
+    <id>tag:brittcrawford.com,2017-52-13:/201752131507859546</id>
     <title>brittcrawford.com</title>
-    <updated>2017-10-12T01:52:26Z</updated>
+    <updated>2017-10-13T01:52:27Z</updated>
     <author>
         <name>BrittCrawford</name>
         <email>britt@illtemper.org</email>
@@ -23,7 +23,7 @@
         <link href="http://brittcrawford.com//reading/2017-10-08/">
         </link>
         <updated>2017-10-08T00:00:00Z</updated>
-        <content type="html"><![CDATA[<div class="notes-by-day"><section><h3><time datetime="2017-10-10" class="date-read">Tuesday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="https://www.theatlantic.com/politics/archive/2017/10/colin-kaepernick/541845/" class="title" target="_blank">Civil-Rights Protests Have Never Been Popular</a><summary class="description">One common response to the national anthem protests originated by Colin Kaepernick is to disparage them as polarizing. Joe Scarborough, host of Morning Joe ,…</summary></article></li><li><article class="reading-note"><a href="https://www.pentestpartners.com/security-blog/screwdriving-locating-and-exploiting-smart-adult-toys/" class="title" target="_blank">Screwdriving. Locating and exploiting smart adult toys | Pen Test Partners</a><summary class="description">It’s hopefully well known by now that Bluetooth’s baby brother, BLE, isn’t exactly stellar when it comes to security. What you save in battery life and…</summary></article></li></ol></section></div>]]></content>
+        <content type="html"><![CDATA[<div class="notes-by-day"><section><h3><time datetime="2017-10-10" class="date-read">Tuesday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="https://www.theatlantic.com/politics/archive/2017/10/colin-kaepernick/541845/" class="title" target="_blank">Civil-Rights Protests Have Never Been Popular</a><summary class="description">One common response to the national anthem protests originated by Colin Kaepernick is to disparage them as polarizing. Joe Scarborough, host of Morning Joe ,…</summary></article></li><li><article class="reading-note"><a href="https://www.pentestpartners.com/security-blog/screwdriving-locating-and-exploiting-smart-adult-toys/" class="title" target="_blank">Screwdriving. Locating and exploiting smart adult toys | Pen Test Partners</a><summary class="description">It’s hopefully well known by now that Bluetooth’s baby brother, BLE, isn’t exactly stellar when it comes to security. What you save in battery life and…</summary></article></li></ol></section><section><h3><time datetime="2017-10-12" class="date-read">Thursday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="https://www.nytimes.com/2017/10/10/technology/kaspersky-lab-israel-russia-hacking.html" class="title" target="_blank">How Israel Caught Russian Hackers Scouring the World for U.S. Secrets</a><summary class="description">Kaspersky Lab’s products require access to everything stored on a computer in order to scour it for viruses or other dangers. Sergei Ilnitsky/European…</summary></article></li><li><article class="reading-note"><a href="https://hackernoon.com/front-running-bancor-in-150-lines-of-python-with-ethereum-api-d5e2bfd0d798" class="title" target="_blank">Front-running Bancor in 150 lines of Python with Ethereum API</a><summary class="description">Launching the attack: the green letters look just like on TV This post is a deep-dive into a game-theoretic security flaw in Bancor , a high-profile smart…</summary></article></li></ol></section></div>]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Reading October 1st, 2017]]></title>
