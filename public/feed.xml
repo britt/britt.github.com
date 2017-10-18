@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>tag:brittcrawford.com,2017-52-17:/201752171508205145</id>
+    <id>tag:brittcrawford.com,2017-52-18:/201752181508291546</id>
     <title>brittcrawford.com</title>
-    <updated>2017-10-17T01:52:26Z</updated>
+    <updated>2017-10-18T01:52:26Z</updated>
     <author>
         <name>BrittCrawford</name>
         <email>britt@illtemper.org</email>
@@ -17,6 +17,14 @@
         <name>BrittCrawford</name>
         <email>britt@illtemper.org</email>
     </contributor>
+    <entry>
+        <title type="html"><![CDATA[Reading October 15th, 2017]]></title>
+        <id>tag:brittcrawford.com,1508025600000:/reading/2017-10-15/</id>
+        <link href="http://brittcrawford.com//reading/2017-10-15/">
+        </link>
+        <updated>2017-10-15T00:00:00Z</updated>
+        <content type="html"><![CDATA[<div class="notes-by-day"><section><h3><time datetime="2017-10-17" class="date-read">Tuesday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="https://marco.org/2017/10/14/impossible-dream-of-usb-c" class="title" target="_blank">The impossible dream of USB-C – Marco.org</a><summary class="description">I love the idea of USB-C: one port and one cable that can replace all other ports and cables. It sounds so simple, straightforward, and unified. In practice,…</summary></article></li><li><article class="reading-note"><a href="https://arstechnica.com/information-technology/2017/10/crypto-failure-cripples-millions-of-high-security-keys-750k-estonian-ids/" class="title" target="_blank">Millions of high-security crypto keys crippled by newly discovered flaw – Ars Technica</a><summary class="description">cifically within an algorithm it implements for RSA primes generation. The library allows people to generate keys with smartcards rather than with…</summary></article></li><li><article class="reading-note"><a href="https://www.gizmodo.com.au/2017/10/wi-fis-most-popular-security-method-might-be-broken/" class="title" target="_blank">Wi-Fi&#x27;s Most Popular Encyption May Have Been Cracked</a><summary class="description">Image: iStock Your home Wi-Fi might not be as secure as you think. WPA2 -- the de facto standard for Wi-Fi password security worldwide -- may have been…</summary></article></li><li><article class="reading-note"><a href="https://medium.com/@philipn/want-to-see-something-crazy-open-this-link-on-your-phone-with-wifi-turned-off-9e0adb00d024" class="title" target="_blank">Want to see something crazy? Open this link on your phone with WiFi turned off.</a><summary class="description">Want to see something crazy? Open this link on your phone with WiFi turned off : https://bit.ly/crazymobiledemo Click “Begin,” enter the ZIP code and then click…</summary></article></li><li><article class="reading-note"><a href="https://arstechnica.com/cars/2017/10/5-things-we-learned-from-waymos-big-self-driving-car-report/" class="title" target="_blank">5 things we learned from Waymo’s big self-driving car report</a><summary class="description">Waymo Waymo just dropped a 43-page white paper called the Waymo Safety Report that provides a wealth of new details about Waymo&#x27;s vision for the self-driving…</summary></article></li><li><article class="reading-note"><a href="http://www.theguardian.com/science/2017/oct/12/astronomers-find-half-of-the-missing-matter-in-the-universe" class="title" target="_blank">Astronomers find half of the missing matter in the universe</a><summary class="description">The warm-hot inter galactic medium, or the Whim ought to appear as a dim outline in the cosmic microwave background, scientists say. Above, a map of relic…</summary></article></li></ol></section></div>]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Reading October 8th, 2017]]></title>
         <id>tag:brittcrawford.com,1507420800000:/reading/2017-10-08/</id>
@@ -104,13 +112,5 @@
     class="raised"
     alt="Recipe for That's Just Dandy" />
 </a>]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Reading August 13th, 2017]]></title>
-        <id>tag:brittcrawford.com,1502582400000:/reading/2017-08-13/</id>
-        <link href="http://brittcrawford.com//reading/2017-08-13/">
-        </link>
-        <updated>2017-08-13T00:00:00Z</updated>
-        <content type="html"><![CDATA[<div class="notes-by-day"><section><h3><time datetime="2017-08-14" class="date-read">Monday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="https://www.buzzfeed.com/peteraldhous/hidden-spy-planes" class="title" target="_blank">We Trained A Computer To Search For Hidden Spy Planes. This Is What It Found.</a><summary class="description">A secret spy plane operated by the US Marshals hunted drug cartel kingpins in Mexico. A military contractor that tracks terrorists in Africa is also flying…</summary></article></li></ol></section><section><h3><time datetime="2017-08-15" class="date-read">Tuesday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="https://theoutline.com/post/2059/how-to-prank-the-rich-and-powerful-without-really-trying" class="title" target="_blank">How to prank the rich and powerful without really trying</a><summary class="description">On Tuesday, a bright spot appeared in this dark, cruel world when CNN first reported that an anonymous mischief maker had tricked multiple White House officials…</summary></article></li><li><article class="reading-note"><a href="https://medium.com/dailyjs/exploiting-script-injection-flaws-in-reactjs-883fb1fe36c1" class="title" target="_blank">Exploiting Script Injection Flaws in ReactJS Apps – DailyJS – Medium</a><summary class="description">ReactJS is a popular JavaScript library for building user interfaces. It enables client-rendered, “rich” web apps that load entirely upfront, allowing for a…</summary></article></li></ol></section><section><h3><time datetime="2017-08-18" class="date-read">Friday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="http://nautil.us/issue/35/boundaries/this-philosopher-helped-ensure-there-was-no-nobel-for-relativity" class="title" target="_blank">This Philosopher Helped Ensure There Was No Nobel for Relativity - Issue 35: Boundaries - Nautilus</a><summary class="description">O n April 6, 1922, Einstein met a man he would never forget. He was one of the most celebrated philosophers of the century, widely known for espousing a theory…</summary></article></li></ol></section><section><h3><time datetime="2017-08-19" class="date-read">Saturday</time></h3><ol class="reading-notes-list"><li><article class="reading-note"><a href="https://www.ribbonfarm.com/2017/08/17/the-premium-mediocre-life-of-maya-millennial/" class="title" target="_blank">The Premium Mediocre Life of Maya Millennial</a><summary class="description">The Premium Mediocre Life of Maya Millennial http://bit.ly/2fPKrfL</summary></article></li></ol></section></div>]]></content>
     </entry>
 </feed>
