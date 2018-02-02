@@ -14,7 +14,8 @@ This is my personal website. Right now it just has a business card-like list of 
 
 ### Todo
 
-- fix tmp file bug
-
+- Migrate to gatsby 1.0
+- Integrate feed fetching with Gatsby build
+- Move site to Netlify
 
 
