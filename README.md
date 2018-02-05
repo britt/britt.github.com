@@ -18,6 +18,10 @@ This is my personal website. Right now it just has a business card-like list of 
       - Build ATOM feed
       - Static asset copy
       - Fix images
+      - Fix page titles
+      - Add netlify plugin
+      - Add GA plugin
+      - Use image processor
 - Integrate feed fetching with Gatsby build
 - Move site to Netlify
 

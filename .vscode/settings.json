@@ -1,0 +1,18 @@
+{
+    "standard.options": {
+        "globals": [
+            "alert",
+            "fetch",
+            "Blob",
+            "Headers",
+            "atob",
+            "localStorage",
+            "location",
+            "FormData",
+            "URLSearchParams",
+            "graphql"
+        ],
+        "parser": "babel-eslint",
+        "experimentalDecorators": true
+    },
+}

@@ -12,6 +12,14 @@ module.exports = {
         name: 'markdown-pages'
       }
     },
-    `gatsby-transformer-remark`
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        path: `${__dirname}/src/pages/reading/data/`,
+        name: 'reading-pages'
+      }
+    },
+    `gatsby-transformer-remark`,
+    `gatsby-transformer-json`
   ]
 }

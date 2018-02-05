@@ -9,6 +9,7 @@
     "gatsby-plugin-react-helmet": "^2.0.3",
     "gatsby-plugin-sass": "^1.0.16",
     "gatsby-source-filesystem": "^1.5.17",
+    "gatsby-transformer-json": "^1.0.14",
     "gatsby-transformer-remark": "^1.7.30",
     "lodash": "^4.17.5",
     "moment": "^2.20.1",
