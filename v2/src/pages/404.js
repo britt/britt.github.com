@@ -2,8 +2,11 @@ import React from 'react'
 
 const NotFoundPage = () => (
   <div>
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+    <h2>404 NOT FOUND</h2>
+    <p>
+      The place you've gone doesn't exist...
+      <img src='/img/whoa.gif' class='raised' alt='Whoa!' />
+    </p>
   </div>
 )
 
