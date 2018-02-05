@@ -15,6 +15,7 @@ This is my personal website. Right now it just has a business card-like list of 
 ### Todo
 
 - Migrate to gatsby 1.0
+      - Build ATOM feed
 - Integrate feed fetching with Gatsby build
 - Move site to Netlify
 
