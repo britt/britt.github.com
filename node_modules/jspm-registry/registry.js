@@ -22,7 +22,7 @@ var registry = module.exports = function registry(options, ui) {
 
   this.execOptions = {
     cwd: options.tmpDir,
-    timeout: options.timeout * 1000,
+    timeout: (options.timeout || 0) * 1000,
     killSignal: 'SIGKILL'
   };
 

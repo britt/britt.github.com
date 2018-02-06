@@ -62,6 +62,7 @@ $ npm install babel-plugin-transform-cjs-system-wrapper
       "optimize": true,
       "static": true,
       "deps": ["bar"],
+      "esModule": true,
       "globals": {
         "f": "foo"
       }
@@ -89,6 +90,7 @@ require("babel-core").transform("code", {
       optimize: true, // optional (default: false)
       static: true, // optional (default: false)
       deps: ['bar'], // optional (default: []),
+      esModule: true, // optional (default: false)
       map: function(dep) {
         return mappedDep
       }, // (default: identity)

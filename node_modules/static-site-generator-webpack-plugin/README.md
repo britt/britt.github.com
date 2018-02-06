@@ -4,9 +4,9 @@
 
 Minimal, unopinionated static site generator powered by webpack.
 
-Provide a series of paths to be rendered, and a matching set of `index.html` files will be rendered in your output directory by executing your own custom, webpack-compiled render function.
+Bring the world of server rendering to your static build process. Either provide an array of paths to be rendered, or *crawl your site automatically*, and a matching set of `index.html` files will be rendered in your output directory by executing your own custom, webpack-compiled render function.
 
-This plugin works particularly well with universal libraries like [React](https://github.com/facebook/react) and [React Router](https://github.com/rackt/react-router) since it allows you to prerender your routes at build time, rather than requiring a Node server in production.
+This plugin works particularly well with universal libraries like [React](https://github.com/facebook/react) and [React Router](https://github.com/rackt/react-router) since it allows you to pre-render your routes at build time, rather than requiring a Node server in production.
 
 ## Install
 
@@ -23,16 +23,9 @@ Ensure you have webpack installed, e.g. `npm install -g webpack`
 ```js
 const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 
-const paths = [
-  '/hello/',
-  '/world/'
-];
-
 module.exports = {
 
-  entry: {
-    'main': './index.js'
-  },
+  entry: './index.js',
 
   output: {
     filename: 'index.js',
@@ -44,10 +37,16 @@ module.exports = {
   },
 
   plugins: [
-    new StaticSiteGeneratorPlugin('main', paths, {
-      // Properties here are merged into `locals`
-      // passed to the exported render function
-      greet: 'Hello'
+    new StaticSiteGeneratorPlugin({
+      paths: [
+        '/hello/',
+        '/world/'
+      ],
+      locals: {
+        // Properties here are merged into `locals`
+        // passed to the exported render function
+        greet: 'Hello'
+      }
     })
   ]
 
@@ -56,19 +55,47 @@ module.exports = {
 
 ### index.js
 
-```js
-// Client render (optional):
-if (typeof document !== 'undefined') {
-  // Client render code goes here...
-}
+Sync rendering:
 
-// Exported static site renderer:
+```js
+module.exports = function render(locals) {
+  return '<html>' + locals.greet + ' from ' + locals.path + '</html>';
+};
+```
+
+Async rendering via callbacks:
+
+```js
 module.exports = function render(locals, callback) {
   callback(null, '<html>' + locals.greet + ' from ' + locals.path + '</html>');
 };
 ```
 
-### Default locals
+Async rendering via promises:
+
+```js
+module.exports = function render(locals) {
+  return Promise.resolve('<html>' + locals.greet + ' from ' + locals.path + '</html>');
+};
+```
+
+## Multi rendering
+
+If you need to generate multiple files per render, or you need to alter the path, you can return an object instead of a string, where each key is the path, and the value is the file contents:
+
+```js
+module.exports = function render() {
+  return {
+    '/': '<html>Home</html>',
+    '/hello': '<html>Hello</html>',
+    '/world': '<html>World</html>'
+  };
+};
+```
+
+Note that this will still be executed for each entry in your `paths` array in your plugin config.
+
+## Default locals
 
 ```js
 // The path currently being rendered:
@@ -83,6 +110,42 @@ locals.webpackStats;
 
 Any additional locals provided in your config are also available.
 
+## Crawl mode
+
+Rather than manually providing a list of paths, you can use the `crawl` option to automatically crawl your site. This will follow all relative links and iframes, executing your render function for each:
+
+```js
+module.exports = {
+
+  ...
+
+  plugins: [
+    new StaticSiteGeneratorPlugin({
+      crawl: true
+    })
+  ]
+};
+```
+
+Note that this can be used in conjunction with the `paths` option to allow multiple crawler entry points:
+
+```js
+module.exports = {
+
+  ...
+
+  plugins: [
+    new StaticSiteGeneratorPlugin({
+      crawl: true,
+      paths: [
+        '/',
+        '/uncrawlable-page/'
+      ]
+    })
+  ]
+};
+```
+
 ## Custom file names
 
 By providing paths that end in `.html`, you can generate custom file names other than the default `index.html`. Please note that this may break compatibility with your router, if you're using one.
@@ -93,67 +156,98 @@ module.exports = {
   ...
 
   plugins: [
-    new StaticSiteGeneratorPlugin('main', [
-      '/index.html',
-      '/news.html',
-      '/about.html'
-    ], locals)
+    new StaticSiteGeneratorPlugin({
+      paths: [
+        '/index.html',
+        '/news.html',
+        '/about.html'
+      ]
+    })
   ]
 };
 ```
 
-## Scope
+## Globals
 
 If required, you can provide an object that will exist in the global scope when executing your render function. This is particularly useful if certain libraries or tooling you're using assumes a browser environment.
 
 For example, when using Webpack's `require.ensure`, which assumes that `window` exists:
 
 ```js
-const scope = { window: {} };
-
 module.exports = {
   ...,
   plugins: [
-    new StaticSiteGeneratorPlugin('main', paths, locals, scope)
+    new StaticSiteGeneratorPlugin({
+      globals: {
+        window: {}
+      }
+    })
   ]
 }
 ```
 
-## React Router example
+## Asset support
 
-The following example uses [React Router v1.0.0-rc1](https://github.com/rackt/react-router/tree/v1.0.0-rc1) with [history](https://github.com/rackt/history).
+template.ejs
+```ejs
+<% css.forEach(function(file){ %>
+<link href="<%- file %>" rel="stylesheet">
+<% }); %>
 
+<% js.forEach(function(file){ %>
+<script src="<%- file %>" async></script>
+<% }); %>
+```
+
+index.js
 ```js
-import React from 'react';
-import ReactDOM from 'react-dom';
-import ReactDOMServer from 'react-dom/server';
-import { createHistory, createMemoryHistory } from 'history';
-import { Router, RoutingContext, match } from 'react-router';
-
-import routes from './routes';
-import template from './template.ejs';
-
-// Client render (optional):
-if (typeof document !== 'undefined') {
-  const history = createHistory();
-  const outlet = document.getElementById('outlet');
-
-  ReactDOM.render(<Router history={history} routes={routes} />, outlet);
+if (typeof global.document !== 'undefined') {
+  const rootEl = global.document.getElementById('outlay');
+  React.render(
+    <App />,
+    rootEl,
+  );
 }
 
-// Exported static site renderer:
-export default (locals, callback) => {
-  const history = createMemoryHistory();
-  const location = history.createLocation(locals.path);
+export default (data) => {
+  const assets = Object.keys(data.webpackStats.compilation.assets);
+  const css = assets.filter(value => value.match(/\.css$/));
+  const js = assets.filter(value => value.match(/\.js$/));
+  return template({ css, js, ...data});
+}
+```
 
-  match({ routes, location }, (error, redirectLocation, renderProps) => {
-    callback(null, template({
-      html: ReactDOMServer.renderToString(<RoutingContext {...renderProps} />),
-      assets: locals.assets
-    }));
-  });
+## Specifying entry
+
+This plugin defaults to the first chunk found. While this should work in most cases, you can specify the entry name if needed:
+
+```js
+module.exports = {
+  ...,
+  plugins: [
+    new StaticSiteGeneratorPlugin({
+      entry: 'main'
+    })
+  ]
+}
+```
+
+## Compression support
+
+Generated files can be compressed with [compression-webpack-plugin](https://github.com/webpack/compression-webpack-plugin), but first ensure that this plugin appears before compression-webpack-plugin in your plugins array:
+
+```js
+const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
+
+module.exports = {
+  ...
+
+  plugins: [
+    new StaticSiteGeneratorPlugin(...),
+    new CompressionPlugin(...)
+  ]
 };
-
 ```
 
 ## Related projects
