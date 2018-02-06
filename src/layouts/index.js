@@ -4,6 +4,11 @@ import VCard from '../components/VCard'
 import Headline from '../components/Headline'
 import Footer from '../components/Footer'
 
+import favicon from './icons/favicon.ico'
+import touchIcon from './icons/apple-touch-icon-57-precomposed.png'
+import touchIcon72 from './icons/apple-touch-icon-72-precomposed.png'
+import touchIcon114 from './icons/apple-touch-icon-114-precomposed.png'
+import touchIcon144 from './icons/apple-touch-icon-144-precomposed.png'
 import '../styles/gutenberg.scss'
 
 export default ({data, children}) => {
@@ -18,12 +23,12 @@ export default ({data, children}) => {
         { name: 'keywords', content: meta.keywords }
         ]}
         link={[
-          {rel: 'shortcut icon', href: '/img/favicon.ico'},
+          {rel: 'shortcut icon', href: favicon},
           {rel: 'alternate', type: 'application/rss+xml', href: '/rss.xml'},
-          {rel: 'apple-touch-icon', href: '/assets/img/apple-touch-icon-57-precomposed.png'},
-          {rel: 'apple-touch-icon', sizes: '72x72', href: '/assets/img/apple-touch-icon-72-precomposed.png'},
-          {rel: 'apple-touch-icon', sizes: '114x114', href: '/assets/img/apple-touch-icon-114-precomposed.png'},
-          {rel: 'apple-touch-icon', sizes: '144x144', href: '/assets/img/apple-touch-icon-144-precomposed.png'}
+          {rel: 'apple-touch-icon', href: touchIcon},
+          {rel: 'apple-touch-icon', sizes: '72x72', href: touchIcon72},
+          {rel: 'apple-touch-icon', sizes: '114x114', href: touchIcon114},
+          {rel: 'apple-touch-icon', sizes: '144x144', href: touchIcon144}
         ]}
     />
       <Headline />

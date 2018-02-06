@@ -15,7 +15,6 @@ This is my personal website. Right now it just has a business card-like list of 
 ### Todo
 
 - Migrate to gatsby 1.0
-      - Build ATOM feed
       - Static asset copy
       - Fix images
       - Fix page titles
