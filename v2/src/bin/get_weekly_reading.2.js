@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
-import FS from 'fs'
-import OS from 'os'
-import Path from 'path'
-import ChildProcess from 'child_process'
-import TOML from 'toml-js'
-import moment from 'moment'
+const FS = require('fs')
+const OS = require('os')
+const Path = require('path')
+const ChildProcess = require('child_process')
+const moment = require('moment')
 
 function feedback (msg) {
   return process.stdout.write(msg)
@@ -18,8 +17,8 @@ function saveWeek (week, articles) {
     articles
   }
 
-  const outputPath = Path.join(process.cwd(), 'pages/reading/', week.format('YYYY-MM-DD'))
-  const outputFileName = outputPath + '/index.json'
+  const outputPath = Path.join(process.cwd(), '../pages/reading/data')
+  const outputFileName = outputPath + `/reading-${week.format('YYYY-MM-DD')}.json`
 
   FS.access(outputPath, FS.F_OK, (err) => {
     if (err) {
@@ -40,13 +39,10 @@ function saveWeek (week, articles) {
 }
 
 function Main () {
-  const tempFileName = Path.join(OS.tmpdir(), 'reading.json')
+  const tempFileName = Path.join(OS.tmpdir(), `reading-tmp.json`)
   // load config
-  let cfgData = FS.readFileSync(Path.join(__dirname, '..', 'config.toml'))
-  let config = TOML.parse(cfgData)
-
   // fetch reading data
-  let ssId = config.reading.google_sheet_id
+  let ssId = '1dFrxOeknJy1nfS85eVhWROR3U9nFF3Zl8qOiOqHxfBY'
   let start = moment()
   feedback('Fetching reading data...')
   ChildProcess.execSync(`gsjson ${ssId} ${tempFileName} > ${tempFileName}`)
