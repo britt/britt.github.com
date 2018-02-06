@@ -15,11 +15,8 @@ This is my personal website. Right now it just has a business card-like list of 
 ### Todo
 
 - Migrate to gatsby 1.0
-      - Static asset copy
-      - Fix images
       - Fix page titles
       - Add netlify plugin
       - Add GA plugin
-      - Use image processor
 - Integrate feed fetching with Gatsby build
 - Move site to Netlify
