@@ -8,7 +8,7 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/src/pages/markdown/`,
+        path: `${__dirname}/src/pages/cocktails/`,
         name: 'markdown-pages'
       }
     },
