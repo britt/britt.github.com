@@ -37,20 +37,16 @@ export default ({data}) => {
 export const query = graphql`
   query ReadingPages {
     allDataJson {
-        edges {
+      edges {
         node {
-            id
-            title
-            week
-            articles {
-            title
-            date_liked
-            description
-            url
-            notes
-            }
+          id
+          title
+          week
+          articles {
+              title
+          }
         }
-        }
+      }
     }
   }
 `
