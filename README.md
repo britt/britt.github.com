@@ -22,6 +22,5 @@ This is my personal website. Right now it just has a business card-like list of 
       - Add netlify plugin
       - Add GA plugin
       - Use image processor
-      - Fix
 - Integrate feed fetching with Gatsby build
 - Move site to Netlify

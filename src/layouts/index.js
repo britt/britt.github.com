@@ -6,15 +6,16 @@ import Footer from '../components/Footer'
 
 import '../styles/gutenberg.scss'
 
-export default ({children}) => {
+export default ({data, children}) => {
+  const meta = data.site.siteMetadata
   return (
     <VCard className='container home-page'>
       <Helmet
-        title='brittcrawford.com'
+        title={meta.title}
         meta={[
-        { name: 'description', content: 'Britt Crawford is just a guy who lives in Salem with his family.' },
-        { name: 'author', content: 'Britt Crawford' },
-        { name: 'keywords', content: 'programming, data, analysis, food, cocktails, dilettante, adventurer, gentleman' }
+        { name: 'description', content: meta.description },
+        { name: 'author', content: meta.author },
+        { name: 'keywords', content: meta.keywords }
         ]}
         link={[
           {rel: 'shortcut icon', href: '/img/favicon.ico'},
@@ -31,3 +32,16 @@ export default ({children}) => {
     </VCard>
   )
 }
+
+export const query = graphql`
+query siteData {
+  site {
+    siteMetadata {
+      title
+      description
+      author
+      keywords
+    }
+  }
+}
+`
