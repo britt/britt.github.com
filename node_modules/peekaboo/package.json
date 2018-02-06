@@ -1,0 +1,30 @@
+{
+  "name": "peekaboo",
+  "description": "Peekable transform stream",
+  "version": "1.0.0",
+  "repository": "git://github.com/hapijs/peekaboo",
+  "main": "index",
+  "keywords": [
+    "stream",
+    "transform",
+    "peek"
+  ],
+  "engines": {
+    "node": ">=0.10.32"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "code": "1.x.x",
+    "lab": "5.x.x"
+  },
+  "scripts": {
+    "test": "make test-cov"
+  },
+  "licenses": [
+    {
+      "type": "BSD",
+      "url": "http://github.com/hapijs/peekaboo/raw/master/LICENSE"
+    }
+  ]
+}
