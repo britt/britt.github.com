@@ -47,6 +47,7 @@ module.exports = {
     },
     `gatsby-transformer-remark`,
     `gatsby-transformer-json`,
+    `gatsby-plguin-netlify`,
     {
       resolve: 'gatsby-plugin-feed',
       options: {
