@@ -1,6 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: 'brittcrawford.com'
+    title: 'brittcrawford.com',
+    description: 'Britt Crawford is just a guy who lives in Salem with his family.',
+    siteUrl: 'https://brittcrawford.com'
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -20,6 +22,14 @@ module.exports = {
       }
     },
     `gatsby-transformer-remark`,
-    `gatsby-transformer-json`
+    `gatsby-transformer-json`,
+    {
+      resolve: 'gatsby-plugin-feed',
+      feeds: [
+        {
+          output: 'rss.xml'
+        }
+      ]
+    }
   ]
 }
