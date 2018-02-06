@@ -1,9 +1,14 @@
 import React from 'react'
+import ArticleList from '../components/ArticleList'
 
-export default function Template (props) {
+export default function Template ({data}) {
+  const week = data.allDataJson.edges[0].node
   return (
-    <main>
-      {JSON.stringify(props)}
+    <main className='reading-notes'>
+      <header className='subheader'>
+        Articles I liked from the week of <strong>{week.week}</strong>.
+      </header>
+      <ArticleList articles={week.articles} />
     </main>
   )
 }
