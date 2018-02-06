@@ -1,10 +1,12 @@
 import React from 'react'
 import ArticleList from '../components/ArticleList'
+import Helmet from 'react-helmet'
 
 export default function Template ({data}) {
   const week = data.allDataJson.edges[0].node
   return (
     <main className='reading-notes'>
+      <Helmet title={week.title} />
       <header className='subheader'>
         Articles I liked from the week of <strong>{week.week}</strong>.
       </header>

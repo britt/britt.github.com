@@ -3,6 +3,7 @@ import '../../styles/gutenberg.scss'
 import { Pages } from '../../lib/sort_utils'
 import PageUtils from '../../lib/page_utils'
 import Link from 'gatsby-link'
+import Helmet from 'react-helmet'
 
 const WeekLink = ({page}) => {
   return (
@@ -19,6 +20,7 @@ export default ({data}) => {
 
   return (
     <main className='reading-notes'>
+      <Helmet title='What am I reading?' />
       <h2>
           What am I reading?
         </h2>
