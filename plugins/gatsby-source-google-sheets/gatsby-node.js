@@ -14,7 +14,7 @@ const seedConstant = '2972963f-2fcf-4567-9237-c09a2b436541';
 
 exports.sourceNodes = (() => {
   var _ref = (0, _asyncToGenerator3.default)(function* ({ boundActionCreators, getNode, store, cache }, { spreadsheetId, worksheetTitle, credentials }) {
-    const { createNode } = boundActionCreators;
+    const { createNode, setPluginStatus } = boundActionCreators;
 
     let rows = yield fetchSheet(spreadsheetId, worksheetTitle, credentials);
 
@@ -26,7 +26,11 @@ exports.sourceNodes = (() => {
               isString: _.isString(val)
           }))
       ); */
-      createNode(Object.assign(r, {
+
+      r = _.mapValues(r, function (v) {
+        return !v ? '' : v;
+      });
+      const o = Object.assign(r, {
         id: uuidv5(r.id, uuidv5('gsheet', seedConstant)),
         parent: '__SOURCE__',
         children: [],
@@ -34,8 +38,11 @@ exports.sourceNodes = (() => {
           type: _.camelCase(`googleSheet ${worksheetTitle} row`),
           contentDigest: crypto.createHash('md5').update(JSON.stringify(r)).digest('hex')
         }
-      }));
+      });
+      createNode(o);
     });
+
+    setPluginStatus({ lastFetched: Date.now() });
   });
 
   return function (_x, _x2) {

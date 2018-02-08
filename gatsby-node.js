@@ -91,6 +91,46 @@ function createJSONPages (createPage, graphql) {
   })
 }
 
+function createReadingPages (createPage, graphql) {
+  return new Promise((resolve, reject) => {
+    const jsonPageTemplate = path.resolve(`src/layouts/json.js`)
+
+    return graphql(`
+    {
+      allGoogleSheetSheet1Row {
+        totalCount
+        edges {
+          node {
+            title
+            dateliked
+            description
+            url
+            notes
+          }
+        }
+      }
+    }
+    `).then(result => {
+      if (result.errors) {
+        return reject(result.errors)
+      }
+
+      result.data.allGoogleSheetSheet1Row.edges.forEach(({ node }) => {
+        const week = node.id.match(datedPathFormat)[1]
+        createPage({
+          path: `/reading/${week}/`,
+          component: jsonPageTemplate,
+          context: {
+            weekRegex: `/${week}/`
+          } // additional data can be passed via context
+        })
+      })
+
+      resolve()
+    })
+  })
+}
+
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const {createPage} = boundActionCreators
   return createMarkdownPages(createPage, graphql).then(result => createJSONPages(createPage, graphql))

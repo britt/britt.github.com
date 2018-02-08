@@ -8,7 +8,7 @@ exports.sourceNodes = async (
     { boundActionCreators, getNode, store, cache },
     { spreadsheetId, worksheetTitle, credentials }
 ) => {
-  const { createNode } = boundActionCreators
+  const { createNode, setPluginStatus } = boundActionCreators
 
   let rows = await fetchSheet(spreadsheetId, worksheetTitle, credentials)
 
@@ -20,19 +20,22 @@ exports.sourceNodes = async (
                 isString: _.isString(val)
             }))
         ); */
-    createNode(
-            Object.assign(r, {
-              id: uuidv5(r.id, uuidv5('gsheet', seedConstant)),
-              parent: '__SOURCE__',
-              children: [],
-              internal: {
-                type: _.camelCase(`googleSheet ${worksheetTitle} row`),
-                contentDigest: crypto
-                        .createHash('md5')
-                        .update(JSON.stringify(r))
-                        .digest('hex')
-              }
-            })
-        )
+
+    r = _.mapValues(r, v => !v ? '' : v)
+    const o = Object.assign(r, {
+      id: uuidv5(r.id, uuidv5('gsheet', seedConstant)),
+      parent: '__SOURCE__',
+      children: [],
+      internal: {
+        type: _.camelCase(`googleSheet ${worksheetTitle} row`),
+        contentDigest: crypto
+                  .createHash('md5')
+                  .update(JSON.stringify(r))
+                  .digest('hex')
+      }
+    })
+    createNode(o)
   })
+
+  setPluginStatus({ lastFetched: Date.now() })
 }
