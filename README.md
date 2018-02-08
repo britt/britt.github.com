@@ -14,7 +14,4 @@ This is my personal website. Right now it just has a business card-like list of 
 
 ### Todo
 
-- Move site to Netlify
-      - migrate DNS
-      - SSL
 - Integrate feed fetching with Gatsby build

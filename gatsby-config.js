@@ -20,6 +20,9 @@ function readingSummary (data) {
   `
 }
 
+const googleSheetEmail = process.env.GSHEET_EMAIL
+const googleSheetPrivateKey = process.env.GSHEET_PRIVATE_KEY
+
 module.exports = {
   siteMetadata: {
     title: 'brittcrawford.com',
@@ -48,6 +51,17 @@ module.exports = {
     `gatsby-transformer-remark`,
     `gatsby-transformer-json`,
     `gatsby-plugin-netlify`,
+    {
+      resolve: 'gatsby-source-google-sheets',
+      options: {
+        spreadsheetId: '1dFrxOeknJy1nfS85eVhWROR3U9nFF3Zl8qOiOqHxfBY',
+        worksheetTitle: 'Sheet1',
+        credentials: {
+          client_email: googleSheetEmail,
+          private_key: googleSheetPrivateKey
+        }
+      }
+    },
     {
       resolve: 'gatsby-plugin-feed',
       options: {
