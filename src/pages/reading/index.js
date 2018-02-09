@@ -1,23 +1,27 @@
 import React from 'react'
 import '../../styles/gutenberg.scss'
-import { Pages } from '../../lib/sort_utils'
-import PageUtils from '../../lib/page_utils'
+import { Dates } from '../../lib/sort_utils'
 import Link from 'gatsby-link'
 import Helmet from 'react-helmet'
+import groupBy from 'lodash/groupBy'
+import keys from 'lodash/keys'
+import moment from 'moment'
 
-const WeekLink = ({page}) => {
+const WeekLink = ({week, count}) => {
   return (
     <li>
-      <Link to={`/reading/${PageUtils.extractDatePart(page.id)}`}>{page.week}</Link>&nbsp;
-      &mdash; {page.articles.length} articles
+      <Link to={`/reading/${week.format('YYYY-MM-DD')}`}>{week.format('MMMM Do, YYYY')}</Link>&nbsp;
+      &mdash; {count} articles
     </li>
   )
 }
 
 export default ({data}) => {
-  const pages = data.allDataJson.edges.map(e => e.node)
-  const links = pages.sort(Pages.dateInPath).reverse().map((page) => <WeekLink page={page} />)
-
+  const pages = groupBy(data.allGoogleSheetSheet1Row.edges.map(e => e.node), a => moment(a.week, 'YYYY-MM-DD'))
+  const weeks = keys(pages)
+  const links = weeks.sort((a, b) => Dates.momentSort(moment(b), moment(a))).map(week => {
+    return <WeekLink week={moment(week)} count={!pages[week] ? 0 : pages[week].length} />
+  })
   return (
     <main className='reading-notes'>
       <Helmet title='What am I reading?' />
@@ -37,18 +41,19 @@ export default ({data}) => {
 }
 
 export const query = graphql`
-  query ReadingPages {
-    allDataJson {
-      edges {
-        node {
-          id
-          title
-          week
-          articles {
-              title
-          }
-        }
+query ReadingPages {
+  allGoogleSheetSheet1Row(sort: {order: DESC, fields: [week]}) {
+    totalCount
+    edges {
+      node {
+        title
+        dateliked
+        description
+        url
+        week
+        notes
       }
     }
   }
+}
 `

@@ -5,12 +5,12 @@ import {includes, keys} from 'lodash'
 
 export default ({articles}) => {
   const notesByDay = articles.reduce((acc, article) => {
-    const dateLiked = moment(article['date_liked'], 'MMMM DD, YYYY at hh:mmA').format('YYYY-MM-DD')
+    const dateLiked = moment(article.node.dateliked, 'MMMM DD, YYYY at hh:mmA').format('YYYY-MM-DD')
 
     if (includes(keys(acc), dateLiked)) {
-      acc[dateLiked].push(<Article article={article} />)
+      acc[dateLiked].unshift(<Article article={article.node} />)
     } else {
-      acc[dateLiked] = [<Article article={article} />]
+      acc[dateLiked] = [<Article article={article.node} />]
     }
 
     return acc
@@ -18,7 +18,6 @@ export default ({articles}) => {
 
   const notes = keys(notesByDay).reduce((acc, day) => {
     const dateLiked = moment(day, 'YYYY-MM-DD')
-
     acc.push(
       <section>
         <h3>

@@ -7,6 +7,7 @@
 // You can delete this file if you're not using it
 
 const path = require('path')
+const moment = require('moment')
 
 function createMarkdownPages (createPage, graphql) {
   return new Promise((resolve, reject) => {
@@ -36,53 +37,9 @@ function createMarkdownPages (createPage, graphql) {
         createPage({
           path: node.frontmatter.path,
           component: markdownPageTemplate,
-          context: {} // additional data can be passed via context
-        })
-      })
-
-      resolve()
-    })
-  })
-}
-
-const datedPathFormat = /(\d{4}-\d{2}-\d{2})/
-
-function createJSONPages (createPage, graphql) {
-  return new Promise((resolve, reject) => {
-    const jsonPageTemplate = path.resolve(`src/layouts/json.js`)
-
-    return graphql(`
-      {
-        allDataJson{
-          edges {
-            node {
-              id
-              title
-              week
-              articles {
-                title
-                date_liked
-                description
-                url
-                notes
-              }
-            }
-          }
-        }
-      }
-    `).then(result => {
-      if (result.errors) {
-        return reject(result.errors)
-      }
-
-      result.data.allDataJson.edges.forEach(({ node }) => {
-        const week = node.id.match(datedPathFormat)[1]
-        createPage({
-          path: `/reading/${week}/`,
-          component: jsonPageTemplate,
           context: {
-            weekRegex: `/${week}/`
-          } // additional data can be passed via context
+            week: ''
+          }
         })
       })
 
@@ -91,9 +48,9 @@ function createJSONPages (createPage, graphql) {
   })
 }
 
-function createReadingPages (createPage, graphql) {
+function createReadingPages (createPage, createParentChildLink, graphql) {
   return new Promise((resolve, reject) => {
-    const jsonPageTemplate = path.resolve(`src/layouts/json.js`)
+    const readingPageTemplate = path.resolve(`src/layouts/reading.js`)
 
     return graphql(`
     {
@@ -106,6 +63,7 @@ function createReadingPages (createPage, graphql) {
             description
             url
             notes
+            week
           }
         }
       }
@@ -115,15 +73,23 @@ function createReadingPages (createPage, graphql) {
         return reject(result.errors)
       }
 
+      let currentWeek = null
       result.data.allGoogleSheetSheet1Row.edges.forEach(({ node }) => {
-        const week = node.id.match(datedPathFormat)[1]
-        createPage({
-          path: `/reading/${week}/`,
-          component: jsonPageTemplate,
-          context: {
-            weekRegex: `/${week}/`
-          } // additional data can be passed via context
-        })
+        let week = moment(node.dateliked, 'MMMM DD, YYYY at hh:mmA').startOf('week')
+        if (!node.fieldOwners) {
+          node.fieldOwners = []
+        }
+
+        if (!currentWeek || !currentWeek.isSame(week)) {
+          createPage({
+            path: `/reading/${week.format('YYYY-MM-DD')}/`,
+            component: readingPageTemplate,
+            context: {
+              week: `${week.format('YYYY-MM-DD')}`
+            } // additional data can be passed via context
+          })
+          currentWeek = week
+        }
       })
 
       resolve()
@@ -132,6 +98,6 @@ function createReadingPages (createPage, graphql) {
 }
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
-  const {createPage} = boundActionCreators
-  return createMarkdownPages(createPage, graphql).then(result => createJSONPages(createPage, graphql))
+  const {createPage, createParentChildLink} = boundActionCreators
+  return createMarkdownPages(createPage, graphql).then(result => createReadingPages(createPage, createParentChildLink, graphql))
 }

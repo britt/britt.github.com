@@ -19,6 +19,10 @@ const Pages = {
     const secondDate = moment(PageUtils.extractDatePart(secondPage.id), 'YYYY-MM-DD')
 
     return Dates.momentSort(firstDate, secondDate)
+  },
+
+  sortByWeek: (a, b) => {
+    return Dates.momentSort(moment(a.week, 'YYYY-MM-DD'), moment(b.week, 'YYYY-MM-DD'))
   }
 }
 
