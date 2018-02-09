@@ -3,6 +3,7 @@ const uuidv5 = require('uuid/v5')
 const _ = require('lodash')
 const crypto = require('crypto')
 const seedConstant = '2972963f-2fcf-4567-9237-c09a2b436541'
+const moment = require('moment')
 
 exports.sourceNodes = async (
     { boundActionCreators, getNode, store, cache },
@@ -22,7 +23,8 @@ exports.sourceNodes = async (
         ); */
 
     r = _.mapValues(r, v => !v ? '' : v)
-    const o = Object.assign(r, {
+    let week = moment(r.dateliked, 'MMMM DD, YYYY at hh:mmA').startOf('week')
+    const o = Object.assign(r, {week: `${week.format('YYYY-MM-DD')}`}, {
       id: uuidv5(r.id, uuidv5('gsheet', seedConstant)),
       parent: '__SOURCE__',
       children: [],
