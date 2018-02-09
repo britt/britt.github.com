@@ -22,6 +22,8 @@ function readingSummary (data) {
 
 const googleSheetEmail = process.env.GSHEET_EMAIL
 const googleSheetPrivateKey = process.env.GSHEET_PRIVATE_KEY
+const spreadsheetId = process.env.GSHEET_ID
+const worksheetTitle = process.env.GSHEET_WORKSHEET
 
 module.exports = {
   siteMetadata: {
@@ -46,8 +48,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-google-sheets',
       options: {
-        spreadsheetId: '1dFrxOeknJy1nfS85eVhWROR3U9nFF3Zl8qOiOqHxfBY',
-        worksheetTitle: 'Sheet1',
+        spreadsheetId: spreadsheetId,
+        worksheetTitle: worksheetTitle,
         credentials: {
           client_email: googleSheetEmail,
           private_key: googleSheetPrivateKey
