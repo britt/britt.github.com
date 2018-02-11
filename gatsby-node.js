@@ -74,21 +74,31 @@ function createReadingPages (createPage, createParentChildLink, graphql) {
       }
 
       let currentWeek = null
+      let lastUpdate = null
       result.data.allGoogleSheetSheet1Row.edges.forEach(({ node }) => {
-        let week = moment(node.dateliked, 'MMMM DD, YYYY at hh:mmA').startOf('week')
+        let likedAt = moment(node.dateliked, 'MMMM DD, YYYY at hh:mmA')
+        let week = likedAt.clone().startOf('week')
         if (!node.fieldOwners) {
           node.fieldOwners = []
         }
 
-        if (!currentWeek || !currentWeek.isSame(week)) {
+        if (!currentWeek) {
+          currentWeek = week
+        }
+
+        if (!currentWeek.isSame(week)) {
           createPage({
             path: `/reading/${week.format('YYYY-MM-DD')}/`,
             component: readingPageTemplate,
             context: {
-              week: `${week.format('YYYY-MM-DD')}`
-            } // additional data can be passed via context
+              week: `${week.format('YYYY-MM-DD')}`,
+              lastUpdated: `${lastUpdate.format()}`
+            }
           })
-          currentWeek = week
+        }
+
+        if (currentWeek && (!lastUpdate || lastUpdate.isBefore(likedAt))) {
+          lastUpdate = likedAt
         }
       })
 

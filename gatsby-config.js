@@ -1,3 +1,11 @@
+const keys = require('lodash/keys')
+const moment = require('moment')
+
+// load google sheets info from the environment
+const googleSheetEmail = process.env.GSHEET_EMAIL
+const googleSheetPrivateKey = process.env.GSHEET_PRIVATE_KEY
+const spreadsheetId = process.env.GSHEET_ID
+const worksheetTitle = process.env.GSHEET_WORKSHEET
 
 function articleSummary (article) {
   return `
@@ -20,10 +28,114 @@ function readingSummary (data) {
   `
 }
 
-const googleSheetEmail = process.env.GSHEET_EMAIL
-const googleSheetPrivateKey = process.env.GSHEET_PRIVATE_KEY
-const spreadsheetId = process.env.GSHEET_ID
-const worksheetTitle = process.env.GSHEET_WORKSHEET
+function momentSort (firstDate, secondDate) {
+  if (firstDate.isAfter(secondDate)) {
+    return 1
+  } else if (firstDate.isBefore(secondDate)) {
+    return -1
+  } else {
+    return 0
+  }
+}
+
+function buildFeed ({ query: { site, allFile, allGoogleSheetSheet1Row } }) {
+  let entries = allFile.edges.map(edge => {
+    if (edge.node.childMarkdownRemark) {
+      const data = edge.node.childMarkdownRemark
+      return Object.assign({}, data.frontmatter, {
+        description: data.excerpt || data.frontmatter.title,
+        url: site.siteMetadata.siteUrl + data.frontmatter.path,
+        guid: site.siteMetadata.siteUrl + data.frontmatter.path,
+        custom_elements: [{ 'content:encoded': data.html }]
+      })
+    }
+  })
+
+  let byWeek = allGoogleSheetSheet1Row.edges.reduce((acc, e) => {
+    if (!acc[e.week]) {
+      acc[e.week] = [e]
+    } else {
+      acc[e.week].unshift(e)
+    }
+    return acc
+  }, {})
+
+  keys(byWeek).forEach(k => {
+    let data = byWeek[k]
+    let week = moment(data[0].week, 'YYYY-MM-DD')
+    let url = site.siteMetadata.siteUrl + `/reading/${data[0].week}`
+    let entry = Object.assign({}, {
+      title: `Reading for ${week.format('MMMM Do, YYYY')}`,
+      date: data[data.length - 1].dateliked,
+      description: `Articles I liked from the week of ${week.format('MMMM Do, YYYY')}.`,
+      url: url,
+      guid: url,
+      custom_elements: [{ 'content:encoded': readingSummary(data) }]
+    })
+
+    entries.push(entry)
+  })
+
+  return entries.sort((a, b) => momentSort(moment(b.date), moment(a.date)))
+}
+
+const feedConfig = {
+  resolve: 'gatsby-plugin-feed',
+  options: {
+    query: `
+        {
+          site {
+            siteMetadata {
+              title
+              description
+              siteUrl
+              site_url: siteUrl
+            }
+          }
+        }
+      `,
+    feeds: [
+      {
+        serialize: buildFeed,
+        query: `
+        {
+          allFile(limit: 1000, sort: {order: DESC, fields: [changeTime]}) {
+            edges {
+              node {
+                relativePath
+                changeTime
+                childMarkdownRemark {
+                  frontmatter {
+                    title
+                    date
+                  }
+                  html
+                }
+                internal {
+                  mediaType
+                }
+              }
+            }
+          }
+          allGoogleSheetSheet1Row(limit:1000, sort:{order: DESC, fields: [week]}) {
+            edges {
+              node {
+                title
+                week
+                url
+                dateliked
+                description
+                notes
+              }
+            }
+          }
+        }
+          `,
+        output: '/rss.xml'
+      }
+    ]
+  }
+}
 
 module.exports = {
   siteMetadata: {
@@ -55,76 +167,7 @@ module.exports = {
           private_key: googleSheetPrivateKey
         }
       }
-    }
-    // {
-    //   resolve: 'gatsby-plugin-feed',
-    //   options: {
-    //     query: `
-    //       {
-    //         site {
-    //           siteMetadata {
-    //             title
-    //             description
-    //             siteUrl
-    //             site_url: siteUrl
-    //           }
-    //         }
-    //       }
-    //     `,
-    //     // TODO: fix feed generation
-    //     feeds: [
-    //       {
-    //         serialize: ({ query: { site, allFile } }) => {
-    //           return allFile.edges.map(edge => {
-    //             if (edge.node.childMarkdownRemark) {
-    //               const data = edge.node.childMarkdownRemark
-    //               return Object.assign({}, data.frontmatter, {
-    //                 description: data.excerpt || data.frontmatter.title,
-    //                 url: site.siteMetadata.siteUrl + data.frontmatter.path,
-    //                 guid: site.siteMetadata.siteUrl + data.frontmatter.path,
-    //                 custom_elements: [{ 'content:encoded': data.html }]
-    //               })
-    //             }
-
-    //             if (edge.node.childDataJson) {
-    //               const data = edge.node.childDataJson
-    //               const path = `/reading/${edge.node.relativePath.replace('.json', '').replace('reading-', '')}`
-    //               return Object.assign({}, {
-    //                 title: data.title,
-    //                 description: `Articles I liked or found interesting during the week of ${data.week}.`,
-    //                 url: site.siteMetadata.siteUrl + path,
-    //                 guid: site.siteMetadata.siteUrl + path,
-    //                 custom_elements: [{ 'content:encoded': readingSummary(data) }]
-    //               })
-    //             }
-    //           })
-    //         },
-    //         query: `
-    //           {
-    //             allFile(
-    //               limit: 1000,
-    //               sort: {order: DESC, fields: changeTime}
-    //             ) {
-    //               edges {
-    //                 node {
-    //                   relativePath
-    //                   changeTime
-    //                   childMarkdownRemark {
-    //                     id
-    //                     frontmatter {
-    //                       title
-    //                     }
-    //                     html
-    //                   }
-    //                 }
-    //               }
-    //             }
-    //           }
-    //         `,
-    //         output: '/rss.xml'
-    //       }
-    //     ]
-    //   }
-    // }
+    },
+    feedConfig
   ]
 }
