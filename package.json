@@ -4,6 +4,7 @@
   "version": "9.0.0",
   "author": "Britt Crawford <britt.v.crawford@gmail.com>",
   "dependencies": {
+    "flow-bin": "^0.65.0",
     "gatsby": "^1.9.158",
     "gatsby-link": "^1.6.34",
     "gatsby-plugin-feed": "^1.3.16",
@@ -13,9 +14,11 @@
     "gatsby-source-filesystem": "^1.5.17",
     "gatsby-transformer-json": "^1.0.14",
     "gatsby-transformer-remark": "^1.7.30",
+    "google-spreadsheet": "^2.0.4",
     "lodash": "^4.17.5",
     "moment": "^2.20.1",
-    "react-helmet": "^5.2.0"
+    "react-helmet": "^5.2.0",
+    "uuid": "^3.2.1"
   },
   "keywords": [
     "gatsby"
