@@ -58,16 +58,16 @@ It's the sort of puzzle I like. So much so that it lured me into doing something
 
 #### Arbitrary Consensus
 
-* An issue is declared and options for voting are set.
-* The voter generates a random nonce for each action
-* The voter then hashes the nonce corresponding to their vote. They also generate a map of all the options and the hash of the nonce corresponding to each option.
-* The voter sends the hash of their vote along with the option list to the arbiter.
-* The arbiter records the vote and the current state of the issue.
-* The arbiter sends a digitally signed hash of the vote state to the voter.
-* The voter encrypts a message containing: the nonce representing their vote (not hashed), the option map (again not hashed), the hash of the vote state provided by the arbiter. They sign it and post it to an immutable ledger like the Ethereum blockchain.
-* When a decision is reached the arbiter announces it and reveals the chain of votes.
-* Voters decrypt.
-* Once sufficient results are decrypted to justify the decision the decision is confirmed.
+1. An issue is declared and options for voting are set. A set of eligible voters is also declared, identified by their public keys.
+2. The voter generates a random nonce for each action
+3. The voter then hashes the nonce corresponding to their vote. They also generate a map of all the options and the hash of the nonce corresponding to each option.
+4. The voter sends the hash of their vote along with the option list to the arbiter.
+5. The arbiter records the vote and the current state of the issue.
+6. The arbiter sends a digitally signed hash of the vote state to the voter.
+7. The voter encrypts a message containing: the nonce representing their vote (not hashed), the option map (again not hashed), the hash of the vote state provided by the arbiter. They sign it and post it to an immutable ledger like the Ethereum blockchain. _Signing establishes voter identity and protects against double voting. Last vote wins._
+8. When a decision is reached the arbiter announces it and reveals the chain of votes.
+9. Voters decrypt.
+10. Once sufficient results are decrypted to justify the decision the decision is confirmed.
 
 This version is safe against the network attack but not against arbiter snooping.
 
@@ -77,7 +77,7 @@ Voters can be identified via timing analysis even if they choose not to decrypt.
 
 If you can successfully conceal your identity from the arbiter then your identity remains secret until voting is complete. This is competed by using a tamper proof record of the proof like a blockchain. You would also need to delay your posting of your proof to prevent a timing attack by the arbiter.
 
-**Crap!** You can vote multiple times.
+**Crap!** You can vote multiple times, and thus poison the consensus or force early revelation. Verifying that you are in the set of eligible voters reveals your identity to the arbiter.
 
 ### Related Reading
 
