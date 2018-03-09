@@ -34,13 +34,15 @@ function createMarkdownPages (createPage, graphql) {
       }
 
       result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-        createPage({
-          path: node.frontmatter.path,
-          component: markdownPageTemplate,
-          context: {
-            week: ''
-          }
-        })
+        if (!node.frontmatter.draft) {
+          createPage({
+            path: node.frontmatter.path,
+            component: markdownPageTemplate,
+            context: {
+              week: ''
+            }
+          })
+        }
       })
 
       resolve()
