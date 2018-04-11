@@ -33,7 +33,7 @@ _(Authors and fans sometimes do this with beloved but ... inconsistent media. As
 
 This is also the sort of puzzle I like. So much so that it lured me into doing something you really shouldn't do, trying to design your own secure protocols. It's not as bad as trying to roll your own crypto, but it's a great way to make a fool of yourself. Definite land war in Asia territory.
 
--- Picture of Vizzini --
+![Vizzini in the battle of wits](/img/vizzini_battle_of_wits.png)
 
 **DISCLAIMERS:**
 
