@@ -16,7 +16,7 @@ A spicy variant on the Old Fashioned, a tribute to [John McClane](https://en.wik
 * 1 dash of Angostura bitters
 * 1 twist of lemon
 
-Gently stir the bourbon, maple syrup, bitters and cayenne with ice to chill. Be careful not chip the ice and water down the drink. Serve on the rocks with a twist of lemon.
+Gently stir the bourbon, maple syrup, bitters and cayenne with ice to chill. Be careful not to chip the ice and water down the drink. Serve on the rocks with a twist of lemon.
 
 <a name="highball-import">
   <img src="/img/cocktails/yippee-kay-yay-motherfucker.png"
