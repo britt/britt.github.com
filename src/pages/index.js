@@ -25,7 +25,7 @@ export default ({route}) => {
             <a href='http://www.linkedin.com/in/brittcrawford/' title='My LinkedIn Profile' rel='me'><i className='fa fa-linkedin fa-fw' /><span>https://www.linkedin.com/in/brittcrawford/</span></a>
           </li>
           <li>
-            <a href='http://illtemper.org' title='A stream of consciousness link blog'><i className='fa fa-link fa-fw' /><span>http://illtemper.org</span></a>
+            <a href='https://illtemper.org' title='A stream of consciousness link blog'><i className='fa fa-link fa-fw' /><span>https://illtemper.org</span></a>
           </li>
           <li>
             <a href='bitcoin:17nHbStzmWgcBEBSgVFT94Eo5hoq9h7Hh1' title='Bitcoin'><i className='fa fa-bitcoin fa-fw' /><span>Bitcoin</span></a>
