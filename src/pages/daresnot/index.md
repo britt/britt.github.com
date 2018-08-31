@@ -7,7 +7,12 @@ draft: true
 
 ## Dare Snot
 
-Cory Doctorow's Walkaway, is so far my favorite novel of the year. For a long time science fiction has felt outmoded to me. The sort of science fiction I like has always been about grappling with the big ideas and big anxieties of the present by telling stories about the future. Sometime in late aughts I felt like as a genre it gave up on these kinds of stories and settled for telling comfortable genre stories. It was like no one could properly integrate smartphones, ubiquitous mass surveillance, and the sheer weirdness of the current media environment into their storytelling. _(Except maybe Warren Ellis and Charlie Stross, but they did it a decade earlier and moved on to other things.)_ Then I read Walkaway and it felt new. It really gets hold of a big idea, _How would society react if it were on the verge of material abundance?_, and wrestles with it.
+Cory Doctorow's Walkaway, is so far my favorite novel of the year. For a long time science fiction has felt dated to me. Everything I read felt stale. The real world was far weirder and felt more futuristic. I've always particularly like the sort of sci-fi that grapples with the big ideas. The sort that analyzes the hopes and anxieties of the present by telling stories about the future. Sometime in late aughts it felt like sci-fi gave up on these kinds of stories and settled for comfortable genre stories. It was like no one could properly integrate smartphones, ubiquitous mass surveillance, and the sheer weirdness of the current media environment into their storytelling. _(Except maybe Warren Ellis and Charlie Stross, but they had done it a decade earlier and moved on to other things.)_ Then I read Walkaway and it felt **new**. The book really gets hold of a big idea and wrestles it to the ground.
+
+_How would society react if it were on the verge of material abundance?_
+
+_How would you build a new society if all things were fungible, if wealth as we know it, just didn't matter?_
+
 
 ---
 **Need a segue**
@@ -20,22 +25,21 @@ Walkaway culture is a maker culture so it's philosophy is embodied more in tools
 >
 > Anyone could put a question — a Snot Dare — up, like "Do you think we should turf that sexist asshole?" People who secretly agreed signed the question with a one time key that they didn't have to reveal until a pre-specified number of votes were on record. Then the system broadcast a message telling signers to come back with their signing keys and de-anonymize themselves, escrowing the results until a critical mass of signers had decloaked. Quick as you could say "I am Spartacus," consensus plopped out of the system.
 
-I read this and thought...
+I read this and thought, "This is a terrible idea!".
 
-* That'll never work. How do you stop people from shill voting? If somebody put up something I didn't like I'd just spam fake votes to trigger the reveal message.
-* Who generates the one-time key? If it's a central server, then wow, there's a big incentive to pwn that thing.
+* How do you stop people from shill voting? _If somebody put up something I didn't like I'd just spam fake votes to trigger the reveal message._
+* Who generates the one-time key? _If it's a central server, then wow, that's a huge incentive to pwn that thing, or at least cheat and take a peak._
 * What stops people from posting issues like, _"Who thinks Dave is fat and ugly and should just kill himself already?"_
+* What if the voters don't come back to reveal their votes?
 * and so forth...
 
-But Cory Doctorow is a smart guy. He's probably thought of some of this, and he has probably talked it through with folks that are smarter and more knowledgable than me. Maybe the version in the book is incomplete because it's a novel, not a paper on voting systems. I decided to treat it as charitably as possible. Assume it works and try to figure out how it could work.
+Maybe it is a terrible idea. But Cory Doctorow is a smart guy. Maybe it's not. Maybe he's already thought about this. Maybe he's talked it through with folks that are smarter and more knowledgable than me, security experts, cryptographers. **Maybe the version in the book is incomplete because it's a novel, not a paper on voting systems.**
 
-_(Authors and fans sometimes do this with beloved but ... inconsistent media. Assume that the plotholes are intentional and come up with a narrative that makes sense of them. My favorite example is [Goblins, the Fungal Body Politic](https://www.maxgladstone.com/2014/10/goblins-the-fungal-body-politic/). Goblins are a fungus.)_
-
-This is also the sort of puzzle I like. So much so that it lured me into doing something you really shouldn't do, trying to design your own secure protocols. It's not as bad as trying to roll your own crypto, but it's a great way to make a fool of yourself. Definite land war in Asia territory.
+So, I decided to treat it as charitably as possible. I'll assume it works and try to figure out how it could work. It will be a fun challenge. _(Aside: One of the my favorite examples of this exercise is [Goblins, the Fungal Body Politic](https://www.maxgladstone.com/2014/10/goblins-the-fungal-body-politic/). Goblins only make sense if they are a fungus.)_ So here I go, doing something you really shouldn't do, trying to design my own secure protocols. It's not rolling your own crypto bad, but it's definite land war in Asia territory.
 
 ![Vizzini in the battle of wits](/img/vizzini_battle_of_wits.png)
 
-**DISCLAIMERS:**
+### DISCLAIMERS:
 
 1. I am not a security expert.
 2. There is no implementation yet. It has only been attacked and debugging in conversations with a few other people and in my own head.
@@ -66,16 +70,39 @@ This is also the sort of puzzle I like. So much so that it lured me into doing s
 
 ### Protocol
 
-#### 100% Quorum
+#### As described in the novel
 
-* An issue is declared and options for voting are set.
-* The voter generates a random nonce for each action
-* The voter encrypts the set of nonces, signs it and posts it publicly along with their vote in plaintext.
-* Once everyone votes it is announced that voting is complete.
-* Voters decrypt their votes.
+1. An issue to be voted upon is declared. It is a yes/no proposition.
+2. Voters who agree with the proposition generate a one-time symmetric encryption key.
+3. They then generate a digital signature using a known public/private key pair. That they've registered with a key server or otherwise claimed as identifying them.
+4. They encrypt this signature with the public key they generated in step #2.
+5. They post this key to the server.
+6. They monitor the issue and watch for the signal to decloak.
+7. When the signal is sent they transmit their one-time key to the server.
+8. The server waits until a sufficient number of keys have been received, then reveals the votes.
+
+##### Limitations
+
+* Only yes/no propositions can be voted on.
+
+##### Flaws
+
+* Shill attack
+* pwning the server
+* Reliance on voter OpSec
 
 ## TODO: Transcibe new protocols here
 
 ### Related Reading
 
+* [Helios: Web-based Open-Audit Voting by Ben Adida](https://www.usenix.org/legacy/events/sec08/tech/full_papers/adida/adida.pdf)
+* [Explain Like I’m 5: Zero Knowledge Proof (Halloween Edition)](https://hackernoon.com/eli5-zero-knowledge-proof-78a276db9eff)
+* [Explain Like I’m 5: Zero Knowledge Proof (Halloween Edition)](http://twistedoakstudios.com/blog/Post3724_explain-it-like-im-five-the-socialist-millionaire-problem-and-secure-multi-party-computation)
+* [zkSnarks in a Nutshell](https://blog.ethereum.org/2016/12/05/zksnarks-in-a-nutshell/)
+* [Secret Sharing Homomorphism and Secure E-voting](https://arxiv.org/pdf/1602.05372.pdf)
+* Lots of Wikipedia but particularly
+  * [Homomorphic Encryption](https://en.wikipedia.org/wiki/Homomorphic_encryption)
+  * [Shamir's Secret Sharing](https://en.wikipedia.org/wiki/Shamir%27s_Secret_Sharing)
+  * [Yao's Millionaires' Problem](https://en.wikipedia.org/wiki/Yao%27s_Millionaires%27_Problem)
+* [Yao’s Millionaires’ Problem and Public-Key Encryption Without Computational Assumptions](https://www.worldscientific.com/doi/abs/10.1142/S012905411750023X)
 * [Degrees of Freedom by Karl Schroeder](http://hieroglyph.asu.edu/story/degrees-of-freedom/)

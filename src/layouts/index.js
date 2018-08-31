@@ -18,11 +18,12 @@ export default ({data, children}) => {
       <Helmet
         title={meta.title}
         meta={[
-        { name: 'description', content: meta.description },
-        { name: 'author', content: meta.author },
-        { name: 'keywords', content: meta.keywords }
+          { name: 'description', content: meta.description },
+          { name: 'author', content: meta.author },
+          { name: 'keywords', content: meta.keywords }
         ]}
         link={[
+          {rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU', crossorigin: 'anonymous'},
           {rel: 'shortcut icon', href: favicon},
           {rel: 'alternate', type: 'application/rss+xml', href: '/rss.xml'},
           {rel: 'apple-touch-icon', href: touchIcon},
@@ -30,7 +31,7 @@ export default ({data, children}) => {
           {rel: 'apple-touch-icon', sizes: '114x114', href: touchIcon114},
           {rel: 'apple-touch-icon', sizes: '144x144', href: touchIcon144}
         ]}
-    />
+      />
       <Headline />
       {children()}
       <Footer />

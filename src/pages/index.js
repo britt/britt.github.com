@@ -10,6 +10,9 @@ export default ({route}) => {
       <section className='list-of-links'>
         <ul>
           <li>
+            <a href='https://refactorcamp.org/@britt' title='My Mastodon' rel='me'><i className='fa fa-twitter fa-fw' /><span>britt@refactorcamp.org</span></a>
+          </li>
+          <li>
             <a href='https://twitter.com/britt' title='My Twitter Feed' rel='me'><i className='fa fa-twitter fa-fw' /><span>@britt</span></a>
           </li>
           <li>
