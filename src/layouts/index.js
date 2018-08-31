@@ -23,7 +23,7 @@ export default ({data, children}) => {
           { name: 'keywords', content: meta.keywords }
         ]}
         link={[
-          {rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU', crossorigin: 'anonymous'},
+          {rel: 'stylesheet', href: 'https://use.fontawesome.com/releases/v5.3.1/css/all.css', crossorigin: 'anonymous'},
           {rel: 'shortcut icon', href: favicon},
           {rel: 'alternate', type: 'application/rss+xml', href: '/rss.xml'},
           {rel: 'apple-touch-icon', href: touchIcon},
