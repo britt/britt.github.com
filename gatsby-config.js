@@ -43,8 +43,8 @@ function articleSummary (article) {
         ${article.description}
       </p>
       ${
-        article.notes ? `<p><h4>Notes</h4>${article.notes}</p>` : ''
-      }
+  article.notes ? `<p><h4>Notes</h4>${article.notes}</p>` : ''
+}
     </li>`
 }
 
