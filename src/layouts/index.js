@@ -31,7 +31,9 @@ export default ({data, children}) => {
           {rel: 'apple-touch-icon', sizes: '114x114', href: touchIcon114},
           {rel: 'apple-touch-icon', sizes: '144x144', href: touchIcon144}
         ]}
-      />
+      >
+        <html lang='en' />
+      </Helmet>
       <Headline />
       {children()}
       <Footer />
