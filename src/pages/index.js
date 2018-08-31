@@ -10,25 +10,22 @@ export default ({route}) => {
       <section className='list-of-links'>
         <ul>
           <li>
-            <a href='https://refactorcamp.org/@britt' title='My Mastodon' rel='me'><i className='fa fa-mastodon fa-fw' /><span>britt@refactorcamp.org</span></a>
+            <a href='https://refactorcamp.org/@britt' title='My Mastodon' rel='me'><i className='fab fa-mastodon fa-fw' /><span>britt@refactorcamp.org</span></a>
           </li>
           <li>
-            <a href='https://twitter.com/britt' title='My Twitter Feed' rel='me'><i className='fa fa-twitter fa-fw' /><span>@britt</span></a>
+            <a href='https://twitter.com/britt' title='My Twitter Feed' rel='me'><i className='fab fa-twitter fa-fw' /><span>@britt</span></a>
           </li>
           <li>
-            <a href='https://www.facebook.com/britt.crawford' title='My Facebook Profile' rel='me'><i className='fa fa-facebook fa-fw' /><span>https://www.facebook.com/britt.crawford</span></a>
+            <a href='https://www.facebook.com/britt.crawford' title='My Facebook Profile' rel='me'><i className='fab fa-facebook fa-fw' /><span>https://www.facebook.com/britt.crawford</span></a>
           </li>
           <li>
-            <a href='https://github.com/britt' title='GitHub' rel='me'><i className='fa fa-github-alt fa-fw' /><span>https://github.com/britt</span></a>
+            <a href='https://github.com/britt' title='GitHub' rel='me'><i className='fab fa-github-alt fa-fw' /><span>https://github.com/britt</span></a>
           </li>
           <li>
-            <a href='http://www.linkedin.com/in/brittcrawford/' title='My LinkedIn Profile' rel='me'><i className='fa fa-linkedin fa-fw' /><span>https://www.linkedin.com/in/brittcrawford/</span></a>
+            <a href='http://www.linkedin.com/in/brittcrawford/' title='My LinkedIn Profile' rel='me'><i className='fab fa-linkedin fa-fw' /><span>https://www.linkedin.com/in/brittcrawford/</span></a>
           </li>
           <li>
-            <a href='https://illtemper.org' title='A stream of consciousness link blog'><i className='fa fa-link fa-fw' /><span>https://illtemper.org</span></a>
-          </li>
-          <li>
-            <a href='bitcoin:17nHbStzmWgcBEBSgVFT94Eo5hoq9h7Hh1' title='Bitcoin'><i className='fa fa-bitcoin fa-fw' /><span>Bitcoin</span></a>
+            <a href='bitcoin:17nHbStzmWgcBEBSgVFT94Eo5hoq9h7Hh1' title='Bitcoin'><i className='fab fa-btc fa-fw' /><span>Bitcoin</span></a>
           </li>
           <li>
             <a href='/britt.gpg' title='PGP/GPG Public Key'><i className='fa fa-lock fa-fw' /><span>PGP/GPG Key</span></a> &mdash;&nbsp;
