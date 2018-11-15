@@ -53,7 +53,12 @@ export default class TiledLines extends Component {
   render () {
     return (
       <main className='container'>
-        <Helmet title='Tiled Lines - generative art experiment' />
+        <Helmet title='Tiled Lines - generative art experiment'>
+          <style>
+            {'canvas {box-shadow: 0 15px 24px rgba(0, 0, 0, 0.22), 0 19px 76px rgba(0, 0, 0, 0.3);}'}
+          </style>
+
+        </Helmet>
         <section>
           <h2>Tiled Lines</h2>
           <p>
