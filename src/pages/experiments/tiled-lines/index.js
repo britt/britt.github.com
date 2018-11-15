@@ -23,7 +23,7 @@ function configureCanvas (canvas, w, h) {
 function draw (ctx, x, y, width, height) {
   var leftToRight = Math.random() >= 0.5
   var red = Math.random() >= 0.5
-  ctx.strokeStyle = red ? '#f00' : '#000'
+  ctx.strokeStyle = red ? '#D32F2F' : '#212121'
 
   ctx.beginPath()
   if (leftToRight) {
