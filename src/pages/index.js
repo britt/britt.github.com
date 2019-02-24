@@ -46,17 +46,17 @@ export default ({route}) => {
             </summary>
           </li>
           <li>
-            <Link to='https://github.com/britt/testivus'>
+            <a href='https://github.com/britt/testivus' title='Testivus: let your code know how it disappoints you'>
               Testivus
-            </Link>
+            </a>
             <summary>
               A Go test helper library to let your code know how it disappoints you.
             </summary>
           </li>
           <li>
-            <Link to='https://smile.amazon.com/Snugglebear-Team-Company-Havamal/dp/B07N114BWY/ref=sr_1_2?keywords=havamal&qid=1550960415&s=digital-skills&sr=1-2-catcorr'>
+            <a title='Havamal' href='https://smile.amazon.com/Snugglebear-Team-Company-Havamal/dp/B07N114BWY/ref=sr_1_2?keywords=havamal&qid=1550960415&s=digital-skills&sr=1-2-catcorr'>
               Havamal
-            </Link>
+            </a>
             <summary>
               The wisdom of Odin, told by Alexa. Say, "Alexa tell me the wisdom of Odin."
             </summary>
