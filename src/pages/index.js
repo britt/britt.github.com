@@ -5,7 +5,7 @@ export default ({route}) => {
   return (
     <main className='container'>
       <section className='introduction'>
-        I live in <del>San Francisco</del> Salem with my family. I build awesome stuff at <a href='http://www.strongdm.com'>StrongDM</a>. You can find me on the internet at:
+        I live in <del>Salem</del> Amity with my family. I build awesome stuff at <a href='http://www.strongdm.com'>StrongDM</a>. You can find me on the internet at:
       </section>
       <section className='list-of-links'>
         <ul>
@@ -43,6 +43,22 @@ export default ({route}) => {
             </Link>
             <summary>
               A weekly summary of articles that I have read and liked.
+            </summary>
+          </li>
+          <li>
+            <Link to='https://github.com/britt/testivus'>
+              Testivus
+            </Link>
+            <summary>
+              A Go test helper library to let your code know how it disappoints you.
+            </summary>
+          </li>
+          <li>
+            <Link to='https://smile.amazon.com/Snugglebear-Team-Company-Havamal/dp/B07N114BWY/ref=sr_1_2?keywords=havamal&qid=1550960415&s=digital-skills&sr=1-2-catcorr'>
+              Havamal
+            </Link>
+            <summary>
+              The wisdom of Odin, told by Alexa. Say, "Alexa tell me the wisdom of Odin."
             </summary>
           </li>
           <li>

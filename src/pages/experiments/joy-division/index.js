@@ -62,7 +62,7 @@ function joyDivision (canvas, w, h) {
   }
 }
 
-export default class TiledLines extends Component {
+export default class JoyDivision extends Component {
   render () {
     return (
       <main className='container'>
