@@ -168,7 +168,7 @@ const feedConfig = {
 module.exports = {
   siteMetadata: {
     title: 'brittcrawford.com',
-    description: 'Britt Crawford is just a guy who lives in Salem with his family.',
+    description: 'Britt Crawford is just a guy who lives in Amity with his family.',
     siteUrl: 'https://brittcrawford.com',
     author: 'Britt Crawford',
     keywords: 'programming, data, analysis, food, cocktails, dilettante, adventurer, gentleman'
