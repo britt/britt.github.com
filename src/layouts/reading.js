@@ -18,7 +18,7 @@ export default function Template ({data, pathContext}) {
 }
 
 export const query = graphql`
-query ReadingPageByWeek($week: String!) {
+query ReadingPageByWeek($week: Date!) {
     allGoogleSheetSheet1Row(filter: {week: {eq: $week}}, sort: {order: ASC, fields: [dateliked]}) {
         totalCount
         edges {
