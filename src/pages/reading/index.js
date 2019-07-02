@@ -27,12 +27,12 @@ export default ({data}) => {
       <Helmet title='What am I reading?' />
       <h2>
           What am I reading?
-        </h2>
+      </h2>
       <p>
           A short description of articles I have read and liked each week. Some of
           the articles I found insightful, those might have notes, others just
           had interesting information, or a cool fact.
-        </p>
+      </p>
       <ul>
         {links}
       </ul>

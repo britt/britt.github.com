@@ -20,46 +20,54 @@ function configureCanvas (canvas, w, h) {
   return context
 }
 
-function joyDivision (canvas, w, h) {
+function line (ctx, startX, startY, endX, endY, color = '#000') {
+  ctx.strokeStyle = color
+  ctx.beginPath()
+  ctx.moveTo(startX, startY)
+  ctx.lineTo(endX, endY)
+  ctx.closePath()
+  ctx.stroke()
+}
+
+class StoryBeat {
+  constructor (label, radius, x, y) {
+    this.label = label
+    this.radius = radius
+    this.x = x
+    this.y = y
+  }
+}
+
+// TODO: add circles at key points
+// TODO: Convert to component?
+class Freytag {
+  constructor (exp, crux, epi) {
+    this.exp = exp
+    this.crux = crux
+    this.epi = epi
+  }
+
+  draw (ctx, width, height, offset = {x: 0, y: 0}) {
+    const left = offset.x
+    const right = offset.x + width
+    const top = offset.y
+    const bottom = offset.y + height
+    const endExposition = left + Math.round(width * this.exp)
+    const beginEpilogue = right - Math.round(width * this.epi)
+    const climax = left + Math.round(width * this.crux)
+
+    line(ctx, left, bottom, endExposition, bottom)
+    line(ctx, endExposition, bottom, climax, top)
+    line(ctx, climax, top, beginEpilogue, bottom)
+    line(ctx, beginEpilogue, bottom, right, bottom)
+    return true
+  }
+}
+
+function freytag (canvas, w, h, exp = 0.2, crux = 0.7, epi = 0.2, padding = 0.1) {
   const ctx = configureCanvas(canvas, w, h)
-  const step = 30
-  const lines = []
-  const size = w
-
-  for (let i = step * 4; i <= size - step; i += step) {
-    let line = []
-    for (let j = 0; j <= size; j += step) {
-      let distanceToCenter = Math.abs(j - size / 2)
-      let variance = Math.max(size / 2 - 100 - distanceToCenter, 0)
-      let random = Math.random() * variance / 2 * -1
-      let point = {x: j, y: i + random}
-      line.push(point)
-    }
-    lines.push(line)
-  }
-
-  for (let i = 0; i < lines.length; i++) {
-    var red = Math.random() >= 0.5
-    ctx.strokeStyle = '#fff'
-    ctx.fillStyle = red ? '#D32F2F' : '#212121'
-
-    ctx.beginPath()
-    ctx.moveTo(lines[i][0].x, lines[i][0].y)
-
-    for (var j = 0; j < lines[i].length - 2; j++) {
-      let xc = (lines[i][j].x + lines[i][j + 1].x) / 2
-      let yc = (lines[i][j].y + lines[i][j + 1].y) / 2
-      ctx.quadraticCurveTo(lines[i][j].x, lines[i][j].y, xc, yc)
-    }
-    ctx.quadraticCurveTo(lines[i][j].x, lines[i][j].y, lines[i][j + 1].x, lines[i][j + 1].y)
-
-    ctx.save()
-    ctx.globalCompositeOperation = 'destination-out'
-    ctx.fill()
-    ctx.restore()
-    ctx.fill()
-    ctx.stroke()
-  }
+  const f = new Freytag(exp, crux, epi)
+  f.draw(ctx, w - Math.round(w * 2 * padding), 200, {x: Math.round(w * padding), y: Math.round(h - 200 - h * padding)})
 }
 
 export default class Plots extends Component {
@@ -76,10 +84,7 @@ export default class Plots extends Component {
           <h2>Plots</h2>
         </section>
         <section>
-          <canvas ref={(c) => joyDivision(c, 630, 630)} />
-          <p>
-            <em>Reload the page. It's different every time.</em>
-          </p>
+          <canvas ref={(c) => freytag(c, 630, 400)} />
         </section>
       </main>
     )
