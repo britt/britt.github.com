@@ -39,22 +39,20 @@ class StoryBeat {
 }
 
 // TODO: add circles at key points
-// TODO: Convert to component?
-class Freytag {
-  constructor (exp, crux, epi) {
-    this.exp = exp
-    this.crux = crux
-    this.epi = epi
+class Freytag extends React.Component {
+  constructor (props) {
+    super(props)
+    this.draw = this.draw.bind(this)
   }
 
-  draw (ctx, width, height, offset = {x: 0, y: 0}) {
-    const left = offset.x
-    const right = offset.x + width
-    const top = offset.y
-    const bottom = offset.y + height
-    const endExposition = left + Math.round(width * this.exp)
-    const beginEpilogue = right - Math.round(width * this.epi)
-    const climax = left + Math.round(width * this.crux)
+  draw (ctx, width, height) {
+    const left = this.props.offsetX + width * this.props.padding
+    const right = width * (1 - this.props.padding)
+    const top = height - this.props.offsetY - this.props.peak
+    const bottom = height - this.props.offsetY
+    const endExposition = left + Math.round(width * this.props.exp)
+    const beginEpilogue = right - Math.round(width * this.props.epi)
+    const climax = left + Math.round(width * this.props.crux)
 
     line(ctx, left, bottom, endExposition, bottom)
     line(ctx, endExposition, bottom, climax, top)
@@ -62,16 +60,18 @@ class Freytag {
     line(ctx, beginEpilogue, bottom, right, bottom)
     return true
   }
-}
-// TODO: convert to component
-function freytag (canvas, w, h, exp = 0.2, crux = 0.7, epi = 0.2, padding = 0.05) {
-  const ctx = configureCanvas(canvas, w, h)
-  const f = new Freytag(exp, crux, epi)
-  f.draw(ctx, w - Math.round(w * 2 * padding), 200, {x: Math.round(w * padding), y: Math.round(h - 200 - h * padding)})
+
+  render () {
+    const {width, height} = this.props
+    return <Canvas width={width} height={height} draw={this.draw} />
+  }
 }
 
 function Canvas ({width, height, draw}) {
-  return <canvas ref={(c) => draw(c, width, height)} />
+  return <canvas ref={(c) => {
+    const ctx = configureCanvas(c, width, height)
+    draw(ctx, width, height)
+  }} />
 }
 
 export default class Plots extends Component {
@@ -88,7 +88,17 @@ export default class Plots extends Component {
           <h2>Plots</h2>
         </section>
         <section>
-          <Canvas width={640} height={400} draw={freytag} />
+          {/* <Canvas width={640} height={400} draw={freytag} /> */}
+          <Freytag
+            width={640}
+            height={400}
+            peak={200}
+            exp={0.2}
+            crux={0.7}
+            epi={0.2}
+            padding={0.05}
+            offsetX={0}
+            offsetY={50} />
         </section>
       </main>
     )
