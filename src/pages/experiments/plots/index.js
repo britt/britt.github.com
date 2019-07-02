@@ -63,11 +63,15 @@ class Freytag {
     return true
   }
 }
-
-function freytag (canvas, w, h, exp = 0.2, crux = 0.7, epi = 0.2, padding = 0.1) {
+// TODO: convert to component
+function freytag (canvas, w, h, exp = 0.2, crux = 0.7, epi = 0.2, padding = 0.05) {
   const ctx = configureCanvas(canvas, w, h)
   const f = new Freytag(exp, crux, epi)
   f.draw(ctx, w - Math.round(w * 2 * padding), 200, {x: Math.round(w * padding), y: Math.round(h - 200 - h * padding)})
+}
+
+function Canvas ({width, height, draw}) {
+  return <canvas ref={(c) => draw(c, width, height)} />
 }
 
 export default class Plots extends Component {
@@ -84,7 +88,7 @@ export default class Plots extends Component {
           <h2>Plots</h2>
         </section>
         <section>
-          <canvas ref={(c) => freytag(c, 630, 400)} />
+          <Canvas width={640} height={400} draw={freytag} />
         </section>
       </main>
     )
