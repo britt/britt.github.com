@@ -56,7 +56,7 @@ class StoryBeat {
 const defaultFreytag = {
   exp: 0.1,
   crux: 0.7,
-  epi: 0.1,
+  epi: 0.9,
   beats: [],
   padding: 0.05,
   offsetX: 0,
@@ -64,7 +64,6 @@ const defaultFreytag = {
   peak: 0.5
 }
 
-// TODO: add boundaries
 class Freytag {
   constructor (props) {
     let merged = {...props, ...defaultFreytag}
@@ -78,29 +77,104 @@ class Freytag {
     this.beats = merged.beats
   }
 
-  // TODO: implement me
-  addBeat (name, pos, r) {
-    let [x, y] = [0, 0]
+  addBeat (name, pos, r, w, h) {
+    let [x, y] = [
+      w * this.xAtPos(pos),
+      h * this.yAtPos(pos, w / h)]
     this.beats.push(new StoryBeat(name, x, y, r))
   }
 
+  xAtPos (pos) {
+    return this._offsetX(1) + this._padding(1) + pos * this._length(1)
+  }
+  yAtPos (pos, ar) {
+    if (pos > this.exp && pos <= this.crux) {
+      let slope = (this._bottom(1) - this._peak(1)) / (this.exp - this.crux)
+      // calculate y = mx + b
+      return this._bottom(1) + slope * (pos - this.exp)
+    } else if (pos > this.crux && pos < this.epi) {
+      let slope = (this._peak(1) - this._bottom(1)) / (this.crux - this.epi)
+      // calculate y = mx + b
+      return this._peak(1) + slope * (pos - this.crux)
+    } else {
+      return this._bottom(1)
+    }
+  }
+  _offsetX (width) {
+    return this.offsetX * width
+  }
+  _offsetY (height) {
+    return this.offsetY * height
+  }
+  _padding (d) {
+    return this.padding * d
+  }
+  _peak (h) {
+    return h * (1 - this.peak) - this._offsetY(h) - this._padding(h)
+  }
+  _bottom (h) {
+    return h - this._offsetY(h) - this._padding(h)
+  }
+  _length (w) {
+    return w - 2 * this._padding(w)
+  }
+
+  hook (w, h) {
+    return {
+      x: this._offsetX(w) + this._padding(w) + Math.round(this._length(w) * this.exp),
+      y: this._bottom(h)
+    }
+  }
+
+  climax (w, h) {
+    return {
+      x: this._offsetX(w) + this._padding(w) + Math.round(this._length(w) * this.crux),
+      y: this._peak(h)
+    }
+  }
+
+  denouement (w, h) {
+    return {
+      x: this._offsetX(w) + this._padding(w) + Math.round(this._length(w) * this.epi),
+      y: this._bottom(h)
+    }
+  }
+
+  start (w, h) {
+    return {
+      x: this._offsetX(w) + this._padding(w),
+      y: this._bottom(h)
+    }
+  }
+
+  end (w, h) {
+    return {
+      x: w - this._padding(w),
+      y: this._bottom(h)
+    }
+  }
+
   draw (ctx, width, height) {
-    const left = this.offsetX * width + width * this.padding
-    const right = width * (1 - this.padding)
-    const top = height - this.offsetY * width - this.peak * height
-    const bottom = height - this.offsetY * width
-    const endExposition = left + Math.round(width * this.exp)
-    const beginEpilogue = right - Math.round(width * this.epi)
-    const climax = left + Math.round(width * this.crux)
+    const start = this.start(width, height)
+    const end = this.end(width, height)
+    const hook = this.hook(width, height)
+    const climax = this.climax(width, height)
+    const den = this.denouement(width, height)
 
-    line(ctx, left, bottom, endExposition, bottom)
-    line(ctx, endExposition, bottom, climax, top)
-    line(ctx, climax, top, beginEpilogue, bottom)
-    line(ctx, beginEpilogue, bottom, right, bottom)
+    line(ctx, start.x, start.y, hook.x, hook.y)
+    line(ctx, hook.x, hook.y, climax.x, climax.y)
+    line(ctx, climax.x, climax.y, den.x, den.y)
+    line(ctx, den.x, den.y, end.x, end.y)
 
-    this.beats.push(new StoryBeat('Hook', endExposition, bottom, 10))
-    this.beats.push(new StoryBeat('Climax', climax, top, 10))
-    this.beats.push(new StoryBeat('Denouement', beginEpilogue, bottom, 10))
+    this.addBeat('Hook', this.exp, 10, width, height)
+    this.addBeat('Climax', this.crux, 10, width, height)
+    this.addBeat('Denouement', this.epi, 10, width, height)
+    this.addBeat('#1', 0.2, 10, width, height)
+    this.addBeat('#1.5', 0.25, 10, width, height)
+    this.addBeat('#2', 0.5, 10, width, height)
+    this.addBeat('#2.5', 0.65, 10, width, height)
+    this.addBeat('#3', 0.8, 10, width, height)
+    this.addBeat('#4', 0.85, 10, width, height)
 
     this.beats.forEach(b => b.draw(ctx, width, height))
 
