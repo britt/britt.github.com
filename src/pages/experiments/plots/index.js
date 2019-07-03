@@ -60,17 +60,19 @@ const defaultFreytag = {
   crux: 0.7,
   epi: 0.9,
   offsetEpi: 0.125,
-  beats: [],
   padding: 0.05,
   offsetX: 0,
   offsetY: 0.125,
   peak: 0.5,
-  defBeatRadius: 10
+  defBeatRadius: 10,
+  beats: []
 }
 
 class Freytag {
   constructor (props) {
-    let merged = {...props, ...defaultFreytag}
+    this.addBeat = this.addBeat.bind(this)
+
+    let merged = {...defaultFreytag, ...props}
     this.exp = merged.exp
     this.epi = merged.epi
     this.crux = merged.crux
@@ -78,16 +80,27 @@ class Freytag {
     this.padding = merged.padding
     this.offsetX = merged.offsetX
     this.offsetY = merged.offsetY
-    this.beats = merged.beats
     this.offsetEpi = merged.offsetEpi
+    this.beatBuilders = []
+    this._beats = []
+
+    this.addBeat('Hook', this.exp, 10)
+    this.addBeat('Climax', this.crux, 10)
+    this.addBeat('Denouement', this.epi, 10)
+
+    merged.beats.forEach(b => this.addBeat(b.name, b.pos, b.r))
+    console.log(this.beatBuilders)
   }
 
-  // TODO: defer Beat position evaluation so that we can add them at creation time
-  addBeat (name, pos, r, w, h) {
-    let [x, y] = [
-      w * this.x(pos),
-      h * this.y(pos)]
-    this.beats.push(new StoryBeat(name, x, y, r))
+  addBeat (name, pos, r) {
+    let builder = (w, h) => {
+      let [x, y] = [
+        w * this.x(pos),
+        h * this.y(pos)]
+      return new StoryBeat(name, x, y, r)
+    }
+    builder = builder.bind(this)
+    this.beatBuilders.push(builder)
   }
 
   x (pos) {
@@ -152,24 +165,14 @@ class Freytag {
     const climax = this.climax(width, height)
     const den = this.denouement(width, height)
 
+    // draw the plot line
     line(ctx, start.x, start.y, hook.x, hook.y)
     line(ctx, hook.x, hook.y, climax.x, climax.y)
     line(ctx, climax.x, climax.y, den.x, den.y)
     line(ctx, den.x, den.y, end.x, end.y)
-
-    this.addBeat('Hook', this.exp, 10, width, height)
-    this.addBeat('Climax', this.crux, 10, width, height)
-    this.addBeat('Denouement', this.epi, 10, width, height)
-    this.addBeat('#1', 0.2, 10, width, height)
-    this.addBeat('#2', 0.25, 10, width, height)
-    this.addBeat('#3', 0.5, 10, width, height)
-    this.addBeat('#4', 0.65, 10, width, height)
-    this.addBeat('#5', 0.8, 10, width, height)
-    this.addBeat('#6', 0.85, 10, width, height)
-
-    this.beats.forEach(b => b.draw(ctx, width, height))
-
-    return true
+    // add the story beats
+    this._beats = this.beatBuilders.map(bb => bb(width, height))
+    this._beats.forEach(b => b.draw(ctx, width, height))
   }
 
   _offsetX (width) {
@@ -250,7 +253,17 @@ export default class Plots extends Component {
             width={640}
             height={400}
             drawings={[
-              new Freytag({ exp: 0.15 })
+              new Freytag({
+                exp: 0.15,
+                beats: [
+                  {name: '#1', pos: 0.2, r: 10},
+                  {name: '#2', pos: 0.25, r: 10},
+                  {name: '#3', pos: 0.5, r: 10},
+                  {name: '#4', pos: 0.65, r: 10},
+                  {name: '#5', pos: 0.8, r: 10},
+                  {name: '#6', pos: 0.85, r: 10}
+                ]
+              })
             ]}
           />
         </section>
