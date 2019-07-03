@@ -60,12 +60,11 @@ const defaultFreytag = {
   beats: [],
   padding: 0.05,
   offsetX: 0,
-  offsetY: 50,
-  peak: 200
+  offsetY: 0.125,
+  peak: 0.5
 }
 
-// TODO: addBeat function that takes name, size distance along path
-//    f.addBeat('Climax', 0.7, 20)
+// TODO: add boundaries
 class Freytag {
   constructor (props) {
     let merged = {...props, ...defaultFreytag}
@@ -79,11 +78,17 @@ class Freytag {
     this.beats = merged.beats
   }
 
+  // TODO: implement me
+  addBeat (name, pos, r) {
+    let [x, y] = [0, 0]
+    this.beats.push(new StoryBeat(name, x, y, r))
+  }
+
   draw (ctx, width, height) {
-    const left = this.offsetX + width * this.padding
+    const left = this.offsetX * width + width * this.padding
     const right = width * (1 - this.padding)
-    const top = height - this.offsetY - this.peak
-    const bottom = height - this.offsetY
+    const top = height - this.offsetY * width - this.peak * height
+    const bottom = height - this.offsetY * width
     const endExposition = left + Math.round(width * this.exp)
     const beginEpilogue = right - Math.round(width * this.epi)
     const climax = left + Math.round(width * this.crux)
@@ -92,6 +97,7 @@ class Freytag {
     line(ctx, endExposition, bottom, climax, top)
     line(ctx, climax, top, beginEpilogue, bottom)
     line(ctx, beginEpilogue, bottom, right, bottom)
+
     this.beats.push(new StoryBeat('Hook', endExposition, bottom, 10))
     this.beats.push(new StoryBeat('Climax', climax, top, 10))
     this.beats.push(new StoryBeat('Denouement', beginEpilogue, bottom, 10))
@@ -131,6 +137,7 @@ export default class Plots extends Component {
           <h2>Plots</h2>
         </section>
         <section>
+          <h3>Freytag Triangle</h3>
           <Canvas
             width={640}
             height={400}
