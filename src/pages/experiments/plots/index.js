@@ -1,6 +1,8 @@
 import React, {Component, PureComponent} from 'react'
 import Helmet from 'react-helmet'
 
+// TODO: decompose into files
+
 function configureCanvas (canvas, w, h) {
   const context = canvas.getContext('2d')
   const {devicePixelRatio} = window
@@ -57,11 +59,13 @@ const defaultFreytag = {
   exp: 0.1,
   crux: 0.7,
   epi: 0.9,
+  offsetEpi: 0.125,
   beats: [],
   padding: 0.05,
   offsetX: 0,
   offsetY: 0.125,
-  peak: 0.5
+  peak: 0.5,
+  defBeatRadius: 10
 }
 
 class Freytag {
@@ -75,48 +79,35 @@ class Freytag {
     this.offsetX = merged.offsetX
     this.offsetY = merged.offsetY
     this.beats = merged.beats
+    this.offsetEpi = merged.offsetEpi
   }
 
+  // TODO: defer Beat position evaluation so that we can add them at creation time
   addBeat (name, pos, r, w, h) {
     let [x, y] = [
-      w * this.xAtPos(pos),
-      h * this.yAtPos(pos, w / h)]
+      w * this.x(pos),
+      h * this.y(pos)]
     this.beats.push(new StoryBeat(name, x, y, r))
   }
 
-  xAtPos (pos) {
+  x (pos) {
     return this._offsetX(1) + this._padding(1) + pos * this._length(1)
   }
-  yAtPos (pos, ar) {
-    if (pos > this.exp && pos <= this.crux) {
+
+  y (pos) {
+    if (pos <= this.exp) {
+      return this._bottom(1)
+    } else if (pos > this.exp && pos <= this.crux) {
       let slope = (this._bottom(1) - this._peak(1)) / (this.exp - this.crux)
       // calculate y = mx + b
       return this._bottom(1) + slope * (pos - this.exp)
     } else if (pos > this.crux && pos < this.epi) {
-      let slope = (this._peak(1) - this._bottom(1)) / (this.crux - this.epi)
+      let slope = (this._peak(1) - this.denouement(1, 1).y) / (this.crux - this.epi)
       // calculate y = mx + b
       return this._peak(1) + slope * (pos - this.crux)
     } else {
-      return this._bottom(1)
+      return this._bottom(1) - this._offsetEpi(1)
     }
-  }
-  _offsetX (width) {
-    return this.offsetX * width
-  }
-  _offsetY (height) {
-    return this.offsetY * height
-  }
-  _padding (d) {
-    return this.padding * d
-  }
-  _peak (h) {
-    return h * (1 - this.peak) - this._offsetY(h) - this._padding(h)
-  }
-  _bottom (h) {
-    return h - this._offsetY(h) - this._padding(h)
-  }
-  _length (w) {
-    return w - 2 * this._padding(w)
   }
 
   hook (w, h) {
@@ -136,7 +127,7 @@ class Freytag {
   denouement (w, h) {
     return {
       x: this._offsetX(w) + this._padding(w) + Math.round(this._length(w) * this.epi),
-      y: this._bottom(h)
+      y: this._bottom(h) - this._offsetEpi(h)
     }
   }
 
@@ -150,7 +141,7 @@ class Freytag {
   end (w, h) {
     return {
       x: w - this._padding(w),
-      y: this._bottom(h)
+      y: this._bottom(h) - this._offsetEpi(h)
     }
   }
 
@@ -170,15 +161,57 @@ class Freytag {
     this.addBeat('Climax', this.crux, 10, width, height)
     this.addBeat('Denouement', this.epi, 10, width, height)
     this.addBeat('#1', 0.2, 10, width, height)
-    this.addBeat('#1.5', 0.25, 10, width, height)
-    this.addBeat('#2', 0.5, 10, width, height)
-    this.addBeat('#2.5', 0.65, 10, width, height)
-    this.addBeat('#3', 0.8, 10, width, height)
-    this.addBeat('#4', 0.85, 10, width, height)
+    this.addBeat('#2', 0.25, 10, width, height)
+    this.addBeat('#3', 0.5, 10, width, height)
+    this.addBeat('#4', 0.65, 10, width, height)
+    this.addBeat('#5', 0.8, 10, width, height)
+    this.addBeat('#6', 0.85, 10, width, height)
 
     this.beats.forEach(b => b.draw(ctx, width, height))
 
     return true
+  }
+
+  _offsetX (width) {
+    return this.offsetX * width
+  }
+  _offsetY (height) {
+    return this.offsetY * height
+  }
+  _offsetEpi (height) {
+    return this.offsetEpi * height
+  }
+  _padding (d) {
+    return this.padding * d
+  }
+  _peak (h) {
+    return h * (1 - this.peak) - this._offsetY(h) - this._padding(h)
+  }
+  _bottom (h) {
+    return h - this._offsetY(h) - this._padding(h)
+  }
+  _length (w) {
+    return w - 2 * this._padding(w)
+  }
+}
+
+class InMediaRes {
+  draw (ctx, width, height) {
+  }
+}
+
+class ThreeAct extends Freytag {
+  draw (ctx, width, height) {
+  }
+}
+
+class DoubleFreytag {
+  draw (ctx, width, height) {
+  }
+}
+
+class Fichtean extends Freytag {
+  draw (ctx, width, height) {
   }
 }
 
@@ -190,6 +223,7 @@ class Canvas extends PureComponent {
       if (!c) {
         return
       }
+
       const ctx = configureCanvas(c, width, height)
       let drawings = this.props.drawings || []
       drawings.forEach(d => d.draw(ctx, width, height))
@@ -216,9 +250,7 @@ export default class Plots extends Component {
             width={640}
             height={400}
             drawings={[
-              new Freytag({
-                exp: 0.15
-              })
+              new Freytag({ exp: 0.15 })
             ]}
           />
         </section>
