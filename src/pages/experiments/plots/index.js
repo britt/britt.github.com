@@ -70,14 +70,19 @@ const defaultFreytag = {
   offsetX: 0,
   offsetY: 0.125,
   peak: 0.5,
-  defBeatRadius: 10,
+  defBeatRadius: 15,
   beats: [],
   xScale: 1,
-  yScale: 1
+  yScale: 1,
+  defaultBeats: {
+    exp: 'Hook',
+    crux: 'Climax',
+    epi: 'Denouement'
+  }
 }
 
-const inMediaRes = {
-  exp: 0.1,
+const defaultInMediaRes = {
+  exp: 0.15,
   crux: 0.8,
   epi: 0.9,
   offsetEpi: -0.1,
@@ -85,10 +90,35 @@ const inMediaRes = {
   offsetX: 0,
   offsetY: 0.25,
   peak: 0.4,
-  defBeatRadius: 10,
+  defBeatRadius: 15,
   beats: [],
   xScale: 1,
-  yScale: 1
+  yScale: 1,
+  defaultBeats: {
+    exp: 'Middle Crisis',
+    crux: 'Climax',
+    epi: 'Resolution'
+  }
+}
+
+const defaultThreeAct = {
+  exp: 0,
+  crux: 0.85,
+  epi: 1,
+  offsetEpi: 0,
+  padding: 0.1,
+  offsetX: 0,
+  offsetY: 0.25,
+  peak: 0.4,
+  defBeatRadius: 15,
+  beats: [],
+  xScale: 1,
+  yScale: 1,
+  defaultBeats: {
+    exp: 'Beginning',
+    crux: 'Climax of Act 3',
+    epi: 'End'
+  }
 }
 
 // TODO: add scaling factor
@@ -109,9 +139,12 @@ class Freytag {
     this.beatBuilders = []
     this._beats = []
 
-    this.addBeat('Hook', this.exp, 15)
-    this.addBeat('Climax', this.crux, 15)
-    this.addBeat('Denouement', this.epi, 15)
+    const hook = merged.defaultBeats.exp
+    this.addBeat(hook, this.exp, merged.defBeatRadius)
+    const crux = merged.defaultBeats.crux
+    this.addBeat(crux, this.crux, merged.defBeatRadius)
+    const den = merged.defaultBeats.epi
+    this.addBeat(den, this.epi, merged.defBeatRadius)
 
     merged.beats.forEach(b => this.addBeat(b.name, b.pos, b.r))
   }
@@ -224,20 +257,13 @@ class Freytag {
 
 class InMediaRes extends Freytag {
   constructor (props) {
-    let merged = {...inMediaRes, ...props}
-    super({...inMediaRes, ...props})
-    this.beatBuilders = []
-    // TODO: override default beats instead
-    this.addBeat('Middle Crisis', this.exp, 15)
-    this.addBeat('Climax', this.crux, 15)
-    this.addBeat('Resolution', this.epi, 15)
-
-    merged.beats.forEach(b => this.addBeat(b.name, b.pos, b.r))
+    super({...defaultInMediaRes, ...props})
   }
 }
 
 class ThreeAct extends Freytag {
-  draw (ctx, width, height) {
+  constructor (props) {
+    super({...defaultThreeAct, ...props})
   }
 }
 
@@ -321,6 +347,31 @@ export default class Plots extends Component {
           />
         </section>
         <section>
+          <h3>Classic Three Act Structure</h3>
+          <Canvas
+            width={640}
+            height={400}
+            drawings={[
+              new ThreeAct({
+                beats: [
+                  {name: 'Climax of Act 1', pos: 0.3, r: 10},
+                  {name: 'Midpoint\n(a big twist)', pos: 0.475, r: 10},
+                  {name: 'Climax of Act 2', pos: 0.65, r: 10},
+                  {name: 'Inciting Incident', pos: 0.1, r: 5},
+                  {name: 'Second Thoughts', pos: 0.2, r: 5},
+                  {name: 'Obstacle', pos: 0.375, r: 5},
+                  {name: 'Obstacle', pos: 0.425, r: 5},
+                  {name: 'Obstacle', pos: 0.525, r: 5},
+                  {name: 'Disaster', pos: 0.575, r: 5},
+                  {name: 'Crisis', pos: 0.6, r: 5},
+                  {name: 'Obstacles', pos: 0.9, r: 5},
+                  {name: 'Denouement', pos: 0.95, r: 5}
+                ]
+              })
+            ]}
+          />
+        </section>
+        <section>
           <h3>In Media Res</h3>
           <Canvas
             width={640}
@@ -328,8 +379,8 @@ export default class Plots extends Component {
             drawings={[
               new InMediaRes({
                 beats: [
-                  {name: '#1', pos: 0.2, r: 10},
-                  {name: '#2', pos: 0.25, r: 10},
+                  {name: '#1', pos: 0.25, r: 10},
+                  {name: '#2', pos: 0.3, r: 10},
                   {name: '#3', pos: 0.5, r: 10},
                   {name: '#4', pos: 0.65, r: 10},
                   {name: '#5', pos: 0.75, r: 10},
