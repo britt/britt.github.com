@@ -30,12 +30,18 @@ function line (ctx, startX, startY, endX, endY, color = '#000') {
   ctx.stroke()
 }
 
-function circle (ctx, x, y, r, color = '#000') {
+function circle (ctx, x, y, r, color = '#000', fillColor = '#000') {
+  let resetStroke = ctx.strokeStyle
+  let resetFill = ctx.fillStyle
   ctx.strokeStyle = color
+  ctx.fillStyle = fillColor
   ctx.beginPath()
   ctx.arc(x, y, r, Math.PI * 2, 0)
   ctx.closePath()
   ctx.stroke()
+  ctx.fill()
+  ctx.strokeStyle = resetStroke
+  ctx.fillStyle = resetFill
 }
 
 class StoryBeat {
@@ -48,7 +54,7 @@ class StoryBeat {
 
   draw (ctx, width, height) {
     const {x, y, r} = this
-    circle(ctx, x, y, r)
+    circle(ctx, x, y, r, '#000', '#fff')
     ctx.font = 'Montserrat, sans-serif'
     ctx.textAlign = 'center'
     ctx.fillText(this.name, x, y - r * 1.3)
@@ -65,9 +71,28 @@ const defaultFreytag = {
   offsetY: 0.125,
   peak: 0.5,
   defBeatRadius: 10,
-  beats: []
+  beats: [],
+  xScale: 1,
+  yScale: 1
 }
 
+const inMediaRes = {
+  exp: 0.1,
+  crux: 0.8,
+  epi: 0.9,
+  offsetEpi: -0.1,
+  padding: 0.05,
+  offsetX: 0,
+  offsetY: 0.25,
+  peak: 0.4,
+  defBeatRadius: 10,
+  beats: [],
+  xScale: 1,
+  yScale: 1
+}
+
+// TODO: add scaling factor
+// TODO: scaling demands better offset model
 class Freytag {
   constructor (props) {
     this.addBeat = this.addBeat.bind(this)
@@ -84,12 +109,11 @@ class Freytag {
     this.beatBuilders = []
     this._beats = []
 
-    this.addBeat('Hook', this.exp, 10)
-    this.addBeat('Climax', this.crux, 10)
-    this.addBeat('Denouement', this.epi, 10)
+    this.addBeat('Hook', this.exp, 15)
+    this.addBeat('Climax', this.crux, 15)
+    this.addBeat('Denouement', this.epi, 15)
 
     merged.beats.forEach(b => this.addBeat(b.name, b.pos, b.r))
-    console.log(this.beatBuilders)
   }
 
   addBeat (name, pos, r) {
@@ -198,8 +222,17 @@ class Freytag {
   }
 }
 
-class InMediaRes {
-  draw (ctx, width, height) {
+class InMediaRes extends Freytag {
+  constructor (props) {
+    let merged = {...inMediaRes, ...props}
+    super({...inMediaRes, ...props})
+    this.beatBuilders = []
+    // TODO: override default beats instead
+    this.addBeat('Middle Crisis', this.exp, 15)
+    this.addBeat('Climax', this.crux, 15)
+    this.addBeat('Resolution', this.epi, 15)
+
+    merged.beats.forEach(b => this.addBeat(b.name, b.pos, b.r))
   }
 }
 
@@ -209,7 +242,14 @@ class ThreeAct extends Freytag {
 }
 
 class DoubleFreytag {
+  constructor (a, b) {
+    this._act1 = new Freytag(a)
+    this._act2 = new Freytag(b)
+  }
+
   draw (ctx, width, height) {
+    this._act1.draw(ctx, width, height)
+    this._act2.draw(ctx, width, height)
   }
 }
 
@@ -244,11 +284,24 @@ export default class Plots extends Component {
           </style>
 
         </Helmet>
-        <section>
+        <header>
           <h2>Plots</h2>
-        </section>
+        </header>
         <section>
-          <h3>Freytag Triangle</h3>
+          <h3>Freytag Pyramid</h3>
+          <p>
+            The classic five part dramatic structure consisting of:
+            <ol>
+              <li>Exposition</li>
+              <li>Rising Action</li>
+              <li>Climax</li>
+              <li>Falling Action</li>
+              <li>Denouement</li>
+            </ol>
+          </p>
+          <p>
+            <em><a href='https://en.wikipedia.org/wiki/Dramatic_structure' title='wikipedia article on the Freytag Pyramid'>wikipedia</a></em>
+          </p>
           <Canvas
             width={640}
             height={400}
@@ -260,8 +313,58 @@ export default class Plots extends Component {
                   {name: '#2', pos: 0.25, r: 10},
                   {name: '#3', pos: 0.5, r: 10},
                   {name: '#4', pos: 0.65, r: 10},
-                  {name: '#5', pos: 0.8, r: 10},
+                  {name: '#5', pos: 0.75, r: 10},
+                  {name: '#6', pos: 0.8, r: 10}
+                ]
+              })
+            ]}
+          />
+        </section>
+        <section>
+          <h3>In Media Res</h3>
+          <Canvas
+            width={640}
+            height={400}
+            drawings={[
+              new InMediaRes({
+                beats: [
+                  {name: '#1', pos: 0.2, r: 10},
+                  {name: '#2', pos: 0.25, r: 10},
+                  {name: '#3', pos: 0.5, r: 10},
+                  {name: '#4', pos: 0.65, r: 10},
+                  {name: '#5', pos: 0.75, r: 10},
                   {name: '#6', pos: 0.85, r: 10}
+                ]
+              })
+            ]}
+          />
+        </section>
+        <section>
+          <h3>Double Freytag</h3>
+          <Canvas
+            width={640}
+            height={400}
+            drawings={[
+              new DoubleFreytag({
+                exp: 0.15,
+                beats: [
+                  {name: '#1', pos: 0.2, r: 10},
+                  {name: '#2', pos: 0.25, r: 10},
+                  {name: '#3', pos: 0.5, r: 10},
+                  {name: '#4', pos: 0.65, r: 10},
+                  {name: '#5', pos: 0.75, r: 10},
+                  {name: '#6', pos: 0.8, r: 10}
+                ]
+              },
+              {
+                exp: 0.15,
+                beats: [
+                  {name: '#1', pos: 0.2, r: 10},
+                  {name: '#2', pos: 0.25, r: 10},
+                  {name: '#3', pos: 0.5, r: 10},
+                  {name: '#4', pos: 0.65, r: 10},
+                  {name: '#5', pos: 0.75, r: 10},
+                  {name: '#6', pos: 0.8, r: 10}
                 ]
               })
             ]}
