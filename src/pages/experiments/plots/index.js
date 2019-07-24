@@ -61,6 +61,47 @@ class StoryBeat {
   }
 }
 
+class PlotSpec {
+  constructor (props = {}) {
+    // end of the exposition
+    this.exp = props.exp
+    // climax
+    this.crux = props.crux
+    // beginning of the epilogue
+    this.epi = props.epi
+    // tension level of the epilogue relative to the exposition
+    this.offsetEpi = props.offsetEpi
+    // tension level at climax
+    this.peak = props.peak
+    // story beats
+    this.beats = props.beats
+    // labels for the default story beats
+    //    - end of exposition (aka Hook)
+    //    - climax
+    //    - denouement
+    this.defaultBeats = props.defaultBeats
+  }
+}
+
+class PlotDisplaySpec {
+  constructor (plot, props = {}) {
+    // the plot specification
+    this.plotSpect = plot
+    // global padding (frame)
+    this.padding = props.padding
+    // x axis offset for diagram
+    this.offsetX = props.offsetX
+    // y axis offset for diagram
+    this.offsetY = props.offsetY
+    // radius of default story beats
+    this.defBeatRadius = props.defBeatRadius
+    // x axis scaling factor
+    this.xScale = props.xScale
+    // y axis scaling factor
+    this.yScale = props.yScale
+  }
+}
+
 const defaultFreytag = {
   exp: 0.1,
   crux: 0.7,
