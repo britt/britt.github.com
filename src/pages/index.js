@@ -1,17 +1,14 @@
 import React from 'react'
 import Link from 'gatsby-link'
 
-export default ({route}) => {
+export default ({ route }) => {
   return (
     <main className='container'>
       <section className='introduction'>
-        I live in <del>Salem</del> Amity with my family. I build awesome stuff at <a href='http://www.strongdm.com'>StrongDM</a>. You can find me on the internet at:
+        I live in Bend with my family. I build awesome stuff at <a href='http://www.strongdm.com'>StrongDM</a>. You can find me on the internet at:
       </section>
       <section className='list-of-links'>
         <ul>
-          <li>
-            <a href='https://refactorcamp.org/@britt' title='My Mastodon' rel='me'><i className='fab fa-mastodon fa-fw' /><span>britt@refactorcamp.org</span></a>
-          </li>
           <li>
             <a href='https://twitter.com/britt' title='My Twitter Feed' rel='me'><i className='fab fa-twitter fa-fw' /><span>@britt</span></a>
           </li>
@@ -29,7 +26,6 @@ export default ({route}) => {
           </li>
           <li>
             <a href='/britt.gpg' title='PGP/GPG Public Key'><i className='fa fa-lock fa-fw' /><span>PGP/GPG Key</span></a> &mdash;&nbsp;
-            <a href='https://keybase.io/britt' title='Keybase'><span>Keybase</span></a> &mdash;&nbsp;
             <a href='http://pgp.mit.edu/pks/lookup?op=vindex&search=0x7C887E4EE58C84B3' title='MIT PGP Public Key Server'><span>MIT</span></a>
           </li>
         </ul>
