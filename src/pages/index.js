@@ -35,10 +35,10 @@ export default ({ route }) => {
         <ul>
           <li>
             <Link to='/reading/'>
-              What am I reading?
+              What am I reading? 
             </Link>
             <summary>
-              A weekly summary of articles that I have read and liked.
+              A weekly summary of articles that I have read and liked. <em>Dormant since November 2020.</em>
             </summary>
           </li>
           <li>
