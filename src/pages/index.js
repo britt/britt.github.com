@@ -33,14 +33,14 @@ export default ({ route }) => {
       <section className='list-of-links'>
         <h3>Projects</h3>
         <ul>
-          <li>
+          {/* <li>
             <Link to='/reading/'>
               What am I reading? 
             </Link>
             <summary>
               A weekly summary of articles that I have read and liked. <em>Dormant since November 2020.</em>
             </summary>
-          </li>
+          </li> */}
           <li>
             <a href='https://github.com/britt/testivus' title='Testivus: let your code know how it disappoints you'>
               Testivus

@@ -185,17 +185,17 @@ module.exports = {
     },
     `gatsby-transformer-remark`,
     `gatsby-plugin-netlify`,
-    {
-      resolve: 'gatsby-source-google-sheets',
-      options: {
-        spreadsheetId: spreadsheetId,
-        worksheetTitle: worksheetTitle,
-        credentials: {
-          client_email: googleSheetEmail,
-          private_key: googleSheetPrivateKey
-        }
-      }
-    },
+    // {
+    //   resolve: 'gatsby-source-google-sheets',
+    //   options: {
+    //     spreadsheetId: spreadsheetId,
+    //     worksheetTitle: worksheetTitle,
+    //     credentials: {
+    //       client_email: googleSheetEmail,
+    //       private_key: googleSheetPrivateKey
+    //     }
+    //   }
+    // },
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
