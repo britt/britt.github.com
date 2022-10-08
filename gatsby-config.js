@@ -185,7 +185,17 @@ module.exports = {
     },
     `gatsby-transformer-remark`,
     `gatsby-plugin-netlify`,
-    // {
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://brittcrawford.com`
+      }
+    },
+    feedConfig
+  ]
+}
+
+ // {
     //   resolve: 'gatsby-source-google-sheets',
     //   options: {
     //     spreadsheetId: spreadsheetId,
@@ -196,12 +206,3 @@ module.exports = {
     //     }
     //   }
     // },
-    {
-      resolve: `gatsby-plugin-canonical-urls`,
-      options: {
-        siteUrl: `https://brittcrawford.com`
-      }
-    },
-    feedConfig
-  ]
-}
