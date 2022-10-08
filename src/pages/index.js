@@ -66,6 +66,14 @@ export default ({ route }) => {
             </summary>
           </li>
           <li>
+            <Link to='We Could be Heroes, Just for One Day.pdf'>
+              We Could be Heroes, Just for One Day
+            </Link>
+            <summary>
+              A free one-page roleplaying game where every player is David Bowie.
+            </summary>
+          </li>
+          <li>
             <a href='https://github.com/britt/britt.github.com'>
               This site
             </a>
