@@ -12,6 +12,7 @@ import touchIcon144 from './icons/apple-touch-icon-144-precomposed.png'
 import '../styles/gutenberg.scss'
 
 export default ({data, children}) => {
+  console.log(data)
   const meta = data.site.siteMetadata
   return (
     <VCard className='container home-page'>
