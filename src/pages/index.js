@@ -66,7 +66,7 @@ export default ({ route }) => {
             </summary>
           </li>
           <li>
-            <Link to='We Could be Heroes, Just for One Day.pdf'>
+            <Link to='/we_could_be_heroes.pdf'>
               We Could be Heroes, Just for One Day
             </Link>
             <summary>
