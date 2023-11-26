@@ -1,5 +1,12 @@
-.DS_Store
-_site/*
+# Project dependencies
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
+node_modules
 node_modules/*
-.ruby-gemset
-.ruby-version
+.cache/
+
+# Build directory
+public/
+.DS_Store
+yarn-error.log
+.vscode
+.hugo_build.lock

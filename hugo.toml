@@ -1,0 +1,68 @@
+baseURL = 'https://brittcrawford.com/'
+languageCode = 'en-us'
+title = 'brittcrawford.com'
+theme = "hugo-coder"
+languagecode = "en"
+defaultcontentlanguage = "en"
+
+paginate = 20
+
+[markup.highlight]
+style = "github-dark"
+
+[params]
+  author = "Britt Crawford"
+  description = "Britt Crawford's personal website"
+  keywords = "blog,personal,recipes,cocktails"
+  info = "I live in Bend with my family. I build awesome stuff at [StrongDM](https://www.strongdm.com)."
+  #avatarurl = "images/avatar.jpg"
+  #gravatar = "john.doe@example.com"
+
+  favicon_32 = "/img/favicon.png"
+  favicon_16 = "/img/favicon.png"
+  touchicon = "/img/apple-touch-icon-144-precomposed.png"
+
+  since = 1999
+
+  enableTwemoji = true
+
+  colorScheme = "auto"
+  hidecolorschemetoggle = false
+
+  # customCSS = ["css/custom.css"]
+  # customSCSS = ["scss/custom.scss"]
+  # customJS = ["js/custom.js"]
+
+[taxonomies]
+  category = "categories"
+  series = "series"
+  tag = "tags"
+  author = "authors"
+
+# Social links
+[[params.social]]
+  name = "Github"
+  icon = "fa fa-github fa-2x"
+  weight = 1
+  url = "https://github.com/britt/"
+[[params.social]]
+  name = "LinkedIn"
+  icon = "fa fa-linkedin fa-2x"
+  weight = 2
+  url = "http://www.linkedin.com/in/brittcrawford/"
+[[params.social]]
+  name = "Bitcoin"
+  icon = "fa fa-bitcoin fa-2x"
+  weight = 3
+  url = "bitcoin:17nHbStzmWgcBEBSgVFT94Eo5hoq9h7Hh1"
+[[params.social]]
+  name = "PGP/GOPG Key"
+  icon = "fa fa-lock fa-2x"
+  weight = 4
+  url = "https://brittcrawford.com/britt.gpg"
+
+# Menu links
+[[menu.main]]
+  name = "Projects"
+  weight = 1
+  url  = "projects/"
