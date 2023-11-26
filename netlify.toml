@@ -8,12 +8,13 @@ build]
 [context.production.environment]
   HUGO_ENV           = "production"
   HUGO_ENABLEGITINFO = "true"
+  HUGO_VERSION = "0.120.4"
 
 [context.split1]
   command = "hugo --gc --minify --enableGitInfo"
 
-  [context.split1.environment]
-    HUGO_ENV = "production"
+[context.split1.environment]
+  HUGO_ENV = "production"
 
 [context.deploy-preview]
   command = "hugo --gc --minify --buildFuture -b $DEPLOY_PRIME_URL"
@@ -28,6 +29,4 @@ build]
   from   = "/npmjs/*"
   to     = "/npmjs/"
   status = 200
-  
-[context.production.environment]
-  HUGO_VERSION = "0.120.4"
+
