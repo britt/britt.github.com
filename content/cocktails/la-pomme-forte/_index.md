@@ -1,10 +1,8 @@
 ---
-title: La Pomme Forte Recipe
+title: La Pomme Forte
 date: 2014-04-01
 path: /cocktails/la-pomme-forte/
 ---
-
-## La Pomme Forte
 
 A refreshing and delicious Apple Jack cocktail named in bad French. Right click and [save the image](#highball-import) to import into [Highball](http://www.studioneat.com/products/highball).
 
