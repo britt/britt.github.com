@@ -1,10 +1,10 @@
 ---
-title: Love Dares Not
+title: Daresnot
 date: 2018-03-08
 path: /daresnot/
 ---
 
-## Dare Snot
+## electronic voting with time limited privacy
 
 Cory Doctorow's Walkaway, was my favorite novel of 2018. For a long time science fiction felt dated to me, everything I read felt stale. The real world had become far weirder and felt more futuristic. I've always particularly liked the sort of sci-fi that grapples with the big ideas. The sort that analyzes the hopes and anxieties of the present by telling stories about the future. Sometime in late 00s it felt like sci-fi gave up on these kinds of stories and settled for comfortable genre stories. It was like no one could properly integrate smartphones, ubiquitous mass surveillance, and the sheer weirdness of the current media environment into their storytelling. _(Except maybe Warren Ellis and Charlie Stross, but they had done it a decade earlier and moved on to other things.)_ Then I read Walkaway and it felt **new**. The book really gets hold of a big idea and wrestles it to the ground. 
 
@@ -33,10 +33,10 @@ I read this and thought, **"This is a terrible idea!"**.
   that thing, or at least cheat and take a peak.
   ```
 
-* What stops people from trolling and posting issues like:
+* What do you do when the assholes show up and post issues like:
   
   ```plaintext
-  Who thinks Dave is fat and ugly and should just kill himself already?
+  Who thinks Dave is a fat, ugly, poedophile and should just kill himself already?
   ```
 
 * What if the voters don't come back to reveal their votes?
@@ -56,31 +56,7 @@ So, I decided to treat it as charitably as possible. I'll assume it works and tr
 4. **I purposefully did not search for an existing solution** in the literature. I was more interested in the puzzle than using the end product. So, if I propose something that someone else has already thought of just tell me. I'll be happy to hear it. It means I'm on the right track.
 5. I purposefully avoided homomorphic encryption because I don't understand it well enough to know how using it might affect verifiability.
 
-### Requirements
-
-* Arbitrary consensus calculation, not everyone has to vote.
-* Proof against arbiter defection
-* Proof against voter defection
-  * Lying about votes
-  * Failing to reveal votes
-
-### Limitations of original formulation
-
-* Binary questions
-* Voter defection
-  * not deanonymizing
-  * voting multiple times
-* How can you trust the central system?
-
-### Attack Vectors
-
-* Walking the social graph
-* Timing
-* Arbiter snooping
-
-### Protocol
-
-#### As described in the novel
+## The Protocol as described in the novel
 
 1. An issue to be voted upon is declared. It is a yes/no proposition.
 2. Voters who agree with the proposition generate a one-time symmetric encryption key.
@@ -90,6 +66,79 @@ So, I decided to treat it as charitably as possible. I'll assume it works and tr
 6. They monitor the issue and watch for the signal to decloak.
 7. When the signal is sent they transmit their one-time key to the server.
 8. The server waits until a sufficient number of keys have been received, then reveals the votes.
+
+### This has obvious problems
+
+#### Problem #1: Shills
+
+#### Problem #2: OpSec
+
+#### Problem #3: Trust
+
+#### Problem #4: _WHAT IF NO ONE COMES BACK?_
+
+#### Summary of the limitations of original formulation
+
+* Binary questions
+* Voter defection
+  * not deanonymizing
+  * voting multiple times
+* How can you trust the central system?
+
+## Reformulating the protocol
+
+### Properties of Voting Systems: Choose 3
+
+1. Integrity - _correctness of the vote count_
+2. Authenticity - _proof of voter identity_
+3. Verifiability - _validation of the vote count afterward_
+4. Confidentiality - _privacy for voters_
+
+### Problem Statement: _To design a voting system with_
+
+* Integrity - _Accurate vote count_
+* Authenticity - _Protection against double voting and shill voting_
+* Verifiability - _Votes can be validated and linked to voters afterward_
+* Confidentiality - _Votes are secret while voting, public afterward_
+
+_...and you don't have to trust a central authority._
+
+### Requirements
+
+* Arbitrary consensus calculation, not everyone has to vote.
+* Proof against arbiter defection
+* Proof against voter defection
+  * Lying about votes
+  * Failing to reveal votes
+
+## My Solution
+
+My Solution which won't fit on a slide.
+*An issue is posted and options for voting are set.*
+
+1. The set of eligible voters _(V)_ is defined.
+1. A minimum quorum _(Q)_ to decide the issue is chosen. _Q <= V_
+1. A minimum number of returning voters _(R)_ is declared. _R <= Q_
+1. A voter generates a symmetric key _(VOTEKEY)_ and a vote message.
+1. They encrypt the vote message with _VOTEKEY_ and a salt and digitally sign the crypt text.
+1. They split the key into _V-1_ shares using Shamir's Secret Sharing with _R_ shares needed to reassemble.
+1. They encrypt one share for each other voter using that voter's public key.
+1. They post the votes and the shares publicly.
+1. When a quorum is reached users decrypt their key shares and post them publicly.
+1. Once _R_ voters post their shares all votes are decrypted.
+
+
+### Attack Vectors
+
+* Walking the social graph
+* Timing
+* Arbiter snooping
+
+#### Known Attacks
+
+* Shill attack
+* pwning the server
+* Reliance on voter OpSec
 
 ##### Limitations
 
