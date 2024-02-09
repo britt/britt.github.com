@@ -4,7 +4,7 @@ date: 2014-04-01
 path: /cocktails/johnny-appleseed/
 ---
 
-An variant of the [Rattlesnake]() using Apple Jack instead of Rye. Right click and [save the image](#highball-import) to import into [Highball](http://www.studioneat.com/products/highball).
+An variant of the [Rattlesnake]() using Apple Jack instead of Rye. 
 
 ### Ingredients
 

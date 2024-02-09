@@ -4,7 +4,7 @@ date: 2014-04-01
 path: /cocktails/la-pomme-forte/
 ---
 
-A refreshing and delicious Apple Jack cocktail named in bad French. Right click and [save the image](#highball-import) to import into [Highball](http://www.studioneat.com/products/highball).
+A refreshing and delicious Apple Jack cocktail named in bad French. 
 
 ### Ingredients
 

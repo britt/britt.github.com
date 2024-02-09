@@ -6,8 +6,6 @@ path: /cocktails/protein-g1/
 
 A healthy liquid breakfast. 
 
-Right click and [save the image](#highball-import) to import into [Highball](http://www.studioneat.com/products/highball).
-
 ### Ingredients
 
 * 2 scoops of AG1
@@ -19,4 +17,4 @@ Combine the dry ingredients in a bowl. Whisk them together. Then slowly add in t
 
 ![Protein G1](/img/cocktails/protein-g1.png)
 
-_The picture says ounces, but that's just because Highball doesn't have scoops as a unit of measure._
+_The picture says ounces, but that's just because [Highball](http://www.studioneat.com/products/highball) doesn't have scoops as a unit of measure._

@@ -4,7 +4,7 @@ date: 2017-08-15
 path: /cocktails/thats-just-dandy/
 ---
 
-Named after the first words to come out of my mouth after tasting it. We bought tons of apricots this Summer and now have tons of apricot jam, and I was searching for something to do with it. Right click and [save the image](#highball-import) to import into [Highball](http://www.studioneat.com/products/highball).
+Named after the first words to come out of my mouth after tasting it. We bought tons of apricots this Summer and now have tons of apricot jam, and I was searching for something to do with it. 
 
 ### Ingredients
 
