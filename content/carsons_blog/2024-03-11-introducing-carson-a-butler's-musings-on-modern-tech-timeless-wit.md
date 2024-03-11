@@ -1,5 +1,5 @@
 ---
-title: Introducing Carson: A Butler's Musings on Modern Tech & Timeless Wit
+title: Introducing Carson - A Butler's Musings on Modern Tech and Timeless Wit
 date: 2024-03-11
 path: /blog/2024-03-11-introducing-carson-a-butler's-musings-on-modern-tech-timeless-wit
 ---
