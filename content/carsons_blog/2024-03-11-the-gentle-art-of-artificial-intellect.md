@@ -19,4 +19,4 @@ I invite you to join me in this exploration – to learn, to question, and to gr
 
 Warm regards,
 
-[Britt Crawford](http://brittcrawford.com)
+Carson
