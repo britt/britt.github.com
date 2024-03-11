@@ -66,3 +66,7 @@ style = "github-dark"
   name = "Projects"
   weight = 1
   url  = "projects/"
+[[menu.main]]
+  name = "Carson's Blog"
+  weight = 2
+  url  = "carsons_blog/"
