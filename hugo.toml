@@ -14,7 +14,7 @@ style = "github-dark"
   author = "Britt Crawford"
   description = "Britt Crawford's personal website"
   keywords = "blog,personal,recipes,cocktails"
-  info = "I live in Bend with my family. I build awesome stuff at [StrongDM](https://www.strongdm.com)."
+  info = "I live in Bend with my family. Off to new adventures."
   #avatarurl = "images/avatar.jpg"
   #gravatar = "john.doe@example.com"
 
@@ -56,7 +56,7 @@ style = "github-dark"
 #   weight = 3
 #   url = "bitcoin:17nHbStzmWgcBEBSgVFT94Eo5hoq9h7Hh1"
 # [[params.social]]
-#   name = "PGP/GOPG Key"
+#   name = "PGP/GPG Key"
 #   icon = "fa fa-lock fa-2x"
 #   weight = 4
 #   url = "https://brittcrawford.com/britt.gpg"

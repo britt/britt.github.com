@@ -1,12 +1,10 @@
 ---
-title: Yippee Kay Yay Motherfucker! Recipe
+title: Yippee Kay Yay Motherfucker!
 date: 2014-03-19
 path: /cocktails/yippee-kay-yay-motherfucker/
 ---
 
-## Yippee Kay Yay Motherfucker!
-
-A spicy variant on the Old Fashioned, a tribute to [John McClane](https://en.wikipedia.org/wiki/John_McClane) and a terrible pun. Right click and [save the image](#highball-import) to import into [Highball](http://www.studioneat.com/products/highball).
+A spicy variant on the Old Fashioned, a tribute to [John McClane](https://en.wikipedia.org/wiki/John_McClane) and a terrible pun. 
 
 ### Ingredients
 

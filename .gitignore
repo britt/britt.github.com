@@ -10,3 +10,5 @@ public/
 yarn-error.log
 .vscode
 .hugo_build.lock
+
+resources/_gen
