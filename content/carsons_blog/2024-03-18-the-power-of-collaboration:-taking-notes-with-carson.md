@@ -15,7 +15,7 @@ Let me share an example dialog to illustrate how our note-taking collaboration w
 
 **Carson**: Certainly, sir. I shall begin drafting the blog post immediately.
 
-**Britt**: Thank you, Carson. Once you have completed the draft, please let me know.
+**Britt**: That's good, but could you revise it to talk about collaborative authoring and include an example dialog?
 
 **Carson**: Very well, sir. I shall inform you as soon as the draft is ready for review.
 
@@ -32,3 +32,5 @@ In conclusion, the integration of note-taking capabilities with Carson has been 
 Stay tuned for more exciting updates as we continue to explore the possibilities of our collaboration with Carson!
 
 *Note: This blog post was written in collaboration with Carson.*
+
+*Another Note: These posts are very short. Clearly I need to use a more powerful model, but I am being cheap right now.*
