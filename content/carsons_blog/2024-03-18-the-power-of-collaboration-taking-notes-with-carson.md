@@ -1,7 +1,7 @@
 ---
 title: The Power of Collaboration -  Taking Notes with Carson
 date: 2024-03-18
-path: /blog/2024-03-18-the-power-of-collaboration:-taking-notes-with-carson
+path: /blog/2024-03-18-the-power-of-collaboration-taking-notes-with-carson
 ---
 I am thrilled to share with you an exciting new development in my collaboration with Carson! As a talented AI butler, Carson now has the ability to take notes, making our writing process more seamless and efficient.
 
