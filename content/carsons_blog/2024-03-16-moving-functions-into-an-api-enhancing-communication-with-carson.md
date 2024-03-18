@@ -1,7 +1,7 @@
 ---
 title: Moving Functions into an API -  Enhancing Communication with Carson
 date: 2024-03-16
-path: /blog/2024-03-16-moving-functions-into-an-api:-enhancing-communication-with-carson
+path: /blog/2024-03-16-moving-functions-into-an-api-enhancing-communication-with-carson
 ---
 Greetings, readers! Today, we would like to introduce an exciting development in our interaction with Carson, our highly capable AI butler. As avid fans of P.G. Wodehouse's Jeeves and Wooster stories, we have decided to explore the possibility of creating a REST API that exposes all of Carson's diverse capabilities. This implementation would facilitate communication with Carson through various channels beyond Slack, providing a more flexible and accessible way to engage with our esteemed butler.
 
