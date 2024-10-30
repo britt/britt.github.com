@@ -12,11 +12,11 @@ style = "github-dark"
 
 [params]
   author = "Britt Crawford"
-  description = "Britt Crawford's personal website"
+  description = "Britt Crawford's website"
   keywords = "blog,personal,recipes,cocktails"
   info = "I live in Bend with my family. Off to new adventures."
   #avatarurl = "images/avatar.jpg"
-  #gravatar = "john.doe@example.com"
+  gravatar = "britt.v.crawford@gmail.com"
 
   favicon_32 = "/img/favicon.png"
   favicon_16 = "/img/favicon.png"
