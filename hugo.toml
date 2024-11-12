@@ -20,15 +20,12 @@ unsafe = true
   info = "I live in Bend with my family. Off to new adventures."
   #avatarurl = "images/avatar.jpg"
   gravatar = "britt.v.crawford@gmail.com"
-
+  favicon = "/img/favicon.png"
   favicon_32 = "/img/favicon.png"
   favicon_16 = "/img/favicon.png"
   touchicon = "/img/apple-touch-icon-144-precomposed.png"
-
   since = 1999
-
   enableTwemoji = true
-
   colorScheme = "auto"
   hidecolorschemetoggle = false
 
@@ -36,11 +33,11 @@ unsafe = true
   # customSCSS = ["scss/custom.scss"]
   # customJS = ["js/custom.js"]
 
-[taxonomies]
-  category = "categories"
-  series = "series"
-  tag = "tags"
-  author = "authors"
+# [taxonomies]
+#   category = "categories"
+#   series = "series"
+#   tag = "tags"
+#   author = "authors"
 
 # Social links
 [[params.social]]
