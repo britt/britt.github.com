@@ -12,7 +12,20 @@ These are things that I have built simply because I wanted them to exist, or in 
 
 ## iOS Shortcuts
 
-* [Remember This](https://www.icloud.com/shortcuts/1f2b289be44b425ba16934af629b688f)
+* [Remember This](https://www.icloud.com/shortcuts/1f2b289be44b425ba16934af629b688f) - **I didn't create this one** but I have found it very useful, and I did fix a bug where sometimes it would not create the day's note.
+
+>This shortcut helps someone with short term memory loss log what happens throughout the day, to >help them keep track of what they have done, who they have met, etc.
+>
+>It will ask you what you want to remember. If run for the first time for the day, it will create a new note and log the input, with the time. It it’s been run already, it will grab the note and append the the note with the time and new content.
+>
+>There is an option to capture a photo and add to the note to create a visual diary.
+>
+>Run this shortcut using Siri or save as a widget on the home screen.
+>
+>Add multiple Personal Automations to run this shortcut periodically through the day to remind the user to capture events.
+>
+>Use Personal Automation, to show each day’s note just before bedtime as a summary of what happened that day. 
+
 * [Remember](https://www.icloud.com/shortcuts/18f7fe2b50084cd9ba98655c8d4b9a90) - A version of the shortcut above, but one that can be used from the share sheet for URLs, text, phots, and files.
 * [Log Food](https://www.icloud.com/shortcuts/ce0b8eb392184f44a510c96f0f1d9509) - Logs whatever you ate to a note named "Food Eaten on {date}" tagged with #food #tracking. You can also add a picture if you want.
 * [Log Weight](https://www.icloud.com/shortcuts/52abec89fceb40369d192f7e6b270273) - shout at your phone while you're on the scale and log your weight in Apple Health.
