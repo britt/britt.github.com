@@ -29,4 +29,8 @@
   from   = "/npmjs/*"
   to     = "/npmjs/"
   status = 200
+[[redirects]]
+	from = "/*"
+	to = "/404/"
+	status = 404
 
