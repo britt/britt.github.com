@@ -33,7 +33,7 @@ These are things that I have built simply because I wanted them to exist, or in 
 
 ## Other Stuff
 * [Cocktail Recipes](/cocktails/) - A small collection of cocktails that I've created.
-* [We Could Be Heroes](/we_could_be_heroes.pdf) - ***This isn't rock n. roll. It's suicide!*** A one-page role playing game where every player is David Bowie.
+* [We Can Be Heroes](/we_can_be_heroes.pdf) - ***This isn't rock n. roll. It's suicide!*** A one-page role playing game where every player is David Bowie.
 
 ## Abandoned but not forgotten
 * [Havamal](https://smile.amazon.com/Snugglebear-Team-Company-Havamal/dp/B07N114BWY/ref=sr_1_2?keywords=havamal&qid=1550960415&s=digital-skills&sr=1-2-catcorr) - The wisdom of Odin, told by Alexa. Say, "Alexa tell me the wisdom of Odin."
