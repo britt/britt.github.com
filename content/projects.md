@@ -8,6 +8,7 @@ path: /projects
 These are things that I have built simply because I wanted them to exist, or in the case of **avro-sqlite**, because I wanted to see if I could.[^2] I like tools that serve me, not ones that try to extract value from me or my attention. I also like the [process of building and understanding](https://brucesterling.tumblr.com/post/749569601319452672/realistic-utopias-a-speech-by-bruce-sterling) the things that I use.
 
 * [Readinglist.live](https://www.readinglist.live) - Turn any web page into a podcast episode, with decently human sounding voices. _(It just reads it to you in a nice human voice, no AI commentary or nonsense like that.)_
+* [Lots of CSVs](https://www.lotsofcsvs.com) - _(coming soon)_ a **small data** warehouse meant to be a simple API for recording and fetching data that works with everything.
 * [avro-sqlite](https://github.com/britt/avro-sqlite) - a Go package to read a SQLite database, extract the schema and data to [Apache Avro](https://avro.apache.org/) and vice versa
 
 ## iOS Shortcuts
