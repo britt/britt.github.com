@@ -9,6 +9,7 @@ These are things that I have built simply because I wanted them to exist, or in 
 
 * [Readinglist.live](https://www.readinglist.live) - Turn any web page into a podcast episode, with decently human sounding voices. _(It just reads it to you in a nice human voice, no AI commentary or nonsense like that.)_
 * [Lots of CSVs](https://www.lotsofcsvs.com) - _(coming soon)_ a **small data** warehouse meant to be a simple API for recording and fetching data that works with everything.
+* [Teleprompter](https://github.com/britt/teleprompter)  - A system to manage and update prompts for LLMs at runtime on Cloudflare Workers.
 * [avro-sqlite](https://github.com/britt/avro-sqlite) - a Go package to read a SQLite database, extract the schema and data to [Apache Avro](https://avro.apache.org/) and vice versa
 
 ## iOS Shortcuts
