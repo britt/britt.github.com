@@ -31,6 +31,7 @@ These are things that I have built simply because I wanted them to exist, or in 
 * [Remember](https://www.icloud.com/shortcuts/18f7fe2b50084cd9ba98655c8d4b9a90) - A version of the shortcut above, but one that can be used from the share sheet for URLs, text, phots, and files.
 * [Log Food](https://www.icloud.com/shortcuts/ce0b8eb392184f44a510c96f0f1d9509) - Logs whatever you ate to a note named "Food Eaten on {date}" tagged with #food #tracking. You can also add a picture if you want.
 * [Log Weight](https://www.icloud.com/shortcuts/52abec89fceb40369d192f7e6b270273) - shout at your phone while you're on the scale and log your weight in Apple Health.
+* [Read Aloud](https://www.icloud.com/shortcuts/4e68f1c746334726a8106459f8f3c51b) - let's you tap "share" on just about anything (text, web pages, whatever) and have it read aloud to you.
 * [lotsofcsvs template](https://www.icloud.com/shortcuts/b402f6377b5b42169298285437fb28db) - a template to log stuff from your phone to [lotsofcsvs.com](https://www.lotsofcsvs.com).
 
 ## Other Stuff
