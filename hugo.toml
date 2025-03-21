@@ -16,8 +16,8 @@ unsafe = true
 [params]
   author = "Britt Crawford"
   description = "Britt Crawford's website"
-  keywords = "blog,personal,recipes,cocktails"
-  info = "I live in Bend with my family. Off to new adventures."
+  keywords = "blog,personal,sandgarden,home cooked software,recipes,cocktails"
+  info = "Living in Bend with my family. Working to build Sandgarden."
   #avatarurl = "images/avatar.jpg"
   gravatar = "britt.v.crawford@gmail.com"
   favicon = "/img/favicon.png"
@@ -50,16 +50,6 @@ unsafe = true
   icon = "fa fa-linkedin fa-2x"
   weight = 2
   url = "http://www.linkedin.com/in/brittcrawford/"
-# [[params.social]]
-#   name = "Bitcoin"
-#   icon = "fa fa-bitcoin fa-2x"
-#   weight = 3
-#   url = "bitcoin:17nHbStzmWgcBEBSgVFT94Eo5hoq9h7Hh1"
-# [[params.social]]
-#   name = "PGP/GPG Key"
-#   icon = "fa fa-lock fa-2x"
-#   weight = 4
-#   url = "https://brittcrawford.com/britt.gpg"
 
 # Menu links
 [[menu.main]]

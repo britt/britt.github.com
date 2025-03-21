@@ -11,6 +11,9 @@ These are things that I have built simply because I wanted them to exist, or in 
 * [lotsofcsvs.com](https://www.lotsofcsvs.com) - a **small data** warehouse built with CSV and HTTP as its API. It is intentionally as barebones as possible. It aims to be a simple API for recording and fetching data that works with everything.
 * [Teleprompter](https://github.com/britt/teleprompter)  - A system to manage and update prompts for LLMs at runtime on Cloudflare Workers.
 * [avro-sqlite](https://github.com/britt/avro-sqlite) - a Go package to read a SQLite database, extract the schema and data to [Apache Avro](https://avro.apache.org/) and vice versa
+* [yts](https://github.com/britt/vibes/tree/main/yts) - A bash function to download YouTube video transcripts and convert them to Markdown format.
+Following the example of [David Gasquez's](https://davidgasquez.com/useful-llm-tools-2024/) excellent [qv](https://github.com/davidgasquez/dotfiles/blob/bb9df4a369dbaef95ca0c35642de491c7dd41269/shell/zshrc#L75-L99) function.
+
 
 ## iOS Shortcuts
 
