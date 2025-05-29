@@ -19,4 +19,4 @@ The name says it all. It was made with what I had at the time.
 
 Mix and stir with ice. Serve on the rocks and garnish with the cilantro sprig.
 
-![Recipe for Mother of Invention](/img/cocktails/mother-of-invention-jpg)
+![Recipe for Mother of Invention](/img/cocktails/mother-of-invention.jpg)
