@@ -25,7 +25,7 @@ Following the example of [David Gasquez's](https://davidgasquez.com/useful-llm-t
 * [Log Food](https://www.icloud.com/shortcuts/ce0b8eb392184f44a510c96f0f1d9509) - Logs whatever you ate to a note named "Food Eaten on {date}" tagged with #food #tracking. You can also add a picture if you want.
 * [Log Weight](https://www.icloud.com/shortcuts/52abec89fceb40369d192f7e6b270273) - Shout at your phone while you're on the scale and log your weight in Apple Health.
 * [Read Aloud](https://www.icloud.com/shortcuts/4e68f1c746334726a8106459f8f3c51b) - Let's you tap "share" on just about anything (text, web pages, whatever) and have it read aloud to you.
-* [Done List](https://www.icloud.com/shortcuts/184e00cafc484dabbbe89efe19c44cba) and [Yesterday's Done List](https://www.icloud.com/shortcuts/12b7cb9362f34f62b1104a075f6b5547) - Keep and show yourself your [Done List](https://www.oliverburkeman.com/donelist)
+* [Done List](https://www.icloud.com/shortcuts/184e00cafc484dabbbe89efe19c44cba) and [Yesterday's Done List](https://www.icloud.com/shortcuts/00c6d7ac0b58419dbf30831de73e26f1) - Keep and show yourself your [Done List](https://www.oliverburkeman.com/donelist)
 > Each entry is a cheering reminder that you could, after all, have spent the day doing nothing constructive – yet look what you did instead!
 >
 > -- [Oliver Burkeman on the Done List](https://www.oliverburkeman.com/donelist)
