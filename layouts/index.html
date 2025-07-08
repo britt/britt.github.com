@@ -1,0 +1,39 @@
+{{ define "content" }}
+<section class="container centered" style="display: flex; flex-direction: column; align-items: center;">
+    <article class="about" style="width: 100%;">
+        {{ partialCached "home/avatar.html" . }}
+        <h1>
+            {{ .Site.Params.author }}
+        </h1>
+        {{ if reflect.IsSlice .Site.Params.info }}
+        <h2>{{ range .Site.Params.info }}{{ . | markdownify }}<br>{{ end}}</h2>
+        {{ else }}
+        <h2>{{ .Site.Params.info | markdownify }}</h2>
+        {{ end }}
+        <section style="display: flex; flex-direction: row; align-items: center; justify-content:center;">
+            {{ with .Site.Params.social }}
+            {{ range sort . "weight" }}
+            {{ if .icon }}
+            <div style="margin-left: 10px; margin-right: 10px;">
+                <a class="social-icon" href="{{ .url | safeURL }}"
+                    style="color: #000; font-size: 14px; text-decoration: none;" aria-label="{{ .name }}" {{
+                    if .rel }}rel="{{ .rel }}" {{ end }} {{ if .target }}target="{{ .target }}" {{ end }} {{ if .type
+                    }}type="{{ .type }}" {{ end }}>
+                    <i class="{{ .icon }}" aria-hidden="true"></i>
+                </a>
+            </div>
+            {{ end }}
+            {{ end }}
+            {{ end }}
+        </section>
+    </article>
+    <hr style="width: 100%; margin-top: 36px; margin-bottom: 24px;" />
+    <div class="content" style="width: 100%; display: flex; flex-direction: column; align-items: start;">
+        <article>
+            {{ .Content }}
+        </article>
+    </div>
+
+    {{ partialCached "home/extensions.html" . }}
+</section>
+{{ end }}
