@@ -17,7 +17,7 @@ unsafe = true
   author = "Britt Crawford"
   description = "Britt Crawford's website"
   keywords = "blog,personal,sandgarden,home cooked software,recipes,cocktails"
-  info = "Living in Bend with my family. Working to build Sandgarden."
+  info = "Working to build [Sandgarden](https://www.sandgarden.com)."
   #avatarurl = "images/avatar.jpg"
   gravatar = "britt.v.crawford@gmail.com"
   favicon = "/img/favicon.png"
@@ -52,7 +52,8 @@ unsafe = true
   url = "http://www.linkedin.com/in/brittcrawford/"
 
 # Menu links
-[[menu.main]]
-  name = "Projects"
-  weight = 1
-  url  = "projects/"
+# [[menu.main]]
+#  name = "Projects"
+#  weight = 1
+#  url  = "projects/"
+
