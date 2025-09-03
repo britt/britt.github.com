@@ -1,0 +1,25 @@
+Publishing = "Hugo"
+Includes = [
+  "!**/.git/**",
+  "!**/build/**",
+  "!**/dist/**",
+  "!**/node_modules/**",
+  "!public/**",
+  "!resources/_gen/**",
+  "**/*.md",
+  "**/*.rst",
+  "**/*.txt",
+  "**/CHANGELOG*",
+  "**/CONTRIBUTING*",
+  "**/LICENSE*",
+  "**/README*",
+  "archetypes/**",
+  "assets/**",
+  "config.*",
+  "content/**/*.md",
+  "data/**",
+  "!layouts/**",
+  "!static/**",
+  "!themes/**/layouts/**",
+  "!themes/**/static/**"
+]
