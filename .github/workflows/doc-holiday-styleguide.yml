@@ -1,166 +1,164 @@
-# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
-
-name: 'Documentation Style Guide Generator'
+name: Generate Documentation Style Guide
 
 on:
   push:
-    branches: [ main, master ]
-    paths:
-      - '.github/workflows/doc-holiday-styleguide.yml'
-      - '.github/actions/styleguide-action'
-      - '.github/actions/styleguide-action/detect-documentation-root'
-      - '.github/actions/styleguide-action/identify-publishing-framework'
-      - '.github/actions/styleguide-action/generate-styleguide'
-      - '.github/actions/styleguide-action/initialize-doc-holiday-config'
+    branches: [main, master]
   pull_request:
-    branches: [ main, master ]
-    paths:
-      - '.github/workflows/doc-holiday-styleguide.yml'
-      - '.github/actions/styleguide-action'
-      - '.github/actions/styleguide-action/detect-documentation-root'
-      - '.github/actions/styleguide-action/identify-publishing-framework'
-      - '.github/actions/styleguide-action/generate-styleguide'
-      - '.github/actions/styleguide-action/initialize-doc-holiday-config'
+    branches: [main, master]
   workflow_dispatch:
     inputs:
       force:
-        description: 'Force run the workflow even if no relevant files changed'
+        description: 'Force regeneration of style guide'
         required: false
-        default: true
-        type: boolean
-  workflow_call:
-    secrets:
-      OPENAI_API_KEY:
-        description: 'OpenAI API key for enhanced analysis'
-        required: true
-      ANTHROPIC_API_KEY:
-        description: 'Anthropic API key for enhanced analysis'
-        required: false
-    
+        default: 'false'
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
-  generate-styleguide:
+  generate-style-guide:
     runs-on: ubuntu-latest
     
-    permissions:
-      contents: write
-      pull-requests: write
-    
-    outputs:
-      style-guide: ${{ steps.generate-styleguide.outputs.style-guide }}
-      publishing-framework: ${{ steps.identify-publishing-framework.outputs.publishing-framework }}
-      summary: ${{ steps.generate-styleguide.outputs.summary }}
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          token: ${{ github.token }}
           fetch-depth: 0
         
-      - name: Check if relevant files changed
-        id: check-paths
+      - name: Check if style guide generation needed
+        id: check-trigger
         run: |
-          # Check if force is enabled for workflow_dispatch with force=true
+          # For workflow_dispatch with force=true, always run
           if [ "${{ github.event_name }}" == "workflow_dispatch" ] && [ "${{ github.event.inputs.force }}" == "true" ]; then
             echo "should_run=true" >> $GITHUB_OUTPUT
+            echo "reason=forced" >> $GITHUB_OUTPUT
             exit 0
           fi
           
-          # Read paths from config file (create this file in your repo)
+          # For PRs, always run
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            echo "should_run=true" >> $GITHUB_OUTPUT
+            echo "reason=pull_request" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          # Check if .doc.holiday directory exists
+          if [ ! -d ".doc.holiday" ]; then
+            echo "should_run=true" >> $GITHUB_OUTPUT
+            echo "reason=first_run" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          # Check if style guide exists
+          if [ ! -f ".doc.holiday/styleguide.md" ]; then
+            echo "should_run=true" >> $GITHUB_OUTPUT
+            echo "reason=no_styleguide" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          # For push events, check if relevant files changed
           if [ -f ".doc.holiday/trigger-paths.txt" ]; then
             TRIGGER_PATHS=$(cat .doc.holiday/trigger-paths.txt | grep -v '^#' | grep -v '^$' | tr '\n' ' ')
+            CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} 2>/dev/null || echo "")
+            
+            MATCHES=false
+            for path in $TRIGGER_PATHS; do
+              if echo "$CHANGED_FILES" | grep -q "$path"; then
+                MATCHES=true
+                break
+              fi
+            done
+            
+            echo "should_run=$MATCHES" >> $GITHUB_OUTPUT
+            echo "reason=file_changes" >> $GITHUB_OUTPUT
           else
-            # Always run if file doesn't exist
+            # No trigger paths file, run anyway
             echo "should_run=true" >> $GITHUB_OUTPUT
-            exit 0
+            echo "reason=no_trigger_file" >> $GITHUB_OUTPUT
           fi
-          
-          # Get changed files
-          CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} 2>/dev/null || git diff --name-only HEAD~1 HEAD 2>/dev/null || echo "")
-          
-          # Check if any changed files match trigger paths
-          MATCHES=false
-          for path in $TRIGGER_PATHS; do
-            if echo "$CHANGED_FILES" | grep -q "$path"; then
-              MATCHES=true
-              break
-            fi
-          done
-          
-          echo "should_run=$MATCHES" >> $GITHUB_OUTPUT
         
       - name: Initialize doc.holiday Configuration
-        if: steps.check-paths.outputs.should_run == 'true'
-        uses: ./actions/initialize-doc-holiday-config
+        if: steps.check-trigger.outputs.should_run == 'true'
+        uses: ./.github/actions/styleguide-action/initialize-doc-holiday-config
         
       - name: Detect Documentation Root
-        if: steps.check-paths.outputs.should_run == 'true'
+        if: steps.check-trigger.outputs.should_run == 'true'
         id: detect-docs-root
-        uses: ./actions/detect-documentation-root
+        uses: ./.github/actions/styleguide-action/detect-documentation-root
           
       - name: Identify Publishing Framework
-        if: steps.check-paths.outputs.should_run == 'true'
+        if: steps.check-trigger.outputs.should_run == 'true'
         id: identify-framework
-        uses: ./actions/identify-publishing-framework
+        uses: ./.github/actions/styleguide-action/identify-publishing-framework
         
       - name: Generate Style Guide
-        if: steps.check-paths.outputs.should_run == 'true'
+        if: steps.check-trigger.outputs.should_run == 'true'
         id: generate-styleguide
-        uses: ./actions/generate-styleguide
+        uses: ./.github/actions/styleguide-action/generate-styleguide
         with:
           openai-api-key: ${{ secrets.OPENAI_API_KEY }}
           anthropic-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
-        
+
       - name: Commit changes
-        if: steps.check-paths.outputs.should_run == 'true'
+        if: steps.check-trigger.outputs.should_run == 'true' && github.event_name != 'pull_request'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           
-          # Debug: Show what files have changed
-          echo "::group::Git status before commit"
-          git status
-          echo "::endgroup::"
-          
-          echo "::group::Files in .doc.holiday/"
-          ls -la .doc.holiday/ || echo "Directory not found"
-          echo "::endgroup::"
-          
-          # Check if there are any changes to commit
-          if [ -n "$(git status --porcelain)" ]; then
-            echo "::notice::Found changes to commit"
+          # Check if there are changes to commit
+          if [ -n "$(git status --porcelain .doc.holiday/)" ]; then
             git add .doc.holiday/
+            git commit -m "docs: update documentation style guide
+
+          Generated by Documentation Style Guide Action
+          Trigger: ${{ steps.check-trigger.outputs.reason }}"
             
-            # Show what's being committed
-            echo "::group::Files being committed"
-            git diff --cached --name-only
-            echo "::endgroup::"
-            
-            git commit -m "Update documentation style guide and configuration
-            
-            - Updated style guide based on current codebase patterns
-            - Updated publishing framework detection: ${{ steps.identify-framework.outputs.publishing-framework }}
-            - Generated by Documentation Style Guide Generator action"
-            
-            # Push changes based on event type
-            if [ "${{ github.event_name }}" == "pull_request" ]; then
-              # For PRs, push to the PR branch
-              echo "::notice::Pushing changes to PR branch: ${{ github.head_ref }}"
-              git push origin HEAD:${{ github.head_ref }}
-            elif [ "${{ github.event_name }}" == "push" ]; then
-              # For pushes to main/master, push normally
-              echo "::notice::Pushing changes to branch"
-              git push
-            elif [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
-              # For manual workflow runs, push to current branch
-              echo "::notice::Pushing changes (workflow_dispatch)"
-              git push
-            else
-              echo "::notice::Changes committed locally but not pushed (unknown event type: ${{ github.event_name }})"
-            fi
+            git push
+            echo "✅ Style guide updates committed and pushed"
           else
-            echo "::warning::No changes detected by git status --porcelain"
-            echo "Current directory contents:"
-            ls -la
+            echo "ℹ️ No changes to commit"
           fi
+          
+      - name: Comment on PR
+        if: steps.check-trigger.outputs.should_run == 'true' && github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const styleguide = fs.existsSync('.doc.holiday/styleguide.md') 
+              ? fs.readFileSync('.doc.holiday/styleguide.md', 'utf8')
+              : 'Style guide generation failed';
+            
+            const truncated = styleguide.length > 3000 
+              ? styleguide.substring(0, 3000) + '\n\n... (truncated)'
+              : styleguide;
+            
+            const body = `## 📚 Documentation Style Guide\n\n${truncated}\n\n[View full style guide](.doc.holiday/styleguide.md)`;
+            
+            // Find and update or create comment
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            
+            const botComment = comments.find(comment => 
+              comment.user.type === 'Bot' && comment.body.includes('Documentation Style Guide')
+            );
+            
+            if (botComment) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: body
+              });
+            }
