@@ -107,12 +107,49 @@ async function detectDocumentationRoot() {
       }
     }
     
-    // Collect all candidates
-    candidates = await findCandidates(repositoryPath);
-    console.log('DEBUG: Found candidates:', candidates);
+    // Step 2: Check for publishing framework config files in root
+    // If found, use root as documentation directory
+    const frameworkConfigs = [
+      'hugo.toml', 'hugo.yaml', 'hugo.json',
+      'config.toml', 'config.yaml', 'config.yml',  // Could be Hugo
+      'mkdocs.yml', 'mkdocs.yaml',                  // MkDocs
+      '_config.yml',                                // Jekyll
+      'docfx.json',                                  // DocFX
+      'book.toml',                                   // mdBook
+      '.eleventy.js', '.eleventy.config.js',        // Eleventy
+      'antora.yml', 'site.yml',                      // Antora
+      'pelicanconf.py', 'publishconf.py'            // Pelican
+    ];
     
-    // Step 2: Check common-path directories
-    for (const dir of COMMON_DOC_DIRS) {
+    for (const configFile of frameworkConfigs) {
+      const frameworkConfigPath = path.join(repositoryPath, configFile);
+      if (fs.existsSync(frameworkConfigPath)) {
+        console.log(`✅ Found framework config file at root: ${configFile}`);
+        documentationRoot = '.';
+        detectionMethod = 'framework-config';
+        evidence = {
+          method: 'framework-config',
+          configFile: configFile,
+          message: 'Publishing framework config found at repository root'
+        };
+        
+        // Still collect candidates for reference
+        candidates = await findCandidates(repositoryPath);
+        
+        // We found a framework config, so use root as documentation root
+        break;
+      }
+    }
+    
+    // Collect all candidates if not already done
+    if (!documentationRoot) {
+      candidates = await findCandidates(repositoryPath);
+      console.log('DEBUG: Found candidates:', candidates);
+    }
+    
+    // Step 3: Check common-path directories (if no framework config found)
+    if (!documentationRoot) {
+      for (const dir of COMMON_DOC_DIRS) {
       const dirPath = path.join(repositoryPath, dir);
       if (fs.existsSync(dirPath) && fs.statSync(dirPath).isDirectory()) {
         const docFiles = await countDocFiles(dirPath);
@@ -130,9 +167,10 @@ async function detectDocumentationRoot() {
           break;
         }
       }
+      }
     }
     
-    // Step 3: Tooling-config-driven detection
+    // Step 4: Tooling-config-driven detection
     if (!documentationRoot) {
       for (const [configFile, tooling] of Object.entries(TOOLING_CONFIGS)) {
         const configPath = path.join(repositoryPath, configFile);
@@ -173,7 +211,7 @@ async function detectDocumentationRoot() {
       }
     }
     
-    // Step 4: Density heuristic
+    // Step 5: Density heuristic
     if (!documentationRoot && candidates.length > 0) {
       const densityResults = await calculateDensity(repositoryPath, candidates);
       const bestCandidate = densityResults.find(r => r.density > 0.25 && r.docFiles >= 3);
@@ -199,7 +237,7 @@ async function detectDocumentationRoot() {
       }
     }
     
-    // Step 5: Default to repo root if no clear documentation directory found
+    // Step 6: Default to repo root if no clear documentation directory found
     if (!documentationRoot) {
       const rootDocFiles = await countDocFiles(repositoryPath);
       documentationRoot = '.';
