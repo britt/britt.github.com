@@ -6,6 +6,8 @@ Includes = [
   "!**/node_modules/**",
   "!public/**",
   "!resources/_gen/**",
+  "!themes/**/layouts/**",
+  "!themes/**/static/**",
   "**/*.md",
   "**/*.rst",
   "**/*.txt",
@@ -18,8 +20,6 @@ Includes = [
   "config.*",
   "content/**/*.md",
   "data/**",
-  "!layouts/**",
-  "!static/**",
-  "!themes/**/layouts/**",
-  "!themes/**/static/**"
+  "layouts/**",
+  "static/**"
 ]

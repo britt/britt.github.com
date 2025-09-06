@@ -1,0 +1,7 @@
+{
+  "name": "initialize-doc-holiday-config-action",
+  "version": "1.0.0",
+  "description": "GitHub Action to initialize doc.holiday configuration",
+  "main": "action.yml",
+  "dependencies": {}
+}
