@@ -80,35 +80,8 @@ async function detectDocumentationRoot() {
     let candidates = [];
     let evidence = {};
     
-    // Step 1: Check for explicit config
-    if (fs.existsSync(configPath)) {
-      try {
-        const configContent = await fs.promises.readFile(configPath, 'utf-8');
-        existingConfig = TOML.parse(configContent);
-        
-        if (existingConfig.DocumentationRoot) {
-          documentationRoot = existingConfig.DocumentationRoot;
-          detectionMethod = 'explicit';
-          console.log(`✅ Using explicit DocumentationRoot from config: ${documentationRoot}`);
-          
-          // Still collect candidates for reference
-          candidates = await findCandidates(repositoryPath);
-          
-          return {
-            documentationRoot,
-            detectionMethod,
-            candidates,
-            evidence: { method: 'explicit', source: 'existing config' },
-            configUpdated: false
-          };
-        }
-      } catch (error) {
-        console.log('DEBUG: Error reading existing config:', error.message);
-      }
-    }
-    
-    // Step 2: Check for publishing framework config files in root
-    // If found, use root as documentation directory
+    // Step 1: ALWAYS check for publishing framework config files FIRST
+    // If found, use root as documentation directory (overrides any existing config)
     const frameworkConfigs = [
       'hugo.toml', 'hugo.yaml', 'hugo.json',
       'config.toml', 'config.yaml', 'config.yml',  // Could be Hugo
@@ -141,8 +114,46 @@ async function detectDocumentationRoot() {
       }
     }
     
-    // Collect all candidates if not already done
-    if (!documentationRoot) {
+    // If framework config found, we're done with detection
+    if (documentationRoot) {
+      // Load existing config to preserve other settings
+      if (fs.existsSync(configPath)) {
+        try {
+          const configContent = await fs.promises.readFile(configPath, 'utf-8');
+          existingConfig = TOML.parse(configContent);
+        } catch (error) {
+          console.log('DEBUG: Error reading existing config:', error.message);
+        }
+      }
+    } else {
+      // Step 2: Check for explicit config (only if no framework config found)
+      if (fs.existsSync(configPath)) {
+        try {
+          const configContent = await fs.promises.readFile(configPath, 'utf-8');
+          existingConfig = TOML.parse(configContent);
+          
+          if (existingConfig.DocumentationRoot) {
+            documentationRoot = existingConfig.DocumentationRoot;
+            detectionMethod = 'explicit';
+            console.log(`✅ Using explicit DocumentationRoot from config: ${documentationRoot}`);
+            
+            // Still collect candidates for reference
+            candidates = await findCandidates(repositoryPath);
+            
+            return {
+              documentationRoot,
+              detectionMethod,
+              candidates,
+              evidence: { method: 'explicit', source: 'existing config' },
+              configUpdated: false
+            };
+          }
+        } catch (error) {
+          console.log('DEBUG: Error reading existing config:', error.message);
+        }
+      }
+      
+      // Collect all candidates if not already done
       candidates = await findCandidates(repositoryPath);
       console.log('DEBUG: Found candidates:', candidates);
     }
