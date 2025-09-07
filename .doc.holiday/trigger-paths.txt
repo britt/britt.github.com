@@ -2,6 +2,12 @@ Cargo.lock
 Cargo.toml
 Gemfile
 Gemfile.lock
+config.toml
+config.yaml
+config.yml
+go.mod
+go.sum
+hugo.toml
 package-lock.json
 package.json
 pnpm-lock.yaml

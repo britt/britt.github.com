@@ -2,138 +2,188 @@
 
 ## Project Overview
 
-**Project:** content
-**Description:** Documentation site with 2 documentation files
+**Project:** Hi. Welcome to brittcrawford.com.
+**Description:** This is my personal website. Right now it just has a business card-like list of links and a non-committal description. I might add more to it in the future.
+**Publishing System:** Hugo
+**Publishing Detection Confidence:** high
 
 ## Content Overview
 
-Main topics and content areas: - Personal projects and short writeups (projects.md, _index.md) describing small software pieces, e.g. "avro-sqlite" and "Readinglist.live". - Blog-like essays / posts in directories such as daresnot (e.g., "Daresnot" dated 2018-03-08). - A collection of cocktail recipes in a hierarchical folder structure under /cocktails, each recipe as its own directory with index.md, e.g., /cocktails/yippee-kay-yay-motherfucker/ covering ingredients, preparation, and images. Primary purpose and goals: - Serve as a small personal documentation/site combining project descriptions, essays, and recipe entries. The site documents: project links and short descriptions, author reflections, dated posts, and recipe metadata (ingredients, method, image). Target problems being addressed: - Communicate what the author built, how recipes are prepared, and preserve short-form personal writing. Content scope and categories: - Project listings (projects.md): short descriptions and external links. - Top-level landing page (_index.md): overview and grouped sections (e.g., "Home Cooked Software"). - Section index pages (_index.md in directories like cocktails): collection descriptions. - Leaf content pages (index.md per subdirectory): recipe or post content with metadata and content sections (Ingredients, instructions). Specific non-generic details: - Front matter fields observed: title (required), path (required), date (optional, format YYYY-MM-DD). - Footnote usage is present (e.g., [^1]). - Images are stored and referenced with root-relative paths like /img/cocktails/yippee-kay-yay-motherfucker.png. - There are placeholder files named _has_subdirs_ in many directories indicating subdirectory presence.
+Main topics and content areas
+- Personal home page and projects: content/_index.md and content/projects.md list projects and links (e.g., Readinglist.live, lotsofcsvs.com, avro-sqlite). These pages are short, descriptive lists of projects and links.
+- Cocktails collection: content/cocktails contains many per-recipe subfolders (e.g., content/cocktails/yippee-kay-yay-motherfucker/index.md) with associated images in static/img/cocktails/. Each recipe uses index.md and an image file with matching slug-name.
+- Daresnot, exampleSite and theme docs: themes/hugo-coder contains theme documentation (docs/*.md), archetypes and exampleSite content which include configuration and analytics guides. The theme README includes HTML and image usage.
+- Static assets: static/ contains robots.txt, a PDF (we_can_be_heroes.pdf), a GPG key (britt.gpg) and a CNAME; static/img holds favicons and content images.
+Primary purpose and goals
+- Present a concise personal site that lists projects and content (cocktails, daresnot) with links to code repositories and external sites. The theme docs and exampleSite are present because the theme is vendored in-the-repo.
+Target problems being addressed
+- Provide a lightweight personal presence that links to code and projects.
+- Host static content (recipes/cocktails) with images and per-item pages.
+Content scope and categories
+- Landing / (content/_index.md): summary plus project list.
+- Projects (/projects, content/projects.md): longer list and descriptions of personal projects, with external links to GitHub and live sites.
+- Collections: content/cocktails/*, content/daresnot/index.md—each collection uses directories and index.md files per item.
+- Theme/docs: themes/hugo-coder/docs/* — instructions, analytics integration examples.
+Specific content features observed
+- Markdown body content with Markdown links, emphasis and footnotes (example: "## Home Cooked Software [^1]").
+- Front matter present and used for title, path, date, draft.
+- Archetype uses TOML (+ + +) to generate default front matter with draft = true.
+- Images and static assets are organized under static/img and static/img/cocktails matching content slugs.
 
 ---
-# EXACT front matter template here
-# title: required (string)
-# path: required (string) — always include a leading and trailing slash
-# date: optional (YYYY-MM-DD) for post-like content
+# REQUIRED front matter template for content files (use YAML, as observed in content/*.md)
+# Keep the three dashes exactly as shown; Hugo accepts YAML between '---' delimiters.
+---
+title: "<Page Title>"
+path: "/<path>"        # exact site path, leading slash required (observed usage: path: /projects)
+date: "2025-01-01T00:00:00Z"  # ISO 8601 date; optional if not needed but present in many files
+draft: true            # true for unpublished content; archetype sets this by default in the repo
 ---
 
-# Example required front matter (copy exactly):
----
-title: Page Title
-path: /path/to/page/
-date: 2025-09-06
----
+# NOTES specific to this Hugo repo
+- Place content files under content/. Use _index.md for section/list pages and index.md inside a slug directory for content items.
+  - Example: content/cocktails/_index.md  (section)
+  - Example: content/cocktails/el-nino/index.md (item)
+- Static assets (images, PDFs) go under static/ and are referenced from Markdown as '/img/<...>' or '/<file>'. The repo uses static/img and static/img/cocktails/ with filenames matching the content slug.
+- Archetypes: this repo's archetypes/default.md uses TOML (+ + +) templating. If you standardize front matter to YAML, update archetypes/default.md accordingly.
 
-# Content file structure requirements (plain Markdown; no platform-specific shortcodes detected):
-# 1) Put canonical page title in front matter (do not repeat as an H1 in the body).
-# 2) Use H2 (##) for main sections and H3 (###) for subsections.
-# 3) Use Markdown inline links and root-relative image paths.
+# Hugo features used / supported in this repo
+- Shortcodes & templating: theme (hugo-coder) and exampleSite reference shortcodes and theme partials. Use Hugo shortcodes for advanced image handling and embedding when needed (the repo's theme supports shortcodes in exampleSite).
+- Taxonomies: none observed in content, but theme exampleSite uses authors/tags/categories. If you add taxonomies, place them in front matter and follow theme conventions.
 
-# Complete example page (recipe) showing proper structure:
----
-title: Yippee Kay Yay Motherfucker!
-path: /cocktails/yippee-kay-yay-motherfucker/
-date: 2014-03-19
----
+# Hugo file/organization requirements (explicit)
+- Every page must live in content/ (Hugo's requirement).
+- For section pages that list children, use _index.md (observed pattern in content/cocktails/_index.md). For leaf content, use content/<section>/<slug>/index.md.
+- Keep theme files under themes/hugo-coder and do not modify vendor theme files unless you intend to vendor the theme; prefer to override templates in layouts/ if customizing.
 
-A spicy variant on the Old Fashioned, a tribute to [John McClane](https://en.wikipedia.org/wiki/John_McClane) and a terrible pun.
-
-### Ingredients
-
-* 2oz Bourbon _(I use [Buffalo Trace](http://www.buffalotrace.com/))_
-* 1/4oz Maple Syrup
-* 1 dash of Cayenne Pepper
-* 1 dash of Angostura bitters
-* 1 twist of lemon
-
-Gently stir the bourbon, maple syrup, bitters and cayenne with ice to chill. Be careful not to chip the ice and water down the drink. Serve on the rocks with a twist of lemon.
-
-![Recipe for the Yippee Kay Yay Motherfucker!](/img/cocktails/yippee-kay-yay-motherfucker.png)
-
-# Notes about publishing system features
-- No framework-specific shortcodes, templating tags, or special build directives were detected in the repository; content appears to be plain Markdown with YAML front matter. If you later adopt a static site generator (Hugo, Jekyll, etc.), map the observed front matter fields to the generator's expected fields. The repository currently expects: title and path at minimum, date optional.
-- Maintain root-relative image paths (/img/...) and use index.md for leaf pages and _index.md for section/list pages so generators that treat _index.md specially will work predictably.
 
 ## Key Recommendations
 
-1. Standardize front matter: require exactly these fields in this order and format: title, path, date (optional). Use the YAML block below for every file (title and path required). Example: ---\ntitle: Yippee Kay Yay Motherfucker!\npath: /cocktails/yippee-kay-yay-motherfucker/\ndate: 2014-03-19\n---
-2. Consistent index file naming: use _index.md for directory/list pages and index.md for leaf pages. Convert top-level projects.md to either _index.md or place it in /projects/_index.md to match the pattern used by /cocktails and /daresnot.
-3. Normalize path values to always end with a trailing slash and mirror the directory structure exactly (e.g., path: /cocktails/yippee-kay-yay-motherfucker/). Update existing files that lack trailing slashes or have mismatched paths.
-4. Adopt heading conventions: Put the canonical page title only in front matter (do not duplicate as H1 in content). Start content sections with H2 (##) and use H3 (###) for subsections (recipes: use "### Ingredients" exactly).
-5. Remove or document placeholder files (_has_subdirs_): either remove them from the published repository or add a README in each directory explaining their purpose to avoid confusion.
+1. Standardize front matter format across the repo: choose YAML (---) or TOML (+++) and convert existing files to that format. Currently content files use YAML (---) while archetypes/default.md uses TOML (+++). Pick one to avoid confusion and ensure archetype matches produced files.
+2. Use consistent page filenames: use _index.md for section/list pages (e.g., content/cocktails/_index.md) and index.md for single content entries in a slug folder (e.g., content/cocktails/el-nino/index.md). Replace duplicates of both index.md and _index.md in the same path with the correct pattern to avoid Hugo ambiguity.
+3. Enforce a minimal front matter set for all content files: every content file must include title and path. Add date where relevant. Adopt and commit a single exact front matter template (see 'Publishing Requirements' YAML block) and add a pre-commit hook or linter that asserts presence/format.
+4. Normalize internal linking to use the front matter path field for canonical internal links and use relative links for intra-section navigation. Example: link to Projects as /projects (matches 'path: /projects').
+5. Add explicit alt text and consistent naming for images: name images with the content slug (observed pattern) and require alt text in Markdown image references or use Hugo image shortcodes to ensure accessibility and responsive handling (e.g., use the static/img/ path observed).
 
 ## Structure Guidelines
 
 ### Heading Style
 
-Use the front-matter title as the canonical page title. In-body headings follow this pattern: - Use '##' for main content sections. Example: '## Home Cooked Software [^1]' (from projects.md). - Use '###' for subsections. Example: '### Ingredients' (from cocktails/yippee-kay-yay-motherfucker/index.md). - Do not include an H1 (#) in the body; the front matter title fulfills that role.
+Use one H1 per page that mirrors the front matter title. Examples observed:
+- Use '# Hi. Welcome to brittcrawford.com.' for the site landing page H1 (README.md example).
+- Use '## Home Cooked Software [^1]' for subsection headings in content/projects.md and content/_index.md.
+- Pattern: H1 for page title, H2 for main sections. Example snippet from content/_index.md:
+  ## Home Cooked Software [^1]
+  * [Readinglist.live](https://www.readinglist.live) - Turn any web page into a podcast episode, ...
+
+Guideline: keep headings shallow (H1 + H2) unless content requires deeper structure.
 
 ### Content Organization
 
-Page organization observed: - Front matter block with title, path, optional date. - One-sentence summary or lead paragraph. - H2 section(s) for groupings (e.g., '## Home Cooked Software'). - For recipes: H3 '### Ingredients', bulleted ingredient list, preparation paragraph(s), optional image (root-relative). Example order in cocktails/yippee-kay-yay-motherfucker/index.md: front matter -> description line -> '### Ingredients' -> list -> instructions -> image.
+Follow this file-level organization (observed pattern):
+- Root-level pages: content/<name>.md (example: content/projects.md) with front matter including 'path: /<name>'. These act as single pages with explicit paths.
+- Section pages: content/<section>/_index.md to present lists/section metadata (example: content/cocktails/_index.md).
+- Item pages: content/<section>/<slug>/index.md for each item (example: content/cocktails/el-nino/index.md).
+- Static assets: static/img/<section>/<slug>.<ext> (example: static/img/cocktails/el-nino.png).
+- Archetype: archetypes/default.md should supply the default front matter when creating new content. Current archetype uses TOML and sets draft = true.
+
+Example concrete file mapping:
+- content/cocktails/el-nino/index.md => url: /cocktails/el-nino/ (served by Hugo)
+- static/img/cocktails/el-nino.png => referenced in the page as '/img/cocktails/el-nino.png' or via a Hugo image shortcode.
 
 ### Metadata Usage
 
-Complete front matter example (must be present at top of every file):
+Complete front matter example (YAML) used by content files. Use exactly this format for new content files (Hugo interprets YAML between '---'):
+
+```yaml
 ---
-title: Yippee Kay Yay Motherfucker!
-path: /cocktails/yippee-kay-yay-motherfucker/
-date: 2014-03-19
+title: "<Page Title>"
+path: "/<path>"
+date: "<YYYY-MM-DDTHH:MM:SSZ>"
+draft: true
 ---
-- title: required; written in plain text exactly as you want it displayed. - path: required; must start and end with a slash and mirror the file location. - date: optional; when present use format YYYY-MM-DD (observed in daresnot/index.md: date: 2018-03-08).
+```
+
+Observations:
+- 'title' is present in 35 files; ensure it is present in every content file.
+- 'path' is present in 34 files; when present it sets the canonical URL (example: 'path: /projects').
+- 'date' is used in ~29 files; include date for posts/time-sensitive pages.
+- archetypes/default.md currently uses TOML (+ + +) and templates the title and date:
+
+```toml
++++
+title = '{{ replace .File.ContentBaseName "-" " " | title }}'
+date = {{ .Date }}
+draft = true
++++
+```
+
+Recommendation: convert archetype to YAML to match most content or convert content to TOML consistently.
+
 
 ### Linking Strategy
 
-Use Markdown inline links for both external and internal links. Examples from the content: - External link: [Readinglist.live](https://www.readinglist.live) (projects.md). - External reference with description: [avro-sqlite](https://github.com/britt/avro-sqlite) - Image: ![Recipe for the Yippee Kay Yay Motherfucker!](/img/cocktails/yippee-kay-yay-motherfucker.png) - Internal path usage in front matter: path: /cocktails/yippee-kay-yay-motherfucker/ - Footnote usage example: '## Home Cooked Software [^1]' and '...because I wanted to see if I could.[^2]'. Keep link text descriptive (observed practice) and maintain root-relative paths for assets.
+Use Markdown links for external sites and explicit path-based internal links for site navigation. Examples from the content:
+- External link (Markdown): [Readinglist.live](https://www.readinglist.live)
+- External GitHub link: [Teleprompter](https://github.com/britt/teleprompter)
+- Internal canonical path specified in front matter: 'path: /projects' and link to that path from nav or other pages as '/projects'.
+
+Guidelines:
+- For external resources: use full absolute URLs in standard Markdown link syntax: [label](https://host/path).
+- For internal pages: link to the front-matter path (e.g., '/projects') rather than linking to filenames (e.g., content/projects.md). This keeps links stable if files are moved or reorganized.
+- For images: reference them using absolute paths to static assets (observed pattern): '/img/cocktails/el-nino.png' or use Hugo image shortcodes to enable responsive behavior and alt text.
+- Footnotes: observed '[^1]' usage in headings; keep footnote syntax consistent if used across pages.
 
 ## Tone and Style
 
 ### Voice
 
-I like tools that serve me, not ones that try to extract value from me or my attention.
+"This is my personal website. Right now it just has a business card-like list of links and a non-committal description. I might add more to it in the future.",
+- This exact sentence (from README.md) demonstrates a casual, first-person, conversational voice with mild self-deprecation and minimalism.
 
 ### Target Audience
 
-These are things that I have built simply because I wanted them to exist, or in the case of **avro-sqlite**, because I wanted to see if I could.[^2]
+"These are things that I have built simply because I wanted them to exist, or in the case of **avro-sqlite**, because I wanted to see if I could.[^2] I like tools that serve me, not ones that try to extract value from me or my attention."
+- This explicit phrasing shows the target audience is other builders, developers, and people interested in small, practical tooling and personal projects (technical and maker-oriented readers).
 
 ### Technical Level
 
-a Go package to read a SQLite database, extract the schema and data to [Apache Avro](https://avro.apache.org/) and vice versa
+"avro-sqlite - a Go package to read a SQLite database, extract the schema and data to Apache Avro and vice versa"
+- This concrete example indicates a moderate technical level: audience expected to understand programming languages (Go), data serialization formats (Avro), and project-level tooling. Theme docs (analytics.md, configurations.md) add configuration-level technical material.
 
 ## Best Practices
 
-1. Use front matter title as the canonical title and avoid an in-body H1. Example observed: file cocktails/yippee-kay-yay-motherfucker/index.md uses front matter title: "Yippee Kay Yay Motherfucker!" and begins content with paragraph text and then uses "### Ingredients".
-2. For recipes, follow the exact content structure: an opening one-line summary, then a "### Ingredients" H3 list, followed by preparation instructions and an image referenced with a root-relative path such as: ![Recipe for the Yippee Kay Yay Motherfucker!](/img/cocktails/yippee-kay-yay-motherfucker.png).
-3. Use Markdown inline links for external and internal URLs consistently. Example: [Readinglist.live](https://www.readinglist.live) and image paths like /img/cocktails/… for assets.
-4. Include dates for time-stamped posts (YYYY-MM-DD) in the front matter when content is a post (observed in daresnot/index.md: date: 2018-03-08).
-5. Use footnotes for asides and references where needed. Observed usage: "## Home Cooked Software [^1]" and "...because I wanted to see if I could.[^2]"
+1. Title and H1 parity: Put the page title in front matter (title:) and use that same text as the H1 on the page. Example observed: front matter title: 'brittcrawford.com' and page body starts with no H1 but the repo shows '# Hi. Welcome to brittcrawford.com.' as the H1 sample. Implement: include both so the rendered page has consistent title/meta and content H1.
+2. Section and item file organization: Follow the observed pattern of directories per item. Example: content/cocktails/el-nino/index.md (content) paired with static/img/cocktails/el-nino.png (image). When adding new recipe pages, create a folder named with the slug and an index.md in it and add the image to static/img/<section> with matching slug.
+3. Use archetypes to seed new content: The repo includes archetypes/default.md (TOML) that sets draft = true and a templated title. Keep or adapt this archetype so new content consistently has draft set and the title auto-filled. If you standardize to YAML, update the archetype accordingly.
+4. Link formatting consistency: Use Markdown link style for external links. Example observed: '[Readinglist.live](https://www.readinglist.live)'. For internal links use the explicit path front matter value (e.g., 'path: /projects') and link to '/projects' so links remain stable regardless of filename changes.
 
 ## Directory Structure
 
-Observed organization (top-level and subdirectories):
-- Root (.) contains: projects.md, _index.md. projects.md is a standalone page, and _index.md is the root landing page. Recommendation: choose one convention (_index.md for landing lists) and migrate projects.md into /projects/_index.md to match the pattern used elsewhere.
-- daresnot/ contains index.md (a dated post) and a placeholder file _has_subdirs_. Pattern: directory per topic with a single index.md representing that topic/post.
-- cocktails/ is a section directory with _index.md describing the collection and multiple subdirectories for each recipe. Each recipe subdirectory is named as a slug and contains index.md and a placeholder _has_subdirs_. Examples:
-  - cocktails/_index.md (collection page)
-  - cocktails/yippee-kay-yay-motherfucker/index.md (recipe page)
-  - cocktails/thats-just-dandy/index.md
-  - cocktails/slightly-sour-strawberry-smash/index.md
-  - ... (each recipe has its own folder)
+Top-level organization (observed across 39 directories):
+- content/: main site content. Examples:
+  - content/_index.md (site landing page) — front matter with title, path.
+  - content/projects.md (a page at '/projects') — front matter with title and path.
+  - content/cocktails/ (section) contains a _index.md and many per-item folders: content/cocktails/el-nino/index.md, content/cocktails/anderson-island-sunset/index.md, etc.
+  - content/daresnot/index.md — another content page.
+- archetypes/: contains default.md (templated front matter used when creating new content). Current archetype uses TOML with draft = true.
+- themes/hugo-coder/: vendored theme with docs/, exampleSite/, assets/. Theme includes README.md, LICENSE and many docs such as analytics providers and quick-start instructions.
+- static/: static assets served at site root. Examples: static/robots.txt, static/we_can_be_heroes.pdf, static/britt.gpg, static/CNAME.
+- static/img/: images referenced by content and theme, including static/img/cocktails/ with file names matching content slugs (e.g., static/img/cocktails/yippee-kay-yay-motherfucker.png).
+- layouts/: custom templates for the site; index.html present at layouts/index.html.
 
-File naming conventions observed:
-- Use _index.md for section/collection pages (cocktails/_index.md).
-- Use index.md inside a slug-named folder for leaf pages representing that slug (e.g., cocktails/yippee-kay-yay-motherfucker/index.md).
-- Some inconsistency at root-level (projects.md instead of /projects/_index.md). Place new collection pages using _index.md inside a directory named for the collection (e.g., /projects/_index.md).
+File naming conventions observed and rules for adding new content
+- Section listing pages: use _index.md (example: content/cocktails/_index.md). If a section has multiple items, create a _index.md for the section overview.
+- Per-item pages: create a folder under the section named with the slug and place index.md inside (example: content/cocktails/el-nino/index.md). This pattern is used consistently for cocktails.
+- Single-file pages at root: allowed (example content/projects.md). For these files, include a 'path' front matter field to set the URL explicitly (example front matter: 'path: /projects').
+- Images: store under static/img/<section>/ and name the file to match the content slug (example: content/cocktails/el-nino/index.md pairs with static/img/cocktails/el-nino.png).
+- Theme docs and exampleSite follow similar content/ structure inside themes/hugo-coder/exampleSite/content/.
 
-Placement rules for new content:
-- For a new recipe or item that needs its own URL: create a directory under the appropriate section (e.g., /cocktails/new-recipe/) and add index.md with front matter path: /cocktails/new-recipe/.
-- For a new collection/section: create /section-name/_index.md with front matter path: /section-name/.
-- Keep media assets (images) in a centralized folder (observed: /img/cocktails/) and reference them with root-relative paths.
-
-Recursive subdirectory guidance:
-- Subdirectories inside /cocktails/ are the canonical place for individual recipes. Each such subdirectory must contain index.md and may include images in /img/ or nested media folders. The placeholder _has_subdirs_ exists in many directories — treat it as non-content; remove or replace with a README.md if needed to explain the directory purpose.
+Duplicate/ambiguous items to resolve when adding content
+- The repo contains duplicates of some files (e.g., multiple README.md and repeated _index.md in the listing). When adding new content, avoid creating both index.md and _index.md at the same path unless intentionally creating a section vs a leaf page; follow the rule: use _index.md for section pages and index.md for a leaf within slug directory.
 
 ## Usage
 
 This style guide should be used when creating new documentation for this project. Follow the patterns and guidelines outlined above to ensure consistency with existing documentation.
 
-*Generated on: 2025-09-06T23:59:30.856Z*
+*Generated on: 2025-09-07T00:09:04.918Z*

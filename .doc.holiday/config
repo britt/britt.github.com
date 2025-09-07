@@ -1,36 +1,31 @@
-Publishing = "unknown"
+Publishing = "Hugo"
 Includes = [
   "!**/.git/**",
   "!**/build/**",
   "!**/dist/**",
   "!**/node_modules/**",
+  "!public/**",
+  "!resources/_gen/**",
+  "!themes/**/layouts/**",
+  "!themes/**/static/**",
   "**/*.md",
   "**/*.rst",
   "**/*.txt",
   "**/CHANGELOG*",
   "**/CONTRIBUTING*",
   "**/LICENSE*",
-  "**/README*"
+  "**/README*",
+  "archetypes/**",
+  "assets/**",
+  "config.*",
+  "content/**/*.md",
+  "data/**",
+  "layouts/**",
+  "static/**"
 ]
-DocumentationRoot = "content"
+DocumentationRoot = "."
 
 [DocumentationRootEvidence]
-method = "density"
-density = 0.8095238095238095
-docFiles = 17
-totalFiles = 21
-
-  [[DocumentationRootEvidence.candidates]]
-  dir = "archetypes"
-  density = 1
-  docFiles = 1
-
-  [[DocumentationRootEvidence.candidates]]
-  dir = "content"
-  density = 0.8095238095238095
-  docFiles = 17
-
-  [[DocumentationRootEvidence.candidates]]
-  dir = "themes"
-  density = 0.25
-  docFiles = 57
+method = "framework-config"
+configFile = "hugo.toml"
+message = "Publishing framework config found at repository root"
