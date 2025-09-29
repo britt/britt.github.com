@@ -1,16 +1,7 @@
 {
   "platform": "github",
-  "version": "1.3.7",
-  "timestamp": "2025-09-29T22:28:04.444Z",
-  "mode": "update",
-  "changed_files": [
-    ".github/workflows/styleguide.yml",
-    ".github/actions/styleguide-action/detect-documentation-root/action.yml",
-    ".github/actions/styleguide-action/detect-documentation-root/dist/index.js",
-    ".github/actions/styleguide-action/identify-publishing-framework/action.yml",
-    ".github/actions/styleguide-action/identify-publishing-framework/dist/index.js",
-    ".github/actions/styleguide-action/generate-styleguide/action.yml",
-    ".github/actions/styleguide-action/generate-styleguide/dist/index.js",
-    ".github/actions/styleguide-action/initialize-doc-holiday-config/action.yml"
-  ]
+  "version": "889ebdf159e54f057edb054dfa13db5a897e295c",
+  "workflow_version": "1.0.0",
+  "timestamp": "2025-09-29T23:45:09.531Z",
+  "trigger": "workflow_dispatch"
 }
