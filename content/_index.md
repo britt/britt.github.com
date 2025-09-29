@@ -42,3 +42,5 @@ Following the example of [David Gasquez's](https://davidgasquez.com/useful-llm-t
 
 [^1]: _[Maggie Appleton - Home-Cooked Software and Barefoot Developers](https://maggieappleton.com/home-cooked-software)_
 [^2]: The entire package including documentation was written by an LLM.
+
+Coauthored by [doc.holiday](https://doc.holiday/)
