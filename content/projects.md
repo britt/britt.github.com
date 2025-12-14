@@ -9,6 +9,7 @@ These are things that I have built simply because I wanted them to exist, or in 
 
 * [Readinglist.live](https://www.readinglist.live) - Turn any web page into a podcast episode, with decently human sounding voices. _(It just reads it to you in a nice human voice, no AI commentary or nonsense like that.)_
 * [lotsofcsvs.com](https://www.lotsofcsvs.com) - a **small data** warehouse built with CSV and HTTP as its API. It is intentionally as barebones as possible. It aims to be a simple API for recording and fetching data that works with everything.
+* [Claude Code Skills](https://github.com/britt/claude-code-skills?tab=readme-ov-file) - some skills and CLAUDE.md templates for working with Claude Code.
 * [Teleprompter](https://github.com/britt/teleprompter)  - A system to manage and update prompts for LLMs at runtime on Cloudflare Workers.
 * [avro-sqlite](https://github.com/britt/avro-sqlite) - a Go package to read a SQLite database, extract the schema and data to [Apache Avro](https://avro.apache.org/) and vice versa
 * [yts](https://github.com/britt/vibes/tree/main/yts) - A bash function to download YouTube video transcripts and convert them to Markdown format.
