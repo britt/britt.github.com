@@ -9,7 +9,7 @@ When you first point a coding agent at a real codebase, it is tempting to judge 
 
 That instinct is understandable—and almost guaranteed to backfire.
 
-The Claude Code Skills in the linked repository ([https://github.com/brittcrawford/claude-code-skills](https://github.com/brittcrawford/claude-code-skills)) focus on something very different: they teach Claude to value <em>stability over speed</em>, and to treat every change as something that must be proven safe, not just made plausible. The result is a process that looks slower and more verbose, but dramatically reduces the classic doom loop:
+The Claude Code Skills in the linked repository ([https://github.com/britt/claude-code-skills](https://github.com/britt/claude-code-skills)) focus on something very different: they teach Claude to value <em>stability over speed</em>, and to treat every change as something that must be proven safe, not just made plausible. The result is a process that looks slower and more verbose, but dramatically reduces the classic doom loop:
 
 > introduce a bug → attempt a fix → break something else → reintroduce the original bug → repeat.
 
