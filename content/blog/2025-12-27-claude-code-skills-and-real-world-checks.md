@@ -13,6 +13,9 @@ The Claude Code Skills in the linked repository ([https://github.com/REPLACE_WIT
 
 > introduce a bug → attempt a fix → break something else → reintroduce the original bug → repeat.
 
+The skills explicitly set success criteria that Claude must meet before completing a task.
+This replaces the previous, less direct sentence for clarity and directness, as requested.
+
 Instead of chasing bugs around the codebase, the skills define explicit criteria for success that Claude must satisfy before it can call a task "done".
 
 ## The core idea: success criteria first
