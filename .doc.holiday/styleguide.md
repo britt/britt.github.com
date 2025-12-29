@@ -1,17 +1,18 @@
-# Documentation Style Guide
+# Style Guide for brittcrawford.com
+
+## Context
+
+**Project:** Hi. Welcome to brittcrawford.com.
+**Description:** This is my personal website. Right now it just has a business card-like list of links and a non-committal description. I might add more to it in the future.
+**Publishing System:** Hugo
 
 ## Project Summary
 
-Project: Hi. Welcome to brittcrawford.com.
-
-This repository is a personal website built with Hugo (static site generator) and the hugo-coder theme. The site currently functions as a small personal/business-card site with lists of links and short descriptions, with potential for future expansion (projects, posts, recipes/cocktails, a daresnot page, etc.). The audience is primarily site visitors (general public), and the internal audience includes the site owner and any contributors who may add content. Technical details: content is organized under content/, static assets under static/, and theme files under themes/hugo-coder/. Markdown files with YAML/TOML front matter drive page metadata. Content features observed include table-of-contents usage, explicit metadata front-matter, code examples, API-style or reference-style content, and tables.
+This is a personal website built with Hugo (static site generator) and the hugo-coder theme. The site is small homepage fpor Britt Crawford with a list of links with short descriptions. The audience is primarily site visitors (general public), and the internal audience includes the site owner and any contributors who may add content. Technical details: content is organized under content/, static assets under static/, and theme files under themes/hugo-coder/. Markdown files with YAML/TOML front matter drive page metadata. Content features observed include table-of-contents usage, explicit metadata front-matter, code examples, API-style or reference-style content, and tables.
 
 Purpose and goals:
 - Provide consistent, small-site content (about, contact, projects, posts, content collections such as cocktails).
 - Maintain a clean, minimal structure matching Hugo conventions so new pages can be added quickly and consistently.
-- Enable future expansion (tutorials, API docs, examples) without breaking site generation.
-
-Technical complexity level: Low to medium. Content is primarily Markdown pages augmented with Hugo front matter and optional shortcodes or template-specific features from the hugo-coder theme. Contributors should be comfortable with Markdown, front matter metadata, and basic Hugo path conventions.
 
 Writing patterns and conventions observed:
 - File names follow kebab-case (e.g., yippee-kay-yay-motherfucker). Collection indexes use _index.md or index.md. Archetypes/default.md exists for new content skeletons.
@@ -28,12 +29,6 @@ Examples of content types present:
 
 Key takeaway: Use minimal, consistent metadata, a clear heading hierarchy, plain-language short paragraphs, and Hugo-native link paths when linking between pages.
 
-## Context
-
-**Project:** Hi. Welcome to brittcrawford.com.
-**Description:** This is my personal website. Right now it just has a business card-like list of links and a non-committal description. I might add more to it in the future.
-**Publishing System:** Hugo
-
 ## Primary Documentation Goals
 
 ## Writing Rules
@@ -41,25 +36,14 @@ Key takeaway: Use minimal, consistent metadata, a clear heading hierarchy, plain
 ### Core Principles
 - **Be concise** - Use the minimum words necessary
 - **Be practical** - Focus on actionable information
-- **Be example-driven** - Show working code for every concept
-- **Be consistent** - Match existing documentation patterns
+- **Be example-driven** - Show working code opr an example of every concept
 
 ### Tone Guidelines
 
-#### Default Tone (Technical Users)
-- Direct and practical language
-- Assume familiarity with TypeScript, package managers, CLI
-- Use technical jargon and shorthand
-- Focus on code examples over explanations
+#### Default Tone
+- Use direct and practical language
+- Focus on examples over explanations
 - Avoid marketing language or benefit statements
-
-#### Non-Technical User Adjustments
-When explicitly writing for non-technical users:
-- Explain what each command does and why
-- Spell out abbreviations and technical terms
-- Provide simpler code examples with explanations
-- Include more step-by-step guidance
-- Link to additional learning resources
 
 ### Publishing System Requirements
 Hugo-specific publishing requirements and front-matter templates
@@ -155,30 +139,10 @@ General rules
 - Provide code examples, API request/response examples, and small runnable snippets where helpful.
 - Use images sparingly; reference them from /img/ and include alt text.
 
-Technical Documentation Pages (API, reference)
-- Begin with a brief overview and purpose statement.
-- Provide authentication and prerequisites if applicable.
-- Include a canonical example request and response near the top.
-- Use a parameters table for listing request/query/body parameters.
-- Include a troubleshooting or common errors section at the end.
-
-Process / How-to pages (if added)
-- Begin with prerequisites and a short summary.
-- Use numbered steps for procedures. Keep steps concise.
-- Provide validation/expected outcome and troubleshooting at the end.
-
 Collection item pages (e.g., cocktails)
 - Start with metadata (front matter) then a short intro sentence.
 - Include key structured sections: Ingredients (H2), Instructions (H2), Notes/Variations (H2).
 - Provide a representative image via front matter image or inline Markdown image referencing /img/cocktails/<image>.
-
-Examples (documented patterns found in the repo)
-- Collection home (_index.md) -> gives an overview and a list of links to per-item pages.
-- Per-item index.md inside a folder -> H1 equals the item name, followed by sections like Ingredients and Instructions.
-
-Tables
-- Use Markdown tables for parameter lists or small datasets. Keep them narrow (3–4 columns maximum) for readability.
-- Example table header style: | Parameter | Type | Description |
 
 Metadata and TOC
 - Keep the front-matter minimal but consistent. If using the theme’s auto-generated TOC, ensure headings are H2/H3 only so the TOC is useful.
@@ -217,15 +181,6 @@ Heading usage rules
 - Keep headings short and descriptive; one line or less.
 - Use Title Case for headings throughout.
 
-Exact examples drawn from repository file names (use these as canonical headings):
-- # Quick Start
-- ## Analytics
-- ## Multilingual Mode
-- ## FAQ
-- ## Home
-- ## Contributing
-- ## Configurations
-- ## Comment System
 
 Note: Many theme docs use Title Case and singular words for major headings; follow that same pattern for consistency.
 ```
@@ -262,7 +217,7 @@ Internal links
 External links
 - Use full URLs with protocol (https://) and open in the same tab by default. If you intend to open in a new tab, add a brief note in parentheses or use target attributes only if supported by templates.
 - Example: [Node.js](https://nodejs.org)
-- Prefer linking to authoritative sources for technical references and include the date last accessed in documentation where stability matters.
+- Prefer linking to authoritative sources
 
 Cross-reference and navigation standards
 - Prefer internal absolute paths for cross-references so links remain stable (e.g., [Contact](/contact/)).
@@ -282,12 +237,6 @@ Exact syntax examples
 Special cases
 - If a page uses a custom front-matter 'path' that differs from the folder structure, link to the declared path value.
 - When cross-referencing docs in the theme exampleSite, match the public-facing route (exampleSite is for demonstration and may not be published at the same root).
-
-### Documentation Content Examples
-- Below are examples of existing documentation that you should use for reference, including formatting, structure, layout, style, and language.
-- The start and end of the following examples is marked by 10 dashes in a row, like this ----------. The 10 dashes in a row are not part of the formatting or content of the examples.
-
-undefined
 
 ## Existing Documentation Directory Structure
 Top-level overview and what belongs in each path
@@ -322,6 +271,3 @@ Key file conventions
 - Flat single pages: content/<pagename>.md or content/<pagename>/index.md
 - Use kebab-case for filenames and slugs (lowercase, hyphen-separated)
 - Keep media in static/img/ and reference as /img/<file> in Markdown or front matter image field.
-
-
-*Generated on: 2025-09-29T23:46:06.863Z*
