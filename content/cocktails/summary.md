@@ -3,6 +3,8 @@ title: "Cocktail recipe summary"
 path: /cocktails/summary/
 ---
 
+One-sentence summaries of each cocktail recipe in the [Cocktail Recipes](/cocktails/) collection.
+
 ## Recipes
 
 - [Anderson Island Sunset](/cocktails/anderson-island-sunset/): A tequila drink with guava nectar, sparkling water, margarita mix, mint, and frozen blueberries.
