@@ -5,8 +5,6 @@ date: 2026-04-09
 draft: false
 ---
 
-# Claude Code rules for TDD and verification
-
 The most useful rules for a coding agent are the ones that force it to slow down and prove things. Without them, it can wander, guess, and bring old bugs back while sounding confident the whole time.
 
 The rules that matter most to me come from the Claude Code Skills repository. They make two demands clear. First, TDD is mandatory. Second, the work is not done until a real world verification scenario passes against a real system.
