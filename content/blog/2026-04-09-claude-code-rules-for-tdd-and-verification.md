@@ -5,8 +5,6 @@ date: 2026-04-09
 draft: false
 ---
 
-# Claude Code rules for TDD and verification
-
 The most useful rules for a coding agent are the ones that force it to slow down and prove things. Without them, it can wander, guess, and bring old bugs back while sounding confident the whole time.
 
 The rules that matter most to me come from the Claude Code Skills repository. They make two demands clear. First, TDD is mandatory. Second, the work is not done until a real world verification scenario passes against a real system.
@@ -27,7 +25,7 @@ The TDD rules are blunt on purpose. Claude does not get to write production code
 
 That sequence matters because it prevents fake progress. A passing test written after the code proves very little. A failing test written first proves that the problem was real and that the fix changed something specific.
 
-The same rules also set a high bar for completion. The task is not done when one test passes. The task is done when tests pass, the build passes, code quality checks pass, coverage stays high, and the required progress reporting is complete. That turns TDD from a slogan into an operating rule.
+The same rules also set a high bar for completion. The task is not done when one test passes. The task is done when tests pass, the build passes, lint passes, coverage stays high, and the required progress reporting is complete. That turns TDD from a slogan into an operating rule.
 
 In practice, this means Claude has to work in smaller moves. If a parser breaks on empty input, the first step is not a rewrite. The first step is a test that shows the empty input still breaks. After that, Claude makes the smallest change that handles the case and runs the full checks again.
 
@@ -67,7 +65,7 @@ Fifth, only mark the work done when the real scenario succeeds.
 
 That loop sounds strict because it is strict. It also gives the agent fewer chances to drift.
 
-Say a bug report says a scheduled job skips entries created near midnight. The first move is a test that reproduces that exact case. Claude runs it and confirms the failure comes from the date handling, not from bad sample data or a bad assumption. Then Claude makes the smallest fix that gets the test to pass. After that, Claude follows `VERIFICATION_PLAN.md` and runs the job against the real scheduling path and real storage, with data that crosses midnight, to confirm the skipped entries now appear. Only then is the bug actually fixed.
+Say a bug report says a scheduled job skips entries created near midnight. The first move is a test that reproduces that exact case. Claude runs it and confirms the failure comes from the date handling, not from a broken fixture or a bad assumption. Then Claude makes the smallest fix that gets the test to pass. After that, Claude follows `VERIFICATION_PLAN.md` and runs the job against the real scheduling path and real storage, with data that crosses midnight, to confirm the skipped entries now appear. Only then is the bug actually fixed.
 
 ## Why this is worth the extra friction
 
