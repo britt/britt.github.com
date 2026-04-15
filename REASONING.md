@@ -1,15 +1,15 @@
 # Reasoning: PR #34
 
-PR #34, `Add semantic release commit examples across all release types`, updates the Claude Code Skills repository around a `2.0.0` bundle model. This document explains the main changes in that pull request and why they matter. Release notes are not being produced here.
+PR #34, `Add semantic release commit examples across all release types`, updates the Claude Code Skills repository around a `2.0.0` bundle model. This document explains what changed in that pull request and why those changes matter. Release notes are not being produced here.
 
 ## Main Changes
 
 - **Semantic release examples across release types**
-  - The pull request title frames the work around semantic release commit examples, and the added `changelog-generation` skill teaches how to group conventional commit history into changelog sections and how to call out breaking changes.
-  - This matters because it gives teams clearer examples for turning commit history into consistent release summaries instead of relying on ad hoc wording.
+  - The pull request title centers the work on semantic release commit examples, and the added `changelog-generation` skill describes how changelogs can group conventional commit history by release type and highlight breaking changes.
+  - This matters because it makes semantic release usage clearer and gives teams a more consistent way to describe meaningful changes.
 
 - **Addition of the `changelog-generation` skill**
-  - The PR adds a new skill for generating changelogs from git history with conventional commit prefixes and explicit breaking change detection.
+  - The PR adds a new skill for generating changelogs from git history with conventional commit prefixes and clear breaking change detection.
   - This gives users a more direct way to assemble changelogs from commit history and supports more consistent release communication.
 
 - **Documentation updates in `README.md`, `CONTRIBUTING.md`, and the site index**
@@ -21,12 +21,12 @@ PR #34, `Add semantic release commit examples across all release types`, updates
 - **Marketplace and versioning changes in `.claude-plugin/marketplace.json`**
   - The marketplace file bumps both the repository version and the bundled plugin version to `2.0.0`.
   - The same diff removes the individual skill marketplace entries and leaves the bundled `claude-code-skills` entry as the distribution path.
-  - This signals that the change is a major shift rather than a routine update and simplifies distribution around the full bundle instead of many separate install targets.
+  - This signals that the distribution change is significant and simplifies installation around the full bundle instead of many separate install targets.
 
 - **Removal of `package.sh` and the move away from zip archive distribution**
   - The PR deletes `package.sh`, which previously created one zip archive per skill.
   - The added `RELEASE_NOTES.md` draft and the updated installation guidance both show that the project is ending zip based distribution and moving Claude.ai usage toward cloning the repository and uploading skill directories.
-  - This reduces reliance on archive packaging and matches the broader move to a bundle first distribution model.
+  - This supports the broader move to a bundle based distribution model and removes a packaging path that the project no longer plans to support.
 
 ## Breaking Changes
 
@@ -40,4 +40,4 @@ PR #34, `Add semantic release commit examples across all release types`, updates
 
 ## Why These Changes Were Made
 
-The changes in PR #34 align examples, documentation, and distribution guidance around a `2.0.0` bundle based model. The new changelog generation skill makes semantic release usage clearer, while the documentation refresh keeps contributor and installation guidance in sync with the new approach. The diff also shows an added `RELEASE_NOTES.md` draft, which serves here only as evidence for the intended breaking changes and major themes of the PR rather than as a release notes document.
+The changes in PR #34 align examples, documentation, and distribution guidance around a `2.0.0` bundle based model. The new changelog generation skill makes semantic release usage clearer, while the documentation refresh keeps contributor and installation guidance in sync with the new approach. The diff also shows an added `RELEASE_NOTES.md` draft, which serves here only as a factual source for the intended breaking changes and major themes of the PR rather than as a release notes document.
