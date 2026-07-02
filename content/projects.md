@@ -1,6 +1,5 @@
 ---
 title: Projects
-path: /projects
 ---
 
 ## Home Cooked Software [^1]

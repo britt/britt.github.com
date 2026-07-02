@@ -1,7 +1,6 @@
 ---
 title: Envejeciendo
 date: 2025-07-17
-path: /cocktails/envejeciendo/
 ---
 
 When I was young I thought only old people like grapefruit. Then I started to like it and decided I was old. This combines grapefruit, Mezcal, and bit of spice. It's delightful to drink while watching [Slow Horses](https://www.rottentomatoes.com/tv/slow_horses).

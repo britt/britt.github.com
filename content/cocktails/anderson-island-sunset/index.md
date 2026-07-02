@@ -1,7 +1,6 @@
 ---
 title: Anderson Island Sunset
 date: 2022-07-14
-path: /cocktails/anderson-island-sunset/
 ---
 
 This cocktail was born from the age old question, "What do we have?". I was staying at a cabin on Anderson island with family. A lot of were packed in. I was sleeping in my van, and there were tents set up in the yard. My sister Katie, my cousins Jon and Alyssa, and I foraged through the kitchen and created a cocktail to commermorate the occasion, and get us ready to go to the concert of a *13 piece Huey Lewis cover band who's name I cant remember* 🤷‍♂️

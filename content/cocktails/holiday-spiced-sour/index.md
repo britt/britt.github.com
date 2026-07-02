@@ -1,7 +1,6 @@
 ---
 title: Holiday Spiced Sour
 date: 2024-12-25
-path: /cocktails/holiday-spiced-sour/
 ---
 
 A whiskey sour that raided the spice cabinet at Christmas.

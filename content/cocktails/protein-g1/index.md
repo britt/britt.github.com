@@ -1,7 +1,6 @@
 ---
 title: Protein G1
 date: 2024-02-09
-path: /cocktails/protein-g1/
 ---
 
 A healthy liquid breakfast. 

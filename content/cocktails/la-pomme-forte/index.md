@@ -1,7 +1,6 @@
 ---
 title: La Pomme Forte
 date: 2014-04-01
-path: /cocktails/la-pomme-forte/
 ---
 
 A refreshing and delicious Apple Jack cocktail named in bad French. 

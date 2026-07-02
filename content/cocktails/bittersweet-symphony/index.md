@@ -1,7 +1,6 @@
 ---
 title: Bittersweet Symphony
 date: 2025-04-28
-path: /cocktails/bittersweet-symphony/
 ---
 
 A bourbon Paloma that swapped grapefruit soda for fresh juice much to its benefit.

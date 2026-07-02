@@ -1,6 +1,5 @@
 ---
 title: brittcrawford.com
-path: /
 ---
 
 These are things that I have built simply because I wanted them to exist, or in the case of **avro-sqlite**, because I wanted to see if I could.[^2] I like tools that serve me, not ones that try to extract value from me or my attention. I also like the [process of building and understanding](https://brucesterling.tumblr.com/post/749569601319452672/realistic-utopias-a-speech-by-bruce-sterling) the things that I use.
@@ -14,6 +13,7 @@ These are things that I have built simply because I wanted them to exist, or in 
 * [LLPM](https://github.com/britt/llpm) - Imagine Claude Code was a PM. 
 * [Teleprompter](https://github.com/britt/teleprompter)  - A system to manage and update prompts for LLMs at runtime on Cloudflare Workers.
 * [avro-sqlite](https://github.com/britt/avro-sqlite) - a Go package to read a SQLite database, extract the schema and data to [Apache Avro](https://avro.apache.org/) and vice versa
+* [cf-app-template](https://github.com/britt/cf-app-template) - A template for building Next.js apps on Cloudflare Workers, with boilerplate and deployment already wired up.
 * [yts](https://github.com/britt/vibes/tree/main/yts) - A bash function to download YouTube video transcripts and convert them to Markdown format.
 Following the example of [David Gasquez's](https://davidgasquez.com/useful-llm-tools-2024/) excellent [qv](https://github.com/davidgasquez/dotfiles/blob/bb9df4a369dbaef95ca0c35642de491c7dd41269/shell/zshrc#L75-L99) function.
 
