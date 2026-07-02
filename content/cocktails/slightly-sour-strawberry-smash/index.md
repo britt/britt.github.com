@@ -1,7 +1,6 @@
 ---
 title: Slightly Sour Strawberry Smash
 date: 2017-03-16
-path: /cocktails/slightly-sour-strawberry-smash/
 ---
 
 A strawberry old fashioned with a sweet and sour taste. The walnut cordial is somewhat sour and balances the sweetness and fruitiness of the strawberry much like balsamic vinegar in a strawberry salad. Sounds weird. Tastes great. 

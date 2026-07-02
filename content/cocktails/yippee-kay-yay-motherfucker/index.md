@@ -1,7 +1,6 @@
 ---
 title: Yippee Kay Yay Motherfucker!
 date: 2014-03-19
-path: /cocktails/yippee-kay-yay-motherfucker/
 ---
 
 A spicy variant on the Old Fashioned, a tribute to [John McClane](https://en.wikipedia.org/wiki/John_McClane) and a terrible pun. 

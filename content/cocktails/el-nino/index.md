@@ -1,7 +1,6 @@
 ---
 title: El Niño
 date: 2014-04-01
-path: /cocktails/el-nino/
 ---
 
 This is the one cocktail in the collection that I didn't create. My friend [Josh Kelly](https://twitter.com/jcoltkelly) devised this recipe, and on a trip to the beach after many iterations we pronounced it good. 

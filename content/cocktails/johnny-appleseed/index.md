@@ -1,7 +1,6 @@
 ---
 title: Johnny Appleseed
 date: 2014-04-01
-path: /cocktails/johnny-appleseed/
 ---
 
 An variant of the [Rattlesnake]() using Apple Jack instead of Rye. 

@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "setup": "git submodule update --init --recursive",
+    "run": "hugo server --bind 127.0.0.1 --port \"${CONDUCTOR_PORT:-1313}\" --buildDrafts"
+  }
+}

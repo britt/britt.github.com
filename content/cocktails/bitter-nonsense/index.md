@@ -1,7 +1,6 @@
 ---
 title: Bitter Nonsense
 date: 2024-12-11
-path: /cocktails/bitter-nonsense/
 ---
 
 A Negroni's neurotic cousin who moved to the suburbs, got a soda maker, and now won't shut up about "balance" while still being fundamentally unhinged.

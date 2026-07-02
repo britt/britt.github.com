@@ -1,7 +1,6 @@
 ---
 title: Mother of Invention
 date: 2024-11-23
-path: /cocktails/mother-of-invention/
 ---
 
 The name says it all. It was made with what I had at the time.

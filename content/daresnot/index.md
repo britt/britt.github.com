@@ -1,7 +1,6 @@
 ---
 title: Daresnot
 date: 2018-03-08
-path: /daresnot/
 ---
 
 ## electronic voting with time limited privacy
