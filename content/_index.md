@@ -2,7 +2,7 @@
 title: brittcrawford.com
 ---
 
-These are things that I have built simply because I wanted them to exist, or in the case of **avro-sqlite**, because I wanted to see if I could.[^2] I like tools that serve me, not ones that try to extract value from me or my attention. I also like the [process of building and understanding](https://brucesterling.tumblr.com/post/749569601319452672/realistic-utopias-a-speech-by-bruce-sterling) the things that I use.
+These are things that I have built simply because I wanted them to exist, or because I wanted to see if I could. I like tools that serve me, not ones that try to extract value from me or my attention. I also like the [process of building and understanding](https://brucesterling.tumblr.com/post/749569601319452672/realistic-utopias-a-speech-by-bruce-sterling) the things that I use.
 
 ## Home Cooked Software [^1]
 
@@ -14,9 +14,6 @@ These are things that I have built simply because I wanted them to exist, or in 
 * [Teleprompter](https://github.com/britt/teleprompter)  - A system to manage and update prompts for LLMs at runtime on Cloudflare Workers.
 * [avro-sqlite](https://github.com/britt/avro-sqlite) - a Go package to read a SQLite database, extract the schema and data to [Apache Avro](https://avro.apache.org/) and vice versa
 * [cf-app-template](https://github.com/britt/cf-app-template) - A template for building Next.js apps on Cloudflare Workers, with boilerplate and deployment already wired up.
-* [yts](https://github.com/britt/vibes/tree/main/yts) - A bash function to download YouTube video transcripts and convert them to Markdown format.
-Following the example of [David Gasquez's](https://davidgasquez.com/useful-llm-tools-2024/) excellent [qv](https://github.com/davidgasquez/dotfiles/blob/bb9df4a369dbaef95ca0c35642de491c7dd41269/shell/zshrc#L75-L99) function.
-
 
 ## iOS Shortcuts
 
@@ -41,7 +38,9 @@ Following the example of [David Gasquez's](https://davidgasquez.com/useful-llm-t
 ## Abandoned but not forgotten
 * [Havamal](https://smile.amazon.com/Snugglebear-Team-Company-Havamal/dp/B07N114BWY/ref=sr_1_2?keywords=havamal&qid=1550960415&s=digital-skills&sr=1-2-catcorr) - The wisdom of Odin, told by Alexa. Say, "Alexa tell me the wisdom of Odin."
 * [Testivus](https://github.com/britt/testivus/) - _(inactive)_ A Go test helper library to let your code know how it disappoints you.
+* [yts](https://github.com/britt/vibes/tree/main/yts) - A bash function to download YouTube video transcripts and convert them to Markdown format.
+Following the example of [David Gasquez's](https://davidgasquez.com/useful-llm-tools-2024/) excellent [qv](https://github.com/davidgasquez/dotfiles/blob/bb9df4a369dbaef95ca0c35642de491c7dd41269/shell/zshrc#L75-L99) function.
+
 
 
 [^1]: _[Maggie Appleton - Home-Cooked Software and Barefoot Developers](https://maggieappleton.com/home-cooked-software)_
-[^2]: The entire package including documentation was written by an LLM.
