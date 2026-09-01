@@ -1,8 +1,7 @@
 baseURL = 'https://brittcrawford.com/'
-languageCode = 'en-us'
 title = 'brittcrawford.com'
+locale = 'en-US'
 theme = "hugo-coder"
-languagecode = "en"
 defaultcontentlanguage = "en"
 
 pagination.pagerSize = 20
@@ -12,6 +11,14 @@ style = "github-dark"
 
 [markup.goldmark.renderer]
 unsafe = true
+
+# Hugo version gate. Fails the build on an unpinned or non-extended toolchain
+# rather than producing a subtly different site. Keep in step with .hugoversion
+# and .tool-versions.
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.163.0"
 
 [params]
   author = "Britt Crawford"
