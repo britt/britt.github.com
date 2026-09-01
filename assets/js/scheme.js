@@ -1,38 +1,39 @@
-/* Resolve the colour scheme and publish it as <html data-scheme>.
+/* Publish an explicitly chosen colour scheme as <html data-scheme>.
  *
- * The design system scopes its dark tokens to :root[data-scheme="dark"], so
- * the attribute has to exist before the first paint or the page renders light
- * and snaps. This runs inline and blocking in <head> for that reason.
+ * The absence of the attribute is meaningful: it means "follow the OS", which
+ * the stylesheet answers on its own with prefers-color-scheme. So this only
+ * ever sets the attribute for a *stored* preference, and removes it when the
+ * visitor has none. Dark mode therefore works with JavaScript disabled, and
+ * the OS-follows path needs no script at all.
  *
- * The theme's own coder.js still drives the toggle at this point and signals
- * changes with a themeChanged event; we mirror it. (#43 replaces coder.js.)
+ * Runs inline and blocking in <head>: the attribute has to exist before the
+ * first paint or a visitor whose stored preference disagrees with their OS
+ * sees the wrong scheme and then a snap.
+ *
+ * The theme's coder.js still drives the toggle at this point and announces
+ * changes with a themeChanged event; we mirror it. (#52 replaces coder.js.)
  */
 (function () {
   var KEY = "colorscheme";
-  var media = window.matchMedia("(prefers-color-scheme: dark)");
+  var root = document.documentElement;
 
-  function resolve() {
-    var stored = null;
+  function stored() {
     try {
-      stored = localStorage.getItem(KEY);
+      var v = localStorage.getItem(KEY);
+      return v === "dark" || v === "light" ? v : null;
     } catch (e) {
-      /* private mode, storage disabled — fall through to the media query */
+      return null; /* private mode, storage disabled — let CSS decide */
     }
-    if (stored === "dark" || stored === "light") return stored;
-    return media.matches ? "dark" : "light";
   }
 
   function apply(scheme) {
-    document.documentElement.setAttribute("data-scheme", scheme);
+    if (scheme) root.setAttribute("data-scheme", scheme);
+    else root.removeAttribute("data-scheme");
   }
 
-  apply(resolve());
-
-  media.addEventListener("change", function () {
-    apply(resolve());
-  });
+  apply(stored());
 
   document.addEventListener("themeChanged", function () {
-    apply(document.body.classList.contains("colorscheme-dark") ? "dark" : "light");
+    apply(stored());
   });
 })();

@@ -6,7 +6,8 @@
   "scripts": {
     "capture": "node capture.mjs",
     "baseline": "./baseline.sh",
-    "compare": "node compare.mjs"
+    "compare": "node compare.mjs",
+    "test": "node --test scheme.test.mjs"
   },
   "devDependencies": {
     "playwright": "^1.49.0",

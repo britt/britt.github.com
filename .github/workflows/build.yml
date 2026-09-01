@@ -48,3 +48,49 @@ jobs:
             git diff --stat FETCH_HEAD -- themes/
             exit 1
           fi
+
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: tests/visual/package-lock.json
+
+      - name: Read the pinned Hugo version
+        id: hugo
+        run: echo "version=$(cat .hugoversion)" >> "$GITHUB_OUTPUT"
+
+      - name: Install Hugo ${{ steps.hugo.outputs.version }} extended
+        env:
+          VERSION: ${{ steps.hugo.outputs.version }}
+        run: |
+          set -euo pipefail
+          url="https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_extended_${VERSION}_linux-amd64.deb"
+          curl --fail --silent --show-error --location -o /tmp/hugo.deb "$url"
+          sudo dpkg -i /tmp/hugo.deb
+
+      - name: Install test dependencies
+        working-directory: tests/visual
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+
+      # Visual regression is not run here: its baseline is regenerated from a
+      # git ref rather than committed (see tests/visual/README.md), and a
+      # baseline captured on a different Chromium build is not comparable.
+      # These are the behavioural assertions, which are.
+      - name: Serve the site
+        run: |
+          hugo server --bind 127.0.0.1 --port 1313 --renderToMemory &
+          for _ in $(seq 1 40); do curl -fsS -o /dev/null http://127.0.0.1:1313/ && break; sleep 0.5; done
+          curl -fsS -o /dev/null http://127.0.0.1:1313/
+
+      - name: Colour-scheme behaviour
+        working-directory: tests/visual
+        env:
+          BASE: http://127.0.0.1:1313
+        run: npm test

@@ -56,6 +56,33 @@
 {{- end -}}
 {{- $bundle := $parts | resources.Concat "css/site-raw.css" -}}
 {{- $stripped := $bundle.Content | replaceRE `@import\s+url\(["'][^"']+["']\);?` "" -}}
+
+{{- /* No-JS dark mode.
+
+  The export scopes every dark value to [data-scheme="dark"], an attribute only
+  a script can set. Coder's stylesheet honoured prefers-color-scheme directly,
+  so dropping it would have made dark mode JavaScript-dependent — a regression
+  invisible in any browser with JS on.
+
+  Rather than write the dark values a second time, the dark rules are lifted
+  out of the bundle and re-emitted with [data-scheme="dark"] rewritten to
+  :not([data-scheme]) inside a prefers-color-scheme query. So: no attribute
+  means the OS decides, in pure CSS with no flash and no script; an explicit
+  attribute always wins, because :not([data-scheme]) stops matching the moment
+  the toggle sets one.
+
+  Derived, not duplicated — there is still exactly one place a dark colour is
+  written down. */ -}}
+{{- $darkRules := findRE `[^{}]*\[data-scheme="dark"\][^{}]*\{[^{}]*\}` $stripped -}}
+{{- if not $darkRules -}}
+  {{- errorf "no [data-scheme=\"dark\"] rules found in the design system bundle — the no-JS dark fallback would be silently empty" -}}
+{{- end -}}
+{{- $auto := "" -}}
+{{- range $darkRules -}}
+  {{- $auto = print $auto (replace . `[data-scheme="dark"]` `:not([data-scheme])`) -}}
+{{- end -}}
+{{- $stripped = printf "%s\n@media (prefers-color-scheme:dark){%s}\n" $stripped $auto -}}
+
 {{- $styles := resources.FromString "css/site.css" $stripped -}}
 {{- if hugo.IsServer -}}
 <link rel="stylesheet" href="{{ $styles.RelPermalink }}">

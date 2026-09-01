@@ -9,10 +9,14 @@
 */ -}}
 <!DOCTYPE html>
 {{- /* override: data-theme picks the design system variant, and it is
-     server-rendered so it is present before any script runs. data-scheme is
-     set by the blocking bootstrap in head/color-scheme.html; the light default
-     here means the attribute is never absent, even with JS disabled. */ -}}
-<html lang="{{ .Site.Language.Lang }}" data-theme="{{ .Site.Params.designTheme | default "playful" }}" data-scheme="{{ cond (eq .Site.Params.colorScheme "dark") "dark" "light" }}">
+     server-rendered so it is present before any script runs.
+
+     data-scheme is deliberately NOT rendered here. Its absence is meaningful:
+     it means "follow the OS", which the stylesheet answers in pure CSS via
+     prefers-color-scheme. Only an explicit stored preference sets the
+     attribute, and the blocking script in head/color-scheme.html does that
+     before first paint. */ -}}
+<html lang="{{ .Site.Language.Lang }}" data-theme="{{ .Site.Params.designTheme | default "playful" }}"{{ if eq .Site.Params.colorScheme "dark" }} data-scheme="dark"{{ else if eq .Site.Params.colorScheme "light" }} data-scheme="light"{{ end }}>
 
 <head>
   <title>{{ block "title" . }}{{ .Site.Params.HeadTitle | default .Site.Title }}{{ end }}</title>

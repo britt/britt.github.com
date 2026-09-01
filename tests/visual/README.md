@@ -6,6 +6,7 @@ The redesign rewrites essentially every CSS rule on the site across
 ```
 ./baseline.sh          # capture the "before" from origin/master
 ./check.sh             # capture the working tree and diff it
+npm test               # colour-scheme behaviour a screenshot cannot see
 ```
 
 `check.sh` exits non-zero if anything differs. During a redesign that is the
@@ -41,6 +42,22 @@ after a Playwright upgrade, re-run `baseline.sh` before trusting a diff.
 | Gravatar | Third-party request intercepted, blank pixel served |
 | Colour scheme | `localStorage.colorscheme` seeded *and* `colorScheme` emulated |
 | Device pixel ratio | Forced to 1 |
+
+## `scheme.test.mjs`
+
+Screenshot diffing cannot see whether dark mode still works with JavaScript
+disabled, whether a stored preference beats the OS setting, or whether the
+attribute that carries it is set before the first paint. Those are asserted
+directly against a running `hugo server`:
+
+```
+BASE=http://127.0.0.1:1313 npm test
+```
+
+The no-flash test is structural rather than temporal — "before first paint" is
+not observable after load, so it asserts the only arrangement that can
+guarantee it: exactly one inline `<script>` in `<head>`, neither `defer` nor
+`async`.
 
 ## Reading the diff
 
