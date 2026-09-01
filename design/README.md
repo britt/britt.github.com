@@ -18,7 +18,7 @@ Local, offline copy of the Claude Design project that drives the site redesign.
 | Path | What |
 |---|---|
 | `styles.css` | Entry point — `@import`s the token files in order |
-| `tokens/*.css` | **The canonical token set.** All 8 files, verbatim |
+| `tokens/*.css` | **The canonical token set.** 9 files — 8 verbatim, plus `content.css` (see below) |
 | `components/**/*.prompt.md` | Usage contract for each of the 17 components |
 | `DESIGN-SYSTEM.md` | The upstream `readme.md`, verbatim — visual foundations, content voice, iconography rules |
 
@@ -140,3 +140,51 @@ of the orphan-token issue.
 
 To preview the **actual site**, use `hugo server` — but note it renders the existing Coder
 theme until the redesign is implemented. Nothing in `design/` is wired into the Hugo build yet.
+
+## `tokens/content.css` — added here, pushed upstream
+
+Authored in this repo on 2026-09-01 and **written back to the Claude Design project the same
+day** via `DesignSync`, so the mirror remains faithful. Verified by re-reading `styles.css`
+from the source afterwards.
+
+### Why it exists
+
+`hugo-coder` styled a set of long-form content elements that the design system's `base.css`
+does not cover. Cutting over to the design system's CSS would have dropped them silently —
+no build error, no visual warning, just unstyled tables and figures noticed weeks later.
+
+Diffing every selector in Coder's surviving partials (`_base`, `_content`, `_footer`)
+against `base.css` + `utilities.css`, the content-relevant gap was:
+
+| Element | Coder had | Design system had |
+|---|---|---|
+| `table`, `th`, `td` | 2px foreground-colour grid | nothing |
+| `figure`, `figcaption` | `text-align: center` | nothing |
+| `.footnotes`, `ol li p` | margin reset | nothing |
+| `ul`, `ol`, `li` | browser default | only `.ds-cols` (`list-style: none`) |
+| `.heading-link` | `visibility: hidden` until hover | **nothing — though the prose promises it** |
+| `.highlight` | block wrapper | only bare `pre` |
+| `a:active` | covered | nothing |
+
+The remaining Coder selectors (`article`, `div`, `header`, `footer`, `i`, `.post*`, `.tag*`,
+`.list`, `.centered`, `.fab`/`.fas`, disqus) are chrome the `.ds-*` utilities replace, or
+belong to features being dropped. They are not gaps.
+
+### How it's written
+
+- **No new values.** Every declaration resolves from existing tokens.
+- **Playful-only tokens are referenced with a base fallback** — `var(--footnotes-rule,
+  var(--border-hairline))` — so one rule serves both themes. This wires three of the orphan
+  tokens listed above: `--footnotes-rule`, `--footnotes-rule-width`, `--list-mark-color`.
+- **Playful overrides are co-located** at the bottom of the file rather than appended to
+  `playful.css`, keeping the addition self-contained and revertible on its own.
+- Imported after `utilities.css` and before `playful.css`.
+
+### Deliberately not added
+
+- **An external-link indicator.** Coder appended a Font Awesome glyph. The design system
+  sanctions a specific, closed set of characters (`—`, `↩︎`, `#`, `←`, `©`) and none is an
+  external-link marker. Inventing one would be adding brand vocabulary, not filling a gap —
+  it needs a decision from the design system's owner.
+- **`details` / `summary`.** Coder styles them; no site content uses them.
+- **RTL.** `params.rtl` is unset; noted as unsupported rather than silently broken.
