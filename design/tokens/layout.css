@@ -11,6 +11,12 @@
   /* responsive list grids */
   --grid-min:min(100%,360px); /* @kind spacing */
   --grid-min-wide:min(100%,420px); /* @kind spacing */
+  /* defaults for properties utilities.css references but nothing defined —
+     without these, minmax()/grid-template-columns is invalid and the whole
+     declaration is dropped, silently collapsing the grid to one column */
+  --col-min:var(--grid-min);
+  --sidebar:var(--rail-basis);
+  --container-max-wide:var(--container-max);
   --radius-sm:6px;
   --radius-md:10px;
   --radius-round:50%;

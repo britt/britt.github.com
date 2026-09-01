@@ -1,0 +1,97 @@
+/* Structural classes emitted by hugo-coder's templates.
+
+   The cutover keeps Coder's templates and drops its stylesheet, so every class
+   its layouts emit still lands in the HTML. Without these rules the page
+   renders unstyled even though the token layer is loaded. Each one is mapped
+   onto the equivalent .ds-* utility rather than reproducing Coder's values. */
+
+/* page frame — mirrors .ds-page / .ds-container */
+.wrapper{display:flex;flex-direction:column;min-height:100vh;width:100%}
+.container{width:100%;max-width:var(--container-max);margin:0 auto;
+  padding-inline:var(--container-pad)}
+.content{flex:1;display:block;margin-block:var(--stack-section)}
+.content article>*{max-width:var(--measure)}
+.content article>.ds-cols,.content article>table,.content article>.ds-scroll,
+.content article>figure,.content article>.highlight,.content article>pre{max-width:none}
+.centered{display:flex;flex-direction:column;align-items:center}
+.about{width:100%}
+
+/* page/list/post bodies */
+.page,.post,.list{width:100%}
+.title,.post-title{margin-block:0 var(--stack-heading-bottom)}
+.title a,.post-title a,.title-link{color:inherit;font-weight:inherit;text-decoration:none}
+.title a:hover,.post-title a:hover,.title-link:hover{color:var(--link)}
+
+/* metadata rows */
+.post-meta,.posted-on,.date{font-family:var(--font-mono);font-size:var(--text-sm);
+  color:var(--date-color,var(--text-muted))}
+.post-meta{display:flex;flex-wrap:wrap;gap:var(--space-4);
+  margin-block:var(--space-2) var(--space-6)}
+.separator{color:var(--text-faint)}
+.hidden{display:none}
+
+/* header / navigation — the site ships no menu, but the wordmark and the
+   surrounding bar are emitted unconditionally by header.html */
+.navigation{border-bottom:var(--header-rule-width,var(--border-width))
+  solid var(--header-rule,var(--border-hairline));
+  background:var(--header-bg,transparent);padding-block:var(--space-5)}
+.navigation .container{display:flex;align-items:center;flex-wrap:wrap;
+  gap:var(--space-5)}
+.navigation-title{font-family:var(--font-mono);font-size:var(--text-sm);
+  font-weight:var(--weight-medium);color:var(--wordmark-color,var(--text-heading));
+  text-decoration:none;margin-right:auto}
+.navigation-title:hover{color:var(--link)}
+.navigation-list{display:flex;flex-wrap:wrap;gap:var(--space-5);
+  list-style:none;margin:0;padding:0}
+.navigation-item{margin:0}
+.navigation-link{font-size:var(--text-sm)}
+.menu-separator span{color:var(--text-faint)}
+/* the checkbox-hack menu toggle: hidden unless a menu is actually configured */
+#menu-toggle{display:none}
+.menu-button{display:none}
+
+/* footer */
+.footer{margin-top:var(--space-10);padding-block:var(--space-8);
+  border-top:var(--border-width) solid var(--border-hairline);
+  text-align:center;font-size:var(--text-sm);color:var(--text-muted)}
+
+/* floating colour-scheme toggle */
+.float-container{position:fixed;right:var(--space-6);bottom:var(--space-6);z-index:10}
+.colorscheme-toggle{display:inline-flex;align-items:center;gap:.4em;
+  font-family:var(--font-mono);font-size:var(--text-sm);
+  color:var(--text-muted);background:var(--surface-page);
+  border:var(--border-width) solid var(--border-hairline);
+  border-radius:var(--radius-sm);padding:var(--space-2) var(--space-4);
+  cursor:pointer;text-decoration:none}
+.colorscheme-toggle:hover{color:var(--link);text-decoration:none}
+
+/* avatar — --avatar-bg/--avatar-fg drive the monogram fallback */
+.avatar{display:flex;justify-content:center}
+.avatar img{width:var(--avatar-size);height:var(--avatar-size);
+  border-radius:var(--radius-round);object-fit:cover;display:block;
+  background:var(--avatar-bg,var(--surface-sunken));color:var(--avatar-fg,var(--text-muted))}
+
+/* pagination — no section currently exceeds the page size, but list.html
+   emits the partial unconditionally */
+.pagination{display:flex;flex-wrap:wrap;gap:var(--space-4);justify-content:center;
+  list-style:none;margin:var(--space-9) 0 0;padding:0;font-size:var(--text-sm)}
+.pagination li{margin:0}
+.pagination a,.pagination span{display:inline-block;padding:var(--space-2) var(--space-4);
+  border:var(--border-width) solid var(--border-hairline);
+  border-radius:var(--radius-sm);text-decoration:none}
+.pagination .disabled span{color:var(--text-faint);border-color:transparent}
+
+/* transition suppression before hydration; kept because baseof.html emits it */
+.preload-transitions *{transition:none!important}
+
+/* legacy float helpers still referenced by Coder markup */
+.float-left{float:left}
+.float-right{float:right}
+
+/* playful: the header becomes a tinted bar with a clay rule and pine wordmark */
+[data-theme="playful"] .navigation{--header-bg:var(--tint-amber)}
+
+/* "see also" block emitted by the series partial */
+.see-also{margin-top:var(--space-9);padding-top:var(--space-6);
+  border-top:var(--border-width) solid var(--border-hairline)}
+.see-also h3{margin-top:0;font-size:var(--text-h4)}

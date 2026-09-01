@@ -18,7 +18,7 @@ Local, offline copy of the Claude Design project that drives the site redesign.
 | Path | What |
 |---|---|
 | `styles.css` | Entry point — `@import`s the token files in order |
-| `tokens/*.css` | **The canonical token set.** 9 files — 8 verbatim, plus `content.css` (see below) |
+| `tokens/*.css` | **The canonical token set.** 12 files — 8 exported verbatim, plus `content.css`, `chrome.css`, `components.css`, `syntax.css` (see below) |
 | `components/**/*.prompt.md` | Usage contract for each of the 17 components |
 | `DESIGN-SYSTEM.md` | The upstream `readme.md`, verbatim — visual foundations, content voice, iconography rules |
 
@@ -56,7 +56,7 @@ Things the export settles that the redesign issues had left open or assumed wron
 - **The cocktails index is a dated archive list (`DatedList`), not a card grid.**
 - **`RecipeList` is the ingredients list on a recipe page**, not a list of recipes.
 
-## Verified gaps in the export
+## Verified gaps in the export *(resolved 2026-09-01 — see below)*
 
 `tokens/utilities.css` references three custom properties that **no token file defines**:
 
@@ -188,3 +188,48 @@ belong to features being dropped. They are not gaps.
   it needs a decision from the design system's owner.
 - **`details` / `summary`.** Coder styles them; no site content uses them.
 - **RTL.** `params.rtl` is unset; noted as unsupported rather than silently broken.
+
+## Full coverage of the Coder surface *(2026-09-01)*
+
+The cutover (#73) keeps Coder's **templates** and drops its **stylesheet**. Every class those
+templates emit therefore still lands in the HTML — so anything Coder styled and the design
+system didn't would render unstyled, with no build error.
+
+Rather than judging which of those mattered, the whole surface was diffed and covered.
+Four files were authored here and **written back to the Claude Design project**:
+
+| File | Covers |
+|---|---|
+| `content.css` | tables, figures/captions, footnotes, prose lists, heading anchors, `.highlight`, `a:active`, `details`/`summary`, external-link indicator |
+| `chrome.css` | `.wrapper`, `.container`, `.content`, `.about`, `.centered`, `.page`/`.post`/`.list`, `.title`/`.post-title`, `.post-meta`/`.posted-on`/`.date`, `.navigation*`, `.menu-*`, `.footer`, `.float-container`, `.colorscheme-toggle`, `.avatar`, `.pagination`, `.see-also`, `.preload-transitions`, float helpers |
+| `components.css` | `.notice*` (7 types), `.tabs`/`.tab-*`, `.tags`/`.categories`/`.authors`/`.taxonomy`/`.tag` |
+| `syntax.css` | the full Chroma class set, token-driven |
+
+**Method.** Every class in Coder's SCSS (excluding Font Awesome) was extracted and diffed
+against the design system's. Remaining uncovered classes are only those that cannot render:
+Font Awesome (dropped, #54), Mastodon and comment systems (`hugo.toml` configures none), RTL
+(`params.rtl` unset), and body state classes that carry no styling.
+
+**All 18 previously-orphaned playful tokens are now applied by a rule** — `--header-rule`,
+`--wordmark-color`, `--avatar-bg`/`--avatar-fg`, `--date-color`, `--list-mark-color`,
+`--footnotes-rule*`, `--lapis-deep` and the eight `--tag-*` pairs. Verified: 140 tokens
+defined, zero unresolved `var()` references.
+
+**The three globally-undefined properties now have defaults** in `layout.css`
+(`--col-min: var(--grid-min)`, `--sidebar: var(--rail-basis)`,
+`--container-max-wide: var(--container-max)`), removing the silent grid-collapse hazard.
+
+### Judgement calls worth knowing about
+
+- **Notices carry no traffic-light palette.** The system states it has no semantic
+  red/green/amber. Severity is carried by the title text; the base theme uses neutral
+  surfaces, and playful maps the seven types onto its own four accents.
+- **Syntax colours are roles, not a borrowed scheme.** `hugo gen chromastyles` yields 20
+  distinct colours that collapse to 10 semantic roles (`--code-keyword`, `--code-string`,
+  `--code-comment`, …). Playful maps those roles onto clay/pine/lapis/amber rather than
+  importing an unrelated colour system into the page.
+- **The external-link indicator uses `↗`**, extending the system's sanctioned glyph set
+  (`—`, `↩︎`, `#`, `←`, `©`) as the natural pair to `←`. This is an addition to the brand
+  vocabulary, made deliberately.
+- **Coverage is not the same as shipping.** `styles.css` imports everything; the site build
+  can omit `components.css` if notices/tabs/taxonomies are never used. See #57.

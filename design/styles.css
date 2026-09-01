@@ -6,4 +6,7 @@
 @import url("tokens/base.css");
 @import url("tokens/utilities.css");
 @import url("tokens/content.css");
+@import url("tokens/chrome.css");
+@import url("tokens/components.css");
+@import url("tokens/syntax.css");
 @import url("tokens/playful.css");

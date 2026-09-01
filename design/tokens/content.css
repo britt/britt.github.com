@@ -81,3 +81,22 @@ a:active{color:var(--link-hover)}
 [data-theme="playful"] thead th{border-bottom-color:var(--rule-accent)}
 [data-theme="playful"] figure img{border-color:var(--rule)}
 [data-theme="playful"] .heading-link{color:var(--clay)}
+
+/* ── disclosure ──────────────────────────────────────────────────────────
+   Coder styled details/summary; Markdown can emit them via raw HTML. */
+details{margin:var(--stack-paragraph) 0;padding:var(--space-4) var(--space-5);
+  border:var(--border-width) solid var(--border-hairline);
+  border-radius:var(--radius-md);background:var(--surface-sunken)}
+summary{cursor:pointer;font-weight:var(--weight-medium);color:var(--text-heading)}
+summary:focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px}
+details[open] summary{margin-bottom:var(--space-4)}
+details>:last-child{margin-bottom:0}
+
+/* ── external link indicator ─────────────────────────────────────────────
+   Coder appended a Font Awesome glyph. The system's icon rules require a plain
+   Unicode character already in use on the site; ↗ extends that set as the pair
+   to the sanctioned ← back-link arrow. Marked up by Hugo's link render hook. */
+a.external-link:not(:has(img))::after{content:"\2197";
+  font-size:.75em;margin-left:.15em;vertical-align:baseline;
+  color:var(--text-faint);text-decoration:none}
+a.external-link:hover::after,a.external-link:focus-visible::after{color:inherit}
