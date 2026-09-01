@@ -1,0 +1,82 @@
+/* Syntax highlighting. Coder shipped two hardcoded Chroma dumps with no
+   variables; this is the same coverage expressed in tokens, so it themes with
+   everything else instead of being a separate hardcoded surface.
+
+   Roles derived from `hugo gen chromastyles`: 20 distinct colours collapse to
+   10 semantic roles. */
+
+:root{
+  --code-keyword:#cf222e;
+  --code-string:#0a3069;
+  --code-number:#0550ae;
+  --code-comment:#57606a;
+  --code-name:var(--text-body);
+  --code-variable:#953800;
+  --code-function:#6639ba;
+  --code-label:#900;
+  --code-deleted:#82071e;
+  --code-inserted:#116329;
+  --code-linenum:var(--text-faint);
+  --code-highlight:var(--wash-2);
+}
+:root[data-scheme="dark"]{
+  --code-keyword:#ff7b72;
+  --code-string:#a5d6ff;
+  --code-number:#79c0ff;
+  --code-comment:#8b949e;
+  --code-variable:#ffa657;
+  --code-function:#d2a8ff;
+  --code-label:#ff7b72;
+  --code-deleted:#ffa198;
+  --code-inserted:#7ee787;
+  --code-highlight:#24262a;
+}
+
+/* Playful maps the roles onto the theme palette rather than importing a
+   second, unrelated colour system into the page. */
+[data-theme="playful"]{
+  --code-keyword:var(--clay);
+  --code-string:var(--pine);
+  --code-number:var(--lapis);
+  --code-comment:var(--text-faint);
+  --code-variable:var(--amber-deep);
+  --code-function:var(--lapis-deep);
+  --code-label:var(--clay-deep);
+  --code-deleted:var(--clay-deep);
+  --code-inserted:var(--pine);
+  --code-highlight:var(--tint-amber);
+}
+
+.chroma{background:transparent;color:var(--code-name)}
+
+.chroma .k,.chroma .kc,.chroma .kd,.chroma .kn,.chroma .kp,.chroma .kr,.chroma .kt{color:var(--code-keyword)}
+.chroma .l,.chroma .ld,.chroma .s,.chroma .sa,.chroma .sb,.chroma .sc,.chroma .dl,.chroma .sd,.chroma .s2,.chroma .se,.chroma .sh,.chroma .si,.chroma .sx,.chroma .sr,.chroma .s1,.chroma .ss{color:var(--code-string)}
+.chroma .no,.chroma .nd,.chroma .nt,.chroma .m,.chroma .mb,.chroma .mf,.chroma .mh,.chroma .mi,.chroma .il,.chroma .mo,.chroma .o,.chroma .ow{color:var(--code-number)}
+.chroma .c,.chroma .ch,.chroma .cm,.chroma .c1,.chroma .cs,.chroma .cp,.chroma .cpf{color:var(--code-comment)}
+.chroma .na,.chroma .nc,.chroma .nx,.chroma .p,.chroma .ge,.chroma .go,.chroma .nn,.chroma .n,.chroma .py{color:var(--code-name)}
+.chroma .nv,.chroma .vc,.chroma .vg,.chroma .vi,.chroma .vm{color:var(--code-variable)}
+.chroma .ni,.chroma .nb,.chroma .nf,.chroma .fm,.chroma .bp,.chroma .ne{color:var(--code-function)}
+.chroma .nl{color:var(--code-label)}
+.chroma .gd{color:var(--code-deleted)}
+.chroma .gi{color:var(--code-inserted)}
+
+/* line numbers, highlighting and table layout */
+.chroma .lnt,.chroma .ln{color:var(--code-linenum);user-select:none;
+  margin-right:.4em;padding:0 .4em}
+.chroma .hl{background:var(--code-highlight);display:block}
+.chroma .lntd{vertical-align:top;padding:0;margin:0;border:0}
+.chroma .lntable{border-spacing:0;padding:0;margin:0;border:0;width:auto;
+  overflow:auto;display:block}
+.chroma .lntable td,.chroma .lntable th{border:0;padding:0}
+.chroma .lnlinks{outline:none;text-decoration:none;color:inherit}
+.chroma .err{color:var(--code-deleted);background:transparent}
+.chroma .gs{font-weight:var(--weight-bold)}
+.chroma .ge{font-style:italic}
+.chroma .gu{color:var(--text-muted);font-weight:var(--weight-semibold)}
+.chroma .gh{color:var(--text-heading);font-weight:var(--weight-semibold)}
+.chroma .gl{text-decoration:underline}
+
+/* remaining Chroma tokens: structural or inheriting, no colour of their own */
+.chroma .x,.chroma .g,.chroma .cl,.chroma .w{color:inherit}
+.chroma .gp{color:var(--code-comment);user-select:none}
+.chroma .gr,.chroma .gt{color:var(--code-deleted)}

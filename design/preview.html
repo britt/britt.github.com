@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!-- Local preview of the playful variant applied to real site content.
+     Standalone: open directly with file://, no server or Hugo needed.
+     Hugo does not publish design/, so this never reaches the live site. -->
+<html lang="en" data-theme="playful">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>brittcrawford.com — playful variant preview</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+/* ─────────────────────────────────────────────────────────────────
+   EVERYTHING IN THIS BLOCK IS HAND-WIRED — it is NOT in the design
+   system's CSS. These are the orphan tokens and data-attribute
+   dependencies tracked in issue #71. Without them the theme renders
+   half-applied: right palette, distinctive parts missing.
+   ───────────────────────────────────────────────────────────────── */
+
+/* --header-rule / --header-rule-width / --wordmark-color: defined, never applied */
+header[data-site-header]{border-bottom:var(--header-rule-width) solid var(--header-rule);
+  padding-block:var(--space-5)}
+.wordmark{font-family:var(--font-mono);color:var(--wordmark-color);font-size:var(--text-sm);
+  text-decoration:none;font-weight:500}
+header[data-site-header] .bar{display:flex;align-items:center;justify-content:space-between;gap:var(--space-5)}
+
+/* h2[data-section]::before uses flex/align-self, but nothing sets display:flex */
+h2[data-section],h3[data-section]{display:flex;align-items:center;gap:.4em}
+
+/* --avatar-bg / --avatar-fg: the monogram fallback, defined but never applied */
+.avatar{width:var(--avatar-size);height:var(--avatar-size);border-radius:var(--radius-round);
+  background:var(--avatar-bg);color:var(--avatar-fg);display:grid;place-items:center;
+  font-family:var(--font-sans);font-weight:700;font-size:calc(var(--avatar-size)/3);letter-spacing:-.02em}
+
+/* --date-color: defined, never applied */
+.ds-dated__date{font-family:var(--font-mono);font-size:var(--text-sm);color:var(--date-color)}
+.ds-dated__title{color:var(--text-heading);font-weight:600;text-decoration:none}
+.ds-dated__title:hover{color:var(--link)}
+
+/* --col-min: referenced by .ds-cols but defined in NO token file (globally undefined) */
+.ds-cols{--col-min:min(100%,360px)}
+
+/* theme toggle — the design system specifies a word, not an icon */
+.toggle{font-family:var(--font-mono);font-size:var(--text-sm);background:none;
+  border:1px solid var(--border-hairline);border-radius:var(--radius-sm);
+  color:var(--text-muted);padding:4px 10px;cursor:pointer}
+.toggle:hover{color:var(--link)}
+
+/* preview scaffolding only — not part of the design system */
+.note{font-family:var(--font-mono);font-size:var(--text-xs);color:var(--text-faint);
+  border-left:2px solid var(--border-hairline);padding-left:var(--space-4);margin:var(--space-6) 0}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:var(--space-4);
+  list-style:none;padding:0;margin:var(--space-6) 0}
+.swatches li{font-family:var(--font-mono);font-size:var(--text-xs);text-align:center}
+.swatches i{display:block;height:56px;border-radius:var(--radius-sm);margin-bottom:6px;
+  border:1px solid var(--border-hairline)}
+</style>
+</head>
+<body>
+<div class="ds-page">
+
+<header data-site-header>
+  <div class="ds-container bar">
+    <a class="wordmark" href="#">brittcrawford.com</a>
+    <button class="toggle" id="t">dark</button>
+  </div>
+</header>
+
+<main class="ds-container">
+
+  <section class="ds-profile">
+    <div class="avatar">BC</div>
+    <div>
+      <h1>Britt Crawford</h1>
+      <p>Working to build <a href="https://www.sandgarden.com">Sandgarden</a>.</p>
+      <ul class="ds-profile__links">
+        <li><a href="#">GitHub</a></li>
+        <li><a href="#">LinkedIn</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <div data-prose class="ds-prose">
+    <p>These are things that I have built simply because I wanted them to exist, or because I wanted to see if I could. I like tools that serve me, not ones that try to extract value from me or my attention. I also like the <a href="#">process of building and understanding</a> the things that I use.</p>
+
+    <h2 data-section>Home Cooked Software <a class="heading-link" href="#">#</a></h2>
+    <ul class="ds-cols">
+      <li><span data-list-mark>—</span> <a href="#">Readinglist.live</a> — Turn any web page into a podcast episode, with decently human sounding voices.</li>
+      <li><span data-list-mark>—</span> <a href="#">lotsofcsvs.com</a> — a <strong>small data</strong> warehouse built with CSV and HTTP as its API.</li>
+      <li><span data-list-mark>—</span> <a href="#">Agent Skills</a> — some skills for working with coding agents.</li>
+      <li><span data-list-mark>—</span> <a href="#">Teleprompter</a> — manage and update prompts for LLMs at runtime on Cloudflare Workers.</li>
+      <li><span data-list-mark>—</span> <a href="#">avro-sqlite</a> — a Go package to read a SQLite database and extract it to Apache Avro.</li>
+      <li><span data-list-mark>—</span> <a href="#">cf-app-template</a> — a template for Next.js apps on Cloudflare Workers.</li>
+    </ul>
+
+    <h2 data-section>Other Stuff</h2>
+    <blockquote>
+      <p>Each entry is a cheering reminder that you could, after all, have spent the day doing nothing constructive – yet look what you did instead!</p>
+      <p>— <a href="#">Oliver Burkeman on the Done List</a></p>
+    </blockquote>
+
+    <h2 data-section>Abandoned but not forgotten</h2>
+    <p>Some of these are <del>still maintained</del> <em>(inactive)</em>. A bash function like <code>yts</code> downloads transcripts:</p>
+<pre><code>yts() {
+  yt-dlp --write-auto-sub --skip-download "$1"
+}</code></pre>
+  </div>
+
+  <hr>
+
+  <section data-tint="pine">
+    <h3 data-section>A tinted section block</h3>
+    <p>One tint per section, never nested. This is the most characteristic playful device.</p>
+  </section>
+
+  <h2 data-section>Cocktails — dated archive (not a card grid)</h2>
+  <ul class="ds-dated">
+    <li class="ds-dated__row"><span class="ds-dated__date">August 8, 2026</span><a class="ds-dated__title" href="#">Peach Pepper Jelly Julep</a></li>
+    <li class="ds-dated__row"><span class="ds-dated__date">March 2, 2026</span><a class="ds-dated__title" href="#">Bitter Nonsense</a></li>
+    <li class="ds-dated__row"><span class="ds-dated__date">December 14, 2025</span><a class="ds-dated__title" href="#">Holiday Spiced Sour</a></li>
+    <li class="ds-dated__row"><span class="ds-dated__date">April 1, 2014</span><a class="ds-dated__title" href="#">El Niño</a></li>
+  </ul>
+
+  <h2 data-section>Heading colours — CSS truth, not the prose</h2>
+  <p class="note">playful.css: h1 clay · h2 lapis · h3 pine · h4+ amber-deep<br>
+     DESIGN-SYSTEM.md prose claims: h1 ink · h2 clay · h3 pine · h4+ lapis<br>
+     Only h3 agrees. Trust the CSS.</p>
+  <h1>h1 — Bricolage Grotesque 700</h1>
+  <h2>h2 — Bricolage Grotesque 700</h2>
+  <h3>h3 — Bricolage Grotesque 700</h3>
+  <h4>h4 — carries amber-deep</h4>
+  <h5>h5 — carries amber-deep</h5>
+  <h6>h6 — carries amber-deep</h6>
+
+  <h2 data-section>Content elements — newly covered by tokens/content.css</h2>
+  <p class="note">tables · figures + captions · footnotes · prose lists · heading anchors ·
+     .highlight wrapper · a:active. Coder styled these; the design system did not.
+     Hover a heading above to see the "#" anchor fade in.</p>
+
+  <h3 data-section>Prose list</h3>
+  <ul>
+    <li>Plain Markdown lists had no styling at all — only the <code>.ds-cols</code> grid did.</li>
+    <li>Markers take <code>--list-mark-color</code>, falling back to <code>--text-faint</code>.
+      <ul><li>Nested lists keep the rhythm.</li></ul>
+    </li>
+  </ul>
+
+  <h3 data-section>Table</h3>
+  <div class="ds-scroll">
+  <table>
+    <thead><tr><th>Token</th><th>Role</th><th>Value</th></tr></thead>
+    <tbody>
+      <tr><td><code>--border-hairline</code></td><td>1px rules</td><td>tan under playful</td></tr>
+      <tr><td><code>--radius-md</code></td><td>images, code blocks</td><td>10px</td></tr>
+      <tr><td><code>--footnotes-rule</code></td><td>rule above footnotes</td><td>pine, 3px</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3 data-section>Figure</h3>
+  <figure>
+    <img src="data:image/svg+xml;utf8,&lt;svg xmlns=&apos;http://www.w3.org/2000/svg&apos; width=&apos;640&apos; height=&apos;220&apos;&gt;&lt;rect width=&apos;640&apos; height=&apos;220&apos; fill=&apos;%23e6f2ec&apos;/&gt;&lt;text x=&apos;50%25&apos; y=&apos;50%25&apos; text-anchor=&apos;middle&apos; font-family=&apos;monospace&apos; font-size=&apos;15&apos; fill=&apos;%232f7d63&apos;&gt;recipe image placeholder&lt;/text&gt;&lt;/svg&gt;" alt="Placeholder standing in for a recipe photograph">
+    <figcaption><p>Hairline border at <code>--radius-md</code>, never full-bleed, never treated.</p></figcaption>
+  </figure>
+
+  <h2 data-section>Palette</h2>
+  <ul class="swatches">
+    <li><i style="background:var(--clay)"></i>clay</li>
+    <li><i style="background:var(--amber)"></i>amber</li>
+    <li><i style="background:var(--pine)"></i>pine</li>
+    <li><i style="background:var(--lapis)"></i>lapis</li>
+    <li><i style="background:var(--tint-clay)"></i>tint-clay</li>
+    <li><i style="background:var(--tint-amber)"></i>tint-amber</li>
+    <li><i style="background:var(--tint-pine)"></i>tint-pine</li>
+    <li><i style="background:var(--tint-lapis)"></i>tint-lapis</li>
+  </ul>
+
+  <div class="footnotes">
+    <ol><li><p><em><a href="#">Maggie Appleton — Home-Cooked Software and Barefoot Developers</a></em> <a class="footnote-backref" href="#">↩︎</a></p></li></ol>
+  </div>
+
+  <p class="note">Everything inside the hand-wired <code>&lt;style&gt;</code> block at the top of this file
+  is issue #71 work — 18 design tokens the CSS defines but never applies, plus the
+  <code>data-*</code> attributes its selectors depend on. Delete that block to see what
+  the theme looks like without it.</p>
+
+</main>
+
+<footer class="ds-container" style="text-align:center;color:var(--text-muted);font-size:var(--text-sm);padding-block:var(--space-8)">
+  © 1999–2026 Britt Crawford
+</footer>
+
+</div>
+<script>
+  const t = document.getElementById('t'), r = document.documentElement;
+  t.onclick = () => {
+    const dark = r.getAttribute('data-scheme') === 'dark';
+    dark ? r.removeAttribute('data-scheme') : r.setAttribute('data-scheme','dark');
+    t.textContent = dark ? 'dark' : 'light';
+  };
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+/* Theme features whose shortcodes and partials ship with hugo-coder and are
+   therefore available to any page: notices, tabs, taxonomy chips.
+
+   Coder coloured notices with a semantic red/green/amber set. This system
+   states it has none ("no semantic red/green/amber — the site has no forms or
+   alerts"), so severity is carried by the title text, and colour comes from
+   the theme's own palette rather than an imported traffic-light scheme. */
+
+/* ── notices ─────────────────────────────────────────────────────────────── */
+.notice{margin:var(--space-7) 0;border:var(--border-width) solid var(--border-hairline);
+  border-left-width:var(--border-quote-width);border-radius:var(--radius-md);
+  background:var(--surface-sunken);overflow:hidden}
+.notice-title{display:flex;align-items:center;gap:.5em;
+  padding:var(--space-3) var(--space-5);
+  font-size:var(--text-sm);font-weight:var(--weight-semibold);
+  letter-spacing:var(--tracking-caps);text-transform:uppercase;
+  color:var(--text-heading);
+  border-bottom:var(--border-width) solid var(--border-hairline)}
+.notice-content{padding:var(--space-4) var(--space-5)}
+.notice-content>:first-child{margin-top:0}
+.notice-content>:last-child{margin-bottom:0}
+
+/* playful assigns each type one of the four accents — the palette the system
+   already owns, not a new one */
+[data-theme="playful"] .notice,
+[data-theme="playful"] .notice.note,
+[data-theme="playful"] .notice.info{background:var(--tint-lapis);border-color:var(--lapis)}
+[data-theme="playful"] .notice-title,
+[data-theme="playful"] .notice.note .notice-title,
+[data-theme="playful"] .notice.info .notice-title{color:var(--lapis);border-bottom-color:var(--lapis)}
+[data-theme="playful"] .notice.tip,
+[data-theme="playful"] .notice.question{background:var(--tint-pine);border-color:var(--pine)}
+[data-theme="playful"] .notice.tip .notice-title,
+[data-theme="playful"] .notice.question .notice-title{color:var(--pine);border-bottom-color:var(--pine)}
+[data-theme="playful"] .notice.example{background:var(--tint-amber);border-color:var(--amber)}
+[data-theme="playful"] .notice.example .notice-title{color:var(--amber-deep);border-bottom-color:var(--amber)}
+[data-theme="playful"] .notice.warning,
+[data-theme="playful"] .notice.error{background:var(--tint-clay);border-color:var(--clay)}
+[data-theme="playful"] .notice.warning .notice-title,
+[data-theme="playful"] .notice.error .notice-title{color:var(--clay-deep);border-bottom-color:var(--clay)}
+
+/* ── tabs ────────────────────────────────────────────────────────────────── */
+.tabs{display:flex;flex-wrap:wrap;margin:var(--space-7) 0;
+  border:var(--border-width) solid var(--border-hairline);
+  border-radius:var(--radius-md);overflow:hidden}
+.tab-input{position:absolute;opacity:0;width:0;height:0}
+.tab-label{order:-1;padding:var(--space-3) var(--space-5);cursor:pointer;
+  font-size:var(--text-sm);color:var(--text-muted);
+  border-bottom:var(--border-quote-width) solid transparent}
+.tab-label:hover{color:var(--link)}
+.tab-content{display:none;width:100%;padding:var(--space-5);
+  border-top:var(--border-width) solid var(--border-hairline)}
+.tab-input:checked+.tab-label{color:var(--text-heading);
+  border-bottom-color:var(--link);font-weight:var(--weight-medium)}
+.tab-input:checked+.tab-label+.tab-content{display:block}
+.tab-input:focus-visible+.tab-label{outline:2px solid var(--focus-ring);outline-offset:-2px}
+.tabs-code .tab-content{padding:0}
+.tabs-code .tab-content pre{margin:0;border-radius:0}
+.tabs-right{justify-content:flex-end}
+.tabs-left{justify-content:flex-start}
+[data-theme="playful"] .tab-input:checked+.tab-label{border-bottom-color:var(--clay)}
+
+/* ── taxonomy chips ──────────────────────────────────────────────────────
+   Wires the eight --tag-*-bg / --tag-*-fg pairs the playful theme defines.
+   No taxonomies are configured today, but terms.html and the tag partials
+   ship with the theme and render if any are added. */
+.tags,.categories,.authors,.taxonomy{display:flex;flex-wrap:wrap;gap:var(--space-3);
+  align-items:center;list-style:none;margin:var(--space-5) 0;padding:0}
+.tag,.taxonomy-element{display:inline-block;padding:2px var(--space-3);
+  font-family:var(--font-mono);font-size:var(--text-xs);line-height:1.6;
+  border-radius:var(--radius-sm);text-decoration:none;
+  background:var(--tag-bg,var(--surface-sunken));
+  color:var(--tag-fg,var(--text-muted));
+  border:var(--border-width) solid var(--border-hairline)}
+.tag:hover,.taxonomy-element:hover{color:var(--tag-fg,var(--link));text-decoration:none}
+[data-tone="clay"]{--tag-bg:var(--tag-clay-bg);--tag-fg:var(--tag-clay-fg)}
+[data-tone="amber"]{--tag-bg:var(--tag-amber-bg);--tag-fg:var(--tag-amber-fg)}
+[data-tone="pine"]{--tag-bg:var(--tag-pine-bg);--tag-fg:var(--tag-pine-fg)}
+[data-tone="lapis"]{--tag-bg:var(--tag-lapis-bg);--tag-fg:var(--tag-lapis-fg)}
+[data-theme="playful"] .tag,[data-theme="playful"] .taxonomy-element{border-color:transparent}

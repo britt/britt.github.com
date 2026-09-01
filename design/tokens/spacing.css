@@ -1,0 +1,17 @@
+:root{
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:10px;
+  --space-4:12px;
+  --space-5:16px;
+  --space-6:20px;
+  --space-7:25px;
+  --space-8:32px;
+  --space-9:40px;
+  --space-10:64px;
+  --stack-paragraph:var(--space-6);
+  --stack-heading-top:clamp(32px,3vw,56px); /* @kind spacing */
+  --stack-heading-bottom:var(--space-6);
+  --stack-section:clamp(24px,2.5vw,40px); /* @kind spacing */
+  --page-header-top:clamp(32px,4vw,72px); /* @kind spacing */
+}

@@ -1,0 +1,24 @@
+:root{
+  /* fluid ramp — min at 360px viewport, max at ~1600px */
+  --text-display:clamp(38px,calc(2.2vw + 30px),62px);
+  --text-h1:clamp(30px,calc(1.4vw + 25px),44px);
+  --text-h2:clamp(25px,calc(0.9vw + 22px),34px);
+  --text-h3:clamp(21px,calc(0.5vw + 19px),26px);
+  --text-h4:20px;
+  --text-h5:19px;
+  --text-h6:18px;
+  --text-base:clamp(17px,calc(0.25vw + 16px),19px);
+  --text-sm:16px;
+  --text-xs:14px;
+  --leading-body:1.75;
+  --leading-heading:1.12;
+  --leading-quote:1.55;
+  --weight-light:300;
+  --weight-regular:400;
+  --weight-medium:500;
+  --weight-semibold:600;
+  --weight-bold:700;
+  --tracking-tight:-0.018em;
+  --tracking-normal:0;
+  --tracking-caps:0.08em;
+}

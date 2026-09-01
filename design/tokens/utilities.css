@@ -1,0 +1,32 @@
+/* Layout utilities. Components reference these class names; they ship with styles.css. */
+.ds-page{display:flex;flex-direction:column;min-height:100vh}
+.ds-container{width:100%;max-width:var(--container-max);margin:0 auto;padding-inline:var(--container-pad)}
+.ds-container--wide{max-width:var(--container-max-wide)}
+.ds-container--narrow{max-width:var(--measure)}
+
+/* running prose keeps a readable rag without boxing the page in */
+.ds-prose>p,.ds-prose>ul,.ds-prose>ol,.ds-prose>blockquote{max-width:var(--measure)}
+
+/* profile masthead: portrait beside the name, stacked and centred on small screens */
+.ds-profile{display:grid;grid-template-columns:auto 1fr;align-items:center;gap:clamp(20px,3vw,48px);padding-block:clamp(32px,5vw,64px)}
+.ds-profile__links{list-style:none;margin:var(--space-5) 0 0;padding:0;display:flex;flex-wrap:wrap;gap:var(--space-6)}
+@media (max-width:640px){
+  .ds-profile{grid-template-columns:1fr;justify-items:center;text-align:center;gap:var(--space-5)}
+  .ds-profile__links{justify-content:center}
+}
+
+/* annotated link lists fill the width in columns instead of one long line */
+.ds-cols{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--col-min),1fr));gap:clamp(16px,2vw,32px) clamp(24px,3vw,56px);margin:var(--space-7) 0;padding:0;list-style:none}
+
+/* dated archive rows */
+.ds-dated{display:grid;gap:var(--space-4);margin:var(--space-7) 0;padding:0;list-style:none}
+.ds-dated__row{display:grid;grid-template-columns:minmax(120px,180px) 1fr;gap:clamp(16px,2vw,40px);align-items:baseline;border-bottom:var(--border-width) solid var(--border-hairline);padding-bottom:var(--space-4)}
+@media (max-width:640px){.ds-dated__row{grid-template-columns:1fr;gap:2px}.ds-dated__date{text-align:left}}
+
+/* article split: aside beside the body copy on wide screens */
+.ds-split{display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);gap:clamp(24px,4vw,72px);align-items:start}
+@media (max-width:820px){.ds-split{grid-template-columns:1fr}}
+
+/* section band: label on the left, content on the right */
+.ds-section{display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);gap:clamp(16px,3vw,56px);align-items:start;padding-block:clamp(28px,4vw,56px);border-top:var(--border-width) solid var(--border-hairline)}
+@media (max-width:820px){.ds-section{grid-template-columns:1fr;gap:var(--space-4)}}
