@@ -1,0 +1,50 @@
+name: build
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # The theme is vendored, not a submodule — see README. Nothing to init.
+      - name: Read the pinned Hugo version
+        id: hugo
+        run: echo "version=$(cat .hugoversion)" >> "$GITHUB_OUTPUT"
+
+      - name: Install Hugo ${{ steps.hugo.outputs.version }} extended
+        env:
+          VERSION: ${{ steps.hugo.outputs.version }}
+        run: |
+          set -euo pipefail
+          url="https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_extended_${VERSION}_linux-amd64.deb"
+          curl --fail --silent --show-error --location -o /tmp/hugo.deb "$url"
+          sudo dpkg -i /tmp/hugo.deb
+          hugo version
+
+      # --panicOnWarning is the point of this job: a deprecation warning today
+      # is a broken page on the next Hugo release. It is also what catches a
+      # template that no longer resolves.
+      - name: Build
+        run: hugo --gc --minify --printPathWarnings --panicOnWarning
+
+      - name: Check internal links
+        run: python3 scripts/check-links.py public
+
+      - name: Assert the theme was not edited
+        run: |
+          set -euo pipefail
+          git fetch --depth=1 origin "${{ github.base_ref || github.event.repository.default_branch }}"
+          if ! git diff --quiet FETCH_HEAD -- themes/; then
+            echo "::error::themes/ was modified. Shadow the file from the project root instead — see README."
+            git diff --stat FETCH_HEAD -- themes/
+            exit 1
+          fi

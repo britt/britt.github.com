@@ -1,0 +1,14 @@
+{{- /*
+  Shadows themes/hugo-coder/layouts/partials/head/custom-icons.html.
+
+  The theme's version falls back to /images/favicon.svg, /site.webmanifest and
+  /images/safari-pinned-tab.svg when the matching params are unset. None of
+  those exist here, so every page shipped three 404s. This emits only icons
+  that are actually in static/.
+*/ -}}
+<link rel="icon" type="image/png" href="{{ "/img/favicon.png" | relURL }}" sizes="any">
+<link rel="shortcut icon" href="{{ "/img/favicon.ico" | relURL }}">
+<link rel="apple-touch-icon" sizes="144x144" href="{{ "/img/apple-touch-icon-144-precomposed.png" | relURL }}">
+<link rel="apple-touch-icon" sizes="114x114" href="{{ "/img/apple-touch-icon-114-precomposed.png" | relURL }}">
+<link rel="apple-touch-icon" sizes="72x72" href="{{ "/img/apple-touch-icon-72-precomposed.png" | relURL }}">
+<link rel="apple-touch-icon" sizes="57x57" href="{{ "/img/apple-touch-icon-57-precomposed.png" | relURL }}">
