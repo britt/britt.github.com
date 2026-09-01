@@ -1,0 +1,17 @@
+{{- /*
+  Shadows the theme's empty head extension point.
+
+  head.html calls this one uncached, which is what makes a per-page stylesheet
+  possible at all — everything else in <head> is partialCached.
+*/ -}}
+{{- if eq .Layout "styleguide" -}}
+  {{- with resources.Get "css/styleguide.css" -}}
+    {{- $s := . -}}
+    {{- if hugo.IsServer -}}
+<link rel="stylesheet" href="{{ $s.RelPermalink }}">
+    {{- else -}}
+      {{- $s = $s | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $s.RelPermalink }}" integrity="{{ $s.Data.Integrity }}" crossorigin="anonymous">
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

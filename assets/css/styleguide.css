@@ -1,0 +1,56 @@
+/* Layout for the styleguide page only.
+ *
+ * Everything here is scaffolding for *displaying* tokens. It introduces no new
+ * values — every colour, space and radius is read back out of the design
+ * system, which is the point: if this page needed its own palette it would not
+ * be testing anything.
+ */
+
+.sg-section { padding-block: var(--space-9); border-top: var(--border-width) solid var(--border-hairline); }
+.sg-section > h2 { margin-top: 0; }
+.sg-note { color: var(--text-muted); font-size: var(--text-sm); max-width: var(--measure); }
+
+.sg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--space-5); margin-block: var(--space-6); padding: 0; list-style: none; }
+
+.sg-swatch { border: var(--border-width) solid var(--border-hairline); border-radius: var(--radius-md); overflow: hidden; background: var(--surface-page); }
+.sg-swatch__chip { height: 72px; display: block; }
+.sg-swatch__body { padding: var(--space-3) var(--space-4); font-family: var(--font-mono); font-size: var(--text-xs); line-height: 1.7; }
+.sg-swatch__name { color: var(--text-heading); word-break: break-all; }
+.sg-swatch__value, .sg-swatch__contrast { color: var(--text-muted); }
+/* An unpaired token is not a failure — it is a palette entry with no
+   foreground/background partner, so no ratio applies. */
+.sg-swatch__contrast:not([data-level]) { opacity: .6; font-style: italic; }
+
+/* Contrast verdicts. The three states are text as well as colour — a red dot
+ * alone would fail the audit this page exists to support. */
+.sg-swatch__contrast[data-level="AAA"]::before { content: "AAA "; font-weight: var(--weight-bold); }
+.sg-swatch__contrast[data-level="AA"]::before  { content: "AA "; font-weight: var(--weight-bold); }
+.sg-swatch__contrast[data-level="fail"]::before { content: "FAIL "; font-weight: var(--weight-bold); }
+.sg-swatch__contrast[data-level="fail"] { color: var(--text-heading); background: var(--surface-code); }
+
+.sg-rows { display: grid; gap: var(--space-3); margin-block: var(--space-6); padding: 0; list-style: none; }
+.sg-row { display: grid; grid-template-columns: minmax(160px, 260px) minmax(0, 1fr); gap: var(--space-5); align-items: baseline; }
+.sg-row__name { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-muted); word-break: break-all; }
+.sg-row__demo { min-width: 0; }
+
+.sg-bar { display: block; height: 14px; border-radius: var(--radius-sm); background: var(--link); }
+.sg-box { display: inline-block; width: 96px; height: 60px; background: var(--surface-sunken); border: var(--border-width) solid var(--border-hairline); }
+.sg-type { display: block; color: var(--text-heading); line-height: var(--leading-heading); }
+
+.sg-value { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-muted); }
+
+/* The focus-state demo has to be reachable by keyboard, so these are real
+ * interactive elements, not painted lookalikes. */
+.sg-focus { display: flex; flex-wrap: wrap; gap: var(--space-5); align-items: center; margin-block: var(--space-6); }
+
+@media (max-width: 640px) {
+  .sg-row { grid-template-columns: 1fr; gap: var(--space-2); }
+}
+
+.sg-lead { display: block; color: var(--text-heading); }
+.sg-motion { display: inline-flex; align-items: center; gap: var(--space-3); font-size: var(--text-sm); color: var(--text-muted); }
+.sg-motion__dot { display: inline-block; width: 18px; height: 18px; border-radius: var(--radius-round); background: var(--link);
+  transition: transform var(--sg-duration, var(--motion-base)) var(--sg-ease, var(--ease-standard)); }
+.sg-motion:hover .sg-motion__dot,
+.sg-motion:focus-visible .sg-motion__dot { transform: translateX(56px); }
+.sg-value--bare { opacity: .5; }
