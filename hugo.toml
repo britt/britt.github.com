@@ -20,6 +20,20 @@ unsafe = true
     extended = true
     min = "0.163.0"
 
+  # The design system export in design/ is the single source of truth for
+  # tokens. Mounting it into assets/ lets Hugo Pipes consume it directly, so
+  # refreshing the design system is a matter of replacing design/ — there is no
+  # transcribed second copy to drift out of step.
+  #
+  # Declaring a mount for a target replaces that target's default mount, so
+  # assets/ is re-declared here alongside it.
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "design/tokens"
+    target = "assets/ds"
+
 [params]
   author = "Britt Crawford"
   description = "Britt Crawford's website"
