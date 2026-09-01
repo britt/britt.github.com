@@ -116,3 +116,27 @@ Only h3 agrees. **Trust the CSS** — same rule as the breakpoint disagreement n
 ### Accepted risk
 
 The base theme's colour-only link identification (~2.3:1 link-vs-body-text) was reviewed and **accepted** — and it is largely moot here, since playful underlines prose links at rest. Absolute-`px` type sizing is likewise accepted; page zoom works, browser font-size settings do not scale.
+
+## Previewing locally
+
+`preview.html` renders the shipping (`playful`) variant against real site content — profile
+masthead, annotated link lists, blockquote, dated cocktails archive, code, tinted section,
+heading colour ramp, palette. It has a light/dark toggle.
+
+Standalone; no Hugo, no build step, no server:
+
+```sh
+open design/preview.html          # macOS
+```
+
+Needs network access for the Google Fonts `@import`. Hugo does not publish `design/`, so
+this file never reaches the live site.
+
+**What it is honest about.** The `<style>` block at the top of the file is hand-wired and is
+*not* part of the design system's CSS — it supplies the 18 orphan tokens and the `data-*`
+attributes the selectors depend on. Delete that block to see what the theme looks like
+without that work: correct palette, distinctive parts absent. That difference is the scope
+of the orphan-token issue.
+
+To preview the **actual site**, use `hugo server` — but note it renders the existing Coder
+theme until the redesign is implemented. Nothing in `design/` is wired into the Hugo build yet.
