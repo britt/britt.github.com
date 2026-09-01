@@ -12,7 +12,9 @@
   decided by @import sequence rather than by intent.
 
   The files are concatenated in the order design/styles.css declares, which is
-  load-bearing — later layers override earlier ones.
+  load-bearing — later layers override earlier ones. assets/css/gaps.css comes
+  last: it covers markup Coder's templates emit that the design export was
+  never asked to style.
 */ -}}
 
 {{- /* Webfonts.
@@ -45,13 +47,14 @@
   "ds/components.css"
   "ds/syntax.css"
   "ds/playful.css"
+  "css/gaps.css"
 -}}
 {{- $parts := slice -}}
 {{- range $order -}}
   {{- with resources.Get . -}}
     {{- $parts = $parts | append . -}}
   {{- else -}}
-    {{- errorf "design system file not found: %s (is design/tokens mounted? see hugo.toml)" . -}}
+    {{- errorf "stylesheet not found: %s (is design/tokens mounted? see hugo.toml)" . -}}
   {{- end -}}
 {{- end -}}
 {{- $bundle := $parts | resources.Concat "css/site-raw.css" -}}

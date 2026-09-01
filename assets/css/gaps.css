@@ -1,0 +1,43 @@
+/* Rules the design system does not own.
+ *
+ * hugo-coder's templates emit markup the design export was never asked to
+ * cover. Dropping Coder's stylesheet (#73) left those elements unstyled, and
+ * an unstyled element produces no build error — it just renders wrong. This
+ * file is the enumerated remainder, kept separate from design/tokens/ so that
+ * refreshing the design system cannot clobber it and so it stays obvious how
+ * small the remainder is.
+ *
+ * `node scripts/style-coverage.mjs public <master-public>` regenerates the
+ * list this file answers.
+ */
+
+/* Visually hidden, still announced. Coder inherited this from Font Awesome's
+ * SCSS, so it disappeared with Font Awesome — leaving the heading-anchor and
+ * series partials rendering their screen-reader labels as visible text.
+ *
+ * clip-path rather than `display:none` or `visibility:hidden`, both of which
+ * remove the text from the accessibility tree, which is the opposite of the
+ * intent. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip links and the like: hidden until focused, then a normal element again. */
+.sr-only-focusable:focus,
+.sr-only-focusable:focus-visible {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip-path: none;
+  white-space: normal;
+}
