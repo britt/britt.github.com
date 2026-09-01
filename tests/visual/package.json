@@ -1,0 +1,16 @@
+{
+  "name": "brittcrawford-visual",
+  "private": true,
+  "type": "module",
+  "description": "Screenshot regression harness for the design-system migration",
+  "scripts": {
+    "capture": "node capture.mjs",
+    "baseline": "./baseline.sh",
+    "compare": "node compare.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0",
+    "pixelmatch": "^6.0.0",
+    "pngjs": "^7.0.0"
+  }
+}
