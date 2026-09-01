@@ -7,7 +7,13 @@ defaultcontentlanguage = "en"
 pagination.pagerSize = 20
 
 [markup.highlight]
-style = "github-dark"
+  # Emit Chroma's semantic classes and let design/tokens/syntax.css colour
+  # them, so code themes with everything else instead of being a separate
+  # hardcoded surface. `style` is deliberately absent: it only applies when
+  # noClasses is true, and leaving it set would be a config line that reads as
+  # if it does something.
+  noClasses = false
+  lineNumbersInTable = true
 
 [markup.goldmark.renderer]
 unsafe = true

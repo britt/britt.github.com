@@ -41,3 +41,13 @@
   clip-path: none;
   white-space: normal;
 }
+
+/* Tab width in highlighted code.
+ *
+ * Chroma used to emit `tab-size` as an inline style on every <pre>. Switching
+ * it to class-based output (#48) — which is what lets the design system's
+ * --code-* tokens colour the syntax at all — stopped that, and the browser
+ * default of 8 makes tab-indented Go read as a staircase. `tabWidth` in
+ * hugo.toml does not apply when noClasses is false, so it is set here rather
+ * than left in the config looking like it works. */
+pre { tab-size: 2; }
