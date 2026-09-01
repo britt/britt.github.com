@@ -1,0 +1,18 @@
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;overflow-x:hidden}
+body{margin:0;min-width:320px;background:var(--surface-page);color:var(--text-body);font-family:var(--font-body);font-size:var(--text-base);line-height:var(--leading-body);font-weight:var(--weight-regular);-webkit-font-smoothing:antialiased;overflow-wrap:break-word;text-wrap:pretty}
+a{color:var(--link);font-weight:var(--weight-medium);text-decoration:none;transition:color var(--motion-base) var(--ease-standard)}
+a:hover,a:focus-visible{color:var(--link-hover);text-decoration:underline;text-underline-offset:3px}
+:focus-visible{outline:2px solid var(--focus-ring);outline-offset:2px;border-radius:var(--radius-sm)}
+h1,h2,h3,h4,h5,h6{font-family:var(--font-sans);color:var(--text-heading);font-weight:var(--weight-semibold);line-height:var(--leading-heading);letter-spacing:var(--tracking-tight);margin:var(--stack-heading-top) 0 var(--stack-heading-bottom);text-wrap:balance}
+h1{font-size:var(--text-h1)}h2{font-size:var(--text-h2)}h3{font-size:var(--text-h3)}h4{font-size:var(--text-h4)}h5{font-size:var(--text-h5)}h6{font-size:var(--text-h6)}
+p{margin:var(--stack-paragraph) 0}
+strong,b{font-weight:var(--weight-bold);color:var(--text-heading)}
+code{font-family:var(--font-code);font-size:.92em;background:var(--surface-code);color:var(--text-body);border-radius:var(--radius-sm);padding:2px 6px}
+pre{font-family:var(--font-code);font-size:var(--text-sm);line-height:1.7;background:var(--surface-sunken);border-radius:var(--radius-md);padding:var(--space-5);overflow-x:auto}
+pre code{background:none;padding:0}
+blockquote{margin:var(--space-7) 0;padding-left:var(--space-6);border-left:var(--border-quote-width) solid var(--border-quote);color:var(--text-muted);font-style:italic;line-height:var(--leading-quote)}
+hr{border:0;border-top:var(--border-width) solid var(--border-hairline);margin:var(--space-8) 0}
+img{max-width:100%;height:auto}
+s,del{color:var(--text-faint)}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}}

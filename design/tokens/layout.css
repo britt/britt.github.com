@@ -1,0 +1,25 @@
+:root{
+  /* the page is filled, not centred in a ribbon */
+  --container-max:1440px;
+  --container-pad:clamp(20px,4vw,72px);
+  --container-narrow:760px;
+  --measure:70ch;
+  /* two-column shell: flex bases wrap on their own, no media queries */
+  --rail-basis:300px;
+  --main-basis:560px;
+  --gutter-column:clamp(32px,4vw,80px); /* @kind spacing */
+  /* responsive list grids */
+  --grid-min:min(100%,360px); /* @kind spacing */
+  --grid-min-wide:min(100%,420px); /* @kind spacing */
+  --radius-sm:6px;
+  --radius-md:10px;
+  --radius-round:50%;
+  --border-width:1px;
+  --border-quote-width:2px;
+  --avatar-size:clamp(120px,14vw,190px);
+  --shadow-none:none;
+  --motion-fast:120ms; /* @kind other */
+  --motion-base:160ms; /* @kind other */
+  --ease-standard:cubic-bezier(.2,0,.2,1); /* @kind other */
+  --hover-opacity:.7; /* @kind other */
+}

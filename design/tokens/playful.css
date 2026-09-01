@@ -1,0 +1,160 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Grotesk:wght@400..700&family=Instrument+Serif:ital@0;1&display=swap");
+
+/* Playful theme — warm primaries on cream. Opt in with <html data-theme="playful">. */
+[data-theme="playful"]{
+  /* palette */
+  --clay:#e2542a;
+  --clay-deep:#b93d18;
+  --amber:#f0a92b;
+  --amber-deep:#c9861a;
+  --pine:#2f7d63;
+  --pine-deep:#22604b;
+  --lapis:#1f4fa3;
+  --lapis-deep:#163a7a;
+  /* tints — the only backgrounds colour is allowed to touch */
+  --tint-clay:#fdece4;
+  --tint-amber:#fdf3dd;
+  --tint-pine:#e6f2ec;
+  --tint-lapis:#e7effb;
+  /* warm neutrals */
+  --paper:#fbf7ef;
+  --ink-1:#14120f;
+  --ink-2:#241f19;
+  --ink-3:#645b4e;
+  --ink-4:#948877;
+  --rule:#e8ddca;
+  --wash-1:#f4eee1;
+  --wash-2:#ece3d1;
+  /* semantic */
+  --surface-page:var(--paper);
+  --surface-sunken:var(--tint-amber);
+  --surface-code:var(--tint-pine);
+  --text-heading:var(--ink-1);
+  --text-body:var(--ink-2);
+  --text-muted:var(--ink-3);
+  --text-faint:var(--ink-4);
+  --border-hairline:var(--rule);
+  --border-quote:var(--amber);
+  --link:var(--lapis);
+  --link-hover:var(--clay-deep);
+  --link-underline:var(--clay);
+  --focus-ring:var(--clay);
+  --rule-accent:var(--clay);
+  --heading-1:var(--clay);
+  --heading-2:var(--lapis);
+  --heading-3:var(--pine);
+  --heading-4:var(--amber-deep);
+  --tag-clay-bg:var(--clay);--tag-clay-fg:#fffaf4;
+  --tag-amber-bg:var(--amber);--tag-amber-fg:#1a1408;
+  --tag-pine-bg:var(--pine);--tag-pine-fg:#f2fbf7;
+  --tag-lapis-bg:var(--lapis);--tag-lapis-fg:#eff5ff;
+  --header-rule:var(--clay);--header-rule-width:3px;
+  --wordmark-color:var(--pine);
+  --avatar-bg:var(--clay);--avatar-fg:#fffaf4;
+  --date-color:var(--lapis);
+  --list-mark-color:var(--clay);
+  --footnotes-rule:var(--pine);--footnotes-rule-width:3px;
+  --font-display:"Bricolage Grotesque",var(--font-sans);
+  --heading-weight:700;
+  --heading-tracking:-0.02em;
+  color-scheme:light;
+}
+[data-theme="playful"][data-scheme="dark"]{
+  /* accents lift and desaturate slightly so they sit on near-black */
+  --clay:#ff8a5c;
+  --clay-deep:#ffa683;
+  --amber:#ffc45c;
+  --amber-deep:#ffd489;
+  --pine:#5fc4a1;
+  --pine-deep:#8bd8bd;
+  --lapis:#8fb6ff;
+  --lapis-deep:#b3ccff;
+  --tint-clay:#2c1d16;
+  --tint-amber:#2c2416;
+  --tint-pine:#152520;
+  --tint-lapis:#161f31;
+  --surface-page:#191714;
+  --surface-sunken:var(--tint-amber);
+  --surface-code:var(--tint-pine);
+  --text-heading:#f7f1e6;
+  --text-body:#ddd3c3;
+  --text-muted:#a29683;
+  --text-faint:#7d7263;
+  --border-hairline:#332c22;
+  --rule:#332c22;
+  --wash-1:#211d18;
+  --wash-2:#282219;
+  --border-quote:var(--amber);
+  --heading-2:var(--lapis);
+  --heading-3:var(--pine);
+  --heading-4:var(--amber-deep);
+  --link:var(--lapis);
+  --link-hover:var(--clay);
+  --link-underline:var(--clay);
+  --focus-ring:var(--clay);
+  --rule-accent:var(--clay);
+  --heading-1:var(--clay);
+  --avatar-bg:var(--clay);--avatar-fg:#2c1109;
+  --tag-clay-bg:var(--clay);--tag-amber-bg:var(--amber);--tag-pine-bg:var(--pine);--tag-lapis-bg:var(--lapis);
+  --tag-clay-fg:#2c1109;--tag-amber-fg:#1a1408;--tag-pine-fg:#0d2019;--tag-lapis-fg:#101c30;
+  color-scheme:dark;
+}
+
+/* headings: display face + a colour per level */
+[data-theme="playful"] h1,
+[data-theme="playful"] h2,
+[data-theme="playful"] h3,
+[data-theme="playful"] h4,
+[data-theme="playful"] h5,
+[data-theme="playful"] h6{font-family:var(--font-display);font-weight:var(--heading-weight,700);letter-spacing:var(--heading-tracking,-0.02em)}
+[data-theme="playful"] h1{color:var(--heading-1)}
+[data-theme="playful"] h2{color:var(--heading-2)}
+[data-theme="playful"] h3{color:var(--heading-3)}
+[data-theme="playful"] h4,
+[data-theme="playful"] h5,
+[data-theme="playful"] h6{color:var(--heading-4)}
+/* a heading that wraps a link keeps the heading colour */
+[data-theme="playful"] h1 a,
+[data-theme="playful"] h2 a,
+[data-theme="playful"] h3 a{color:inherit}
+
+/* links: colour split — blue text, clay underline. Prose links only; headings,
+   the wordmark, list titles and the social row stay plain until hover. */
+[data-theme="playful"] p a,
+[data-theme="playful"] [data-prose] li a,
+[data-theme="playful"] blockquote a,
+[data-theme="playful"] figcaption a{text-decoration:underline;text-decoration-color:var(--link-underline);text-decoration-thickness:2px;text-underline-offset:3px}
+[data-theme="playful"] a:hover,
+[data-theme="playful"] a:focus-visible{text-decoration-color:currentColor}
+
+/* rules and quotes carry colour */
+[data-theme="playful"] hr{border-top:3px solid var(--rule-accent);border-radius:2px}
+[data-theme="playful"] blockquote{border-left-width:4px;background:var(--tint-lapis);padding:var(--space-5) var(--space-6);border-radius:var(--radius-md);font-style:normal;color:var(--text-body)}
+[data-theme="playful"] code{background:var(--tint-pine);color:var(--pine-deep,var(--pine))}
+[data-theme="playful"] ::selection{background:var(--amber);color:#1a1408}
+[data-theme="playful"] pre{background:var(--surface-code)}
+[data-theme="playful"] ::marker{color:var(--clay)}
+
+/* tinted section blocks — flat fills, one per section, never stacked */
+[data-theme="playful"] [data-tint]{padding:var(--space-6) var(--space-7);border-radius:var(--radius-md)}
+[data-theme="playful"] [data-tint="clay"]{background:var(--tint-clay)}
+[data-theme="playful"] [data-tint="amber"]{background:var(--tint-amber)}
+[data-theme="playful"] [data-tint="pine"]{background:var(--tint-pine)}
+[data-theme="playful"] [data-tint="lapis"]{background:var(--tint-lapis)}
+
+/* ——— component-level colour, all scoped to the theme ——— */
+[data-theme="playful"] h1{font-weight:var(--heading-weight,700)}
+
+/* site header: tinted bar with a thick clay underline; wordmark in pine */
+[data-theme="playful"] header[data-site-header]{background:var(--tint-amber)}
+
+/* section headings get a colour chip before the text */
+[data-theme="playful"] h2[data-section]::before,
+[data-theme="playful"] h3[data-section]::before{content:"";flex:0 0 auto;width:.5em;height:.5em;border-radius:var(--radius-round);background:currentColor;align-self:center;margin-right:.1em}
+
+/* list dashes cycle through the palette */
+[data-theme="playful"] [data-list-mark]{font-weight:700}
+[data-theme="playful"] li:nth-child(4n+1) [data-list-mark]{color:var(--clay)!important}
+[data-theme="playful"] li:nth-child(4n+2) [data-list-mark]{color:var(--lapis)!important}
+[data-theme="playful"] li:nth-child(4n+3) [data-list-mark]{color:var(--pine)!important}
+[data-theme="playful"] li:nth-child(4n+4) [data-list-mark]{color:var(--amber-deep)!important}
