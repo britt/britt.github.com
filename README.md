@@ -60,6 +60,15 @@ looks in, silently rendering the theme's version instead.
 > project also sets a `HUGO_VERSION` environment variable in the dashboard, the
 > dashboard wins. Confirm it reads `0.163.0` or is unset.
 
+## Right-to-left layout is not supported
+
+`hugo-coder` shipped `_base_rtl.scss` and friends, gated behind `params.rtl`.
+The design system has no RTL layer, and the cutover stopped compiling Coder's
+stylesheet, so those rules no longer exist. `params.rtl` is unset and the site
+is `en`, so nothing changes today — but setting it would produce an LTR page
+with an `rtl` class on `<body>`, not a right-to-left site. Treat it as
+unsupported rather than as something that quietly half-works.
+
 ## Local development
 
 ```

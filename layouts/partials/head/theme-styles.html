@@ -1,0 +1,65 @@
+{{- /*
+  Shadows themes/hugo-coder/layouts/partials/head/theme-styles.html.
+
+  The design system replaces Coder's stylesheet outright; Coder stays on as a
+  template provider. So this emits neither coder.css nor the three Font Awesome
+  woff2 preloads the theme's version shipped (295 KB, for three glyphs — #54
+  replaces them with inline SVG).
+
+  Keeping both stylesheets was the original plan (#42) and was abandoned:
+  design/tokens/base.css and Coder's _base.scss style almost the same set of
+  elements, so the two would compete on cascade order, and the winner would be
+  decided by @import sequence rather than by intent.
+
+  The files are concatenated in the order design/styles.css declares, which is
+  load-bearing — later layers override earlier ones.
+*/ -}}
+
+{{- /* Webfonts.
+
+  The export carries remote @import rules inside fonts.css and playful.css.
+  @import is only valid before any other rule, so the second one is silently
+  dropped by every browser once the files are concatenated — no error, no
+  fonts. They are stripped from the bundle below and re-issued here as <link>
+  tags, which have no ordering constraint.
+
+  Only the three families the system actually uses are requested. The export's
+  playful.css also asks for Space Grotesk and Instrument Serif, which are
+  referenced by no rule anywhere.
+
+  #45 self-hosts these and deletes this block. */ -}}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300..800;1,300..800&amp;family=Fira+Code:wght@400;500&amp;family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;display=swap">
+
+{{- $order := slice
+  "ds/fonts.css"
+  "ds/colors.css"
+  "ds/typography.css"
+  "ds/spacing.css"
+  "ds/layout.css"
+  "ds/base.css"
+  "ds/utilities.css"
+  "ds/content.css"
+  "ds/chrome.css"
+  "ds/components.css"
+  "ds/syntax.css"
+  "ds/playful.css"
+-}}
+{{- $parts := slice -}}
+{{- range $order -}}
+  {{- with resources.Get . -}}
+    {{- $parts = $parts | append . -}}
+  {{- else -}}
+    {{- errorf "design system file not found: %s (is design/tokens mounted? see hugo.toml)" . -}}
+  {{- end -}}
+{{- end -}}
+{{- $bundle := $parts | resources.Concat "css/site-raw.css" -}}
+{{- $stripped := $bundle.Content | replaceRE `@import\s+url\(["'][^"']+["']\);?` "" -}}
+{{- $styles := resources.FromString "css/site.css" $stripped -}}
+{{- if hugo.IsServer -}}
+<link rel="stylesheet" href="{{ $styles.RelPermalink }}">
+{{- else -}}
+{{- $styles = $styles | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" crossorigin="anonymous">
+{{- end -}}

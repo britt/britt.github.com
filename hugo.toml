@@ -47,6 +47,8 @@ unsafe = true
   touchicon = "/img/apple-touch-icon-144-precomposed.png"
   since = 1999
   enableTwemoji = true
+  # Which design system variant to render. Emitted as <html data-theme>.
+  designTheme = "playful"
   colorScheme = "auto"
   hidecolorschemetoggle = false
 

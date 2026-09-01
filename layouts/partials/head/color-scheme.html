@@ -1,0 +1,15 @@
+{{- /*
+  Shadows themes/hugo-coder/layouts/partials/head/color-scheme.html.
+
+  The theme's version emitted coder-dark.css: a second complete stylesheet
+  re-declaring every rule under body.colorscheme-dark. The design system does
+  dark mode as a token swap under :root[data-scheme="dark"], so there is
+  nothing to emit — only the attribute to set.
+
+  Inlined and blocking. An external or deferred script would let the page paint
+  before the attribute exists, so a visitor whose stored preference disagrees
+  with their OS setting would see the wrong scheme and then a snap.
+*/ -}}
+{{- $js := resources.Get "js/scheme.js" -}}
+{{- if not hugo.IsServer -}}{{- $js = $js | minify -}}{{- end -}}
+<script>{{ $js.Content | safeJS }}</script>
