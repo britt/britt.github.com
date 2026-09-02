@@ -117,21 +117,83 @@
 [data-theme="playful"] [data-prose] li:nth-child(4n+4)::marker { color: var(--amber-deep); }
 
 /* ── dated archive ───────────────────────────────────────────────────────
-   .ds-dated and .ds-dated__row come from the design system; the title's
-   treatment does not, because DatedList passes it as a prop. "Titles are
-   heading-colored, not link-blue, until hover." */
+   .ds-dated and .ds-dated__row come from the design system, but the exported
+   token CSS is only part of the component and the missing part is the layout.
+
+   design/tokens/utilities.css renders .ds-dated as `display:grid` with no
+   `grid-template-columns` — one column. The real component is not:
+
+     // components/lists/DatedList.jsx
+     function DatedList({ items = [], onSelect, columns = true }) {
+       <ul style={{ display: "grid",
+                    gridTemplateColumns: columns
+                      ? "repeat(auto-fit, minmax(var(--grid-min), 1fr))"
+                      : "1fr",
+                    gap: "0 var(--gutter-column)" }}>
+
+   `columns` defaults to true, so the archive reflows across as many columns as
+   fit; upstream's own section-index template calls the result "a two-up list of
+   posts". The single-column form is the `columns={false}` variant. Nothing in
+   the token layer can express a prop, so the export flattened it to the wrong
+   default and the cocktails index rendered as one narrow column down the left
+   of a 1440px page (#78).
+
+   This is the same class of gap README.md already records for --col-min /
+   --sidebar / --container-max-wide: "upstream these are supplied per-instance
+   by the React components (inline style), not by the token layer" — and any
+   template using the component has to supply them. So it is restored here
+   rather than patched into design/tokens/, which is a read-only mirror.
+
+   Every value below is the component's, quoted from DatedList.jsx. */
+
+.ds-dated {
+  grid-template-columns: repeat(auto-fit, minmax(var(--grid-min), 1fr));
+  /* The component's gap is `0 var(--gutter-column)`: columns are separated,
+     rows are not, because each row draws its own rule. utilities.css sets a
+     row gap for the one-column form, which here would double the rule spacing.
+     The row's own padding replaces it, below. */
+  gap: 0 var(--gutter-column);
+}
+
+/* utilities.css pads the row only at the bottom, relying on .ds-dated's row
+   gap for the space above. With that gap gone, the component's symmetric
+   `padding: var(--space-4) 0` is what keeps a row off the rule above it. */
+.ds-dated__row {
+  padding-block: var(--space-4);
+}
+
+/* The component's row is `gridTemplateColumns: "150px 1fr", gap: var(--space-5)`.
+   utilities.css widened that to `minmax(120px,180px)` with a gap up to 40px,
+   which is comfortable across a whole page and much too greedy inside a column
+   of the grid above: at three-up it left 189px for the title and wrapped most
+   of them.
+
+   Guarded by min-width rather than declared flat, because this file is
+   concatenated *after* ds/utilities.css — an unguarded rule here would outrank
+   utilities.css's own `@media (max-width:640px)` stack and the row would never
+   collapse on a phone. The 641px is that 640px, not a new breakpoint. */
+@media (min-width: 641px) {
+  .ds-dated__row {
+    grid-template-columns: 150px 1fr;
+    gap: var(--space-5);
+  }
+}
 
 .ds-dated__date {
   font-family: var(--font-mono);
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
   color: var(--date-color, var(--text-muted));
   white-space: nowrap;
 }
 
+/* The title's treatment is a prop, not a class, so the export could not carry
+   it either: `fontWeight: var(--weight-semibold), color: var(--text-heading)`.
+   Body size and the body face — not the display face at --text-h4, which this
+   file previously used and which cannot fit a name like "Slightly Sour
+   Strawberry Smash" in a column of the grid above. "Titles are heading-colored,
+   not link-blue, until hover." */
 .ds-dated__title {
   color: var(--text-heading);
-  font-family: var(--font-display, var(--font-sans));
-  font-size: var(--text-h4);
   font-weight: var(--weight-semibold);
   text-decoration: none;
 }
@@ -142,61 +204,6 @@
   text-decoration: underline;
   text-decoration-color: var(--link-underline, currentColor);
   text-underline-offset: 3px;
-}
-
-/* ── cocktail archive page ───────────────────────────────────────────────
-   The index puts its title and intro in the rail and the dated list beside
-   them, which is the same RailLayout the home page and the recipe pages use.
-
-   Without it the list was correct and still looked broken: .ds-dated__row is
-   `minmax(120px,180px) 1fr`, so in a full-bleed 1440px container a date and a
-   three-word drink name filled the left third and the hairline rule ran on
-   across nine hundred empty pixels (#78). "Width is spent on a two-column
-   RailLayout […] content beside it" is what the design system says the page is
-   full-bleed *for*.
-
-   No card, no border box: the rail is set apart by the same rule-and-
-   whitespace treatment as the ingredients rail on a recipe page. */
-
-.archive__rail {
-  position: sticky;
-  top: var(--space-6);
-  align-self: start;
-}
-
-/* The rail keeps the page header's own top padding; the list matches it so the
-   first row and the title start on the same line rather than one column
-   hanging below the other. .ds-dated's own `margin: var(--space-7) 0` exists to
-   separate it from prose above it, and in the split there is none. */
-.archive__list {
-  padding-block-start: var(--page-header-top);
-}
-
-.archive__list .ds-dated {
-  margin-block: 0;
-}
-
-/* Set down a step because the rail is 300px wide: at body size the intro rags
-   badly and competes with the archive titles beside it. */
-.archive__intro {
-  font-size: var(--text-sm);
-}
-
-.archive__intro > :first-child { margin-top: 0; }
-.archive__intro > :last-child { margin-bottom: 0; }
-
-@media (max-width: 820px) {
-  .archive__rail {
-    position: static;
-  }
-  .archive__intro {
-    margin-bottom: var(--space-7);
-  }
-  /* Stacked, there is no second column left to align to, and the padding would
-     only open a second gap under the intro's own margin. */
-  .archive__list {
-    padding-block-start: 0;
-  }
 }
 
 /* ── cocktail recipe ─────────────────────────────────────────────────────
