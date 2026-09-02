@@ -128,3 +128,18 @@ h3[data-section] {
   appearance: none;
   line-height: 1.6;
 }
+
+/* Sticky footer on short pages, sized to the *visible* viewport.
+ *
+ * The export sets min-height:100vh on the page frame. On mobile browsers 100vh
+ * is the viewport with the toolbars retracted, so a page whose content is
+ * shorter than the screen still scrolls by the height of the address bar.
+ * 100dvh is the same number on desktop and the honest one on mobile.
+ *
+ * Behind @supports so browsers without dvh keep the 100vh they already had. */
+@supports (min-height: 100dvh) {
+  .ds-page,
+  .wrapper {
+    min-height: 100dvh;
+  }
+}
