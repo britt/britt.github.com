@@ -31,7 +31,51 @@
        do not, so the heading is dropped here and the rail supplies one. Keeping
        the content's would print the word twice on those eleven. */ -}}
   {{- $ingredients = replaceRE `(?s)^\s*<h[1-6][^>]*>.*?</h[1-6]>\s*` "" $block -}}
+
+  {{- /* Split each line into a measure and an ingredient (#77).
+
+       design/components/lists/RecipeList.prompt.md takes the two as separate
+       fields — `{ amount: "2oz", item: "Bourbon" }` — and that separation is
+       what lets the rail be typeset at all: a measure gets the monospace face
+       because it is a quantity, a name gets the body face because it is prose.
+       Handed one undifferentiated string, the only way to keep "1 ½ oz" from
+       ragging was to set the whole list in monospace, which is what made the
+       rail read as an unstyled <ul>.
+
+       Done in three passes, because Go's RE2 has no lookahead and "an <li> that
+       does *not* start with a measure" is otherwise unsayable: wrap every line
+       as plain, then let the measure pattern un-plain the ones it matches.
+
+       A line that does not start with a measure is not one — "Several Sprigs of
+       Mint", "A splash of soda", "The juice of 1 fresh lemon", "Cilantro Sprig".
+       Those keep their whole text as the ingredient and span both columns, so
+       the corpus is never forced into a shape it does not have. */ -}}
+  {{- $ingredients = replaceRE `<li>` `<li class="recipe__ingredient--plain"><span class="recipe__item">` $ingredients -}}
+  {{- $ingredients = replaceRE `</li>` `</span></li>` $ingredients -}}
+
+  {{- /* A count and/or fraction, then an optional unit from a closed list, then
+       the space that must follow, then an optional "of". Group 2 keeps the
+       author's spacing so the measure is moved, never rewritten: "2oz",
+       "1/2oz", "1 ½ oz", "16 oz." and "1 TBSP" all reach the page as authored,
+       which is what "measures stay verbatim" in the component contract means.
+       Longer unit spellings come before their prefixes, so "dashes" is not read
+       as "dash" with a stray "es". */ -}}
+  {{- $measure := `(?is)<li class="recipe__ingredient--plain"><span class="recipe__item">\s*((?:\d+\s+)?(?:\d+/\d+|[½¼¾⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])|\d+)((?:\s*(?:oz\.?|ml|cl|tbsp|tsp|dashes|dash|pinches|pinch|slices|slice|sprigs|sprig|scoops|scoop|twists|twist|drops|drop|parts|part|cups|cup|barspoons|barspoon))?)\s+(?:of\s+)?` -}}
+  {{- $ingredients = replaceRE $measure `<li><span class="recipe__amount">${1}${2}</span><span class="recipe__item">` $ingredients -}}
 {{- end -}}
+
+{{- /* The recipe card is a generated poster — a 1125×2001 PNG set in a serif
+     face this site does not own and cannot restyle. It is named and framed as
+     an artifact instead, so the type shift reads as "this is a picture of a
+     card" rather than as the page changing typeface halfway down (#77).
+
+     Done here rather than by adding a title to the image in all fourteen files,
+     for the same reason the method list was left alone: a content change across
+     the corpus to get a template result. A recipe that writes its own caption
+     keeps it. */ -}}
+{{- $content = replaceRE `<figure>(<img[^>]*>)</figure>`
+      `<figure class="recipe__card">${1}<figcaption>Recipe card</figcaption></figure>` $content -}}
+{{- $content = replaceRE `<figure>(<img)` `<figure class="recipe__card">${1}` $content -}}
 
 <article class="recipe">
   {{- /* The title spans the full width rather than sitting in the rail: at 300px
@@ -54,18 +98,28 @@
           {{ . | safeHTML }}
         </div>
       {{- end }}
+
+      {{- /* One link, in the rail, last (#77).
+
+           The design system's own recipe page — ui_kits/personal-site/
+           RecipePage.jsx — ends its `aside` with exactly this:
+
+             <a href="#/cocktails" style={{ fontFamily: "var(--font-mono)",
+                fontSize: "var(--text-xs)" }}>← All cocktails</a>
+
+           and nothing else navigational. There was no prev/next here to copy:
+           none of the system's seventeen components is a pager, and the site
+           it describes has "no nav menu, no search, no calls to action". The
+           two sibling links this template used to print were invented, they
+           reused ← for a second meaning, and they sat at the foot of the prose
+           column where the system puts nothing at all. */ -}}
+      <nav class="recipe__nav" aria-label="Cocktails">
+        <a href="{{ .Parent.RelPermalink }}">← All cocktails</a>
+      </nav>
     </div>
 
     <div class="recipe__body" data-prose>
       {{ $content | safeHTML }}
-
-      <nav class="recipe__nav" aria-label="Recipes">
-        <a href="{{ .Parent.RelPermalink }}">← All recipes</a>
-        <span class="recipe__nav-siblings">
-          {{ with .PrevInSection }}<a rel="prev" href="{{ .RelPermalink }}">← {{ .Title }}</a>{{ end }}
-          {{ with .NextInSection }}<a rel="next" href="{{ .RelPermalink }}">{{ .Title }} →</a>{{ end }}
-        </span>
-      </nav>
     </div>
   </div>
 </article>

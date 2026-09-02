@@ -99,6 +99,24 @@ pre { tab-size: 2; }
   max-width: none;
 }
 
+/* The two lists had drifted (#77): chrome.css's escape list omits .ds-split and
+ * .ds-dated, so a template that puts a layout grid directly inside a content
+ * <article> gets the *whole grid* clamped to the reading measure — rail, gutter
+ * and prose together. On a recipe page at a 1512px viewport that measured:
+ *
+ *   .recipe  1319px      the container
+ *   .ds-split  814px     62% of it — the rest of the page empty
+ *   .recipe__rail 300px
+ *   .recipe__body 453px  about 39 characters, half a measure
+ *
+ * The measure belongs to the prose inside the grid, which [data-prose] above
+ * already applies. Restated as the chrome.css selector so the omission is
+ * fixed where the site can fix it — design/tokens/ is a read-only mirror. */
+.content article > .ds-split,
+.content article > .ds-dated {
+  max-width: none;
+}
+
 /* Colour-scheme toggle label.
  *
  * The button names its destination — "dark" while the page is light — so both
