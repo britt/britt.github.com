@@ -66,22 +66,32 @@ Exact front-matter template (YAML-style) to use in new pages
 
 ---
 title: "Your Page Title"
-path: "your/desired/path/"
-date: 2025-09-29T12:00:00Z
+date: 2026-09-01
 draft: false
-# Optional fields
+# Optional
 # description: "One-line summary for SEO and previews"
 # slug: "custom-slug"
-# tags: ["tag1", "tag2"]
-# categories: ["category1"]
-# image: "/img/path-to-image.png"
+# aliases: ["/old-url/"]
+# layout: "styleguide"
 ---
 
 Notes on using the front matter:
-- Keep title as a plain string. This will be the H1 in templates. Avoid markup in title.
-- path should end with a trailing slash when representing a directory-style URL (recommended by observed patterns). Example: path: "cocktails/"
-- Use ISO 8601 datetimes for date. If you only need a date, YYYY-MM-DD is acceptable but include time when possible.
-- Set draft: true for local or in-progress pages to prevent publication; switch to false when ready.
+- Keep title as a plain string. This becomes the H1 in templates. Avoid markup.
+- date drives the ordering of the cocktails archive. YYYY-MM-DD is enough.
+- Set draft: true for in-progress pages; switch to false when ready.
+
+Corrections to earlier versions of this file, verified against the templates:
+- There is no `path` key in Hugo. Use `slug` to change the last URL segment or
+  `url` to set the whole path. `path: "cocktails/"` did nothing.
+- `tags` and `categories` are not used. `[taxonomies]` is commented out in
+  hugo.toml, and no page carries either.
+- `image` is not read by any template. Recipe images are referenced inline in
+  the Markdown body, and the image render hook resizes and converts them.
+- `layout` selects `layouts/_default/<layout>.html`; only `/styleguide/` uses it.
+- `build.list: never` keeps a page out of listings while leaving it reachable.
+
+See CLAUDE.md for the full list of keys the templates actually read, and for how
+to add a cocktail.
 
 Code and content examples
 - Inline code: Use single backticks for inline code like `hugo server`.

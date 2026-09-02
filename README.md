@@ -4,7 +4,7 @@ This is my personal website. It has a little bit about me and links to some thin
 
 Built with [Hugo](https://gohugo.io/).
 
-## The theme is vendored, and read-only
+## The theme is vendored, and read-only — never edit `themes/`
 
 `themes/hugo-coder/` is **not a submodule**. Its files are committed directly into
 this repository, tracked from upstream
@@ -75,5 +75,5 @@ unsupported rather than as something that quietly half-works.
 hugo server
 ```
 
-See [CLAUDE.md](CLAUDE.md) for the design system, the token architecture, and how to
-add a cocktail.
+See **[CLAUDE.md](CLAUDE.md)** for the design system, the token architecture,
+the checks, and how to add a cocktail.
