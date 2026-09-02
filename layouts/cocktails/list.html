@@ -1,0 +1,38 @@
+{{ define "title" }}{{ .Title }} · {{ .Site.Title }}{{ end }}
+{{ define "content" }}
+{{- /*
+  The cocktails index.
+
+  Not a card grid. This issue originally proposed one with hero images; the
+  design system rules that out twice over — "no cards, no calls to action" and
+  "Shadows. None. There are no cards, no elevation […] Separation is done with
+  rules and whitespace." Imagery "sits inline in the column" and belongs on the
+  recipe pages themselves (#59).
+
+  So: DatedList. A two-column grid of date and title with a hairline rule per
+  row, stacking to one column at 640px — all of which .ds-dated already does.
+  Titles are heading-coloured until hover, per the component spec.
+
+  Sorted by date, newest first, which is what an archive is for.
+*/ -}}
+<section class="page">
+  <header>
+    <h1 class="title">{{ .Title }}</h1>
+  </header>
+
+  {{ with .Content }}<div data-prose>{{ . }}</div>{{ end }}
+
+  <ul class="ds-dated">
+    {{ range .Pages.ByDate.Reverse }}
+      <li class="ds-dated__row">
+        <span class="ds-dated__date">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">
+            {{ .Date | time.Format (.Site.Params.dateFormat | default "January 2, 2006") }}
+          </time>
+        </span>
+        <a class="ds-dated__title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+      </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}

@@ -115,3 +115,31 @@
 [data-theme="playful"] [data-prose] li:nth-child(4n+2)::marker { color: var(--lapis); }
 [data-theme="playful"] [data-prose] li:nth-child(4n+3)::marker { color: var(--pine); }
 [data-theme="playful"] [data-prose] li:nth-child(4n+4)::marker { color: var(--amber-deep); }
+
+/* ── dated archive ───────────────────────────────────────────────────────
+   .ds-dated and .ds-dated__row come from the design system; the title's
+   treatment does not, because DatedList passes it as a prop. "Titles are
+   heading-colored, not link-blue, until hover." */
+
+.ds-dated__date {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--date-color, var(--text-muted));
+  white-space: nowrap;
+}
+
+.ds-dated__title {
+  color: var(--text-heading);
+  font-family: var(--font-display, var(--font-sans));
+  font-size: var(--text-h4);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+}
+
+.ds-dated__title:hover,
+.ds-dated__title:focus-visible {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-color: var(--link-underline, currentColor);
+  text-underline-offset: 3px;
+}
