@@ -19,22 +19,24 @@
 
 {{- /* Webfonts.
 
-  The export carries remote @import rules inside fonts.css and playful.css.
-  @import is only valid before any other rule, so the second one is silently
-  dropped by every browser once the files are concatenated — no error, no
-  fonts. They are stripped from the bundle below and re-issued here as <link>
-  tags, which have no ordering constraint.
+  Self-hosted under static/fonts/ — see static/fonts/README.md — so the page
+  makes no third-party request. The @font-face declarations live in
+  assets/css/fonts-local.css and are concatenated into the bundle below.
 
-  Only the three families the system actually uses are requested. The export's
-  playful.css also asks for Space Grotesk and Instrument Serif, which are
-  referenced by no rule anywhere.
+  Preloaded: the three roman faces that render above the fold on every page —
+  body copy, headings, and the monospaced wordmark. The italic is not,
+  because nothing above the fold is italic and preloading it would compete for
+  bandwidth with faces that are needed sooner.
 
-  #45 self-hosts these and deletes this block. */ -}}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300..800;1,300..800&amp;family=Fira+Code:wght@400;500&amp;family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;display=swap">
+  The export's own remote @import rules are stripped from the bundle further
+  down. They are left in design/tokens/ untouched so that refreshing the design
+  system stays a matter of replacing the directory. */ -}}
+<link rel="preload" href="{{ "/fonts/public-sans-latin-var.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "/fonts/bricolage-grotesque-latin-var.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "/fonts/fira-code-latin-var.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
 
 {{- $order := slice
+  "css/fonts-local.css"
   "ds/fonts.css"
   "ds/colors.css"
   "ds/typography.css"
