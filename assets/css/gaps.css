@@ -70,3 +70,32 @@ h3[data-section] {
   gap: .35em;
   flex-wrap: wrap;
 }
+
+/* Measure, independent of template structure.
+ *
+ * chrome.css clamps prose to --measure with `.content article > *`, which only
+ * matches templates that happen to wrap their body in an <article>.
+ * partials/list.html does not, so a section's intro paragraph ran the full
+ * 1440px container — a ~200-character line, which is exactly what the design
+ * system says filling the page must never mean.
+ *
+ * Keyed on [data-prose] instead: that attribute already marks running prose
+ * for the link-underline rules (#47), so one marker now carries both, and any
+ * future template gets the measure by saying what it contains rather than by
+ * matching a particular element nesting. */
+[data-prose] > * {
+  max-width: var(--measure);
+}
+
+/* Things that are not running text and must be allowed to fill the column.
+ * Mirrors chrome.css's escape list so the two cannot drift. */
+[data-prose] > .ds-cols,
+[data-prose] > .ds-dated,
+[data-prose] > .ds-split,
+[data-prose] > .ds-scroll,
+[data-prose] > table,
+[data-prose] > figure,
+[data-prose] > .highlight,
+[data-prose] > pre {
+  max-width: none;
+}
