@@ -70,3 +70,48 @@
     justify-content: flex-start;
   }
 }
+
+/* ── annotated link lists ────────────────────────────────────────────────
+   The dominant unit on this site: a link, a dash, a sentence. Roughly 25 of
+   them across the home and projects pages.
+
+   Kept as plain Markdown lists (#56 option (a)) rather than moved to a
+   shortcode. A {{< link-card >}} would mean rewriting every entry and coupling
+   the content to the theme, and the design system's ProjectList is "an
+   inventory of things built" with sentence descriptions — a shape plain lists
+   already express.
+
+   Scoped with :has() rather than by page. A list item that *begins* with a
+   link is an entry in a link list; one that does not is something else — the
+   ingredients on a cocktail page, for instance, which are the primary content
+   there and must not be muted. That distinction is in the content, so the
+   selector reads it from the content rather than from which template
+   happens to be rendering. */
+
+[data-prose] li:has(> a:first-child) {
+  color: var(--text-muted);
+}
+
+[data-prose] li:has(> a:first-child) > a:first-child {
+  color: var(--link);
+  font-weight: var(--weight-medium);
+}
+
+/* Emphasis inside a description is an aside, not a promotion — it stays at the
+   description's weight rather than jumping to heading colour. */
+[data-prose] li:has(> a:first-child) strong {
+  color: inherit;
+}
+
+/* ── list markers ────────────────────────────────────────────────────────
+   The playful variant cycles the marker colour through the four accents.
+   Done on ::marker, which accepts `color` and can be selected per item —
+   #71 assumed it could not, and expected a <span data-list-mark> in every
+   list item. It can, so the content stays plain Markdown.
+
+   [data-list-mark] is still styled by content.css for hand-authored lists that
+   need a marker inside the item's own box. */
+[data-theme="playful"] [data-prose] li:nth-child(4n+1)::marker { color: var(--clay); }
+[data-theme="playful"] [data-prose] li:nth-child(4n+2)::marker { color: var(--lapis); }
+[data-theme="playful"] [data-prose] li:nth-child(4n+3)::marker { color: var(--pine); }
+[data-theme="playful"] [data-prose] li:nth-child(4n+4)::marker { color: var(--amber-deep); }
