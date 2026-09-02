@@ -1,19 +1,17 @@
 {{- /*
   Shadows themes/hugo-coder/layouts/_default/_markup/render-heading.html.
 
-  Two changes from the theme's version:
+  The theme's version appended an anchor link to every heading — a Font Awesome
+  glyph, which went with coder.css in #73, leaving an empty <i> and a visible
+  "Link to heading" label on screen. It was briefly replaced with a "#" that
+  faded in on hover; that has been removed by request.
 
-  1. The anchor is the character "#", not a Font Awesome glyph. Font Awesome
-     went with Coder's stylesheet (#54), so the theme's version rendered an
-     empty <i> and a visible "Link to heading" label — the affordance was gone
-     and the screen-reader text was on screen. The design system specifies "#"
-     fading from 0 to 1 opacity, which content.css already implements; it
-     reveals on :focus-visible as well as :hover, so it is reachable by
-     keyboard (#47).
+  The id stays, so every heading is still addressable as a URL fragment and the
+  styleguide's in-page links keep working. There is simply no visible control
+  for copying one.
 
-  2. h2 and h3 carry data-section, which is what the playful variant's colour
-     chip selector matches (#71). Deeper levels do not: the chip marks a
-     section boundary, and every h4 in a document is not one.
+  h2 and h3 carry data-section, which the playful variant's section rules match
+  (#71). Deeper levels do not: it marks a section boundary, and every h4 in a
+  document is not one.
 */ -}}
-{{- $anchor := .Anchor | safeURL -}}
-<h{{ .Level }} id="{{ $anchor }}"{{ if or (eq .Level 2) (eq .Level 3) }} data-section{{ end }}>{{ .Text }}<a class="heading-link" href="#{{ $anchor }}" aria-label="{{ i18n "link_to_heading" | default "Link to this section" }}">#</a></h{{ .Level }}>
+<h{{ .Level }} id="{{ .Anchor | safeURL }}"{{ if or (eq .Level 2) (eq .Level 3) }} data-section{{ end }}>{{ .Text }}</h{{ .Level }}>

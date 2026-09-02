@@ -179,7 +179,7 @@ Genuinely gone:
 
 | | |
 |---|---|
-| Font Awesome | Words instead of icons — the design system has no icon set. Where a glyph is unavoidable, use a plain Unicode character already on the site: `↗` external links, `↩︎` footnote returns, `#` heading anchors. |
+| Font Awesome | Words instead of icons — the design system has no icon set. Where a glyph is unavoidable, use a plain Unicode character already on the site: `↗` external links, `↩︎` footnote returns. |
 | `normalize.css` | `design/tokens/base.css` opens with a modern reset. |
 | Right-to-left layout | `params.rtl` would produce an LTR page with an `rtl` class. Unsupported, not half-working. |
 | `coder.js` | Replaced by `assets/js/theme.js`. The original also carried Giscus, Utterances and Mermaid plumbing this site does not use. |

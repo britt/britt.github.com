@@ -52,23 +52,22 @@
  * than left in the config looking like it works. */
 pre { tab-size: 2; }
 
-/* Section-heading colour chip.
+/* Section headings.
  *
- * playful.css draws the chip with `flex:0 0 auto` and `align-self:center`,
- * neither of which does anything unless the heading is a flex container. The
- * design system's own SectionHeading component sets that in React; a Hugo
- * template gets nothing for free, so it is set here.
+ * playful.css draws a coloured dot before every h2/h3 carrying data-section,
+ * using `flex:0 0 auto` and `align-self:center` — which need the heading to be
+ * a flex container, something the design system's React SectionHeading sets and
+ * a Hugo template does not get for free.
  *
- * Applied to every h2/h3 carrying data-section, not only under the playful
- * theme: the flex context is structural, and switching a heading between block
- * and flex per theme would make the two variants wrap long headings
- * differently for no reason. */
-h2[data-section],
-h3[data-section] {
-  display: flex;
-  align-items: baseline;
-  gap: .35em;
-  flex-wrap: wrap;
+ * The dot is turned off by request (it read as a list bullet on a page that is
+ * mostly lists), so the flex context it needed goes with it and headings are
+ * ordinary block boxes again.
+ *
+ * data-section is still emitted: it costs nothing, and re-enabling the chip
+ * means deleting the rule below rather than editing a render hook. */
+[data-theme="playful"] h2[data-section]::before,
+[data-theme="playful"] h3[data-section]::before {
+  content: none;
 }
 
 /* Measure, independent of template structure.

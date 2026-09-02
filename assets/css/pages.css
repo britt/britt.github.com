@@ -242,3 +242,69 @@
     margin-bottom: var(--space-7);
   }
 }
+
+/* ── link underlines: hover and focus only ───────────────────────────────
+   A deliberate departure from the design export, by request.
+
+   playful.css underlines prose links at rest — `p a`, `[data-prose] li a`,
+   `blockquote a`, `figcaption a` — in clay at 2px. That is turned off here, so
+   a link is plain until you point at it, which is what base.css already does
+   for every other link on the site.
+
+   The hover and focus treatment is kept and given the clay underline the
+   resting state used to have, so pointing at a link is a stronger signal than
+   it was before rather than a weaker one.
+
+   ⚠️ This makes prose links distinguishable by colour alone at rest. --link is
+   7.26:1 against the page in light and 8.78:1 in dark — comfortably past the
+   4.5:1 that WCAG 1.4.1 wants against the *background* — but only 2.11:1
+   against surrounding body text in light and 1.38:1 in dark, where the
+   criterion asks for 3:1. See docs/link-underlines.md for what that means and
+   what the alternatives are. */
+
+[data-theme="playful"] p a,
+[data-theme="playful"] [data-prose] li a,
+[data-theme="playful"] blockquote a,
+[data-theme="playful"] figcaption a {
+  text-decoration: none;
+}
+
+[data-theme="playful"] p a:hover,
+[data-theme="playful"] p a:focus-visible,
+[data-theme="playful"] [data-prose] li a:hover,
+[data-theme="playful"] [data-prose] li a:focus-visible,
+[data-theme="playful"] blockquote a:hover,
+[data-theme="playful"] blockquote a:focus-visible,
+[data-theme="playful"] figcaption a:hover,
+[data-theme="playful"] figcaption a:focus-visible {
+  text-decoration: underline;
+  text-decoration-color: var(--link-underline, currentColor);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* ── footnote references ─────────────────────────────────────────────────
+   Goldmark emits a bare superscript numeral. Bracketed and set smaller so it
+   reads as a reference mark rather than as an exponent — "Software [1]" is not
+   ambiguous the way "Software 1" is.
+
+   The brackets go on the anchor rather than the <sup>, so they are part of the
+   click target rather than dead punctuation beside it.
+
+   Sized in em rather than from the type scale because a reference can appear
+   inside a heading as well as in body copy — on the home page it does both —
+   and it should stay proportionate to whatever it sits in. */
+
+sup[id^="fnref"] {
+  font-size: .6em;
+  line-height: 0;
+  vertical-align: super;
+}
+
+.footnote-ref {
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--weight-regular);
+}
+
+.footnote-ref::before { content: "["; }
+.footnote-ref::after { content: "]"; }
