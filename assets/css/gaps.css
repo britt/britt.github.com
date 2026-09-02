@@ -143,3 +143,19 @@ h3[data-section] {
     min-height: 100dvh;
   }
 }
+
+/* Quote attributions.
+ *
+ * The blockquote render hook lifts a trailing "-- someone" line into
+ * <footer><cite>. The design system has no rule for it because its Quote
+ * component takes the citation as a separate prop. */
+.quote-attribution {
+  margin-top: var(--space-4);
+  font-size: var(--text-sm);
+  font-style: normal;
+  color: var(--text-muted);
+}
+
+.quote-attribution cite {
+  font-style: normal;
+}

@@ -1,0 +1,31 @@
+{{- /*
+  Blockquotes in content.
+
+  The design system's Quote component takes a `cite`, and this site writes
+  attributions the Markdown way — a final line beginning with a dash:
+
+      > Each entry is a cheering reminder …
+      > -- [Oliver Burkeman on the Done List](…)
+
+  Goldmark renders that as one more <p> inside the quote, indistinguishable
+  from the quotation itself. Lifting it into <footer><cite> makes it a citation
+  in the markup as well as to the eye, without asking anyone to change how they
+  write a quote.
+
+  Matched on the rendered HTML because that is what the hook receives — which
+  is also why the pattern has to accept `&ndash;`: Goldmark's typographer has
+  already turned the author's `--` into an entity by this point. Only a
+  *trailing* paragraph qualifies: a quotation that happens to open with a dash
+  is not an attribution.
+*/ -}}
+{{- $inner := .Text -}}
+{{- $attr := "" -}}
+{{- $found := findRE `(?s)<p>\s*(?:--|&ndash;|&mdash;|&#8211;|&#8212;|–|—)\s*(.*?)</p>\s*$` $inner 1 -}}
+{{- with $found -}}
+  {{- $attr = replaceRE `(?s)^<p>\s*(?:--|&ndash;|&mdash;|&#8211;|&#8212;|–|—)\s*(.*?)</p>\s*$` "$1" (index . 0) -}}
+  {{- $inner = replaceRE `(?s)<p>\s*(?:--|&ndash;|&mdash;|&#8211;|&#8212;|–|—)\s*.*?</p>\s*$` "" $inner -}}
+{{- end -}}
+<blockquote>
+  {{ $inner | safeHTML }}
+  {{- with $attr }}<footer class="quote-attribution">— <cite>{{ . | safeHTML }}</cite></footer>{{ end }}
+</blockquote>

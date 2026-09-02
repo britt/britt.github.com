@@ -1,0 +1,42 @@
+{{- /*
+  Images in content.
+
+  Coder's entire treatment was `img { max-width: 100% }`. Three things were
+  missing and all three are visible on a slow connection: a standalone image
+  never became a <figure>, so the design system's figure rules — hairline
+  border, --radius-md, caption styling — applied to nothing; no image carried
+  intrinsic dimensions, so every cocktail page reflowed when its recipe card
+  arrived; and nothing was lazily loaded.
+
+  Dimensions come from the file itself. Content images are referenced by
+  absolute URL and live in static/, which bypasses Hugo Pipes, so static/img is
+  also mounted into assets/ (see hugo.toml) purely so this lookup can succeed.
+  An image that cannot be resolved — a remote URL, say — still renders, just
+  without the reserved box.
+
+  Every content image on this site is below the fold, so loading is lazy
+  throughout rather than conditionally.
+*/ -}}
+{{- $src := .Destination -}}
+{{- $res := "" -}}
+{{- with .Page.Resources.GetMatch (strings.TrimPrefix "/" $src) -}}
+  {{- $res = . -}}
+{{- else -}}
+  {{- with resources.Get (strings.TrimPrefix "/" $src) -}}
+    {{- $res = . -}}
+  {{- end -}}
+{{- end -}}
+{{- $dims := "" -}}
+{{- with $res -}}
+  {{- if eq .ResourceType "image" -}}
+    {{- $dims = printf ` width="%d" height="%d"` .Width .Height -}}
+  {{- end -}}
+{{- end -}}
+{{- $img := printf `<img src="%s" alt="%s"%s%s loading="lazy" decoding="async">`
+      ($src | safeURL) (.PlainText | default .Text) $dims
+      (cond (ne .Title "") (printf ` title="%s"` .Title) "") -}}
+{{- if .IsBlock -}}
+<figure>{{ $img | safeHTML }}{{ with .Title }}<figcaption>{{ . }}</figcaption>{{ end }}</figure>
+{{- else -}}
+{{- $img | safeHTML -}}
+{{- end -}}

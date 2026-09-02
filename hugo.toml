@@ -17,6 +17,11 @@ pagination.pagerSize = 20
 [markup.goldmark.renderer]
 unsafe = true
 
+[markup.goldmark.parser]
+  # A standalone image becomes a <figure>, which is not valid inside a <p>.
+  # Leaving Goldmark's default wrapping on would nest one inside the other.
+  wrapStandAloneImageWithinParagraph = false
+
 # Hugo version gate. Fails the build on an unpinned or non-extended toolchain
 # rather than producing a subtly different site. Keep in step with .hugoversion
 # and .tool-versions.
@@ -52,6 +57,14 @@ unsafe = true
   [[module.mounts]]
     source = "design/tokens"
     target = "assets/ds"
+  # Content images are referenced by absolute URL (/img/...) and live in
+  # static/, which bypasses Hugo Pipes entirely. Mounting them into assets/ as
+  # well lets the image render hook resolve one as a resource and read its
+  # intrinsic dimensions, so the browser can reserve the box before the image
+  # arrives (#55). They keep their static/ URLs.
+  [[module.mounts]]
+    source = "static/img"
+    target = "assets/img"
 
 [params]
   author = "Britt Crawford"
