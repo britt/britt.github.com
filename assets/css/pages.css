@@ -144,10 +144,24 @@
    template using the component has to supply them. So it is restored here
    rather than patched into design/tokens/, which is a read-only mirror.
 
-   Every value below is the component's, quoted from DatedList.jsx. */
+   Every value below is the component's, quoted from DatedList.jsx, except the
+   two-column ceiling — see below. */
 
 .ds-dated {
-  grid-template-columns: repeat(auto-fit, minmax(var(--grid-min), 1fr));
+  /* The component's floor is `minmax(var(--grid-min), 1fr)` and its ceiling is
+     however many of those fit, which is three at 1440px. This site stops at
+     two, which is what upstream's section-index template describes ("a two-up
+     list of posts") and what its own layout produces, since there the list sits
+     in a ~1000px column behind a ProfileHeader rail. Without that rail the
+     container is 1319px, so the cap has to be stated.
+
+     Stated as a floor rather than a fixed `repeat(2, …)`, so the reflow is
+     still the component's: raising the minimum track to half the row means
+     auto-fit can never place a third column, while everything below two full
+     --grid-min columns still collapses to one on its own. A fixed two-column
+     track would instead hold two cramped columns down to the 640px stack. */
+  grid-template-columns:
+    repeat(auto-fit, minmax(max(var(--grid-min), (100% - var(--gutter-column)) / 2), 1fr));
   /* The component's gap is `0 var(--gutter-column)`: columns are separated,
      rows are not, because each row draws its own rule. utilities.css sets a
      row gap for the one-column form, which here would double the rule spacing.

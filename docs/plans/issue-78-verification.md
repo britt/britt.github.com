@@ -65,10 +65,11 @@ This is the same class of gap `design/README.md` already records for
 
 | | before | after |
 |---|---|---|
-| `.ds-dated` `grid-template-columns` | *(none — one column)* | `399.375px 399.375px 399.375px` |
-| Columns of rows rendered | 1 | 3 |
-| `.ds-dated__row` `grid-template-columns` | `180px 1108.83px` | `150px 233.375px` |
-| Rightmost text ink, % of container | 40% | 94% |
+| `.ds-dated` `grid-template-columns` | *(none — one column)* | `629.297px 629.297px` |
+| Columns of rows rendered | 1 | 2 |
+| `.ds-dated__row` `grid-template-columns` | `180px 1108.83px` | `150px 463.297px` |
+| Titles wrapping to a second line | — | 0 of 14 |
+| Rightmost text ink, % of container | 40% | 84% |
 
 ## Acceptance criteria
 
@@ -77,7 +78,7 @@ Checked in a real browser (Playwright, Chromium) against a real
 
 | # | Criterion | How it is proved |
 |---|---|---|
-| AC1 | The archive is a multi-column grid that reflows with the container, per the component | `getComputedStyle(.ds-dated).gridTemplateColumns` has 3 tracks at 1512px, 2 at 900px, 1 at 375px; distinct row `left` offsets confirm rows actually occupy those columns |
+| AC1 | The archive is a multi-column grid that reflows with the container, and **never exceeds two columns** | Distinct row `left` offsets, swept across 12 widths from 375px to 2560px in all three engines |
 | AC2 | The page reads as filled | Rightmost text ink ≥ 60% of `.ds-container` width at 1512px, vs. 40% before |
 | AC3 | Each row is still date + title with a hairline rule | `.ds-dated__row` has two tracks above 640px; `borderBottomWidth` = 1px |
 | AC4 | It still stacks to one column below 640px — *both* the grid and the row | At 375px, `.ds-dated` and `.ds-dated__row` each resolve to a single track |
@@ -109,9 +110,9 @@ HTTP (not `hugo server` — it injects LiveReload and unminified CSS).
 
 | # | Result | Evidence |
 |---|---|---|
-| AC1 | **PASS** | 1512px → `399.375px 399.375px 399.375px`, 3 distinct row columns × 5 rows. 900px → `396px 396px`, 2 × 7. 375px → `335px`, 1 × 14. |
-| AC2 | **PASS** | Rightmost text ink, `Range` over the title/date text nodes: **before 608px (40% of the 1440px container), after 1356px (94%)**. |
-| AC3 | **PASS** | `.ds-dated__row` → `150px 233.375px` at 1512px, `150px 230px` at 900px; `border-bottom-width: 1px`. |
+| AC1 | **PASS** | Swept 375 / 500 / 640 / 700 / 820 / 900 / 1024 / 1280 / 1440 / 1512 / 1920 / 2560 px in **chromium, firefox and webkit** — byte-identical results in all three. One column to 700px, two from 820px, and still two at 2560px. Column width peaks at 634px (1440px viewport) and *narrows* past that as the container caps at 1440px inside a wider gutter. |
+| AC2 | **PASS** | Rightmost text ink, `Range` over the title/date text nodes: **before 608px (40% of the 1440px container), after 1216px (84%)**. |
+| AC3 | **PASS** | `.ds-dated__row` → `150px 463.297px` at 1512px; `border-bottom-width: 1px`. No title wraps to a second line at 1512px (0 of 14, by `Range.getClientRects().length`). |
 | AC4 | **PASS** | 375px: `.ds-dated` → `335px`, `.ds-dated__row` → `335px`. The row override is wrapped in `@media (min-width: 641px)` precisely so it cannot outrank `utilities.css`'s own 640px stack — `pages.css` is concatenated after `ds/utilities.css`, so an unguarded rule there would have silently broken the phone layout. |
 | AC5 | **PASS** | 14 rows at every viewport = 14 recipes in `content/cocktails/` (plus `_index.md`); `datetime` strictly descending `2026-08-08 … 2014-03-19`; every `href` starts `/cocktails/` and resolves (AC9). |
 | AC6 | **PASS** | `git diff --stat origin/master -- themes/ design/` → empty. |

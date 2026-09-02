@@ -37,11 +37,15 @@ are the contract and are fetchable with `DesignSync`.
    export is lossy. `pages.css` is documented as where "this site's pages are
    assembled from the system's primitives", and it is concatenated after
    `ds/utilities.css`, so the override is by intent rather than by accident.
-3. **Three-up at 1440px is correct, even though upstream's template calls the
-   result "a two-up list".** The component is `auto-fit` — as many columns as
-   fit. Upstream gets two because its content column is ~1000px behind a
-   `ProfileHeader` rail; without that rail a 1319px container fits three. The
-   contract is the reflow, not the number.
+3. **The archive caps at two columns.** The component itself is uncapped
+   `auto-fit` — as many `--grid-min` columns as fit, which is three at 1440px.
+   Upstream never sees three because its list sits in a ~1000px column behind a
+   `ProfileHeader` rail, and its template calls the result "a two-up list of
+   posts". Without that rail the container is 1319px, so the cap has to be
+   stated. It is stated as a *floor* (raise the minimum track to half the row)
+   rather than a fixed `repeat(2, …)`, so the collapse to one column is still
+   the component's own — a fixed two-track grid would hold two cramped columns
+   all the way down to the 640px stack.
 4. **The archive's contents do not change.** Same rows, order and links.
 
 ## Changes
@@ -49,9 +53,13 @@ are the contract and are fetchable with `DesignSync`.
 Only `assets/css/pages.css`, in the existing `── dated archive ──` block. Every
 value is quoted from `components/lists/DatedList.jsx`, cited in a comment.
 
-- `.ds-dated` — `grid-template-columns: repeat(auto-fit, minmax(var(--grid-min), 1fr))`
-  and `gap: 0 var(--gutter-column)`. The component separates columns but not
-  rows, because each row draws its own rule.
+- `.ds-dated` — `gap: 0 var(--gutter-column)` (the component separates columns
+  but not rows, because each row draws its own rule), and
+  `grid-template-columns: repeat(auto-fit, minmax(max(var(--grid-min), (100% - var(--gutter-column)) / 2), 1fr))`.
+  The `max()` is the two-column ceiling from assumption 3: a track can never be
+  narrower than half the row, so `auto-fit` cannot place a third; below two full
+  `--grid-min` columns the `--grid-min` side of the `max()` wins again and the
+  grid collapses to one on its own.
 - `.ds-dated__row` — `padding-block: var(--space-4)`. `utilities.css` pads only
   the bottom and leans on `.ds-dated`'s row gap for the space above; with that
   gap now zero, the component's symmetric padding is what keeps a row off the
@@ -59,8 +67,8 @@ value is quoted from `components/lists/DatedList.jsx`, cited in a comment.
 - `.ds-dated__row`, inside `@media (min-width: 641px)` — `grid-template-columns:
   150px 1fr; gap: var(--space-5)`. `utilities.css` widened the date track to
   `minmax(120px,180px)` with a gap up to 40px, which is fine across a whole page
-  and far too greedy inside a 399px column: it left 189px for the title and
-  wrapped most of them. **The guard is load-bearing** — see the risk below.
+  and too greedy inside a column of the grid: it left 189px for the title at
+  three-up and 413px at two-up, against the component's 463px. **The guard is load-bearing** — see the risk below.
 - `.ds-dated__date` — `var(--text-xs)`, per the component (was `--text-sm`).
 - `.ds-dated__title` — drop `font-family: var(--font-display)` and
   `font-size: var(--text-h4)`. The component sets neither; it is
@@ -89,5 +97,6 @@ updated to say the list is a multi-column archive and to point at the CSS note.
 
 1. Revert the `.ds-split` attempt in the template.
 2. Rewrite the `── dated archive ──` block in `pages.css`.
-3. Build; measure column count and ink extent at 1512 / 900 / 375.
+3. Build; sweep column count from 375px to 2560px in all three engines, and
+   measure ink extent at 1512px.
 4. Run the full check suite.
