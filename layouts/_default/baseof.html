@@ -23,17 +23,14 @@
   {{ partial "head.html" . }}
 </head>
 
-{{ $csClass := "colorscheme-light" }}
-{{ if eq .Site.Params.colorScheme "dark" }}
-{{ $csClass = "colorscheme-dark" }}
-{{ else if eq .Site.Params.colorScheme "auto" }}
-{{ $csClass = "colorscheme-auto" }}
-{{ end }}
-
 {{- /* override: .ds-page is the design system's page frame. .wrapper is kept
      alongside it because header.html, footer.html and float.html still emit
      Coder's class names, and dropping it mid-migration would unstyle them. */ -}}
-<body class="preload-transitions {{ $csClass }}{{ if .Site.Params.rtl }} rtl{{ end }}">
+{{- /* override: the colorscheme-* body classes are gone. They existed only as
+     hooks for coder-dark.css, which no longer exists; the scheme lives on
+     <html data-scheme> now (#43). .preload-transitions stays — theme.js
+     removes it once the page has painted. */ -}}
+<body class="preload-transitions">
   {{ partial "float" . }}
   <main class="wrapper ds-page">
     {{ partial "header.html" . }}
@@ -55,16 +52,16 @@
   </script>
   {{ end }}
 
-  {{ if .Site.Params.disableDefaultJsScripts }}
-  {{ if not .Site.Params.hideColorSchemeToggle }}
-  {{ errorf "Invalid configuration. Default JS scripts are disabled, but 'hideColorSchemeToggle' is false." }}
-  {{end}}
-  {{ else if hugo.IsServer }}
-  {{ $script := resources.Get "js/coder.js" }}
-  <script src="{{ $script.RelPermalink }}"></script>
+  {{- /* override: the theme's coder.js is replaced by assets/js/theme.js. The
+       original also carried Giscus, Utterances and Mermaid plumbing this site
+       does not use, and it drove theming through body classes that no longer
+       style anything (#43, #52). */ -}}
+  {{ $script := resources.Get "js/theme.js" }}
+  {{ if hugo.IsServer }}
+  <script src="{{ $script.RelPermalink }}" defer></script>
   {{ else }}
-  {{ $script := resources.Get "js/coder.js" | minify | fingerprint }}
-  <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}"></script>
+  {{ $script = $script | minify | fingerprint }}
+  <script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" crossorigin="anonymous" defer></script>
   {{ end }}
 
   {{ range .Site.Params.customJS }}

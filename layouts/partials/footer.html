@@ -1,0 +1,30 @@
+{{- /*
+  Shadows themes/hugo-coder/layouts/partials/footer.html.
+
+  The design system's SiteFooter is "a quiet centered copyright line" with room
+  for one note. The theme's version spent that line on "Powered by Hugo &
+  Coder" — boilerplate, and attribution neither project requires. Both are
+  credited in README.md, where someone looking for them will actually look.
+
+  The note is the public key at /britt.gpg, which was reachable from nowhere on
+  the site. Social links were considered and left on the home page: repeating
+  them in the footer of every cocktail recipe is noise, and the design system
+  puts them in ProfileHeader.
+
+  The year is computed, so the range keeps updating.
+*/ -}}
+<footer class="footer">
+  <div class="container">
+    <p>
+      ©
+      {{- if and .Site.Params.since (lt .Site.Params.since now.Year) }}
+        {{ .Site.Params.since }}–{{ now.Year }}
+      {{- else }}
+        {{ now.Year }}
+      {{- end }}
+      {{- with .Site.Params.author }} {{ . }}{{ end }}
+      {{- with .Site.Params.license }} · {{ i18n "licensed_under" }} {{ . | safeHTML }}{{ end }}
+      · <a href="{{ "/britt.gpg" | relURL }}">public key</a>
+    </p>
+  </div>
+</footer>

@@ -56,7 +56,7 @@ unsafe = true
   # Which design system variant to render. Emitted as <html data-theme>.
   designTheme = "playful"
   colorScheme = "auto"
-  hidecolorschemetoggle = false
+  hideColorSchemeToggle = false
 
   # customCSS = ["css/custom.css"]
   # customSCSS = ["scss/custom.scss"]

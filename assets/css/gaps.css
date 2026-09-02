@@ -99,3 +99,32 @@ h3[data-section] {
 [data-prose] > pre {
   max-width: none;
 }
+
+/* Colour-scheme toggle label.
+ *
+ * The button names its destination — "dark" while the page is light — so both
+ * words are in the markup and CSS reveals the right one. Writing it from
+ * JavaScript would paint the wrong word first and correct it, and would leave
+ * the button mislabelled for anyone without JavaScript.
+ *
+ * The no-attribute case is the OS-follows state, matched the same way the
+ * dark token fallback is (#43). */
+[data-when-scheme="dark"] { display: none; }
+:root[data-scheme="dark"] [data-when-scheme="dark"] { display: inline; }
+:root[data-scheme="dark"] [data-when-scheme="light"] { display: none; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-scheme]) [data-when-scheme="dark"] { display: inline; }
+  :root:not([data-scheme]) [data-when-scheme="light"] { display: none; }
+}
+
+/* chrome.css styles .colorscheme-toggle as an anchor. As a real <button> it
+ * needs the browser's button defaults neutralised, and it is no longer
+ * position:fixed — it sits at the end of the header row. */
+.navigation .colorscheme-toggle {
+  font: inherit;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  appearance: none;
+  line-height: 1.6;
+}
