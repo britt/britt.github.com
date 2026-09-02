@@ -9,12 +9,11 @@
 */ -}}
 <section class="container page">
   <article data-prose>
-    <header>
-      <h1 class="title">
-        <a class="title-link" href="{{ .Permalink | safeURL }}">
-          {{ .Title }}
-        </a>
-      </h1>
+    {{- /* The theme wrapped the title in a link to the page you are already on.
+         The design system's PageTitle is a title, left-aligned, nothing more. */ -}}
+    <header class="page-header">
+      <h1 class="title">{{ .Title }}</h1>
+      {{ with .Date }}{{ if not $.Date.IsZero }}<p class="post-meta"><time datetime="{{ .Format "2006-01-02" }}">{{ . | time.Format ($.Site.Params.dateFormat | default "January 2, 2006") }}</time></p>{{ end }}{{ end }}
     </header>
 
     {{ .Content }}

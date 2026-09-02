@@ -6,15 +6,14 @@
   prose — its links are titles, and the design system keeps those plain.
 */ -}}
 <section class="container list">
-  <header>
+  {{- /* Same as page.html: a title, not a link to the current page. */ -}}
+  <header class="page-header">
     <h1 class="title">
-      <a class="title-link" href="{{ .Permalink | safeURL }}">
-        {{- if eq .Kind "term" -}}
-          {{- i18n .Data.Plural 1 | title -}}
-          {{- print ": " -}}
-        {{- end -}}
-        {{- i18n (lower .Title) | default .Title | title -}}
-      </a>
+      {{- if eq .Kind "term" -}}
+        {{- i18n .Data.Plural 1 | title -}}
+        {{- print ": " -}}
+      {{- end -}}
+      {{- i18n (lower .Title) | default .Title | title -}}
     </h1>
   </header>
   <div data-prose>{{ .Content }}</div>
