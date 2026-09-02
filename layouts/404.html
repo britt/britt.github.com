@@ -1,0 +1,31 @@
+{{ define "title" }}Nothing here · {{ .Site.Title }}{{ end }}
+{{ define "content" }}
+{{- /*
+  The 404 page.
+
+  Overridden at the project root rather than left to the theme, because a page
+  nobody visits on purpose is exactly the one that gets left behind in the old
+  design — it inherits whatever the theme happens to render.
+
+  The design system's EmptyState is "a type-only dead end built from existing
+  tokens": no illustration, no error code set in 200px type, nothing that is
+  not already on the rest of the site. It carries the same header and footer as
+  every other page, so a visitor who lands here is somewhere recognisable.
+
+  In this site's voice, and pointing at the two places worth going.
+*/ -}}
+<section class="page">
+  <header class="page-header">
+    <h1 class="title">Nothing here</h1>
+  </header>
+  <div data-prose>
+    <p>This address doesn’t match anything on the site. Either it moved, or it
+    never existed and one of us has made a typo.</p>
+    <p>Two places worth trying:</p>
+    <ul>
+      <li><a href="{{ "/" | relURL }}">The home page</a> — everything I have built, more or less.</li>
+      <li><a href="{{ "/cocktails/" | relURL }}">The cocktails</a> — considerably more fun.</li>
+    </ul>
+  </div>
+</section>
+{{ end }}
