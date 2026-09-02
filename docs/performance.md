@@ -1,4 +1,6 @@
-# Performance baseline — `master`
+# Performance
+
+# Before — `master`
 
 Measured from a clean `hugo --gc --minify` build of `origin/master` at
 `2d90beec79`, before any redesign work merged. Regenerate with:
@@ -137,3 +139,85 @@ remote requests (5):
   - https://github.com/luizdepra/hugo-coder/
   - https://gohugo.io/
   - https://twitter.com/jcoltkelly
+
+---
+
+# After
+
+Measured the same way, from a `hugo --gc --minify` build of this branch served
+over plain HTTP to headless Chromium. Bytes are what the browser actually
+requested, not what is in `public/`.
+
+## Summary
+
+| | `master` | this branch | change |
+|---|---:|---:|---:|
+| CSS, raw | 145.3 KB | **27.9 KB** | −81% |
+| CSS, gzipped | 30.6 KB | **6.1 KB** | −80% |
+| JS, gzipped | 0.7 KB | **0.3 KB** | −57% |
+| Webfonts | 295.3 KB (Font Awesome) | **123.6 KB** (three real families) | −58% |
+| Third-party requests | Gravatar | **none** | — |
+
+## Per page, total transfer
+
+| page | `master` (est.) | this branch |
+|---|---:|---:|
+| home | ~460 KB | **194.9 KB** |
+| a cocktail recipe | ~794 KB | **182.3 KB** |
+| cocktails index | ~446 KB | **159.5 KB** |
+
+The recipe page is the clearest case: `master` shipped 145 KB of CSS, 295 KB of
+Font Awesome and a 349 KB PNG. The same page now ships 28 KB of CSS, 97 KB of
+webfonts — the italic face is not requested because nothing on that page is
+italic — and a 25 KB WebP.
+
+## Core Web Vitals
+
+**CLS is 0** on all three pages, and LCP and FCP are 24–56 ms locally. CLS
+holding at zero is not luck: every image carries intrinsic `width`/`height`
+(#55), the portrait is sized before it loads (#53), and `font-display: swap`
+with the three above-the-fold faces preloaded (#45) means the swap does not
+move anything.
+
+## Against the budget
+
+| | budget | actual | |
+|---|---:|---:|---|
+| CSS, gzipped | ≤ 30 KB | 6.1 KB | ✅ |
+| JS, gzipped | ≤ 10 KB | 0.3 KB | ✅ |
+| Webfonts | ≤ 100 KB | 123.6 KB | ❌ |
+
+The font budget is missed by 23.6 KB and the overage is deliberate — see #45.
+The only remaining saving was Fira Code's programming ligatures, which are the
+reason the design system chose Fira Code, and dropping them still would not have
+cleared 100 KB. It is 58% below what it replaced.
+
+## Where the wins came from
+
+| | |
+|---|---|
+| Font Awesome deleted — CSS, five imports, three preloaded woff2 | #54 |
+| Coder's stylesheet dropped, including a complete duplicate for dark mode | #73, #43 |
+| Unused feature CSS moved to the pages that use it (none, today) | #57 |
+| Gravatar self-hosted, 350 KB PNG → 26 KB WebP | #53 |
+| The 14 recipe cards resized to three widths and converted to WebP | #63 |
+
+## What is still heavy
+
+`static/img/whoa.gif` is 621 KB on `/daresnot/`. Hugo's image processing drops
+GIF animation, so it is passed through untouched and lazily loaded. Converting
+it would mean choosing a video element or an animated WebP encoder, which is a
+content decision rather than a build one.
+
+The original PNGs and JPEGs remain published at their historical
+`/img/cocktails/…` URLs. No page requests them — every reference goes through
+the render hook and resolves to a WebP variant — so they cost deploy storage,
+not visitor bandwidth. Left in place because those URLs may be linked from
+elsewhere.
+
+## Lighthouse
+
+Not run: it needs a full Chrome install rather than the headless shell this
+environment has. The measurements above are the substance of what it reports —
+transfer size, CLS, LCP, FCP — taken directly from the browser's own
+`PerformanceObserver`. Worth running once on the deploy preview.
