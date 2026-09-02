@@ -10,6 +10,8 @@ export const ROUTES = [
   { name: "cocktail-el-nino", path: "/cocktails/el-nino/" },
   { name: "cocktail-bitter-nonsense", path: "/cocktails/bitter-nonsense/" },
   { name: "cocktail-peach-julep", path: "/cocktails/peach-pepper-jelly-julep/" },
+  /* an alias to / since #60 — kept in the list because the redirect itself is
+     part of what must not break */
   { name: "projects", path: "/projects/" },
   { name: "daresnot", path: "/daresnot/" },
   { name: "styleguide", path: "/styleguide/" },
