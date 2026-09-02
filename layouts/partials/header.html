@@ -1,0 +1,27 @@
+{{- /*
+  Shadows themes/hugo-coder/layouts/partials/header.html.
+
+  Navigation: there is none, deliberately. The design system's SiteHeader is
+  "the only chrome at the top of every page — a lowercase monospace wordmark
+  that links home", with no logo and no menu. That also matches the site as it
+  stands: every [[menu.main]] entry in hugo.toml is commented out, so no
+  navigation has shipped for years. The four real routes are reachable from the
+  home page's link lists, and /projects/ largely duplicates the home page
+  anyway (#60) — adding a menu entry pointing at a redundant page would be the
+  wrong fix for a problem nobody has.
+
+  Consequently the theme's checkbox-hack mobile menu is gone rather than
+  rebuilt: an <input type="checkbox"> exposes no state to assistive technology,
+  and the correct replacement for a menu that should not exist is no menu.
+
+  data-site-header is what the playful variant's tinted-bar rule matches (#71).
+  Static, not sticky, so no scroll-margin-top is needed on headings.
+*/ -}}
+<header class="navigation" data-site-header>
+  <div class="container">
+    <a class="navigation-title" href="{{ absLangURL "" }}">{{ .Site.Title }}</a>
+    {{ if not .Site.Params.hideColorSchemeToggle }}
+      {{ partial "theme-toggle.html" . }}
+    {{ end }}
+  </div>
+</header>
