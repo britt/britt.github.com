@@ -1,0 +1,4 @@
+{
+  "_comment": "Design tokens that are defined but deliberately read by no rule. Each needs a reason, so silencing a token that should have shipped requires an argument in a diff.",
+  "--hover-opacity": "The export defines .7 for an opacity-based hover the design system then rules out: hover is 'links shift to --link-hover and gain an underline', and press is 'no transform, no scale, no colour change'. Nothing should fade on hover, so nothing reads it."
+}

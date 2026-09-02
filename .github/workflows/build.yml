@@ -45,6 +45,12 @@ jobs:
       - name: Check style coverage
         run: node scripts/style-coverage.mjs public
 
+      # A token nobody reads is a design decision that did not ship, and a rule
+      # reading a token nobody defines silently drops the whole declaration.
+      # Neither produces an error on its own.
+      - name: Check token coverage
+        run: node scripts/token-coverage.mjs public
+
       - name: Assert the theme was not edited
         run: |
           set -euo pipefail
