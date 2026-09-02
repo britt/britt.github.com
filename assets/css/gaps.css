@@ -51,3 +51,22 @@
  * hugo.toml does not apply when noClasses is false, so it is set here rather
  * than left in the config looking like it works. */
 pre { tab-size: 2; }
+
+/* Section-heading colour chip.
+ *
+ * playful.css draws the chip with `flex:0 0 auto` and `align-self:center`,
+ * neither of which does anything unless the heading is a flex container. The
+ * design system's own SectionHeading component sets that in React; a Hugo
+ * template gets nothing for free, so it is set here.
+ *
+ * Applied to every h2/h3 carrying data-section, not only under the playful
+ * theme: the flex context is structural, and switching a heading between block
+ * and flex per theme would make the two variants wrap long headings
+ * differently for no reason. */
+h2[data-section],
+h3[data-section] {
+  display: flex;
+  align-items: baseline;
+  gap: .35em;
+  flex-wrap: wrap;
+}

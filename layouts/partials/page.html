@@ -1,0 +1,22 @@
+{{- /*
+  Shadows themes/hugo-coder/layouts/partials/page.html.
+
+  One change: data-prose on the article. The playful variant underlines links
+  in running prose — and only there, so the wordmark, list titles and the
+  social row stay plain — via `[data-prose] li a`. Without the attribute, list
+  links on every page are colour-only, which is the a11y weakness #47 exists
+  to remove.
+*/ -}}
+<section class="container page">
+  <article data-prose>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="{{ .Permalink | safeURL }}">
+          {{ .Title }}
+        </a>
+      </h1>
+    </header>
+
+    {{ .Content }}
+  </article>
+</section>

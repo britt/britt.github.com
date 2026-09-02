@@ -1,5 +1,5 @@
 {{ define "content" }}
-<div class="page ds-prose" data-prose>
+<div class="page ds-prose">
   <h1 class="title">{{ .Title }}</h1>
 
   <p class="sg-note">Every token below is read out of <code>design/tokens/</code> at build
@@ -58,7 +58,7 @@
     </div>
   </section>
 
-  <section class="sg-section" id="prose">
+  <section class="sg-section" id="prose" data-prose>
     <h2>Prose and components</h2>
     {{ .Content }}
   </section>
