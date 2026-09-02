@@ -8,5 +8,6 @@
   "language-plaintext": "As above.",
   "social-icon": "No longer emitted; retained here so a stale reference is caught rather than silently reappearing.",
   "home": "Structural hook on the home page's PageShell. .ds-split supplies the layout; this exists to scope descendants.",
-  "home__content": "Structural hook. The measure comes from [data-prose] and the column from .ds-split."
+  "home__content": "Structural hook. The measure comes from [data-prose] and the column from .ds-split.",
+  "recipe": "Structural hook on a cocktail page. The layout comes from .ds-split and the page-header/rail/body classes; this exists to scope descendants."
 }

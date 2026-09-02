@@ -143,3 +143,102 @@
   text-decoration-color: var(--link-underline, currentColor);
   text-underline-offset: 3px;
 }
+
+/* ── cocktail recipe ─────────────────────────────────────────────────────
+   Ingredients in a sticky rail, the prose beside them — the design system's
+   RailLayout, and the reason a recipe page fills the width without stretching
+   its method paragraph across it.
+
+   No card, no border box, no shadow: "Separation is done with rules and
+   whitespace." The ingredient list is set apart by a rule above it, a
+   monospaced measure column and its own leading, not by a container. */
+
+.page-header {
+  padding-block: var(--page-header-top) var(--stack-heading-bottom);
+}
+
+.page-header .title {
+  margin-block: 0 var(--space-3);
+}
+
+.page-header .post-meta {
+  margin: 0;
+}
+
+.recipe__rail {
+  position: sticky;
+  top: var(--space-6);
+  align-self: start;
+}
+
+.recipe__ingredients {
+  border-top: var(--border-quote-width) solid var(--rule-accent, var(--border-hairline));
+  padding-top: var(--space-5);
+}
+
+.recipe__ingredients-heading {
+  margin-block: 0 var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Measures stay verbatim, so they are set in the monospace face to keep
+   "1 ½ oz" and "2oz" reading as quantities rather than as prose. */
+.recipe__ingredients ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: var(--leading-quote);
+}
+
+.recipe__ingredients li {
+  margin: 0;
+  padding-block: var(--space-3);
+  border-bottom: var(--border-width) solid var(--border-hairline);
+  color: var(--text-body);
+}
+
+.recipe__ingredients li:last-child {
+  border-bottom: 0;
+}
+
+/* The recipe card is the one image on the page and it is a poster — it fills
+   the reading column rather than the full page, as the design system requires
+   ("never full-bleed"). */
+.recipe__body figure {
+  max-width: var(--measure);
+}
+
+.recipe__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-7);
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: var(--space-10);
+  padding-top: var(--space-5);
+  border-top: var(--border-width) solid var(--border-hairline);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.recipe__nav-siblings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-6);
+}
+
+@media (max-width: 820px) {
+  .recipe__rail {
+    position: static;
+  }
+  .recipe__ingredients {
+    margin-bottom: var(--space-7);
+  }
+}
