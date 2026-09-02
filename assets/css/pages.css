@@ -144,6 +144,61 @@
   text-underline-offset: 3px;
 }
 
+/* ── cocktail archive page ───────────────────────────────────────────────
+   The index puts its title and intro in the rail and the dated list beside
+   them, which is the same RailLayout the home page and the recipe pages use.
+
+   Without it the list was correct and still looked broken: .ds-dated__row is
+   `minmax(120px,180px) 1fr`, so in a full-bleed 1440px container a date and a
+   three-word drink name filled the left third and the hairline rule ran on
+   across nine hundred empty pixels (#78). "Width is spent on a two-column
+   RailLayout […] content beside it" is what the design system says the page is
+   full-bleed *for*.
+
+   No card, no border box: the rail is set apart by the same rule-and-
+   whitespace treatment as the ingredients rail on a recipe page. */
+
+.archive__rail {
+  position: sticky;
+  top: var(--space-6);
+  align-self: start;
+}
+
+/* The rail keeps the page header's own top padding; the list matches it so the
+   first row and the title start on the same line rather than one column
+   hanging below the other. .ds-dated's own `margin: var(--space-7) 0` exists to
+   separate it from prose above it, and in the split there is none. */
+.archive__list {
+  padding-block-start: var(--page-header-top);
+}
+
+.archive__list .ds-dated {
+  margin-block: 0;
+}
+
+/* Set down a step because the rail is 300px wide: at body size the intro rags
+   badly and competes with the archive titles beside it. */
+.archive__intro {
+  font-size: var(--text-sm);
+}
+
+.archive__intro > :first-child { margin-top: 0; }
+.archive__intro > :last-child { margin-bottom: 0; }
+
+@media (max-width: 820px) {
+  .archive__rail {
+    position: static;
+  }
+  .archive__intro {
+    margin-bottom: var(--space-7);
+  }
+  /* Stacked, there is no second column left to align to, and the padding would
+     only open a second gap under the intro's own margin. */
+  .archive__list {
+    padding-block-start: 0;
+  }
+}
+
 /* ── cocktail recipe ─────────────────────────────────────────────────────
    Ingredients in a sticky rail, the prose beside them — the design system's
    RailLayout, and the reason a recipe page fills the width without stretching

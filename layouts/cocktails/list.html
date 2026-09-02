@@ -14,25 +14,43 @@
   Titles are heading-coloured until hover, per the component spec.
 
   Sorted by date, newest first, which is what an archive is for.
+
+  The list sits in the content half of a .ds-split, with the title and the
+  intro in the rail beside it (#78). Dropped straight into the full-bleed
+  1440px .ds-container it was correct and still looked wrong: a 180px date and
+  a short title left roughly two thirds of every hairline rule running out into
+  empty page. That is the shape the design system names as the thing it is
+  fixing — "the source site is a single narrow column; the two-column rail is
+  this system's way of filling the page at desktop width" — and it is what the
+  home page and every recipe page already do.
 */ -}}
 <section class="page">
-  <header class="page-header">
-    <h1 class="title">{{ .Title }}</h1>
-  </header>
+  <div class="ds-split">
+    {{- /* The title goes in the rail rather than spanning the page, as it does
+         on the home page. The recipe pages span it because a drink name like
+         "Yippee Kay Yay Motherfucker!" wraps to four lines at 300px; "Cocktail
+         Recipes" does not have that problem. */ -}}
+    <aside class="archive__rail">
+      <header class="page-header">
+        <h1 class="title">{{ .Title }}</h1>
+      </header>
+      {{ with .Content }}<div class="archive__intro" data-prose>{{ . }}</div>{{ end }}
+    </aside>
 
-  {{ with .Content }}<div data-prose>{{ . }}</div>{{ end }}
-
-  <ul class="ds-dated">
-    {{ range .Pages.ByDate.Reverse }}
-      <li class="ds-dated__row">
-        <span class="ds-dated__date">
-          <time datetime="{{ .Date.Format "2006-01-02" }}">
-            {{ .Date | time.Format (.Site.Params.dateFormat | default "January 2, 2006") }}
-          </time>
-        </span>
-        <a class="ds-dated__title" href="{{ .RelPermalink }}">{{ .Title }}</a>
-      </li>
-    {{ end }}
-  </ul>
+    <div class="archive__list">
+      <ul class="ds-dated">
+        {{ range .Pages.ByDate.Reverse }}
+          <li class="ds-dated__row">
+            <span class="ds-dated__date">
+              <time datetime="{{ .Date.Format "2006-01-02" }}">
+                {{ .Date | time.Format (.Site.Params.dateFormat | default "January 2, 2006") }}
+              </time>
+            </span>
+            <a class="ds-dated__title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </li>
+        {{ end }}
+      </ul>
+    </div>
+  </div>
 </section>
 {{ end }}
