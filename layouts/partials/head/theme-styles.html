@@ -39,7 +39,7 @@
   "css/fonts-local.css"
   "ds/fonts.css"
   "ds/colors.css"
-  "ds/typography.css"
+  "@type-scale"
   "ds/spacing.css"
   "ds/layout.css"
   "ds/base.css"
@@ -53,10 +53,15 @@
 -}}
 {{- $parts := slice -}}
 {{- range $order -}}
-  {{- with resources.Get . -}}
-    {{- $parts = $parts | append . -}}
+  {{- if eq . "@type-scale" -}}
+    {{- /* typography.css, with its px ramp converted to rem — see the partial */ -}}
+    {{- $parts = $parts | append (partial "head/type-scale.html" $) -}}
   {{- else -}}
-    {{- errorf "stylesheet not found: %s (is design/tokens mounted? see hugo.toml)" . -}}
+    {{- with resources.Get . -}}
+      {{- $parts = $parts | append . -}}
+    {{- else -}}
+      {{- errorf "stylesheet not found: %s (is design/tokens mounted? see hugo.toml)" . -}}
+    {{- end -}}
   {{- end -}}
 {{- end -}}
 {{- $bundle := $parts | resources.Concat "css/site-raw.css" -}}
