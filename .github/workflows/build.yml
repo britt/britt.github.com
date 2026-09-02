@@ -101,7 +101,10 @@ jobs:
           for _ in $(seq 1 40); do curl -fsS -o /dev/null http://127.0.0.1:1313/ && break; sleep 0.5; done
           curl -fsS -o /dev/null http://127.0.0.1:1313/
 
-      - name: Colour-scheme behaviour
+      # Colour-scheme behaviour and the accessibility sweep. axe measures
+      # contrast against what an element is actually drawn on, which is the
+      # only way to get it right across a two-theme matrix.
+      - name: Behaviour and accessibility
         working-directory: tests/visual
         env:
           BASE: http://127.0.0.1:1313

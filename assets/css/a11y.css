@@ -1,0 +1,90 @@
+/* Contrast corrections to the design export.
+ *
+ * Deliberately one file, loaded last, so every deviation from design/tokens/ is
+ * in one place with its measurement beside it. design/ stays a faithful mirror
+ * of the Claude Design source; these are the three points where shipping it
+ * unchanged would fail WCAG AA, found by running axe-core against the rendered
+ * pages rather than by pairing tokens on a chart.
+ *
+ * Re-check with `node --test tests/visual/a11y.test.mjs`.
+ */
+
+/* ── struck-through prose ────────────────────────────────────────────────
+ * base.css sets `s, del { color: var(--text-faint) }`. --text-faint is the
+ * right token for a decorative marker and the wrong one for prose: the
+ * cocktails index opens with a struck paragraph about Highball that is real,
+ * readable content.
+ *
+ * A rule fix, not a palette fix — the token is fine, it was being asked to do
+ * something it is not for.
+ *
+ *   before  3.24:1 light, 3.79:1 dark   (needs 4.5:1)
+ *   after   6.24:1 light, 6.16:1 dark
+ */
+s,
+del {
+  color: var(--text-muted);
+}
+
+/* ── the wordmark ────────────────────────────────────────────────────────
+ * Pine on the playful header's amber tint lands on 4.50:1 — exactly the AA
+ * threshold, which axe reports as 4.49 and fails. A site's name is not
+ * somewhere to sit on the boundary and hope the rounding goes your way.
+ *
+ *   before  4.49:1     after  6.70:1
+ */
+[data-theme="playful"] {
+  --wordmark-color: var(--pine-deep);
+}
+
+/* ── the light palette's warm accents ────────────────────────────────────
+ * Five roles in the playful light theme fall below AA against the surface they
+ * are drawn on. Each is nudged to a colour the design system already owns
+ * where one exists, so the palette keeps its vocabulary; only the amber is a
+ * new value, because no existing amber clears the bar.
+ *
+ * Light only. The dark theme lifts every one of these to a pastel that already
+ * passes comfortably — --heading-4 alone is 12.80:1 there — so applying the
+ * light corrections in dark would make it worse, not better.
+ *
+ * Written twice because a media query cannot appear in a selector list, and
+ * the two cases are genuinely different: an explicit data-scheme="light", and
+ * no attribute at all under a light OS, which is the "follow the system" state
+ * from #43.
+ *
+ *   --heading-4     h4–h6 at 18–20px bold   2.84:1 -> 4.94:1
+ *   --code-keyword  on --surface-code       3.30:1 -> 4.88:1
+ *   --code-comment  on --surface-code       3.02:1 -> 5.81:1
+ *   --code-string   on --surface-code       4.32:1 -> 6.43:1
+ *   --code-inserted on --surface-code       4.32:1 -> 6.43:1
+ *   --code-variable on --surface-code       2.65:1 -> 4.55:1
+ *   --code-linenum  on --surface-code       3.02:1 -> 5.81:1
+ *
+ * h6 is why the amber had to clear 4.5 rather than 3: it renders at 18px bold,
+ * a third of a pixel under WCAG's 18.66px threshold for bold large text.
+ */
+[data-theme="playful"][data-scheme="light"],
+[data-theme="playful"]:not([data-scheme]) {
+  --a11y-amber: #96600c;
+  --heading-4: var(--a11y-amber);
+  --code-variable: var(--a11y-amber);
+  --code-keyword: var(--clay-deep);
+  --code-comment: var(--text-muted);
+  --code-linenum: var(--text-muted);
+  --code-string: var(--pine-deep);
+  --code-inserted: var(--pine-deep);
+}
+
+/* …and taken straight back off when the OS says dark and nothing has
+ * overridden it, since the block above deliberately matches that state too. */
+@media (prefers-color-scheme: dark) {
+  [data-theme="playful"]:not([data-scheme]) {
+    --heading-4: var(--amber-deep);
+    --code-variable: var(--amber-deep);
+    --code-keyword: var(--clay);
+    --code-comment: var(--text-faint);
+    --code-linenum: var(--text-faint);
+    --code-string: var(--pine);
+    --code-inserted: var(--pine);
+  }
+}

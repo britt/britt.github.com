@@ -19,7 +19,9 @@
   which is load-bearing — later layers override earlier ones. assets/css/gaps.css comes
   last: it covers markup Coder's templates emit that the design export was
   never asked to style, and assets/css/pages.css after it, which assembles the
-  system's primitives into this site's specific pages.
+  system's primitives into this site's specific pages, and assets/css/a11y.css
+  last of all, which is the one place the export's colour values are corrected
+  — see that file for the measurements.
 */ -}}
 
 {{- /* Webfonts.
@@ -55,6 +57,7 @@
   "ds/playful.css"
   "css/gaps.css"
   "css/pages.css"
+  "css/a11y.css"
 -}}
 {{- $parts := slice -}}
 {{- range $order -}}

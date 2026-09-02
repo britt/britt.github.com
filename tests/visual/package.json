@@ -7,11 +7,12 @@
     "capture": "node capture.mjs",
     "baseline": "./baseline.sh",
     "compare": "node compare.mjs",
-    "test": "node --test scheme.test.mjs"
+    "test": "node --test scheme.test.mjs a11y.test.mjs"
   },
   "devDependencies": {
-    "playwright": "^1.49.0",
+    "axe-core": "^4.13.0",
     "pixelmatch": "^6.0.0",
+    "playwright": "^1.49.0",
     "pngjs": "^7.0.0"
   }
 }

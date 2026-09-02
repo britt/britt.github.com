@@ -6,7 +6,7 @@ The redesign rewrites essentially every CSS rule on the site across
 ```
 ./baseline.sh          # capture the "before" from origin/master
 ./check.sh             # capture the working tree and diff it
-npm test               # colour-scheme behaviour a screenshot cannot see
+npm test               # colour-scheme behaviour and the accessibility sweep
 ```
 
 `check.sh` exits non-zero if anything differs. During a redesign that is the
@@ -58,6 +58,18 @@ The no-flash test is structural rather than temporal — "before first paint" is
 not observable after load, so it asserts the only arrangement that can
 guarantee it: exactly one inline `<script>` in `<head>`, neither `defer` nor
 `async`.
+
+## `a11y.test.mjs`
+
+axe-core over every page type in both schemes, plus the parts of an audit that
+have to be driven rather than scanned: keyboard traversal with no trap and a
+visible ring at every stop, 200% zoom without sideways scrolling, `alt` on every
+image, `prefers-reduced-motion`, and one `h1` per page.
+
+Both schemes, because the redesign changes every colour pair twice over and
+contrast does not survive a theme swap. Critical and serious violations fail the
+run; moderate and minor are printed so a regression in them is visible without
+blocking on a judgement call.
 
 ## Reading the diff
 

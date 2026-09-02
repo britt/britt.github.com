@@ -18,8 +18,11 @@
 .sg-swatch__name { color: var(--text-heading); word-break: break-all; }
 .sg-swatch__value, .sg-swatch__contrast { color: var(--text-muted); }
 /* An unpaired token is not a failure — it is a palette entry with no
-   foreground/background partner, so no ratio applies. */
-.sg-swatch__contrast:not([data-level]) { opacity: .6; font-style: italic; }
+   foreground/background partner, so no ratio applies. Set in italic rather
+   than at reduced opacity: opacity multiplies through to the rendered colour,
+   which took --text-muted's 6.24:1 down to about 3.7:1 and made the page that
+   reports contrast failures produce sixty of its own. */
+.sg-swatch__contrast:not([data-level]) { font-style: italic; }
 
 /* Contrast verdicts. The three states are text as well as colour — a red dot
  * alone would fail the audit this page exists to support. */
