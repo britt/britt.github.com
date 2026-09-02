@@ -80,7 +80,9 @@ unsafe = true
   favicon_16 = "/img/favicon.png"
   touchicon = "/img/apple-touch-icon-144-precomposed.png"
   since = 1999
-  enableTwemoji = true
+  # enableTwemoji is deliberately absent: this theme has no Twemoji
+  # implementation, so setting it did nothing. The 👆 in content/_index.md
+  # renders in the system emoji font, which costs no extra request (#64).
   # Which design system variant to render. Emitted as <html data-theme>.
   designTheme = "playful"
   colorScheme = "auto"

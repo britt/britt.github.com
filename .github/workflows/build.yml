@@ -89,7 +89,7 @@ jobs:
         working-directory: tests/visual
         run: |
           npm ci
-          npx playwright install --with-deps chromium
+          npx playwright install --with-deps chromium firefox webkit
 
       # Visual regression is not run here: its baseline is regenerated from a
       # git ref rather than committed (see tests/visual/README.md), and a
@@ -109,3 +109,12 @@ jobs:
         env:
           BASE: http://127.0.0.1:1313
         run: npm test
+
+      # Three engines x six viewports x six pages. WebKit earns its place here:
+      # half this site's content is iOS Shortcuts, so its audience skews Apple,
+      # and clamp(), 100dvh and :focus-visible are where it differs most.
+      - name: Responsive and cross-browser
+        working-directory: tests/visual
+        env:
+          BASE: http://127.0.0.1:1313
+        run: npm run test:responsive

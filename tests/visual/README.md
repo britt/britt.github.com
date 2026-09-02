@@ -7,6 +7,7 @@ The redesign rewrites essentially every CSS rule on the site across
 ./baseline.sh          # capture the "before" from origin/master
 ./check.sh             # capture the working tree and diff it
 npm test               # colour-scheme behaviour and the accessibility sweep
+npm run test:responsive # three engines x six viewports x six pages
 ```
 
 `check.sh` exits non-zero if anything differs. During a redesign that is the
@@ -70,6 +71,17 @@ Both schemes, because the redesign changes every colour pair twice over and
 contrast does not survive a theme swap. Critical and serious violations fail the
 run; moderate and minor are printed so a regression in them is visible without
 blocking on a judgement call.
+
+## `responsive.test.mjs`
+
+Chromium, Firefox and WebKit at 320, 375, 768, 1024, 1440 and 1920, plus phone
+landscape. Asserts that no page scrolls sideways, that the footer sits on the
+bottom edge of a short page, that `clamp()`, `100dvh` and `:focus-visible` all
+resolve, and that no long slug or URL overflows its column at 320px.
+
+Overflow is measured by ignoring anything inside a container whose computed
+`overflow-x` scrolls — a code block and a table wrapper are both allowed to be
+wider than the screen. The page is not, and `scrollWidth` covers that.
 
 ## Reading the diff
 
