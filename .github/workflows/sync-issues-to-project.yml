@@ -1,0 +1,75 @@
+# Add this file to .github/workflows/ in any repo that has the
+# PROJECT_TOKEN Actions secret installed (see setup-project-token.sh).
+#
+# Two ways it runs:
+#   - workflow_dispatch: backfills ALL currently open issues into the project
+#   - issues opened/reopened: adds new issues as they arrive
+#
+# Token split (matters for private repos): the built-in github.token reads
+# the repo's issues; PROJECT_TOKEN (which may only have the `project` scope)
+# is used solely for the ProjectV2 mutations, addressed by node ID so it
+# never needs to resolve the repo.
+#
+# PROJECT_NUMBER 13 must be a Projects (v2) project owned by the repo owner.
+# If the project lives under a different user, change PROJECT_OWNER. For an
+# org-owned project, change `user(login:)` to `organization(login:)` in the
+# project-id query.
+
+name: Add open issues to project 13
+
+on:
+  workflow_dispatch:
+  issues:
+    types: [opened, reopened]
+
+permissions:
+  issues: read
+
+jobs:
+  add-to-project:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_PAT: ${{ secrets.PROJECT_TOKEN }}
+      REPO_TOKEN: ${{ github.token }}
+      PROJECT_OWNER: ${{ github.repository_owner }}
+      PROJECT_NUMBER: "13"
+    steps:
+      - name: Add issue(s) to project
+        run: |
+          set -euo pipefail
+
+          # Resolve the project's node ID (needs only the project scope)
+          project_id=$(GH_TOKEN="$PROJECT_PAT" gh api graphql -f query='
+            query($owner: String!, $number: Int!) {
+              user(login: $owner) {
+                projectV2(number: $number) { id }
+              }
+            }' -f owner="$PROJECT_OWNER" -F number="$PROJECT_NUMBER" \
+            --jq '.data.user.projectV2.id')
+
+          # addProjectV2ItemById is idempotent: re-adding returns the existing item
+          add_item() {
+            GH_TOKEN="$PROJECT_PAT" gh api graphql -f query='
+              mutation($project: ID!, $item: ID!) {
+                addProjectV2ItemById(input: {projectId: $project, contentId: $item}) {
+                  item { id }
+                }
+              }' -f project="$project_id" -f item="$1" \
+              --jq '.data.addProjectV2ItemById.item.id' > /dev/null
+          }
+
+          if [ "${{ github.event_name }}" = "issues" ]; then
+            echo "Adding issue #${{ github.event.issue.number }}"
+            add_item "${{ github.event.issue.node_id }}"
+          else
+            echo "Backfilling all open issues from ${{ github.repository }}"
+            # REST issues endpoint includes PRs; filter them out
+            GH_TOKEN="$REPO_TOKEN" gh api \
+              "repos/${{ github.repository }}/issues?state=open&per_page=100" \
+              --paginate --jq '.[] | select(.pull_request | not) | [.number, .node_id] | @tsv' |
+            while IFS=$'\t' read -r number node_id; do
+              echo "Adding issue #$number"
+              add_item "$node_id"
+            done
+          fi
+          echo "Done."
