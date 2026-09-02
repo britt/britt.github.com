@@ -11,8 +11,12 @@
   elements, so the two would compete on cascade order, and the winner would be
   decided by @import sequence rather than by intent.
 
-  The files are concatenated in the order design/styles.css declares, which is
-  load-bearing — later layers override earlier ones. assets/css/gaps.css comes
+  ds/components.css is deliberately absent: it styles the notice, tab and
+  taxonomy features, which no page currently uses. head/extensions.html adds it
+  back on any page that does (#57).
+
+  The remaining files are concatenated in the order design/styles.css declares,
+  which is load-bearing — later layers override earlier ones. assets/css/gaps.css comes
   last: it covers markup Coder's templates emit that the design export was
   never asked to style, and assets/css/pages.css after it, which assembles the
   system's primitives into this site's specific pages.
@@ -47,7 +51,6 @@
   "ds/utilities.css"
   "ds/content.css"
   "ds/chrome.css"
-  "ds/components.css"
   "ds/syntax.css"
   "ds/playful.css"
   "css/gaps.css"

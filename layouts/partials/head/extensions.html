@@ -4,6 +4,34 @@
   head.html calls this one uncached, which is what makes a per-page stylesheet
   possible at all — everything else in <head> is partialCached.
 */ -}}
+{{- /*
+  Theme features nothing currently uses: the notice, tab and taxonomy
+  shortcodes and partials ship with hugo-coder and would render if any page
+  invoked them, but no content does and [taxonomies] is commented out in
+  hugo.toml. Their CSS is therefore emitted per page rather than bundled into
+  every page's stylesheet.
+
+  Emitted rather than deleted so that using a shortcode cannot silently produce
+  an unstyled page — which is the failure mode #57 asks to be documented
+  against. This removes it instead.
+*/ -}}
+{{- $usesComponents := or
+      (.HasShortcode "notice")
+      (.HasShortcode "tabgroup")
+      (.HasShortcode "tab")
+      (in (slice "taxonomy" "term") .Kind) -}}
+{{- if $usesComponents -}}
+  {{- with resources.Get "ds/components.css" -}}
+    {{- $s := . -}}
+    {{- if hugo.IsServer -}}
+<link rel="stylesheet" href="{{ $s.RelPermalink }}">
+    {{- else -}}
+      {{- $s = $s | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $s.RelPermalink }}" integrity="{{ $s.Data.Integrity }}" crossorigin="anonymous">
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
 {{- if eq .Layout "styleguide" -}}
   {{- with resources.Get "css/styleguide.css" -}}
     {{- $s := . -}}
