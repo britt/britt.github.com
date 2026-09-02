@@ -1,7 +1,6 @@
 baseURL = 'https://brittcrawford.com/'
 title = 'brittcrawford.com'
 locale = 'en-US'
-theme = "hugo-coder"
 defaultcontentlanguage = "en"
 
 pagination.pagerSize = 20
@@ -33,6 +32,20 @@ unsafe = true
   #
   # Declaring a mount for a target replaces that target's default mount, so
   # assets/ is re-declared here alongside it.
+  # hugo-coder is imported as a module rather than set via `theme` so that only
+  # the parts still in use are mounted. After the cutover the site compiles
+  # none of the theme's SCSS and uses none of its static files — which is where
+  # Font Awesome's three woff2 files live. Importing layouts and i18n only
+  # keeps 984 KB of unreferenced fonts out of the build (#54).
+  [[module.imports]]
+    path = "hugo-coder"
+    [[module.imports.mounts]]
+      source = "layouts"
+      target = "layouts"
+    [[module.imports.mounts]]
+      source = "i18n"
+      target = "i18n"
+
   [[module.mounts]]
     source = "assets"
     target = "assets"

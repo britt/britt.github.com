@@ -39,6 +39,12 @@ jobs:
       - name: Check internal links
         run: python3 scripts/check-links.py public
 
+      # Dropping a stylesheet produces no build error — an element just stops
+      # being styled. This fails on any class the site emits that nothing
+      # styles and that is not recorded as deliberate.
+      - name: Check style coverage
+        run: node scripts/style-coverage.mjs public
+
       - name: Assert the theme was not edited
         run: |
           set -euo pipefail
