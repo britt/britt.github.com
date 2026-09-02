@@ -9,8 +9,12 @@
   rules and whitespace." Imagery "sits inline in the column" and belongs on the
   recipe pages themselves (#59).
 
-  So: DatedList. A two-column grid of date and title with a hairline rule per
-  row, stacking to one column at 640px — all of which .ds-dated already does.
+  So: DatedList — which is a *multi-column* archive. The component reflows
+  across as many columns as fit (`repeat(auto-fit, minmax(--grid-min, 1fr))`),
+  each row a date and a title with a hairline rule under it. That is what fills
+  the page here; see the note in assets/css/pages.css for why the class alone
+  does not do it (#78).
+
   Titles are heading-coloured until hover, per the component spec.
 
   Sorted by date, newest first, which is what an archive is for.
