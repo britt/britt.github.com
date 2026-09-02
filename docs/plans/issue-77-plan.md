@@ -1,7 +1,7 @@
 # Implementation plan — #77
 
-Recipe pages don't read as part of the Claude Design system. Four separable
-defects, one per section below. Verification plan:
+Recipe pages don't read as part of the Claude Design system. Five separable
+defects, one per section below — the fifth added after review, see change 4. Verification plan:
 [`issue-77-verification.md`](issue-77-verification.md).
 
 ## Root cause of the dead space (the one actual bug)
@@ -70,7 +70,7 @@ fraction, an optional unit word from a closed list
 drop(s) part(s) cup(s) barspoon(s)`), then an optional `of`, then the rest.
 
 An `<li>` that does not match keeps its whole text as the item and gets
-`recipe__item--full` so it spans both columns — this is the degradation path
+`recipe__ingredient--plain` so it spans both columns — this is the degradation path
 for `Several Sprigs of Mint`, `A splash of soda`, `Cilantro Sprig`,
 `Some (enough) Frozen Blueberrries`, `The juice of 1 fresh lemon`,
 `Juice of 1/2 a Lemon`. Nothing is dropped and no measure is re-spelled
@@ -106,6 +106,38 @@ comment gives for not editing content.
   dominate the page. At 400px, hairline-bordered and captioned, it reads as an
   embedded artifact rather than a competing hero in a third typeface.
 
+### 4. The navigation — added after review
+
+The first pass restyled the existing footer nav and left its three links alone.
+That was wrong, and only checking the design system's own recipe page showed
+why. `ui_kits/personal-site/RecipePage.jsx` (fetched with `DesignSync`; it is
+one of the files `design/README.md` deliberately does not mirror) ends its
+`aside` with exactly one navigational element:
+
+```jsx
+<a href="#/cocktails" style={{ fontFamily: "var(--font-mono)",
+   fontSize: "var(--text-xs)" }}>← All cocktails</a>
+```
+
+and nothing else. There was never a prev/next pager to match: **none of the
+system's seventeen components is one**, and `DESIGN-SYSTEM.md` describes a site
+with "no nav menu, no search, no calls to action". The two sibling links this
+template printed were invented here — they reused `←` for a second, different
+meaning, and they sat at the foot of the prose column, which in the reference
+holds nothing at all.
+
+So: the siblings are deleted, and the back link moves into the rail as its last
+child, in `--font-mono` at `--text-xs`, separated from the ingredient list by
+whitespace. The `border-top` rule it used to draw belonged to the pager; with
+the pager gone there is nothing left to divide, and `RecipePage.jsx` separates
+the items in its aside with `gap`, not a rule. `.recipe__nav-siblings` is gone
+from `pages.css` with the markup that emitted it.
+
+Because the back link is part of the rail now, the mobile stacking gap moves
+from `.recipe__ingredients` to `.recipe__rail`. On narrow screens the link
+lands above the prose — that is what `PageShell` does with its `aside` when the
+flex row wraps, and it is already how the ingredients behave.
+
 ## Assumptions
 
 1. **The card's typeface is not ours to change.** It is a generated PNG from
@@ -123,7 +155,14 @@ comment gives for not editing content.
    "carries identity or metadata only". The existing template made the call
    that an ingredient list is metadata; the issue complains about how the rail
    *looks*, not where it is, so that decision is left alone.
-4. **`layouts/_default/_markup/render-image.html` is untouched.** Its
+4. **The date stays under the title, not in the rail.** `RecipePage.jsx` puts
+   it in the `aside` alongside tags and the back link; `PageTitle.prompt.md`
+   takes it as `meta` on the title. The system does both, so the existing
+   arrangement is kept — and it is what assumption 2 above already argues for.
+   The `data-tint="clay"` that reference wraps its whole aside in is also not
+   adopted: the tint vocabulary is real, but tinting the rail is a change to
+   the page's colour composition that nothing in this issue asks for.
+5. **`layouts/_default/_markup/render-image.html` is untouched.** Its
    `sizes="…814px"` becomes conservative once the card renders at 400px, but
    the hook is shared with `/daresnot/`, whose image still uses the full
    measure. The srcset still resolves correctly; only a 1x desktop downloads
@@ -135,7 +174,8 @@ comment gives for not editing content.
 2. `gaps.css` — the layout bug, verifiable on its own (V3).
 3. `single.html` — markup, verifiable against V6/V7 before any styling exists.
 4. `pages.css` — the typography, then V4/V5/V8/V9.
-5. Full run: V1–V14.
+5. The navigation (change 4), then V15.
+6. Full run: V1–V15.
 
 ## Risks
 

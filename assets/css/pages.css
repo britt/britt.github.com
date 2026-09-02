@@ -284,32 +284,24 @@
   font-family: var(--font-mono);
 }
 
+/* The last item in the rail, and the only navigation a recipe page has.
+   RecipePage.jsx sets it in monospace at --text-xs and separates it from what
+   is above with `gap: var(--space-5)` in a flex column — whitespace, no rule.
+   The rule this used to draw belonged to a pager that the system does not
+   have; with the pager gone there is nothing left to divide (#77). */
 .recipe__nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4) var(--space-7);
-  align-items: baseline;
-  justify-content: space-between;
-  margin-top: var(--space-10);
-  padding-top: var(--space-5);
-  border-top: var(--border-width) solid var(--border-hairline);
+  margin-top: var(--space-7);
   font-family: var(--font-mono);
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
 }
 
-/* Wider than the row's own gap: two recipe names 20px apart read as one string
-   once the column is wide enough to keep them on the same line (#77). */
-.recipe__nav-siblings {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4) var(--space-9);
-}
-
+/* Stacked, the rail is the top of the page and the prose follows it, so the gap
+   that separated the two columns becomes a vertical one. It sits under the whole
+   rail rather than under the ingredients, because the back link is in the rail
+   too now. */
 @media (max-width: 820px) {
   .recipe__rail {
     position: static;
-  }
-  .recipe__ingredients {
     margin-bottom: var(--space-8);
   }
 }

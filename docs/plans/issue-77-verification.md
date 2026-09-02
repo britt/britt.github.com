@@ -108,10 +108,25 @@ Screenshots of `/cocktails/peach-pepper-jelly-julep/` and
 `/cocktails/envejeciendo/` at 1512×949, light and dark, compared against the
 two attached to the issue.
 
+### V15 — the page has the navigation the system gives it
+`ui_kits/personal-site/RecipePage.jsx` ends its `aside` with one link,
+`← All cocktails`, in `var(--font-mono)` at `var(--text-xs)`, and carries no
+other navigation. None of the system's seventeen components is a pager.
+
+Given each page under test
+Then `.recipe__nav` contains **exactly one** `<a>`, reading `← All cocktails`
+and pointing at the section index;
+And it is the **last child of `.recipe__rail`**, not inside `.recipe__body`;
+And it resolves to the mono face at 14px with `border-top-width: 0px`;
+And the document contains no `[rel=prev]`, no `[rel=next]` and no
+`.recipe__nav-siblings`;
+And the last thing in the content column is the recipe's own last element.
+
 ## Verification log
 
-Run 2026-09-01 against `hugo v0.163.0+extended` and Playwright's Chromium,
-serving a real `hugo --gc --minify` build over `python3 -m http.server`.
+Run 2026-09-01 and re-run in full 2026-09-02 after the navigation fix, against
+`hugo v0.163.0+extended` and Playwright's Chromium, serving a real
+`hugo --gc --minify` build over `python3 -m http.server`.
 
 | | Scenario | Result | Evidence |
 |---|---|---|---|
@@ -128,7 +143,8 @@ serving a real `hugo --gc --minify` build over `python3 -m http.server`.
 | V11 | both schemes | **PASS** | `.recipe__amount` `rgb(185,61,24)` light (`--clay-deep`, 5.25:1 on `--paper`) → `rgb(255,166,131)` dark (9.4:1 on `#191714`); token-driven, no hard-coded value |
 | V12 | project checks | **PASS** | `check-links.py`: 22 pages, no broken links. `style-coverage`: 92 emitted / 202 styled, nothing unaccounted for. `token-coverage`: 142 defined / 143 referenced, all accounted for |
 | V13 | a11y + responsive suites | **PASS** | `npm test` 24/24 (axe light+dark on 6 pages, keyboard, 200% zoom, alt text, one h1). `npm run test:responsive` 7/7 (chromium/firefox/webkit × 6 viewports × 6 pages) |
-| V14 | it looks right | **PASS** | `.context/issue-77/issue-77-after-{julep,envejeciendo,dark,mobile}.png` against the two in the issue |
+| V14 | it looks right | **PASS** | `.context/issue-77/issue-77-after-{julep,envejeciendo,dark,mobile}.png` and `issue-77-nav-{after,mobile}.png` against the two in the issue |
+| V15 | the system's navigation | **PASS** | all four pages: **1** link, `← All cocktails` → `/cocktails/`, last child of `.recipe__rail`, Fira Code 14px, `border-top-width: 0px`; no `[rel=prev]`/`[rel=next]`/`.recipe__nav-siblings` anywhere; content column now ends on the recipe's own last element |
 
 ⚠️ `CLAUDE.md` documents V12's first check as `node scripts/check-links.py`. It
 is a Python script; `node` fails on the docstring. Run it with `python3`.
