@@ -14,7 +14,8 @@
   The files are concatenated in the order design/styles.css declares, which is
   load-bearing — later layers override earlier ones. assets/css/gaps.css comes
   last: it covers markup Coder's templates emit that the design export was
-  never asked to style.
+  never asked to style, and assets/css/pages.css after it, which assembles the
+  system's primitives into this site's specific pages.
 */ -}}
 
 {{- /* Webfonts.
@@ -50,6 +51,7 @@
   "ds/syntax.css"
   "ds/playful.css"
   "css/gaps.css"
+  "css/pages.css"
 -}}
 {{- $parts := slice -}}
 {{- range $order -}}

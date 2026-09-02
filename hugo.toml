@@ -46,7 +46,9 @@ unsafe = true
   keywords = "blog,personal,sandgarden,home cooked software,recipes,cocktails"
   info = "Working to build [Sandgarden](https://www.sandgarden.com)."
   #avatarurl = "images/avatar.jpg"
-  gravatar = "britt.v.crawford@gmail.com"
+  # The portrait is self-hosted at assets/img/avatar.png — see
+  # layouts/partials/home/avatar.html. `gravatar` is deliberately unset so the
+  # theme's partial cannot reintroduce the third-party request.
   favicon = "/img/favicon.png"
   favicon_32 = "/img/favicon.png"
   favicon_16 = "/img/favicon.png"
@@ -69,16 +71,16 @@ unsafe = true
 #   author = "authors"
 
 # Social links
+# Social links render as words, not icons — the design system has no icon set.
+# The `icon` field held Font Awesome classes and is gone with Font Awesome (#54).
 [[params.social]]
-  name = "Github"
-  icon = "fa fa-github fa-2x"
+  name = "GitHub"
   weight = 1
   url = "https://github.com/britt/"
 [[params.social]]
   name = "LinkedIn"
-  icon = "fa fa-linkedin fa-2x"
   weight = 2
-  url = "http://www.linkedin.com/in/brittcrawford/"
+  url = "https://www.linkedin.com/in/brittcrawford/"
 
 # Menu links
 # [[menu.main]]

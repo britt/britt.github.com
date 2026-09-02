@@ -1,0 +1,72 @@
+/* Page-level composition.
+ *
+ * Where gaps.css supports markup the design system did not anticipate, this
+ * file assembles the system's own primitives — .ds-split, .ds-profile,
+ * .ds-cols — into the specific pages this site has. It introduces no values;
+ * everything resolves from tokens.
+ */
+
+/* ── home ────────────────────────────────────────────────────────────────
+   The design system's PageShell: identity in a rail, content beside it. That
+   is how a full-bleed page gets filled without stretching body copy, and
+   .ds-split already collapses to one column under 820px, back to the original
+   single-column reading order. */
+
+.home__rail {
+  position: sticky;
+  top: var(--space-6);
+  align-self: start;
+}
+
+/* .ds-profile puts the portrait beside the name, which is right in a full-width
+   masthead and wrong in a 300px rail. In the rail it stacks and left-aligns —
+   what the design system means by ProfileHeader align="start". */
+.home__profile {
+  grid-template-columns: 1fr;
+  justify-items: start;
+  gap: var(--space-5);
+  padding-block: 0 var(--space-7);
+}
+
+.home__profile .avatar {
+  justify-content: flex-start;
+}
+
+.home__name {
+  margin-block: 0 var(--space-2);
+  font-size: var(--text-h2);
+}
+
+.home__tagline {
+  margin-block: 0 var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--text-base);
+}
+
+/* The rail is identity, not reading matter, so its links stay plain — the
+   underline rule is scoped to [data-prose] and deliberately does not reach
+   here. Monospace matches the wordmark and the dates. */
+.ds-profile__links a {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+/* Once stacked, the sticky rail would pin the whole masthead to the top of a
+   long scroll. Below the collapse breakpoint it is just the top of the page. */
+@media (max-width: 820px) {
+  .home__rail {
+    position: static;
+  }
+  .home__profile {
+    padding-block: var(--space-6) var(--space-7);
+  }
+}
+
+/* utilities.css centres the profile links under 640px, which is right for a
+   centred masthead and wrong here — the name and tagline above them stay
+   left-aligned at every width. */
+@media (max-width: 640px) {
+  .home__profile .ds-profile__links {
+    justify-content: flex-start;
+  }
+}
