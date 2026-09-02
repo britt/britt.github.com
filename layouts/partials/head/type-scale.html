@@ -1,0 +1,37 @@
+{{- /*
+  Return design/tokens/typography.css with its px ramp expressed in rem.
+
+  The export states the scale in px. px does not respond to the browser's
+  default font-size setting — only to zoom — so a visitor who has set their
+  browser to 24px text still gets 19px body copy. That is a real accessibility
+  failure and #46 names it explicitly.
+
+  The values are converted rather than re-declared. Re-declaring the ramp in a
+  repo-owned file would put --text-h1 in two places, and the second one would
+  be wrong within a release or two. Dividing by 16 preserves every rendered
+  size exactly at the default root size, including inside the clamp() and
+  calc() expressions, while making the whole scale follow the user's setting.
+
+  Only typography.css is converted. Spacing stays in px on purpose: it is
+  spatial rather than textual, and tying gutters to text size makes long text
+  settings blow the layout apart.
+
+  Longest match first, so replacing "4px" could never corrupt a "44px" that
+  had not been replaced yet.
+*/ -}}
+{{- $src := resources.Get "ds/typography.css" -}}
+{{- if not $src -}}{{- errorf "type-scale: ds/typography.css not found" -}}{{- end -}}
+{{- /* comments carry viewport widths in px that must not be converted */ -}}
+{{- $css := $src.Content | replaceRE `(?s)/\*.*?\*/` "" -}}
+{{- $seen := slice -}}
+{{- range findRE `[0-9]+px` $css -}}
+  {{- if not (in $seen .) -}}{{- $seen = $seen | append . -}}{{- end -}}
+{{- end -}}
+{{- $ordered := slice -}}
+{{- range $seen -}}{{- $ordered = $ordered | append (dict "t" . "n" (len .)) -}}{{- end -}}
+{{- range sort $ordered "n" "desc" -}}
+  {{- $px := .t -}}
+  {{- $n := $px | replaceRE `px$` "" | float -}}
+  {{- $css = replace $css $px (printf "%.5grem" (div $n 16.0)) -}}
+{{- end -}}
+{{- return (resources.FromString "css/typography-rem.css" $css) -}}

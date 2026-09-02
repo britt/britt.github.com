@@ -1,5 +1,9 @@
 ---
 title: brittcrawford.com
+# /projects/ was a drifted near-copy of this page and has been deleted (#60).
+# The alias keeps the URL working for anything that already links to it.
+aliases:
+  - /projects/
 ---
 
 These are things that I have built simply because I wanted them to exist, or because I wanted to see if I could. I like tools that serve me, not ones that try to extract value from me or my attention. I also like the [process of building and understanding](https://brucesterling.tumblr.com/post/749569601319452672/realistic-utopias-a-speech-by-bruce-sterling) the things that I use.
@@ -36,7 +40,7 @@ These are things that I have built simply because I wanted them to exist, or bec
 * [We Can Be Heroes](/we_can_be_heroes.pdf) - ***This isn't rock n. roll. It's suicide!*** A one-page role playing game where every player is David Bowie.
 
 ## Abandoned but not forgotten
-* [Havamal](https://smile.amazon.com/Snugglebear-Team-Company-Havamal/dp/B07N114BWY/ref=sr_1_2?keywords=havamal&qid=1550960415&s=digital-skills&sr=1-2-catcorr) - The wisdom of Odin, told by Alexa. Say, "Alexa tell me the wisdom of Odin."
+* [Havamal](https://www.amazon.com/Snugglebear-Team-Company-Havamal/dp/B07N114BWY/ref=sr_1_2?keywords=havamal&qid=1550960415&s=digital-skills&sr=1-2-catcorr) - The wisdom of Odin, told by Alexa. Say, "Alexa tell me the wisdom of Odin."
 * [Testivus](https://github.com/britt/testivus/) - _(inactive)_ A Go test helper library to let your code know how it disappoints you.
 * [yts](https://github.com/britt/vibes/tree/main/yts) - A bash function to download YouTube video transcripts and convert them to Markdown format.
 Following the example of [David Gasquez's](https://davidgasquez.com/useful-llm-tools-2024/) excellent [qv](https://github.com/davidgasquez/dotfiles/blob/bb9df4a369dbaef95ca0c35642de491c7dd41269/shell/zshrc#L75-L99) function.

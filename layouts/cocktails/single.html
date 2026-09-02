@@ -1,0 +1,72 @@
+{{ define "title" }}{{ .Title }} · {{ .Site.Title }}{{ end }}
+{{ define "content" }}
+{{- /*
+  A cocktail recipe.
+
+  The design system spends the page's width on a rail: "profile or ingredients
+  in a sticky rail, content beside it". Every recipe here has the same shape —
+  an intro, an ingredient list, a method paragraph, the recipe card image — so
+  the ingredients are lifted out of the flow and into the rail, and the prose
+  reads beside them at a comfortable measure.
+
+  Lifting them means operating on the rendered HTML, because the ingredients
+  are a plain Markdown list, not front matter. The first <ul> in a recipe is
+  always the ingredient list: that holds for all fourteen, including the three
+  that have no "Ingredients" heading at all. If the pattern ever stops
+  matching, the list simply stays in the body — the page degrades to the
+  reading order it has today rather than losing content.
+
+  Turning the method into an ordered list was considered and rejected: it is a
+  content change across fourteen files, several methods are a single sentence,
+  and the design system has no numbered-steps component.
+*/ -}}
+{{- $content := .Content -}}
+{{- $pattern := `(?s)(?:<h[1-6][^>]*>\s*Ingredients\s*(?:<a[^>]*>.*?</a>)?\s*</h[1-6]>\s*)?<ul>.*?</ul>` -}}
+{{- $found := findRE $pattern $content 1 -}}
+{{- $ingredients := "" -}}
+{{- with $found -}}
+  {{- $block := index . 0 -}}
+  {{- $content = replace $content $block "" -}}
+  {{- /* Eleven of the fourteen write their own "Ingredients" heading and three
+       do not, so the heading is dropped here and the rail supplies one. Keeping
+       the content's would print the word twice on those eleven. */ -}}
+  {{- $ingredients = replaceRE `(?s)^\s*<h[1-6][^>]*>.*?</h[1-6]>\s*` "" $block -}}
+{{- end -}}
+
+<article class="recipe">
+  {{- /* The title spans the full width rather than sitting in the rail: at 300px
+       a name like "Yippee Kay Yay Motherfucker!" wraps to four lines. This is
+       the design system's PageTitle — left-aligned, with its date as meta. */ -}}
+  <header class="page-header">
+    <h1 class="title">{{ .Title }}</h1>
+    <p class="post-meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">
+        {{ .Date | time.Format (.Site.Params.dateFormat | default "January 2, 2006") }}
+      </time>
+    </p>
+  </header>
+
+  <div class="ds-split">
+    <div class="recipe__rail">
+      {{- with $ingredients }}
+        <div class="recipe__ingredients">
+          <h2 class="recipe__ingredients-heading">Ingredients</h2>
+          {{ . | safeHTML }}
+        </div>
+      {{- end }}
+    </div>
+
+    <div class="recipe__body" data-prose>
+      {{ $content | safeHTML }}
+
+      <nav class="recipe__nav" aria-label="Recipes">
+        <a href="{{ .Parent.RelPermalink }}">← All recipes</a>
+        <span class="recipe__nav-siblings">
+          {{ with .PrevInSection }}<a rel="prev" href="{{ .RelPermalink }}">← {{ .Title }}</a>{{ end }}
+          {{ with .NextInSection }}<a rel="next" href="{{ .RelPermalink }}">{{ .Title }} →</a>{{ end }}
+        </span>
+      </nav>
+    </div>
+  </div>
+</article>
+{{ end }}

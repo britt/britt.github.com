@@ -1,0 +1,21 @@
+{{- /*
+  The colour-scheme toggle.
+
+  A real <button>. The theme's version was an <a> with no href, which is not in
+  the tab order at all, containing nothing but an aria-hidden icon — so it had
+  no accessible name and a keyboard or screen-reader user simply could not
+  change the theme. That was a live defect, not a styling gap (#52).
+
+  A word, not an icon: "Never use a sun/moon icon — this system labels the
+  destination in words." The label names where the button goes, not where you
+  are, so it reads "dark" while the page is light. A button whose visible text
+  already states what it does needs no aria-pressed.
+
+  Both labels are rendered and one is hidden in CSS keyed on the resolved
+  scheme. Writing the label from JavaScript would mean the header painted with
+  the wrong word and then corrected itself, and it would leave the button
+  mislabelled entirely for anyone without JavaScript.
+*/ -}}
+<button type="button" class="colorscheme-toggle" data-scheme-toggle>
+  <span class="sr-only">Switch to </span><span data-when-scheme="light">dark</span><span data-when-scheme="dark">light</span><span class="sr-only"> theme</span>
+</button>

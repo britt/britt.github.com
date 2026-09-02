@@ -1,0 +1,160 @@
+/* Rules the design system does not own.
+ *
+ * hugo-coder's templates emit markup the design export was never asked to
+ * cover. Dropping Coder's stylesheet (#73) left those elements unstyled, and
+ * an unstyled element produces no build error — it just renders wrong. This
+ * file is the enumerated remainder, kept separate from design/tokens/ so that
+ * refreshing the design system cannot clobber it and so it stays obvious how
+ * small the remainder is.
+ *
+ * `node scripts/style-coverage.mjs public <master-public>` regenerates the
+ * list this file answers.
+ */
+
+/* Visually hidden, still announced. Coder inherited this from Font Awesome's
+ * SCSS, so it disappeared with Font Awesome — leaving the heading-anchor and
+ * series partials rendering their screen-reader labels as visible text.
+ *
+ * clip-path rather than `display:none` or `visibility:hidden`, both of which
+ * remove the text from the accessibility tree, which is the opposite of the
+ * intent. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip links and the like: hidden until focused, then a normal element again. */
+.sr-only-focusable:focus,
+.sr-only-focusable:focus-visible {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip-path: none;
+  white-space: normal;
+}
+
+/* Tab width in highlighted code.
+ *
+ * Chroma used to emit `tab-size` as an inline style on every <pre>. Switching
+ * it to class-based output (#48) — which is what lets the design system's
+ * --code-* tokens colour the syntax at all — stopped that, and the browser
+ * default of 8 makes tab-indented Go read as a staircase. `tabWidth` in
+ * hugo.toml does not apply when noClasses is false, so it is set here rather
+ * than left in the config looking like it works. */
+pre { tab-size: 2; }
+
+/* Section headings.
+ *
+ * playful.css draws a coloured dot before every h2/h3 carrying data-section,
+ * using `flex:0 0 auto` and `align-self:center` — which need the heading to be
+ * a flex container, something the design system's React SectionHeading sets and
+ * a Hugo template does not get for free.
+ *
+ * The dot is turned off by request (it read as a list bullet on a page that is
+ * mostly lists), so the flex context it needed goes with it and headings are
+ * ordinary block boxes again.
+ *
+ * data-section is still emitted: it costs nothing, and re-enabling the chip
+ * means deleting the rule below rather than editing a render hook. */
+[data-theme="playful"] h2[data-section]::before,
+[data-theme="playful"] h3[data-section]::before {
+  content: none;
+}
+
+/* Measure, independent of template structure.
+ *
+ * chrome.css clamps prose to --measure with `.content article > *`, which only
+ * matches templates that happen to wrap their body in an <article>.
+ * partials/list.html does not, so a section's intro paragraph ran the full
+ * 1440px container — a ~200-character line, which is exactly what the design
+ * system says filling the page must never mean.
+ *
+ * Keyed on [data-prose] instead: that attribute already marks running prose
+ * for the link-underline rules (#47), so one marker now carries both, and any
+ * future template gets the measure by saying what it contains rather than by
+ * matching a particular element nesting. */
+[data-prose] > * {
+  max-width: var(--measure);
+}
+
+/* Things that are not running text and must be allowed to fill the column.
+ * Mirrors chrome.css's escape list so the two cannot drift. */
+[data-prose] > .ds-cols,
+[data-prose] > .ds-dated,
+[data-prose] > .ds-split,
+[data-prose] > .ds-scroll,
+[data-prose] > table,
+[data-prose] > figure,
+[data-prose] > .highlight,
+[data-prose] > pre {
+  max-width: none;
+}
+
+/* Colour-scheme toggle label.
+ *
+ * The button names its destination — "dark" while the page is light — so both
+ * words are in the markup and CSS reveals the right one. Writing it from
+ * JavaScript would paint the wrong word first and correct it, and would leave
+ * the button mislabelled for anyone without JavaScript.
+ *
+ * The no-attribute case is the OS-follows state, matched the same way the
+ * dark token fallback is (#43). */
+[data-when-scheme="dark"] { display: none; }
+:root[data-scheme="dark"] [data-when-scheme="dark"] { display: inline; }
+:root[data-scheme="dark"] [data-when-scheme="light"] { display: none; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-scheme]) [data-when-scheme="dark"] { display: inline; }
+  :root:not([data-scheme]) [data-when-scheme="light"] { display: none; }
+}
+
+/* chrome.css styles .colorscheme-toggle as an anchor. As a real <button> it
+ * needs the browser's button defaults neutralised, and it is no longer
+ * position:fixed — it sits at the end of the header row. */
+.navigation .colorscheme-toggle {
+  font: inherit;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  appearance: none;
+  line-height: 1.6;
+}
+
+/* Sticky footer on short pages, sized to the *visible* viewport.
+ *
+ * The export sets min-height:100vh on the page frame. On mobile browsers 100vh
+ * is the viewport with the toolbars retracted, so a page whose content is
+ * shorter than the screen still scrolls by the height of the address bar.
+ * 100dvh is the same number on desktop and the honest one on mobile.
+ *
+ * Behind @supports so browsers without dvh keep the 100vh they already had. */
+@supports (min-height: 100dvh) {
+  .ds-page,
+  .wrapper {
+    min-height: 100dvh;
+  }
+}
+
+/* Quote attributions.
+ *
+ * The blockquote render hook lifts a trailing "-- someone" line into
+ * <footer><cite>. The design system has no rule for it because its Quote
+ * component takes the citation as a separate prop. */
+.quote-attribution {
+  margin-top: var(--space-4);
+  font-size: var(--text-sm);
+  font-style: normal;
+  color: var(--text-muted);
+}
+
+.quote-attribution cite {
+  font-style: normal;
+}

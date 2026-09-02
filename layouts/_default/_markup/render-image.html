@@ -1,0 +1,73 @@
+{{- /*
+  Images in content.
+
+  Coder's entire treatment was `img { max-width: 100% }`. Three things were
+  missing and all three are visible on a slow connection: a standalone image
+  never became a <figure>, so the design system's figure rules — hairline
+  border, --radius-md, caption styling — applied to nothing; no image carried
+  intrinsic dimensions, so every cocktail page reflowed when its recipe card
+  arrived; and nothing was lazily loaded.
+
+  Dimensions come from the file itself. Content images are referenced by
+  absolute URL and live in static/, which bypasses Hugo Pipes, so static/img is
+  also mounted into assets/ (see hugo.toml) purely so this lookup can succeed.
+  An image that cannot be resolved — a remote URL, say — still renders, just
+  without the reserved box.
+
+  Every content image on this site is below the fold, so loading is lazy
+  throughout rather than conditionally.
+
+  PNGs and JPEGs are resized to three widths and converted to WebP (#63). GIFs
+  and SVGs pass through: Hugo's image processing drops GIF animation, and an
+  SVG has nothing to resize.
+*/ -}}
+{{- $src := .Destination -}}
+{{- $res := "" -}}
+{{- with .Page.Resources.GetMatch (strings.TrimPrefix "/" $src) -}}
+  {{- $res = . -}}
+{{- else -}}
+  {{- with resources.Get (strings.TrimPrefix "/" $src) -}}
+    {{- $res = . -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $alt := .PlainText | default .Text -}}
+{{- $title := cond (ne .Title "") (printf ` title="%s"` .Title) "" -}}
+{{- $img := "" -}}
+
+{{- if and $res (eq $res.ResourceType "image") (in (slice "png" "jpg" "jpeg") (lower $res.MediaType.SubType)) -}}
+  {{- /* Recipe cards are 200–630 KB PNGs and JPEGs served at their native
+       size. They render at most --measure wide (814px), so three WebP widths
+       cover every viewport and device pixel ratio the site sees. Widths above
+       the source are skipped rather than upscaled. */ -}}
+  {{- $widths := slice 480 814 1220 -}}
+  {{- $set := slice -}}
+  {{- $fallback := "" -}}
+  {{- range $widths -}}
+    {{- if le . $res.Width -}}
+      {{- $v := $res.Process (printf "resize %dx webp q80" .) -}}
+      {{- $set = $set | append (printf "%s %dw" $v.RelPermalink $v.Width) -}}
+      {{- if or (not $fallback) (le $v.Width 814) -}}{{- $fallback = $v -}}{{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not $set -}}
+    {{- $v := $res.Process "webp q80" -}}
+    {{- $set = $set | append (printf "%s %dw" $v.RelPermalink $v.Width) -}}
+    {{- $fallback = $v -}}
+  {{- end -}}
+  {{- /* sizes: full column below the rail's collapse point, --measure above. */ -}}
+  {{- $img = printf `<img src="%s" srcset="%s" sizes="(max-width: 820px) 92vw, 814px" alt="%s" width="%d" height="%d"%s loading="lazy" decoding="async">`
+        $fallback.RelPermalink (delimit $set ", ") $alt $res.Width $res.Height $title -}}
+{{- else -}}
+  {{- /* Animated GIFs and SVGs are passed through untouched: Hugo's image
+       processing drops GIF animation, and an SVG has nothing to resize. */ -}}
+  {{- $dims := "" -}}
+  {{- with $res -}}{{- if eq .ResourceType "image" -}}{{- $dims = printf ` width="%d" height="%d"` .Width .Height -}}{{- end -}}{{- end -}}
+  {{- $img = printf `<img src="%s" alt="%s"%s%s loading="lazy" decoding="async">` ($src | safeURL) $alt $dims $title -}}
+{{- end -}}
+
+{{- if .IsBlock -}}
+<figure>{{ $img | safeHTML }}{{ with .Title }}<figcaption>{{ . }}</figcaption>{{ end }}</figure>
+{{- else -}}
+{{- $img | safeHTML -}}
+{{- end -}}

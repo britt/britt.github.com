@@ -1,0 +1,19 @@
+{{- /*
+  Shadows themes/hugo-coder/layouts/partials/home/avatar.html.
+
+  The theme's version fetched the portrait from gravatar.com on every home
+  page load — a third-party request, for one image that never changes, on the
+  one page guaranteed to be someone's first (#63). The same image is now in
+  assets/ and goes through Hugo's pipeline, so it is resized, converted to
+  WebP and fingerprinted.
+
+  width and height are set so the browser reserves the box before the image
+  arrives; without them the portrait's arrival shifts the whole rail.
+*/ -}}
+{{- with resources.Get "img/avatar.png" -}}
+  {{- $img := .Process "resize 380x webp q82" -}}
+  <div class="avatar">
+    <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}"
+         alt="{{ $.Site.Params.author }}" fetchpriority="high" decoding="async">
+  </div>
+{{- end -}}

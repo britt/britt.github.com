@@ -1,0 +1,310 @@
+/* Page-level composition.
+ *
+ * Where gaps.css supports markup the design system did not anticipate, this
+ * file assembles the system's own primitives — .ds-split, .ds-profile,
+ * .ds-cols — into the specific pages this site has. It introduces no values;
+ * everything resolves from tokens.
+ */
+
+/* ── home ────────────────────────────────────────────────────────────────
+   The design system's PageShell: identity in a rail, content beside it. That
+   is how a full-bleed page gets filled without stretching body copy, and
+   .ds-split already collapses to one column under 820px, back to the original
+   single-column reading order. */
+
+.home__rail {
+  position: sticky;
+  top: var(--space-6);
+  align-self: start;
+}
+
+/* .ds-profile puts the portrait beside the name, which is right in a full-width
+   masthead and wrong in a 300px rail. In the rail it stacks and left-aligns —
+   what the design system means by ProfileHeader align="start". */
+.home__profile {
+  grid-template-columns: 1fr;
+  justify-items: start;
+  gap: var(--space-5);
+  padding-block: 0 var(--space-7);
+}
+
+.home__profile .avatar {
+  justify-content: flex-start;
+}
+
+.home__name {
+  margin-block: 0 var(--space-2);
+  font-size: var(--text-h2);
+}
+
+.home__tagline {
+  margin-block: 0 var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--text-base);
+}
+
+/* The rail is identity, not reading matter, so its links stay plain — the
+   underline rule is scoped to [data-prose] and deliberately does not reach
+   here. Monospace matches the wordmark and the dates. */
+.ds-profile__links a {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+/* Once stacked, the sticky rail would pin the whole masthead to the top of a
+   long scroll. Below the collapse breakpoint it is just the top of the page. */
+@media (max-width: 820px) {
+  .home__rail {
+    position: static;
+  }
+  .home__profile {
+    padding-block: var(--space-6) var(--space-7);
+  }
+}
+
+/* utilities.css centres the profile links under 640px, which is right for a
+   centred masthead and wrong here — the name and tagline above them stay
+   left-aligned at every width. */
+@media (max-width: 640px) {
+  .home__profile .ds-profile__links {
+    justify-content: flex-start;
+  }
+}
+
+/* ── annotated link lists ────────────────────────────────────────────────
+   The dominant unit on this site: a link, a dash, a sentence. Roughly 25 of
+   them across the home and projects pages.
+
+   Kept as plain Markdown lists (#56 option (a)) rather than moved to a
+   shortcode. A {{< link-card >}} would mean rewriting every entry and coupling
+   the content to the theme, and the design system's ProjectList is "an
+   inventory of things built" with sentence descriptions — a shape plain lists
+   already express.
+
+   Scoped with :has() rather than by page. A list item that *begins* with a
+   link is an entry in a link list; one that does not is something else — the
+   ingredients on a cocktail page, for instance, which are the primary content
+   there and must not be muted. That distinction is in the content, so the
+   selector reads it from the content rather than from which template
+   happens to be rendering. */
+
+[data-prose] li:has(> a:first-child) {
+  color: var(--text-muted);
+}
+
+[data-prose] li:has(> a:first-child) > a:first-child {
+  color: var(--link);
+  font-weight: var(--weight-medium);
+}
+
+/* Emphasis inside a description is an aside, not a promotion — it stays at the
+   description's weight rather than jumping to heading colour. */
+[data-prose] li:has(> a:first-child) strong {
+  color: inherit;
+}
+
+/* ── list markers ────────────────────────────────────────────────────────
+   The playful variant cycles the marker colour through the four accents.
+   Done on ::marker, which accepts `color` and can be selected per item —
+   #71 assumed it could not, and expected a <span data-list-mark> in every
+   list item. It can, so the content stays plain Markdown.
+
+   [data-list-mark] is still styled by content.css for hand-authored lists that
+   need a marker inside the item's own box. */
+[data-theme="playful"] [data-prose] li:nth-child(4n+1)::marker { color: var(--clay); }
+[data-theme="playful"] [data-prose] li:nth-child(4n+2)::marker { color: var(--lapis); }
+[data-theme="playful"] [data-prose] li:nth-child(4n+3)::marker { color: var(--pine); }
+[data-theme="playful"] [data-prose] li:nth-child(4n+4)::marker { color: var(--amber-deep); }
+
+/* ── dated archive ───────────────────────────────────────────────────────
+   .ds-dated and .ds-dated__row come from the design system; the title's
+   treatment does not, because DatedList passes it as a prop. "Titles are
+   heading-colored, not link-blue, until hover." */
+
+.ds-dated__date {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--date-color, var(--text-muted));
+  white-space: nowrap;
+}
+
+.ds-dated__title {
+  color: var(--text-heading);
+  font-family: var(--font-display, var(--font-sans));
+  font-size: var(--text-h4);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+}
+
+.ds-dated__title:hover,
+.ds-dated__title:focus-visible {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-color: var(--link-underline, currentColor);
+  text-underline-offset: 3px;
+}
+
+/* ── cocktail recipe ─────────────────────────────────────────────────────
+   Ingredients in a sticky rail, the prose beside them — the design system's
+   RailLayout, and the reason a recipe page fills the width without stretching
+   its method paragraph across it.
+
+   No card, no border box, no shadow: "Separation is done with rules and
+   whitespace." The ingredient list is set apart by a rule above it, a
+   monospaced measure column and its own leading, not by a container. */
+
+.page-header {
+  padding-block: var(--page-header-top) var(--stack-heading-bottom);
+}
+
+.page-header .title {
+  margin-block: 0 var(--space-3);
+}
+
+.page-header .post-meta {
+  margin: 0;
+}
+
+.recipe__rail {
+  position: sticky;
+  top: var(--space-6);
+  align-self: start;
+}
+
+.recipe__ingredients {
+  border-top: var(--border-quote-width) solid var(--rule-accent, var(--border-hairline));
+  padding-top: var(--space-5);
+}
+
+.recipe__ingredients-heading {
+  margin-block: 0 var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Measures stay verbatim, so they are set in the monospace face to keep
+   "1 ½ oz" and "2oz" reading as quantities rather than as prose. */
+.recipe__ingredients ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: var(--leading-quote);
+}
+
+.recipe__ingredients li {
+  margin: 0;
+  padding-block: var(--space-3);
+  border-bottom: var(--border-width) solid var(--border-hairline);
+  color: var(--text-body);
+}
+
+.recipe__ingredients li:last-child {
+  border-bottom: 0;
+}
+
+/* The recipe card is the one image on the page and it is a poster — it fills
+   the reading column rather than the full page, as the design system requires
+   ("never full-bleed"). */
+.recipe__body figure {
+  max-width: var(--measure);
+}
+
+.recipe__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-7);
+  align-items: baseline;
+  justify-content: space-between;
+  margin-top: var(--space-10);
+  padding-top: var(--space-5);
+  border-top: var(--border-width) solid var(--border-hairline);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.recipe__nav-siblings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4) var(--space-6);
+}
+
+@media (max-width: 820px) {
+  .recipe__rail {
+    position: static;
+  }
+  .recipe__ingredients {
+    margin-bottom: var(--space-7);
+  }
+}
+
+/* ── link underlines: hover and focus only ───────────────────────────────
+   A deliberate departure from the design export, by request.
+
+   playful.css underlines prose links at rest — `p a`, `[data-prose] li a`,
+   `blockquote a`, `figcaption a` — in clay at 2px. That is turned off here, so
+   a link is plain until you point at it, which is what base.css already does
+   for every other link on the site.
+
+   The hover and focus treatment is kept and given the clay underline the
+   resting state used to have, so pointing at a link is a stronger signal than
+   it was before rather than a weaker one.
+
+   ⚠️ This makes prose links distinguishable by colour alone at rest. --link is
+   7.26:1 against the page in light and 8.78:1 in dark — comfortably past the
+   4.5:1 that WCAG 1.4.1 wants against the *background* — but only 2.11:1
+   against surrounding body text in light and 1.38:1 in dark, where the
+   criterion asks for 3:1. See docs/link-underlines.md for what that means and
+   what the alternatives are. */
+
+[data-theme="playful"] p a,
+[data-theme="playful"] [data-prose] li a,
+[data-theme="playful"] blockquote a,
+[data-theme="playful"] figcaption a {
+  text-decoration: none;
+}
+
+[data-theme="playful"] p a:hover,
+[data-theme="playful"] p a:focus-visible,
+[data-theme="playful"] [data-prose] li a:hover,
+[data-theme="playful"] [data-prose] li a:focus-visible,
+[data-theme="playful"] blockquote a:hover,
+[data-theme="playful"] blockquote a:focus-visible,
+[data-theme="playful"] figcaption a:hover,
+[data-theme="playful"] figcaption a:focus-visible {
+  text-decoration: underline;
+  text-decoration-color: var(--link-underline, currentColor);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* ── footnote references ─────────────────────────────────────────────────
+   Goldmark emits a bare superscript numeral. Bracketed and set smaller so it
+   reads as a reference mark rather than as an exponent — "Software [1]" is not
+   ambiguous the way "Software 1" is.
+
+   The brackets go on the anchor rather than the <sup>, so they are part of the
+   click target rather than dead punctuation beside it.
+
+   Sized in em rather than from the type scale because a reference can appear
+   inside a heading as well as in body copy — on the home page it does both —
+   and it should stay proportionate to whatever it sits in. */
+
+sup[id^="fnref"] {
+  font-size: .6em;
+  line-height: 0;
+  vertical-align: super;
+}
+
+.footnote-ref {
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--weight-regular);
+}
+
+.footnote-ref::before { content: "["; }
+.footnote-ref::after { content: "]"; }

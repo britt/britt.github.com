@@ -1,0 +1,17 @@
+{{- /*
+  Shadows themes/hugo-coder/layouts/_default/_markup/render-heading.html.
+
+  The theme's version appended an anchor link to every heading — a Font Awesome
+  glyph, which went with coder.css in #73, leaving an empty <i> and a visible
+  "Link to heading" label on screen. It was briefly replaced with a "#" that
+  faded in on hover; that has been removed by request.
+
+  The id stays, so every heading is still addressable as a URL fragment and the
+  styleguide's in-page links keep working. There is simply no visible control
+  for copying one.
+
+  h2 and h3 carry data-section, which the playful variant's section rules match
+  (#71). Deeper levels do not: it marks a section boundary, and every h4 in a
+  document is not one.
+*/ -}}
+<h{{ .Level }} id="{{ .Anchor | safeURL }}"{{ if or (eq .Level 2) (eq .Level 3) }} data-section{{ end }}>{{ .Text }}</h{{ .Level }}>

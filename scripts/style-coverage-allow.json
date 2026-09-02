@@ -1,0 +1,13 @@
+{
+  "_comment": "Classes the site emits that deliberately have no CSS rule. Each needs a reason, so that an entry added to silence a real regression has to be argued for in a diff.",
+  "line": "Chroma wraps each code line in <span class=\"line\">. Coder gave it display:flex to align an inline line-number gutter; line numbers are configured to render in a table instead, and the lines already break on the newlines inside <pre>.",
+  "cl": "Chroma's inner per-line span. Purely a hook for line highlighting, which .chroma .hl handles.",
+  "footnote-ref": "Goldmark marks the superscript link; .footnotes and sup[id^=fnref] carry the styling. Unstyled on master too.",
+  "language-go": "Goldmark echoes the fence's language as a class. Informational only — Chroma does the highlighting.",
+  "language-javascript": "As above.",
+  "language-plaintext": "As above.",
+  "social-icon": "No longer emitted; retained here so a stale reference is caught rather than silently reappearing.",
+  "home": "Structural hook on the home page's PageShell. .ds-split supplies the layout; this exists to scope descendants.",
+  "home__content": "Structural hook. The measure comes from [data-prose] and the column from .ds-split.",
+  "recipe": "Structural hook on a cocktail page. The layout comes from .ds-split and the page-header/rail/body classes; this exists to scope descendants."
+}

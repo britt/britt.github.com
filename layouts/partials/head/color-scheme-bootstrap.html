@@ -1,0 +1,11 @@
+{{- /*
+  Publishes the resolved colour scheme as <html data-scheme>, which is the
+  scope the design system's dark tokens are declared under.
+
+  Inlined and blocking on purpose. An external or deferred script would let the
+  page paint before the attribute exists, so a visitor whose stored preference
+  disagrees with their OS setting would see the wrong scheme and then a snap.
+*/ -}}
+{{- $js := resources.Get "js/scheme.js" -}}
+{{- if not hugo.IsServer -}}{{- $js = $js | minify -}}{{- end -}}
+<script>{{ $js.Content | safeJS }}</script>

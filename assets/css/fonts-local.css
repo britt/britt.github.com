@@ -1,0 +1,55 @@
+/* Self-hosted webfaces for the three families the design system names.
+ *
+ * Self-hosted, not fetched from Google: the site is already served entirely
+ * from Cloudflare, and a third-party font request is a privacy regression and
+ * an extra connection for no benefit.
+ *
+ * Variable fonts, so one file covers every weight the system uses instead of
+ * one file per weight. The `latin` subset only — it carries the accented
+ * characters the content actually needs (El Niño, Håvamål) and nothing else.
+ * See static/fonts/README.md for how these were produced.
+ *
+ * font-display: swap everywhere: text renders immediately in the fallback and
+ * is swapped when the face arrives. Nothing on this site is worth a flash of
+ * invisible text.
+ *
+ * A single `format("woff2")` per face, not the old
+ * `format("woff2-variations")` pair — every browser that can render woff2 in
+ * 2026 reads the variation axes from the file itself, and listing the same URL
+ * twice only invites someone to "fix" the duplication later by deleting the
+ * wrong one.
+ */
+
+@font-face {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url("/fonts/public-sans-latin-var.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Public Sans";
+  font-style: italic;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url("/fonts/public-sans-italic-latin-var.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url("/fonts/fira-code-latin-var.woff2") format("woff2");
+}
+
+/* opsz is instanced at 32 rather than variable — see static/fonts/README.md —
+ * so optical sizing is deliberately not requested. */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url("/fonts/bricolage-grotesque-latin-var.woff2") format("woff2");
+}

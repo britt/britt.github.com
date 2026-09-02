@@ -1,0 +1,110 @@
+{{- /*
+  Shadows themes/hugo-coder/layouts/partials/head/theme-styles.html.
+
+  The design system replaces Coder's stylesheet outright; Coder stays on as a
+  template provider. So this emits neither coder.css nor the three Font Awesome
+  woff2 preloads the theme's version shipped (295 KB, for three glyphs — #54
+  replaces them with inline SVG).
+
+  Keeping both stylesheets was the original plan (#42) and was abandoned:
+  design/tokens/base.css and Coder's _base.scss style almost the same set of
+  elements, so the two would compete on cascade order, and the winner would be
+  decided by @import sequence rather than by intent.
+
+  ds/components.css is deliberately absent: it styles the notice, tab and
+  taxonomy features, which no page currently uses. head/extensions.html adds it
+  back on any page that does (#57).
+
+  The remaining files are concatenated in the order design/styles.css declares,
+  which is load-bearing — later layers override earlier ones. assets/css/gaps.css comes
+  last: it covers markup Coder's templates emit that the design export was
+  never asked to style, and assets/css/pages.css after it, which assembles the
+  system's primitives into this site's specific pages, and assets/css/a11y.css
+  last of all, which is the one place the export's colour values are corrected
+  — see that file for the measurements.
+*/ -}}
+
+{{- /* Webfonts.
+
+  Self-hosted under static/fonts/ — see static/fonts/README.md — so the page
+  makes no third-party request. The @font-face declarations live in
+  assets/css/fonts-local.css and are concatenated into the bundle below.
+
+  Preloaded: the three roman faces that render above the fold on every page —
+  body copy, headings, and the monospaced wordmark. The italic is not,
+  because nothing above the fold is italic and preloading it would compete for
+  bandwidth with faces that are needed sooner.
+
+  The export's own remote @import rules are stripped from the bundle further
+  down. They are left in design/tokens/ untouched so that refreshing the design
+  system stays a matter of replacing the directory. */ -}}
+<link rel="preload" href="{{ "/fonts/public-sans-latin-var.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "/fonts/bricolage-grotesque-latin-var.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{{ "/fonts/fira-code-latin-var.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+
+{{- $order := slice
+  "css/fonts-local.css"
+  "ds/fonts.css"
+  "ds/colors.css"
+  "@type-scale"
+  "ds/spacing.css"
+  "ds/layout.css"
+  "ds/base.css"
+  "ds/utilities.css"
+  "ds/content.css"
+  "ds/chrome.css"
+  "ds/syntax.css"
+  "ds/playful.css"
+  "css/gaps.css"
+  "css/pages.css"
+  "css/a11y.css"
+-}}
+{{- $parts := slice -}}
+{{- range $order -}}
+  {{- if eq . "@type-scale" -}}
+    {{- /* typography.css, with its px ramp converted to rem — see the partial */ -}}
+    {{- $parts = $parts | append (partial "head/type-scale.html" $) -}}
+  {{- else -}}
+    {{- with resources.Get . -}}
+      {{- $parts = $parts | append . -}}
+    {{- else -}}
+      {{- errorf "stylesheet not found: %s (is design/tokens mounted? see hugo.toml)" . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $bundle := $parts | resources.Concat "css/site-raw.css" -}}
+{{- $stripped := $bundle.Content | replaceRE `@import\s+url\(["'][^"']+["']\);?` "" -}}
+
+{{- /* No-JS dark mode.
+
+  The export scopes every dark value to [data-scheme="dark"], an attribute only
+  a script can set. Coder's stylesheet honoured prefers-color-scheme directly,
+  so dropping it would have made dark mode JavaScript-dependent — a regression
+  invisible in any browser with JS on.
+
+  Rather than write the dark values a second time, the dark rules are lifted
+  out of the bundle and re-emitted with [data-scheme="dark"] rewritten to
+  :not([data-scheme]) inside a prefers-color-scheme query. So: no attribute
+  means the OS decides, in pure CSS with no flash and no script; an explicit
+  attribute always wins, because :not([data-scheme]) stops matching the moment
+  the toggle sets one.
+
+  Derived, not duplicated — there is still exactly one place a dark colour is
+  written down. */ -}}
+{{- $darkRules := findRE `[^{}]*\[data-scheme="dark"\][^{}]*\{[^{}]*\}` $stripped -}}
+{{- if not $darkRules -}}
+  {{- errorf "no [data-scheme=\"dark\"] rules found in the design system bundle — the no-JS dark fallback would be silently empty" -}}
+{{- end -}}
+{{- $auto := "" -}}
+{{- range $darkRules -}}
+  {{- $auto = print $auto (replace . `[data-scheme="dark"]` `:not([data-scheme])`) -}}
+{{- end -}}
+{{- $stripped = printf "%s\n@media (prefers-color-scheme:dark){%s}\n" $stripped $auto -}}
+
+{{- $styles := resources.FromString "css/site.css" $stripped -}}
+{{- if hugo.IsServer -}}
+<link rel="stylesheet" href="{{ $styles.RelPermalink }}">
+{{- else -}}
+{{- $styles = $styles | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" crossorigin="anonymous">
+{{- end -}}

@@ -1,0 +1,189 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3] [cursor=pointer]
+  - main [ref=e4]:
+    - navigation [ref=e5]:
+      - link "brittcrawford.com" [ref=e7] [cursor=pointer]:
+        - /url: http://localhost:1313/
+    - generic [ref=e9]:
+      - article [ref=e10]:
+        - img "gravatar" [ref=e12]
+        - heading "Britt Crawford" [level=1] [ref=e13]
+        - heading [level=2] [ref=e14]:
+          - text: Working to build
+          - link "Sandgarden↗" [ref=e15] [cursor=pointer]:
+            - /url: https://www.sandgarden.com
+          - text: .
+        - generic:
+          - generic:
+            - link "Github":
+              - /url: https://github.com/britt/
+          - generic:
+            - link "LinkedIn":
+              - /url: http://www.linkedin.com/in/brittcrawford/
+      - separator [ref=e16]
+      - article [ref=e18]:
+        - paragraph [ref=e19]:
+          - text: These are things that I have built simply because I wanted them to exist, or because I wanted to see if I could. I like tools that serve me, not ones that try to extract value from me or my attention. I also like the
+          - link "process of building and understanding↗" [ref=e20] [cursor=pointer]:
+            - /url: https://brucesterling.tumblr.com/post/749569601319452672/realistic-utopias-a-speech-by-bruce-sterling
+          - text: the things that I use.
+        - heading [level=2] [ref=e21]:
+          - text: Home Cooked Software
+          - superscript [ref=e22]:
+            - link "1" [ref=e23] [cursor=pointer]:
+              - /url: "#fn:1"
+          - link "Link to heading" [ref=e24] [cursor=pointer]:
+            - /url: "#home-cooked-software"
+        - list [ref=e25]:
+          - listitem [ref=e26]:
+            - link "Readinglist.live↗" [ref=e27] [cursor=pointer]:
+              - /url: https://www.readinglist.live
+            - text: "- Turn any web page into a podcast episode, with decently human sounding voices."
+            - emphasis [ref=e28]: (It just reads it to you in a nice human voice, no AI commentary or nonsense like that.)
+          - listitem [ref=e29]:
+            - link "lotsofcsvs.com↗" [ref=e30] [cursor=pointer]:
+              - /url: https://www.lotsofcsvs.com
+            - text: "- a"
+            - strong [ref=e31]: small data
+            - text: warehouse built with CSV and HTTP as its API. It is intentionally as barebones as possible. It aims to be a simple API for recording and fetching data that works with everything.
+          - listitem [ref=e32]:
+            - link "Agent Skills↗" [ref=e33] [cursor=pointer]:
+              - /url: https://britt.github.io/agent-skills/
+            - text: "- some skills for working with coding agents."
+          - listitem [ref=e34]:
+            - link "Obsidian Notes Watcher↗" [ref=e35] [cursor=pointer]:
+              - /url: https://github.com/britt/obsidian-notes-watcher
+            - text: "- A GitHub actions that watches your Obsidian notes for @mentions and dispatches an agent like Claude handle your request and commit changes back to the note."
+            - code [ref=e36]: "@claude find a list of hot springs in Oregon. Include a picture, link, and description for each."
+          - listitem [ref=e37]:
+            - link "LLPM↗" [ref=e38] [cursor=pointer]:
+              - /url: https://britt.github.io/agent-skills/
+            - text: "- Imagine Claude Code was a PM."
+            - emphasis [ref=e39]: The standalone CLI has been retired. LLPM now ships as a bundle inside Agent Skills.
+          - listitem [ref=e40]:
+            - link "Teleprompter↗" [ref=e41] [cursor=pointer]:
+              - /url: https://github.com/britt/teleprompter
+            - text: "- A system to manage and update prompts for LLMs at runtime on Cloudflare Workers."
+          - listitem [ref=e42]:
+            - link "avro-sqlite↗" [ref=e43] [cursor=pointer]:
+              - /url: https://github.com/britt/avro-sqlite
+            - text: "- a Go package to read a SQLite database, extract the schema and data to"
+            - link "Apache Avro↗" [ref=e44] [cursor=pointer]:
+              - /url: https://avro.apache.org/
+            - text: and vice versa
+          - listitem [ref=e45]:
+            - link "cf-app-template↗" [ref=e46] [cursor=pointer]:
+              - /url: https://github.com/britt/cf-app-template
+            - text: "- A template for building Next.js apps on Cloudflare Workers, with boilerplate and deployment already wired up."
+        - heading [level=2] [ref=e47]:
+          - text: iOS Shortcuts
+          - link "Link to heading" [ref=e48] [cursor=pointer]:
+            - /url: "#ios-shortcuts"
+        - list [ref=e49]:
+          - listitem [ref=e50]:
+            - link "Remember This↗" [ref=e51] [cursor=pointer]:
+              - /url: https://www.icloud.com/shortcuts/1f2b289be44b425ba16934af629b688f
+            - text: "-"
+            - strong [ref=e52]: I didn’t create this one
+            - text: but I have found it very useful, and I did fix a bug where sometimes it would not create the day’s note.
+        - blockquote [ref=e53]:
+          - paragraph [ref=e54]: This shortcut helps someone with short term memory loss log what happens throughout the day. It helps them keep track of what they have done, who they have met, etc. It will ask you what you want to remember. If run for the first time for the day, it will create a new note and log the input, with the time. It it’s been run already, it will grab the note and append the the note with the time and new content.
+        - list [ref=e55]:
+          - listitem [ref=e56]:
+            - link "Remember↗" [ref=e57] [cursor=pointer]:
+              - /url: https://www.icloud.com/shortcuts/18f7fe2b50084cd9ba98655c8d4b9a90
+            - text: "- A version of the shortcut above 👆, but one that can be used from the share sheet for URLs, text, phots, and files."
+          - listitem [ref=e58]:
+            - link "Log Food↗" [ref=e59] [cursor=pointer]:
+              - /url: https://www.icloud.com/shortcuts/ce0b8eb392184f44a510c96f0f1d9509
+            - text: "- Logs whatever you ate to a note named “Food Eaten on {date}” tagged with #food #tracking. You can also add a picture if you want."
+          - listitem [ref=e60]:
+            - link "Log Weight↗" [ref=e61] [cursor=pointer]:
+              - /url: https://www.icloud.com/shortcuts/52abec89fceb40369d192f7e6b270273
+            - text: "- Shout at your phone while you’re on the scale and log your weight in Apple Health."
+          - listitem [ref=e62]:
+            - link "Read Aloud↗" [ref=e63] [cursor=pointer]:
+              - /url: https://www.icloud.com/shortcuts/4e68f1c746334726a8106459f8f3c51b
+            - text: "- Let’s you tap “share” on just about anything (text, web pages, whatever) and have it read aloud to you."
+          - listitem [ref=e64]:
+            - link "Done List↗" [ref=e65] [cursor=pointer]:
+              - /url: https://www.icloud.com/shortcuts/184e00cafc484dabbbe89efe19c44cba
+            - text: and
+            - link "Yesterday’s Done List↗" [ref=e66] [cursor=pointer]:
+              - /url: https://www.icloud.com/shortcuts/00c6d7ac0b58419dbf30831de73e26f1
+            - text: "- Keep and show yourself your"
+            - link "Done List↗" [ref=e67] [cursor=pointer]:
+              - /url: https://www.oliverburkeman.com/donelist
+        - blockquote [ref=e68]:
+          - paragraph [ref=e69]: Each entry is a cheering reminder that you could, after all, have spent the day doing nothing constructive – yet look what you did instead!
+          - paragraph [ref=e70]:
+            - text: –
+            - link "Oliver Burkeman on the Done List↗" [ref=e71] [cursor=pointer]:
+              - /url: https://www.oliverburkeman.com/donelist
+        - list [ref=e72]:
+          - listitem [ref=e73]:
+            - link "lotsofcsvs template↗" [ref=e74] [cursor=pointer]:
+              - /url: https://www.icloud.com/shortcuts/b402f6377b5b42169298285437fb28db
+            - text: "- a template to log stuff from your phone to"
+            - link "lotsofcsvs.com↗" [ref=e75] [cursor=pointer]:
+              - /url: https://www.lotsofcsvs.com
+            - text: .
+        - heading [level=2] [ref=e76]:
+          - text: Other Stuff
+          - link "Link to heading" [ref=e77] [cursor=pointer]:
+            - /url: "#other-stuff"
+        - list [ref=e78]:
+          - listitem [ref=e79]:
+            - link "Cocktail Recipes" [ref=e80] [cursor=pointer]:
+              - /url: /cocktails/
+            - text: "- A small collection of cocktails that I’ve created."
+          - listitem [ref=e81]:
+            - link "We Can Be Heroes" [ref=e82] [cursor=pointer]:
+              - /url: /we_can_be_heroes.pdf
+            - text: "-"
+            - emphasis [ref=e83]:
+              - strong [ref=e84]: This isn’t rock n. roll. It’s suicide!
+            - text: A one-page role playing game where every player is David Bowie.
+        - heading [level=2] [ref=e85]:
+          - text: Abandoned but not forgotten
+          - link "Link to heading" [ref=e86] [cursor=pointer]:
+            - /url: "#abandoned-but-not-forgotten"
+        - list [ref=e87]:
+          - listitem [ref=e88]:
+            - link "Havamal↗" [ref=e89] [cursor=pointer]:
+              - /url: https://smile.amazon.com/Snugglebear-Team-Company-Havamal/dp/B07N114BWY/ref=sr_1_2?keywords=havamal&qid=1550960415&s=digital-skills&sr=1-2-catcorr
+            - text: "- The wisdom of Odin, told by Alexa. Say, “Alexa tell me the wisdom of Odin.”"
+          - listitem [ref=e90]:
+            - link "Testivus↗" [ref=e91] [cursor=pointer]:
+              - /url: https://github.com/britt/testivus/
+            - text: "-"
+            - emphasis [ref=e92]: (inactive)
+            - text: A Go test helper library to let your code know how it disappoints you.
+          - listitem [ref=e93]:
+            - link "yts↗" [ref=e94] [cursor=pointer]:
+              - /url: https://github.com/britt/vibes/tree/main/yts
+            - text: "- A bash function to download YouTube video transcripts and convert them to Markdown format. Following the example of"
+            - link "David Gasquez’s↗" [ref=e95] [cursor=pointer]:
+              - /url: https://davidgasquez.com/useful-llm-tools-2024/
+            - text: excellent
+            - link "qv↗" [ref=e96] [cursor=pointer]:
+              - /url: https://github.com/davidgasquez/dotfiles/blob/bb9df4a369dbaef95ca0c35642de491c7dd41269/shell/zshrc#L75-L99
+            - text: function.
+        - generic [ref=e97]:
+          - separator [ref=e98]
+          - list [ref=e99]:
+            - listitem [ref=e100]:
+              - paragraph [ref=e101]:
+                - emphasis [ref=e102]:
+                  - link "Maggie Appleton - Home-Cooked Software and Barefoot Developers↗" [ref=e103] [cursor=pointer]:
+                    - /url: https://maggieappleton.com/home-cooked-software
+                - link "↩︎" [ref=e104] [cursor=pointer]:
+                  - /url: "#fnref:1"
+    - generic [ref=e106]:
+      - text: © 1999 - 2026 Britt Crawford · Powered by
+      - link "Hugo" [ref=e107] [cursor=pointer]:
+        - /url: https://gohugo.io/
+      - text: "&"
+      - link "Coder" [ref=e108] [cursor=pointer]:
+        - /url: https://github.com/luizdepra/hugo-coder/
+      - text: .

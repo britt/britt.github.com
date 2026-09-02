@@ -1,39 +1,52 @@
 {{ define "content" }}
-<section class="container centered" style="display: flex; flex-direction: column; align-items: center;">
-    <article class="about" style="width: 100%;">
-        {{ partialCached "home/avatar.html" . }}
-        <h1>
-            {{ .Site.Params.author }}
-        </h1>
-        {{ if reflect.IsSlice .Site.Params.info }}
-        <h2>{{ range .Site.Params.info }}{{ . | markdownify }}<br>{{ end}}</h2>
-        {{ else }}
-        <h2>{{ .Site.Params.info | markdownify }}</h2>
-        {{ end }}
-        <section style="display: flex; flex-direction: row; align-items: center; justify-content:center;">
-            {{ with .Site.Params.social }}
-            {{ range sort . "weight" }}
-            {{ if .icon }}
-            <div style="margin-left: 10px; margin-right: 10px;">
-                <a class="social-icon" href="{{ .url | safeURL }}"
-                    style="color: #000; font-size: 14px; text-decoration: none;" aria-label="{{ .name }}" {{
-                    if .rel }}rel="{{ .rel }}" {{ end }} {{ if .target }}target="{{ .target }}" {{ end }} {{ if .type
-                    }}type="{{ .type }}" {{ end }}>
-                    <i class="{{ .icon }}" aria-hidden="true"></i>
-                </a>
-            </div>
-            {{ end }}
-            {{ end }}
-            {{ end }}
-        </section>
-    </article>
-    <hr style="width: 100%; margin-top: 36px; margin-bottom: 24px;" />
-    <div class="content" style="width: 100%; display: flex; flex-direction: column; align-items: start;">
-        <article>
-            {{ .Content }}
-        </article>
-    </div>
+{{- /*
+  The home page.
 
-    {{ partialCached "home/extensions.html" . }}
-</section>
+  Replaces a template that did its entire layout through eight inline style=
+  attributes — which could not be themed, could not respond to a breakpoint,
+  beat every stylesheet on specificity, and hardcoded 36px/24px/10px/14px
+  values no token could reach. One of them set `color: #000` on the social
+  links, so they rendered black on a dark background: invisible, on the live
+  site, in dark mode.
+
+  The shape is the design system's PageShell — a rail carrying identity, the
+  content beside it — which is how a full-bleed page gets filled without
+  stretching body copy. Under 820px the rail collapses above the content, back
+  to the original single-column reading order.
+*/ -}}
+<div class="ds-split home">
+  <aside class="home__rail">
+    <div class="ds-profile home__profile">
+      {{ partial "home/avatar.html" . }}
+      <div>
+        <h1 class="home__name">{{ .Site.Params.author }}</h1>
+        {{ with .Site.Params.info }}
+          {{ if reflect.IsSlice . }}
+            {{ range . }}<p class="home__tagline">{{ . | markdownify }}</p>{{ end }}
+          {{ else }}
+            <p class="home__tagline">{{ . | markdownify }}</p>
+          {{ end }}
+        {{ end }}
+        {{ with .Site.Params.social }}
+          {{- /* Words, not icons. "The site has no icon set and no logo […]
+               social links are plain words." (#54) */ -}}
+          <ul class="ds-profile__links">
+            {{ range sort . "weight" }}
+              <li>
+                <a href="{{ .url | safeURL }}"
+                   {{ with .rel }}rel="{{ . }}"{{ end }}
+                   {{ with .target }}target="{{ . }}"{{ end }}>{{ .name }}</a>
+              </li>
+            {{ end }}
+          </ul>
+        {{ end }}
+      </div>
+    </div>
+  </aside>
+
+  <div class="home__content" data-prose>
+    {{ .Content }}
+  </div>
+</div>
+{{ partialCached "home/extensions.html" . }}
 {{ end }}

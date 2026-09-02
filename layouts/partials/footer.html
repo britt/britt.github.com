@@ -1,0 +1,28 @@
+{{- /*
+  Shadows themes/hugo-coder/layouts/partials/footer.html.
+
+  The design system's SiteFooter is "a quiet centered copyright line". The
+  theme's version spent that line on "Powered by Hugo & Coder" — boilerplate,
+  and attribution neither project requires. Both are credited in README.md,
+  where someone looking for them will actually look.
+
+  SiteFooter takes an optional note; this passes none. Social links were
+  considered and left on the home page, where the design system puts them, in
+  ProfileHeader — repeating them under every cocktail recipe is noise.
+
+  The year is computed, so the range keeps updating.
+*/ -}}
+<footer class="footer">
+  <div class="container">
+    <p>
+      ©
+      {{- if and .Site.Params.since (lt .Site.Params.since now.Year) }}
+        {{ .Site.Params.since }}–{{ now.Year }}
+      {{- else }}
+        {{ now.Year }}
+      {{- end }}
+      {{- with .Site.Params.author }} {{ . }}{{ end }}
+      {{- with .Site.Params.license }} · {{ i18n "licensed_under" }} {{ . | safeHTML }}{{ end }}
+    </p>
+  </div>
+</footer>

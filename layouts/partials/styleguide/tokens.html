@@ -1,0 +1,77 @@
+{{- /*
+  Render every custom property declared in one design system file.
+
+  The token list is read out of the CSS at build time rather than typed here.
+  A styleguide maintained by hand drifts the first time a token is added, and a
+  styleguide that has drifted is worse than none — it reports a system that no
+  longer exists.
+
+  How each token is demonstrated is chosen from its *name*, not its file: the
+  export groups by concern, so typography.css holds sizes, leadings, weights
+  and tracking together, and showing a letter-spacing as a font-size renders
+  0.08em-tall text that tells nobody anything.
+
+  Context: dict "file" (path under assets/) "kind" ("color" or "auto")
+*/ -}}
+{{- $file := .file -}}
+{{- $kind := .kind -}}
+{{- $sample := "Grid, ferment, repeat" -}}
+{{- with resources.Get $file -}}
+  {{- $names := slice -}}
+  {{- range findRE `--[a-z0-9-]+\s*:` .Content -}}
+    {{- $n := . | replaceRE `\s*:$` "" -}}
+    {{- if not (in $names $n) -}}{{- $names = $names | append $n -}}{{- end -}}
+  {{- end -}}
+
+  {{- if eq $kind "color" -}}
+    <ul class="sg-grid">
+    {{- range $names }}
+      <li class="sg-swatch">
+        <span class="sg-swatch__chip" style="{{ printf "background: var(%s)" . | safeCSS }}"></span>
+        <span class="sg-swatch__body">
+          <span class="sg-swatch__name">{{ . }}</span><br>
+          <span class="sg-swatch__value" data-resolve="{{ . }}">…</span><br>
+          <span class="sg-swatch__contrast" data-contrast="{{ . }}"></span>
+        </span>
+      </li>
+    {{- end }}
+    </ul>
+  {{- else -}}
+    <ul class="sg-rows">
+    {{- range $names }}
+      {{- $n := . -}}
+      <li class="sg-row">
+        <span class="sg-row__name">{{ $n }} <span class="sg-value" data-resolve="{{ $n }}">…</span></span>
+        <span class="sg-row__demo">
+        {{- if hasPrefix $n "--text-" -}}
+          <span class="sg-type" style="{{ printf "font-size: var(%s)" $n | safeCSS }}">{{ $sample }}</span>
+        {{- else if hasPrefix $n "--leading-" -}}
+          <span class="sg-lead" style="{{ printf "line-height: var(%s)" $n | safeCSS }}">{{ $sample }}<br>{{ $sample }}</span>
+        {{- else if hasPrefix $n "--weight-" -}}
+          <span class="sg-type" style="{{ printf "font-weight: var(%s)" $n | safeCSS }}">{{ $sample }}</span>
+        {{- else if hasPrefix $n "--tracking-" -}}
+          <span class="sg-type" style="{{ printf "letter-spacing: var(%s)" $n | safeCSS }}">{{ $sample }}</span>
+        {{- else if hasPrefix $n "--font-" -}}
+          <span class="sg-type" style="{{ printf "font-family: var(%s); font-size: var(--text-h4)" $n | safeCSS }}">{{ $sample }} 0123</span>
+        {{- else if hasPrefix $n "--radius-" -}}
+          <span class="sg-box" style="{{ printf "border-radius: var(%s)" $n | safeCSS }}"></span>
+        {{- else if hasPrefix $n "--shadow-" -}}
+          <span class="sg-box" style="{{ printf "box-shadow: var(%s)" $n | safeCSS }}"></span>
+        {{- else if or (hasPrefix $n "--space-") (hasPrefix $n "--stack-") (hasPrefix $n "--gutter-") (hasPrefix $n "--page-header-") (hasPrefix $n "--container-") (hasPrefix $n "--measure") (hasPrefix $n "--grid-min") (hasPrefix $n "--rail-") (hasPrefix $n "--main-") (hasPrefix $n "--col-") (hasPrefix $n "--sidebar") (hasPrefix $n "--avatar-size") (hasPrefix $n "--border-width") (hasPrefix $n "--border-quote-width") -}}
+          {{- /* min() so a 1440px container does not run off the page */ -}}
+          <span class="sg-bar" style="{{ printf "width: min(100%%, var(%s))" $n | safeCSS }}"></span>
+        {{- else if or (hasPrefix $n "--motion-") (hasPrefix $n "--duration-") -}}
+          <span class="sg-motion" style="{{ printf "--sg-duration: var(%s)" $n | safeCSS }}" tabindex="0"><span class="sg-motion__dot"></span> hover or focus</span>
+        {{- else if hasPrefix $n "--ease-" -}}
+          <span class="sg-motion" style="{{ printf "--sg-ease: var(%s); --sg-duration: 700ms" $n | safeCSS }}" tabindex="0"><span class="sg-motion__dot"></span> hover or focus (slowed to 700ms so the curve is visible)</span>
+        {{- else -}}
+          <span class="sg-value sg-value--bare">—</span>
+        {{- end -}}
+        </span>
+      </li>
+    {{- end }}
+    </ul>
+  {{- end -}}
+{{- else -}}
+  {{- errorf "styleguide: %s not found" $file -}}
+{{- end -}}

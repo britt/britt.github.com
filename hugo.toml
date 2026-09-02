@@ -1,17 +1,70 @@
 baseURL = 'https://brittcrawford.com/'
-languageCode = 'en-us'
 title = 'brittcrawford.com'
-theme = "hugo-coder"
-languagecode = "en"
+locale = 'en-US'
 defaultcontentlanguage = "en"
 
 pagination.pagerSize = 20
 
 [markup.highlight]
-style = "github-dark"
+  # Emit Chroma's semantic classes and let design/tokens/syntax.css colour
+  # them, so code themes with everything else instead of being a separate
+  # hardcoded surface. `style` is deliberately absent: it only applies when
+  # noClasses is true, and leaving it set would be a config line that reads as
+  # if it does something.
+  noClasses = false
+  lineNumbersInTable = true
 
 [markup.goldmark.renderer]
 unsafe = true
+
+[markup.goldmark.parser]
+  # A standalone image becomes a <figure>, which is not valid inside a <p>.
+  # Leaving Goldmark's default wrapping on would nest one inside the other.
+  wrapStandAloneImageWithinParagraph = false
+
+# Hugo version gate. Fails the build on an unpinned or non-extended toolchain
+# rather than producing a subtly different site. Keep in step with .hugoversion
+# and .tool-versions.
+[module]
+  [module.hugoVersion]
+    extended = true
+    min = "0.163.0"
+
+  # The design system export in design/ is the single source of truth for
+  # tokens. Mounting it into assets/ lets Hugo Pipes consume it directly, so
+  # refreshing the design system is a matter of replacing design/ — there is no
+  # transcribed second copy to drift out of step.
+  #
+  # Declaring a mount for a target replaces that target's default mount, so
+  # assets/ is re-declared here alongside it.
+  # hugo-coder is imported as a module rather than set via `theme` so that only
+  # the parts still in use are mounted. After the cutover the site compiles
+  # none of the theme's SCSS and uses none of its static files — which is where
+  # Font Awesome's three woff2 files live. Importing layouts and i18n only
+  # keeps 984 KB of unreferenced fonts out of the build (#54).
+  [[module.imports]]
+    path = "hugo-coder"
+    [[module.imports.mounts]]
+      source = "layouts"
+      target = "layouts"
+    [[module.imports.mounts]]
+      source = "i18n"
+      target = "i18n"
+
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "design/tokens"
+    target = "assets/ds"
+  # Content images are referenced by absolute URL (/img/...) and live in
+  # static/, which bypasses Hugo Pipes entirely. Mounting them into assets/ as
+  # well lets the image render hook resolve one as a resource and read its
+  # intrinsic dimensions, so the browser can reserve the box before the image
+  # arrives (#55). They keep their static/ URLs.
+  [[module.mounts]]
+    source = "static/img"
+    target = "assets/img"
 
 [params]
   author = "Britt Crawford"
@@ -19,15 +72,21 @@ unsafe = true
   keywords = "blog,personal,sandgarden,home cooked software,recipes,cocktails"
   info = "Working to build [Sandgarden](https://www.sandgarden.com)."
   #avatarurl = "images/avatar.jpg"
-  gravatar = "britt.v.crawford@gmail.com"
+  # The portrait is self-hosted at assets/img/avatar.png — see
+  # layouts/partials/home/avatar.html. `gravatar` is deliberately unset so the
+  # theme's partial cannot reintroduce the third-party request.
   favicon = "/img/favicon.png"
   favicon_32 = "/img/favicon.png"
   favicon_16 = "/img/favicon.png"
   touchicon = "/img/apple-touch-icon-144-precomposed.png"
   since = 1999
-  enableTwemoji = true
+  # enableTwemoji is deliberately absent: this theme has no Twemoji
+  # implementation, so setting it did nothing. The 👆 in content/_index.md
+  # renders in the system emoji font, which costs no extra request (#64).
+  # Which design system variant to render. Emitted as <html data-theme>.
+  designTheme = "playful"
   colorScheme = "auto"
-  hidecolorschemetoggle = false
+  hideColorSchemeToggle = false
 
   # customCSS = ["css/custom.css"]
   # customSCSS = ["scss/custom.scss"]
@@ -40,16 +99,16 @@ unsafe = true
 #   author = "authors"
 
 # Social links
+# Social links render as words, not icons — the design system has no icon set.
+# The `icon` field held Font Awesome classes and is gone with Font Awesome (#54).
 [[params.social]]
-  name = "Github"
-  icon = "fa fa-github fa-2x"
+  name = "GitHub"
   weight = 1
   url = "https://github.com/britt/"
 [[params.social]]
   name = "LinkedIn"
-  icon = "fa fa-linkedin fa-2x"
   weight = 2
-  url = "http://www.linkedin.com/in/brittcrawford/"
+  url = "https://www.linkedin.com/in/brittcrawford/"
 
 # Menu links
 # [[menu.main]]

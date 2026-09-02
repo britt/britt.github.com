@@ -1,0 +1,37 @@
+{{- /*
+  Tables in content.
+
+  Markdown emits a bare <table>, which at 320px simply overflows the viewport
+  and takes the page's horizontal scroll with it. content.css already defines
+  .ds-scroll for exactly this; nothing was putting a table inside one.
+
+  Wrapping rather than making the table itself scrollable: `display: block` on
+  a <table> gets the overflow but throws away table layout, so columns stop
+  sizing to their content.
+
+  role and tabindex so the scroll container is reachable by keyboard — a
+  region that scrolls but cannot be focused is unusable without a pointer.
+*/ -}}
+<div class="ds-scroll" role="region" tabindex="0" aria-label="{{ i18n "table" | default "Table" }}">
+  <table
+    {{- range $k, $v := .Attributes }}{{ if $v }} {{ $k }}="{{ $v }}"{{ end }}{{ end }}>
+    <thead>
+      {{- range .THead }}
+      <tr>
+        {{- range . }}
+        <th{{ with .Alignment }} style="text-align: {{ . }}"{{ end }}>{{ .Text }}</th>
+        {{- end }}
+      </tr>
+      {{- end }}
+    </thead>
+    <tbody>
+      {{- range .TBody }}
+      <tr>
+        {{- range . }}
+        <td{{ with .Alignment }} style="text-align: {{ . }}"{{ end }}>{{ .Text }}</td>
+        {{- end }}
+      </tr>
+      {{- end }}
+    </tbody>
+  </table>
+</div>
