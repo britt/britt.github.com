@@ -1,0 +1,49 @@
+# brittcrawford.com
+
+> Britt Crawford's personal site: home-cooked software projects, iOS Shortcuts, and a small collection of original cocktail recipes.
+
+Britt builds tools that serve him rather than extract his attention, and writes down cocktails he invents as he makes them. This file is a map of the site's content for LLMs and other automated readers; the HTML pages are the canonical source.
+
+## Cocktails
+
+- [Cocktails index](https://brittcrawford.com/cocktails/): all recipes, newest first
+- [Anderson Island Sunset](https://brittcrawford.com/cocktails/anderson-island-sunset/): improvised from whatever was in a cabin's kitchen ahead of a concert
+- [Bitter Nonsense](https://brittcrawford.com/cocktails/bitter-nonsense/): a carbonated Negroni riff
+- [Bittersweet Symphony](https://brittcrawford.com/cocktails/bittersweet-symphony/): a bourbon Paloma made with fresh grapefruit juice instead of soda
+- [El Niño](https://brittcrawford.com/cocktails/el-nino/): a beach-trip recipe by a friend, the one cocktail here Britt didn't create
+- [Envejeciendo](https://brittcrawford.com/cocktails/envejeciendo/): grapefruit, mezcal, and spice
+- [Holiday Spiced Sour](https://brittcrawford.com/cocktails/holiday-spiced-sour/): a whiskey sour built from the Christmas spice cabinet
+- [Johnny Appleseed](https://brittcrawford.com/cocktails/johnny-appleseed/): a Rattlesnake variant using Apple Jack instead of rye
+- [La Pomme Forte](https://brittcrawford.com/cocktails/la-pomme-forte/): an Apple Jack cocktail with a name in bad French
+- [Mother of Invention](https://brittcrawford.com/cocktails/mother-of-invention/): made with what was on hand
+- [Peach Pepper Jelly Julep](https://brittcrawford.com/cocktails/peach-pepper-jelly-julep/): a julep variant for someone who isn't that fond of juleps
+- [Protein G1](https://brittcrawford.com/cocktails/protein-g1/): a healthy liquid breakfast
+- [Slightly Sour Strawberry Smash](https://brittcrawford.com/cocktails/slightly-sour-strawberry-smash/): a strawberry old fashioned balanced with sour walnut cordial
+- [That's Just Dandy](https://brittcrawford.com/cocktails/thats-just-dandy/): built around a surplus of homemade apricot jam
+- [Yippee Kay Yay Motherfucker!](https://brittcrawford.com/cocktails/yippee-kay-yay-motherfucker/): a spicy Old Fashioned variant and Die Hard tribute
+
+## Projects
+
+- [Readinglist.live](https://www.readinglist.live): turns any web page into a podcast episode with human-sounding voices, no AI commentary
+- [lotsofcsvs.com](https://www.lotsofcsvs.com): a small data warehouse using CSV and HTTP as its API
+- [Agent Skills](https://britt.github.io/agent-skills/): skills for working with coding agents, including the retired LLPM CLI's replacement
+- [Obsidian Notes Watcher](https://github.com/britt/obsidian-notes-watcher): a GitHub Action that dispatches an agent to handle @mentions in Obsidian notes
+- [Teleprompter](https://github.com/britt/teleprompter): manages and updates LLM prompts at runtime on Cloudflare Workers
+- [avro-sqlite](https://github.com/britt/avro-sqlite): a Go package converting between SQLite and Apache Avro
+- [cf-app-template](https://github.com/britt/cf-app-template): a Next.js on Cloudflare Workers starter template with deployment wired up
+
+## iOS Shortcuts
+
+- [Remember This](https://www.icloud.com/shortcuts/1f2b289be44b425ba16934af629b688f): logs what happens throughout the day for someone with short-term memory loss, appending a timestamped note; not created by Britt, who fixed a bug in it
+- [Remember](https://www.icloud.com/shortcuts/18f7fe2b50084cd9ba98655c8d4b9a90): the same idea as Remember This, usable from the share sheet for URLs, text, photos, and files
+- [Log Food](https://www.icloud.com/shortcuts/ce0b8eb392184f44a510c96f0f1d9509): logs whatever you ate to a dated, tagged note, with an optional photo
+- [Log Weight](https://www.icloud.com/shortcuts/52abec89fceb40369d192f7e6b270273): logs a spoken weight reading to Apple Health
+- [Read Aloud](https://www.icloud.com/shortcuts/4e68f1c746334726a8106459f8f3c51b): reads shared text or web pages aloud
+- [Done List](https://www.icloud.com/shortcuts/184e00cafc484dabbbe89efe19c44cba) and [Yesterday's Done List](https://www.icloud.com/shortcuts/00c6d7ac0b58419dbf30831de73e26f1): keep and show a running list of things you actually got done
+- [lotsofcsvs template](https://www.icloud.com/shortcuts/b402f6377b5b42169298285437fb28db): logs data from a phone to lotsofcsvs.com
+
+## Optional
+
+- [Home](https://brittcrawford.com/): the full project list
+- [Daresnot](https://brittcrawford.com/daresnot/): a design sketch for an anonymous, time-limited-privacy voting protocol, inspired by Cory Doctorow's *Walkaway*
+- [We Can Be Heroes](https://brittcrawford.com/we_can_be_heroes.pdf): a one-page tabletop RPG where every player is David Bowie
