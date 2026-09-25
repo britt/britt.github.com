@@ -16,7 +16,6 @@ These are things that I have built simply because I wanted them to exist, or bec
 * [Obsidian Notes Watcher](https://github.com/britt/obsidian-notes-watcher) - A GitHub actions that watches your Obsidian notes for @mentions and dispatches an agent like Claude handle your request and commit changes back to the note. `@claude find a list of hot springs in Oregon. Include a picture, link, and description for each.`
 * [LLPM](https://britt.github.io/agent-skills/skills/llpm/) - Imagine Claude Code was a PM. _The standalone CLI has been retired. LLPM now ships as a bundle inside Agent Skills._
 * [Teleprompter](https://github.com/britt/teleprompter)  - A system to manage and update prompts for LLMs at runtime on Cloudflare Workers.
-* [avro-sqlite](https://github.com/britt/avro-sqlite) - a Go package to read a SQLite database, extract the schema and data to [Apache Avro](https://avro.apache.org/) and vice versa
 * [cf-app-template](https://github.com/britt/cf-app-template) - A template for building Next.js apps on Cloudflare Workers, with boilerplate and deployment already wired up.
 
 ## iOS Shortcuts
@@ -40,6 +39,7 @@ These are things that I have built simply because I wanted them to exist, or bec
 * [We Can Be Heroes](/we_can_be_heroes.pdf) - ***This isn't rock n. roll. It's genocide!*** A one-page role playing game where every player is David Bowie.
 
 ## Abandoned but not forgotten
+* [avro-sqlite](https://github.com/britt/avro-sqlite) - a Go package to read a SQLite database, extract the schema and data to [Apache Avro](https://avro.apache.org/) and vice versa
 * [Havamal](https://www.amazon.com/Snugglebear-Team-Company-Havamal/dp/B07N114BWY/ref=sr_1_2?keywords=havamal&qid=1550960415&s=digital-skills&sr=1-2-catcorr) - The wisdom of Odin, told by Alexa. Say, "Alexa tell me the wisdom of Odin."
 * [Testivus](https://github.com/britt/testivus/) - _(inactive)_ A Go test helper library to let your code know how it disappoints you.
 * [yts](https://github.com/britt/vibes/tree/main/yts) - A bash function to download YouTube video transcripts and convert them to Markdown format.
