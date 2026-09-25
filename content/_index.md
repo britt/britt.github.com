@@ -11,8 +11,8 @@ These are things that I have built simply because I wanted them to exist, or bec
 ## Home Cooked Software [^1]
 
 * [Readinglist.live](https://www.readinglist.live) - Turn any web page into a podcast episode, with decently human sounding voices. _(It just reads it to you in a nice human voice, no AI commentary or nonsense like that.)_
-* [lotsofcsvs.com](https://www.lotsofcsvs.com) - a **small data** warehouse built with CSV and HTTP as its API. It is intentionally as barebones as possible. It aims to be a simple API for recording and fetching data that works with everything.
 * [Agent Skills](https://britt.github.io/agent-skills/) - some skills for working with coding agents.
+* [lotsofcsvs.com](https://www.lotsofcsvs.com) - a **small data** warehouse built with CSV and HTTP as its API. It is intentionally as barebones as possible. It aims to be a simple API for recording and fetching data that works with everything.
 * [Obsidian Notes Watcher](https://github.com/britt/obsidian-notes-watcher) - A GitHub actions that watches your Obsidian notes for @mentions and dispatches an agent like Claude handle your request and commit changes back to the note. `@claude find a list of hot springs in Oregon. Include a picture, link, and description for each.`
 * [LLPM](https://britt.github.io/agent-skills/skills/llpm/) - Imagine Claude Code was a PM. _The standalone CLI has been retired. LLPM now ships as a bundle inside Agent Skills._
 * [Teleprompter](https://github.com/britt/teleprompter)  - A system to manage and update prompts for LLMs at runtime on Cloudflare Workers.
