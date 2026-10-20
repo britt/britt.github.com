@@ -25,6 +25,7 @@ Britt builds tools that serve him rather than extract his attention, and writes 
 ## Projects
 
 - [Readinglist.live](https://www.readinglist.live): turns any web page into a podcast episode with human-sounding voices, no AI commentary
+- [Bittermuse](https://bittermuse.com): a cocktail recipe book for iPhone; share any recipe as a single image a friend can import
 - [lotsofcsvs.com](https://www.lotsofcsvs.com): a small data warehouse using CSV and HTTP as its API
 - [Agent Skills](https://britt.github.io/agent-skills/): skills for working with coding agents, including the retired LLPM CLI's replacement
 - [Obsidian Notes Watcher](https://github.com/britt/obsidian-notes-watcher): a GitHub Action that dispatches an agent to handle @mentions in Obsidian notes
