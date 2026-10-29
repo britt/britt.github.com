@@ -69,12 +69,13 @@
      an artifact instead, so the type shift reads as "this is a picture of a
      card" rather than as the page changing typeface halfway down (#77).
 
-     Done here rather than by adding a title to the image in all fourteen files,
-     for the same reason the method list was left alone: a content change across
-     the corpus to get a template result. A recipe that writes its own caption
-     keeps it. */ -}}
+     It is captioned with the drink's name, from the page title rather than
+     typed into fourteen files. The title is HTML-escaped, and any `$` doubled
+     so replaceRE reads it as text rather than a group reference. A recipe that
+     writes its own caption (an image title) keeps it. */ -}}
+{{- $caption := replace (.Title | htmlEscape) "$" "$$" -}}
 {{- $content = replaceRE `<figure>(<img[^>]*>)</figure>`
-      `<figure class="recipe__card">${1}<figcaption>Recipe card</figcaption></figure>` $content -}}
+      (printf `<figure class="recipe__card">${1}<figcaption>%s</figcaption></figure>` $caption) $content -}}
 {{- $content = replaceRE `<figure>(<img)` `<figure class="recipe__card">${1}` $content -}}
 
 <article class="recipe">
