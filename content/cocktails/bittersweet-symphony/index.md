@@ -13,4 +13,4 @@ A bourbon Paloma that swapped grapefruit soda for fresh juice much to its benefi
 
 Combine the ingredients in a mixing glass with ice to chill. Stir gently and strain.
 
-![Recipe for Bittersweet Symphony](/img/cocktails/bittersweet-symphony.jpg)
+![Recipe for Bittersweet Symphony](/img/cocktails/bittersweet-symphony.png)

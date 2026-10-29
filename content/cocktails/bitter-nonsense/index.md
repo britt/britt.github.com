@@ -14,4 +14,4 @@ A Negroni's neurotic cousin who moved to the suburbs, got a soda maker, and now 
 
 Muddle the orange slice in a shaker. Add the Campari, vermouth, bitters, and some ice. Shake vigorously and strain into a rocks glass with ice. Top with a splash of soda water and garnish with the slice of orange peel.
 
-![Recipe for Bitter Nonsense](/img/cocktails/bitter-nonsense.jpg)
+![Recipe for Bitter Nonsense](/img/cocktails/bitter-nonsense.png)
