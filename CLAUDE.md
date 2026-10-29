@@ -118,7 +118,7 @@ enforced by `[module.hugoVersion]` in `hugo.toml` — an older or non-extended
 binary fails the build rather than producing a different site.
 
 ```
-hugo server               # or: the "run" script in conductor.json
+hugo server               # or: the "server" action in .conductor/settings.toml
 hugo --gc --minify --printPathWarnings --panicOnWarning   # what CI runs
 ```
 
