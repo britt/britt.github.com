@@ -274,6 +274,19 @@
   --sidebar: clamp(260px, 26vw, 380px);
 }
 
+/* The card's width, shared with the body so the two cannot drift apart. */
+.recipe {
+  --recipe-card: 400px;
+}
+
+/* The body is held to a little more than the card rather than the full
+   reading measure, so the description and method above and below the card
+   read as one column with it instead of running far past its right edge.
+   About 50 characters a line at --text-base. */
+.recipe__body {
+  max-width: calc(var(--recipe-card) + var(--space-10));
+}
+
 .recipe__rail {
   position: sticky;
   top: var(--space-6);
@@ -350,10 +363,11 @@
    set in a serif face this site does not own and cannot restyle. At the reading
    measure one renders 1448px tall and reads as a second page in a third
    typeface. At 400px, hairline-bordered by the system's figure rules and
-   captioned in the same monospace the date and the nav use, it reads as an
-   embedded artifact — which is what it is (#77). */
+   captioned with the drink's name in the same monospace the date and the nav
+   use, it reads as an embedded artifact — which is what it is (#77). It sits
+   between the description and the method, on the prose's left edge. */
 .recipe__body .recipe__card {
-  max-width: min(100%, 400px);
+  max-width: min(100%, var(--recipe-card));
 }
 
 .recipe__card figcaption {

@@ -18,4 +18,4 @@ A whiskey sour that raided the spice cabinet at Christmas.
 
 Mix everything in a shaker with ice and shake hard
 
-![Recipe for Holiday Spiced Sour](/img/cocktails/holiday-spiced-sour.jpg)
+![Recipe for Holiday Spiced Sour](/img/cocktails/holiday-spiced-sour.png)

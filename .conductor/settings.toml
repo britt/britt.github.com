@@ -1,0 +1,29 @@
+"$schema" = "https://conductor.build/schemas/settings.repo.schema.json"
+
+[scripts]
+# Cloud sandboxes don't ship Hugo; install the version pinned in .hugoversion.
+setup = '''
+if [ "$CONDUCTOR_IS_LOCAL" = "0" ] && ! hugo version 2>/dev/null | grep -q "v$(cat .hugoversion)-.*+extended"; then
+  v=$(cat .hugoversion)
+  curl -fsSL "https://github.com/gohugoio/hugo/releases/download/v${v}/hugo_extended_${v}_linux-amd64.tar.gz" | sudo tar -xz -C /usr/local/bin hugo
+fi
+'''
+run_mode = "concurrent"
+
+[scripts.run.server]
+available_in = [ "local" ]
+command = "hugo server --bind 127.0.0.1 --port $CONDUCTOR_PORT --buildDrafts"
+default = true
+icon = "play"
+
+# CONDUCTOR_PORT is unset in cloud. Share 1313 at the workspace preview URL and
+# make Hugo emit that URL instead of localhost, so pages load through the proxy.
+[scripts.run.server-cloud]
+available_in = [ "cloud" ]
+command = '''
+url=$(conductor preview set --port 1313 | awk '/^URL/ {print $2}')
+echo "Preview: $url"
+exec hugo server --bind 127.0.0.1 --port 1313 --baseURL "$url" --appendPort=false --liveReloadPort 443 --buildDrafts
+'''
+default = true
+icon = "play"

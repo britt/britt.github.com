@@ -17,3 +17,6 @@ resources/_gen
 tests/visual/baseline/
 tests/visual/current/
 tests/visual/diff/
+
+# Machine-local Conductor overrides
+.conductor/settings.local.toml

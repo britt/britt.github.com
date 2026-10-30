@@ -118,7 +118,7 @@ enforced by `[module.hugoVersion]` in `hugo.toml` — an older or non-extended
 binary fails the build rather than producing a different site.
 
 ```
-hugo server               # or: the "run" script in conductor.json
+hugo server               # or: the "server" action in .conductor/settings.toml
 hugo --gc --minify --printPathWarnings --panicOnWarning   # what CI runs
 ```
 
@@ -217,6 +217,11 @@ page**, the method as a paragraph, and the recipe card image last.
 prose. An `### Ingredients` heading is optional; the template supplies its own
 either way. If the ingredients are not the first list, they stay in the body and
 the page still renders, just without the rail.
+
+The list also splits the body: what is above it is the description, what is
+below it is the method, and the template moves the recipe card between the two.
+Write the card last anyway — that is the order the page falls back to when no
+list is found.
 
 Images: drop the file in `static/img/cocktails/` and reference it by absolute
 path. `static/img` is mounted into `assets/` so the render hook can resize it to

@@ -9,6 +9,11 @@
   the ingredients are lifted out of the flow and into the rail, and the prose
   reads beside them at a comfortable measure.
 
+  The list also divides what is left. Everything above it is the description
+  and everything below it is the method, so the body is reassembled as
+  description, recipe card, method: the card sits between what the drink is
+  and how to make it, instead of trailing after both.
+
   Lifting them means operating on the rendered HTML, because the ingredients
   are a plain Markdown list, not front matter. The first <ul> in a recipe is
   always the ingredient list: that holds for all fourteen, including the three
@@ -21,12 +26,18 @@
   and the design system has no numbered-steps component.
 */ -}}
 {{- $content := .Content -}}
+{{- $description := "" -}}
+{{- $split := false -}}
 {{- $pattern := `(?s)(?:<h[1-6][^>]*>\s*Ingredients\s*(?:<a[^>]*>.*?</a>)?\s*</h[1-6]>\s*)?<ul>.*?</ul>` -}}
 {{- $found := findRE $pattern $content 1 -}}
 {{- $ingredients := "" -}}
 {{- with $found -}}
   {{- $block := index . 0 -}}
-  {{- $content = replace $content $block "" -}}
+  {{- /* Above the list is the description; $content keeps what is below it. */ -}}
+  {{- $parts := split $content $block -}}
+  {{- $description = index $parts 0 -}}
+  {{- $content = delimit (after 1 $parts) "" -}}
+  {{- $split = true -}}
   {{- /* Eleven of the fourteen write their own "Ingredients" heading and three
        do not, so the heading is dropped here and the rail supplies one. Keeping
        the content's would print the word twice on those eleven. */ -}}
@@ -69,13 +80,25 @@
      an artifact instead, so the type shift reads as "this is a picture of a
      card" rather than as the page changing typeface halfway down (#77).
 
-     Done here rather than by adding a title to the image in all fourteen files,
-     for the same reason the method list was left alone: a content change across
-     the corpus to get a template result. A recipe that writes its own caption
-     keeps it. */ -}}
+     It is captioned with the drink's name, from the page title rather than
+     typed into fourteen files. The title is HTML-escaped, and any `$` doubled
+     so replaceRE reads it as text rather than a group reference. A recipe that
+     writes its own caption (an image title) keeps it. */ -}}
+{{- $caption := replace (.Title | htmlEscape) "$" "$$" -}}
 {{- $content = replaceRE `<figure>(<img[^>]*>)</figure>`
-      `<figure class="recipe__card">${1}<figcaption>Recipe card</figcaption></figure>` $content -}}
+      (printf `<figure class="recipe__card">${1}<figcaption>%s</figcaption></figure>` $caption) $content -}}
 {{- $content = replaceRE `<figure>(<img)` `<figure class="recipe__card">${1}` $content -}}
+
+{{- /* Lift the card out of the method so it can sit above it. Only when the
+     ingredients were found: without that split there is no description to put
+     it under, and the page keeps its authored order. */ -}}
+{{- $card := "" -}}
+{{- if $split -}}
+  {{- with findRE `(?s)<figure class="recipe__card">.*?</figure>` $content 1 -}}
+    {{- $card = index . 0 -}}
+    {{- $content = replace $content $card "" -}}
+  {{- end -}}
+{{- end -}}
 
 <article class="recipe">
   {{- /* The title spans the full width rather than sitting in the rail: at 300px
@@ -119,6 +142,8 @@
     </div>
 
     <div class="recipe__body" data-prose>
+      {{ $description | safeHTML }}
+      {{ $card | safeHTML }}
       {{ $content | safeHTML }}
     </div>
   </div>
