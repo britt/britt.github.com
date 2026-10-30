@@ -352,10 +352,9 @@
    typeface. At 400px, hairline-bordered by the system's figure rules and
    captioned with the drink's name in the same monospace the date and the nav
    use, it reads as an embedded artifact — which is what it is (#77). It sits
-   between the description and the method, centred in the body column. */
+   between the description and the method, on the prose's left edge. */
 .recipe__body .recipe__card {
   max-width: min(100%, 400px);
-  margin-inline: auto;
 }
 
 .recipe__card figcaption {
