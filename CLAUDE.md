@@ -218,6 +218,11 @@ prose. An `### Ingredients` heading is optional; the template supplies its own
 either way. If the ingredients are not the first list, they stay in the body and
 the page still renders, just without the rail.
 
+The list also splits the body: what is above it is the description, what is
+below it is the method, and the template moves the recipe card between the two.
+Write the card last anyway — that is the order the page falls back to when no
+list is found.
+
 Images: drop the file in `static/img/cocktails/` and reference it by absolute
 path. `static/img` is mounted into `assets/` so the render hook can resize it to
 three widths, convert to WebP and emit `srcset` — you do not do any of that by
