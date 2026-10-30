@@ -15,10 +15,6 @@ These are things that I have built simply because I wanted them to exist, or bec
 * [lotsofcsvs.com](https://www.lotsofcsvs.com) - a **small data** warehouse built with CSV and HTTP as its API. It is intentionally as barebones as possible. It aims to be a simple API for recording and fetching data that works with everything.
 * [Agent Skills](https://britt.github.io/agent-skills/) - some skills for working with coding agents.
 * [Obsidian Notes Watcher](https://github.com/britt/obsidian-notes-watcher) - A GitHub actions that watches your Obsidian notes for @mentions and dispatches an agent like Claude handle your request and commit changes back to the note. `@claude find a list of hot springs in Oregon. Include a picture, link, and description for each.`
-* [LLPM](https://britt.github.io/agent-skills/) - Imagine Claude Code was a PM. _The standalone CLI has been retired. LLPM now ships as a bundle inside Agent Skills._
-* [Teleprompter](https://github.com/britt/teleprompter)  - A system to manage and update prompts for LLMs at runtime on Cloudflare Workers.
-* [avro-sqlite](https://github.com/britt/avro-sqlite) - a Go package to read a SQLite database, extract the schema and data to [Apache Avro](https://avro.apache.org/) and vice versa
-* [cf-app-template](https://github.com/britt/cf-app-template) - A template for building Next.js apps on Cloudflare Workers, with boilerplate and deployment already wired up.
 
 ## iOS Shortcuts
 
@@ -43,6 +39,10 @@ These are things that I have built simply because I wanted them to exist, or bec
 ## Abandoned but not forgotten
 * [Havamal](https://www.amazon.com/Snugglebear-Team-Company-Havamal/dp/B07N114BWY/ref=sr_1_2?keywords=havamal&qid=1550960415&s=digital-skills&sr=1-2-catcorr) - The wisdom of Odin, told by Alexa. Say, "Alexa tell me the wisdom of Odin."
 * [Testivus](https://github.com/britt/testivus/) - _(inactive)_ A Go test helper library to let your code know how it disappoints you.
+* [LLPM](https://britt.github.io/agent-skills/) - Imagine Claude Code was a PM. _The standalone CLI has been retired. LLPM now ships as a bundle inside Agent Skills._
+* [Teleprompter](https://github.com/britt/teleprompter)  - A system to manage and update prompts for LLMs at runtime on Cloudflare Workers.
+* [avro-sqlite](https://github.com/britt/avro-sqlite) - a Go package to read a SQLite database, extract the schema and data to [Apache Avro](https://avro.apache.org/) and vice versa
+* [cf-app-template](https://github.com/britt/cf-app-template) - A template for building Next.js apps on Cloudflare Workers, with boilerplate and deployment already wired up.
 * [yts](https://github.com/britt/vibes/tree/main/yts) - A bash function to download YouTube video transcripts and convert them to Markdown format.
 Following the example of [David Gasquez's](https://davidgasquez.com/useful-llm-tools-2024/) excellent [qv](https://github.com/davidgasquez/dotfiles/blob/bb9df4a369dbaef95ca0c35642de491c7dd41269/shell/zshrc#L75-L99) function.
 

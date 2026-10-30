@@ -29,9 +29,6 @@ Britt builds tools that serve him rather than extract his attention, and writes 
 - [lotsofcsvs.com](https://www.lotsofcsvs.com): a small data warehouse using CSV and HTTP as its API
 - [Agent Skills](https://britt.github.io/agent-skills/): skills for working with coding agents, including the retired LLPM CLI's replacement
 - [Obsidian Notes Watcher](https://github.com/britt/obsidian-notes-watcher): a GitHub Action that dispatches an agent to handle @mentions in Obsidian notes
-- [Teleprompter](https://github.com/britt/teleprompter): manages and updates LLM prompts at runtime on Cloudflare Workers
-- [avro-sqlite](https://github.com/britt/avro-sqlite): a Go package converting between SQLite and Apache Avro
-- [cf-app-template](https://github.com/britt/cf-app-template): a Next.js on Cloudflare Workers starter template with deployment wired up
 
 ## iOS Shortcuts
 
