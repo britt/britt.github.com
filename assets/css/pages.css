@@ -86,21 +86,51 @@
    ingredients on a cocktail page, for instance, which are the primary content
    there and must not be muted. That distinction is in the content, so the
    selector reads it from the content rather than from which template
-   happens to be rendering. */
+   happens to be rendering.
 
-[data-prose] li:has(> a:first-child) {
+   An entry may lead with the linked project's mark instead of the link itself
+   — the Home Cooked Software list does. `img:first-child + a` reads that as
+   the same shape: the item still begins with a link, with its icon in front.
+   The ingredients list stays excluded either way, because nothing there is a
+   link. */
+
+[data-prose] li:has(> a:first-child),
+[data-prose] li:has(> img:first-child + a) {
   color: var(--text-muted);
 }
 
-[data-prose] li:has(> a:first-child) > a:first-child {
+[data-prose] li:has(> a:first-child) > a:first-child,
+[data-prose] li > img:first-child + a {
   color: var(--link);
   font-weight: var(--weight-medium);
 }
 
 /* Emphasis inside a description is an aside, not a promotion — it stays at the
    description's weight rather than jumping to heading colour. */
-[data-prose] li:has(> a:first-child) strong {
+[data-prose] li:has(> a:first-child) strong,
+[data-prose] li:has(> img:first-child + a) strong {
   color: inherit;
+}
+
+/* ── link marks ──────────────────────────────────────────────────────────
+   Each one is the linked project's own app icon, taken from the site it
+   points at. That is not a reversal of "words, not icons" (#54): the site
+   still has no icon *set* and no glyph vocabulary, and nothing here stands in
+   for a word. These identify a destination the way a favicon does, which is
+   why each carries alt="" — the link text beside it already says the name,
+   and a screen reader should not hear it twice.
+
+   Sized in em so it tracks the line it sits on at every type scale, and
+   rounded with the system's radius rather than baked into the PNG, so the
+   corner is a token like every other corner on the site. --radius-sm on a
+   ~20px box is close to the superellipse iOS draws on the same artwork. */
+
+[data-prose] li > img:first-child {
+  width: 1.3em;
+  height: 1.3em;
+  margin-right: var(--space-1);
+  border-radius: var(--radius-sm);
+  vertical-align: -0.28em;
 }
 
 /* ── list markers ────────────────────────────────────────────────────────
