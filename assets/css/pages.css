@@ -133,6 +133,28 @@
   vertical-align: -0.28em;
 }
 
+/* ── store badges ────────────────────────────────────────────────────────
+   Apple's official "Download on the App Store" artwork, unmodified, as its
+   marketing guidelines require — so it is sized here, never redrawn. It sits
+   on its own line under the description rather than mid-sentence, and at
+   40px tall, the badge's native height and the minimum Apple allows on web.
+   The black badge carries its own grey keyline, so it reads in both schemes
+   without a variant. The link-underline rule has nothing to underline: the
+   anchor's only content is the image. */
+
+[data-prose] li a[href^="https://apps.apple.com/"]:has(> img:only-child) {
+  display: block;
+  width: fit-content;
+  margin-top: var(--space-2);
+  text-decoration: none;
+}
+
+[data-prose] li a[href^="https://apps.apple.com/"] > img {
+  display: block;
+  height: 40px;
+  width: auto;
+}
+
 /* ── list markers ────────────────────────────────────────────────────────
    The playful variant cycles the marker colour through the four accents.
    Done on ::marker, which accepts `color` and can be selected per item —

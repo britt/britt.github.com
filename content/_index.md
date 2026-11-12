@@ -11,7 +11,7 @@ These are things that I have built simply because I wanted them to exist, or bec
 ## Home Cooked Software [^1]
 
 * ![](/img/icons/readinglist-live.png) [Readinglist.live](https://www.readinglist.live) - Turn any web page into a podcast episode, with decently human sounding voices. _(It just reads it to you in a nice human voice, no AI commentary or nonsense like that.)_
-* ![](/img/icons/bittermuse.png) [Bittermuse](https://bittermuse.com) - A cocktail recipe book for iPhone. Share any recipe as a single image a friend can import.
+* ![](/img/icons/bittermuse.png) [Bittermuse](https://bittermuse.com) - A cocktail recipe book for iPhone. Share any recipe as a single image a friend can import. <a href="https://apps.apple.com/app/bittermuse/id6821727718" class="external-link" target="_blank" rel="noopener"><img src="/img/badges/download-on-the-app-store.svg" alt="Download on the App Store" width="120" height="40" loading="lazy" decoding="async"></a>
 * ![](/img/icons/lotsofcsvs.png) [lotsofcsvs.com](https://www.lotsofcsvs.com) - a **small data** warehouse built with CSV and HTTP as its API. It is intentionally as barebones as possible. It aims to be a simple API for recording and fetching data that works with everything.
 * ![](/img/icons/agent-skills.png) [Britt's Agent Skills](https://britt.github.io/agent-skills/) - some skills for working with coding agents.
 * ![](/img/icons/obsidian-notes-watcher.png) [Obsidian Notes Watcher](https://github.com/britt/obsidian-notes-watcher) - A GitHub actions that watches your Obsidian notes for @mentions and dispatches an agent like Claude handle your request and commit changes back to the note. `@claude find a list of hot springs in Oregon. Include a picture, link, and description for each.`
