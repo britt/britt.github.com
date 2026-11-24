@@ -141,9 +141,18 @@
       </nav>
     </div>
 
-    <div class="recipe__body" data-prose>
+    {{- /* Description and card, then method, as two grid items rather than
+         one, so that stacked on a phone the rail can fall between them:
+         what the drink is and what it looks like first, then what goes in
+         it, then how to make it. Side by side, both sit in the prose column
+         and the rail spans them. See .recipe .ds-split in pages.css. */ -}}
+    {{- if $split }}
+    <div class="recipe__body recipe__lead" data-prose>
       {{ $description | safeHTML }}
       {{ $card | safeHTML }}
+    </div>
+    {{- end }}
+    <div class="recipe__body recipe__method" data-prose>
       {{ $content | safeHTML }}
     </div>
   </div>

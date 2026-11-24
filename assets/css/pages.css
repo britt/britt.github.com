@@ -326,6 +326,48 @@
   --sidebar: clamp(260px, 26vw, 380px);
 }
 
+/* The prose is two grid items — description and card, then method — so that
+   stacked, the ingredients can sit between them (see the media query below).
+   Side by side, the rail spans both rows of the prose column. The second row
+   is 1fr so that when the rail is the taller of the two, its extra height is
+   absorbed below the method rather than opening a gap above it. */
+.recipe .ds-split {
+  grid-template-rows: auto 1fr;
+  row-gap: var(--space-7);
+}
+
+.recipe__rail {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+.recipe__lead {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.recipe__method {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* The two halves used to share one flow, where the card's margin and the
+   method's collapsed into one. Grid items don't collapse margins, so the
+   row-gap stands in for them: it is the figure's own --space-7. */
+.recipe__lead > :last-child {
+  margin-bottom: 0;
+}
+
+.recipe__method > :first-child {
+  margin-top: 0;
+}
+
+/* No ingredients found, no lead: the method is the whole body and takes the
+   first row. */
+.recipe .ds-split:not(:has(.recipe__lead)) .recipe__method {
+  grid-row: 1 / span 2;
+}
+
 /* The card's width, shared with the body so the two cannot drift apart. */
 .recipe {
   --recipe-card: 400px;
@@ -437,14 +479,31 @@
   font-size: var(--text-xs);
 }
 
-/* Stacked, the rail is the top of the page and the prose follows it, so the gap
-   that separated the two columns becomes a vertical one. It sits under the whole
-   rail rather than under the ingredients, because the back link is in the rail
-   too now. */
+/* Stacked, the page reads description and card, then the rail, then the
+   method — on a phone the drink is introduced and shown before you are asked
+   to read what goes in it. The gap that separated the columns becomes a
+   vertical one on both sides of the rail. */
 @media (max-width: 820px) {
+  .recipe .ds-split {
+    grid-template-rows: none;
+    row-gap: var(--space-8);
+  }
+
+  .recipe__rail,
+  .recipe__lead,
+  .recipe__method,
+  .recipe .ds-split:not(:has(.recipe__lead)) .recipe__method {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  /* The rail comes first in the markup, so the lead is moved ahead of it. */
+  .recipe__lead {
+    order: -1;
+  }
+
   .recipe__rail {
     position: static;
-    margin-bottom: var(--space-8);
   }
 }
 
